@@ -15,7 +15,7 @@ class NavigationTest {
 
     @Test
     fun `bottom nav destinations list contains expected items`() {
-        val expectedCount = 5  // Home, Filters, GeneratedGames, Checker, About
+        val expectedCount = 4  // Home, Filters, GeneratedGames, Checker
         assertEquals(expectedCount, bottomNavDestinations.size)
     }
 

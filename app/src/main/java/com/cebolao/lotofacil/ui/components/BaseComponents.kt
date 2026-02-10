@@ -128,69 +128,16 @@ fun AppCard(
     }
 }
 
-// ==================== CARD VARIANTS ====================
+// ==================== VARIANTES DE CARD ====================
 /**
- * Sealed class defining card presentation variants.
- * 
- * - Static: Non-interactive card with elevation
- * - Clickable: Interactive card with press animation and scale feedback
- * - Surfaced: Low-elevation card for surface-like appearance
+ * Variantes de apresentação do Card.
+ *
+ * - Static: Card não-interativo com elevação
+ * - Clickable: Card interativo com animação de escala ao pressionar
+ * - Surfaced: Card de baixa elevação para aparência de superfície
  */
 sealed class CardVariant {
     object Static : CardVariant()
     object Clickable : CardVariant()
     object Surfaced : CardVariant()
-}
-
-// ==================== DEPRECATED ALIASES ====================
-// For backwards compatibility. New code should use AppCard with variant parameter.
-
-@Deprecated(
-    message = "Use AppCard(variant = CardVariant.Static) instead",
-    replaceWith = ReplaceWith("AppCard(modifier, variant = CardVariant.Static, shape, backgroundColor, contentColor, elevation = elevation, content = content)")
-)
-@Composable
-fun ClickableCard(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    shape: Shape = MaterialTheme.shapes.medium,
-    backgroundColor: Color? = null,
-    contentColor: Color? = null,
-    border: BorderStroke? = null,
-    elevation: Dp = AppCardDefaults.elevation,
-    enabled: Boolean = true,
-    content: @Composable () -> Unit
-) {
-    AppCard(
-        modifier = modifier,
-        variant = CardVariant.Clickable,
-        onClick = onClick,
-        shape = shape,
-        backgroundColor = backgroundColor,
-        contentColor = contentColor,
-        border = border,
-        elevation = elevation,
-        enabled = enabled,
-        content = content
-    )
-}
-
-@Deprecated(
-    message = "Use AppCard(variant = CardVariant.Surfaced) instead",
-    replaceWith = ReplaceWith("AppCard(modifier, variant = CardVariant.Surfaced, shape = shape, tonalElevation = tonalElevation, content = content)")
-)
-@Composable
-fun SurfaceCard(
-    modifier: Modifier = Modifier,
-    tonalElevation: Dp = AppElevation.none,
-    shape: Shape = MaterialTheme.shapes.medium,
-    content: @Composable () -> Unit
-) {
-    AppCard(
-        modifier = modifier,
-        variant = CardVariant.Surfaced,
-        shape = shape,
-        tonalElevation = tonalElevation,
-        content = content
-    )
 }

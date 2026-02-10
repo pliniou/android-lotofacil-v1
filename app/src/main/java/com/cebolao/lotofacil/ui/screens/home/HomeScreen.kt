@@ -1,6 +1,6 @@
 package com.cebolao.lotofacil.ui.screens.home
 
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -140,69 +140,91 @@ fun HomeScreenContent(
             )
         }
     ) { innerPadding ->
-        LazyColumn(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .screenContentPadding(innerPadding),
-            contentPadding = AppScreenDefaults.listContentPadding(),
-            verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+                .screenContentPadding(innerPadding)
         ) {
-            when {
-                state.isScreenLoading -> {
-                    item(key = "loading", contentType = "loading") {
-                        HomeScreenLoadingState()
-                    }
-                }
-                state.errorMessageResId != null -> {
-                    item(key = "error", contentType = "error") {
-                        HomeErrorState(messageResId = state.errorMessageResId) {
-                            onAction(HomeAction.RefreshData)
+            // Indicador de progresso sutil durante sincronização
+            androidx.compose.animation.AnimatedVisibility(
+                visible = state.isRefreshing,
+                enter = androidx.compose.animation.expandVertically() +
+                        androidx.compose.animation.fadeIn(),
+                exit = androidx.compose.animation.shrinkVertically() +
+                       androidx.compose.animation.fadeOut()
+            ) {
+                androidx.compose.material3.LinearProgressIndicator(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = AppSpacing.sm),
+                    color = MaterialTheme.colorScheme.primary,
+                    trackColor = MaterialTheme.colorScheme.surfaceContainerHighest
+                )
+            }
+
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = AppScreenDefaults.listContentPadding(),
+                verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+            ) {
+                when {
+                    state.isScreenLoading -> {
+                        item(key = "loading", contentType = "loading") {
+                            HomeScreenLoadingState()
                         }
                     }
-                }
-                else -> {
-                    item(key = "welcome_banner", contentType = "welcome_banner") {
-                        WelcomeBanner(
-                            lastUpdateTime = state.lastUpdateTime,
-                            nextDrawDate = state.nextDrawDate,
-                            nextDrawContest = state.nextDrawContest,
-                            isTodayDrawDay = state.isTodayDrawDay,
-                            historySource = state.historySource,
-                            statisticsSource = state.statisticsSource,
-                            isShowingStaleData = state.isShowingStaleData,
-                            onExploreFilters = onNavigateToExploreFilters,
-                            onOpenChecker = onNavigateToChecker
-                        )
-                    }
-                    item(key = "last_draw", contentType = "last_draw") {
-                        state.lastDrawStats?.let { stats ->
-                            AnimateOnEntry(
-                                delayMillis = AppAnimationConstants.Delays.Minimal.toLong()
-                            ) {
-                                LastDrawSection(stats)
+                    state.errorMessageResId != null -> {
+                        item(key = "error", contentType = "error") {
+                            HomeErrorState(messageResId = state.errorMessageResId) {
+                                onAction(HomeAction.RefreshData)
                             }
                         }
                     }
-                    item(key = "statistics", contentType = "statistics_preview") {
-                        AnimateOnEntry(
-                            delayMillis = AppAnimationConstants.Delays.Short.toLong()
-                        ) {
-                            CompactStatisticsPreview(
-                                stats = state.statistics,
-                                isLoading = state.isStatsLoading,
-                                onViewAll = onNavigateToInsights
+                    else -> {
+                        item(key = "welcome_banner", contentType = "welcome_banner") {
+                            WelcomeBanner(
+                                lastUpdateTime = state.lastUpdateTime,
+                                nextDrawDate = state.nextDrawDate,
+                                nextDrawContest = state.nextDrawContest,
+                                isTodayDrawDay = state.isTodayDrawDay,
+                                historySource = state.historySource,
+                                statisticsSource = state.statisticsSource,
+                                isShowingStaleData = state.isShowingStaleData,
+                                isRefreshing = state.isRefreshing,
+                                onExploreFilters = onNavigateToExploreFilters,
+                                onOpenChecker = onNavigateToChecker
                             )
                         }
-                    }
-                    item(key = "quick_nav", contentType = "quick_nav") {
-                        AnimateOnEntry(
-                            delayMillis = AppAnimationConstants.Delays.Medium.toLong()
-                        ) {
-                            QuickNavSection(
-                                onNavigateToInsights = onNavigateToInsights,
-                                onNavigateToGames = onNavigateToGames,
-                                onNavigateToAbout = onNavigateToAbout
-                            )
+                        item(key = "last_draw", contentType = "last_draw") {
+                            state.lastDrawStats?.let { stats ->
+                                AnimateOnEntry(
+                                    delayMillis = AppAnimationConstants.Delays.Minimal.toLong()
+                                ) {
+                                    LastDrawSection(stats)
+                                }
+                            }
+                        }
+                        item(key = "statistics", contentType = "statistics_preview") {
+                            AnimateOnEntry(
+                                delayMillis = AppAnimationConstants.Delays.Short.toLong()
+                            ) {
+                                CompactStatisticsPreview(
+                                    stats = state.statistics,
+                                    isLoading = state.isStatsLoading,
+                                    onViewAll = onNavigateToInsights
+                                )
+                            }
+                        }
+                        item(key = "quick_nav", contentType = "quick_nav") {
+                            AnimateOnEntry(
+                                delayMillis = AppAnimationConstants.Delays.Medium.toLong()
+                            ) {
+                                QuickNavSection(
+                                    onNavigateToInsights = onNavigateToInsights,
+                                    onNavigateToGames = onNavigateToGames,
+                                    onNavigateToAbout = onNavigateToAbout
+                                )
+                            }
                         }
                     }
                 }
@@ -217,14 +239,22 @@ private fun RefreshButton(
     onClick: () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
-    // Optimize refresh animation with modernized duration
-    val rotationAngle by animateFloatAsState(
-        targetValue = if (isRefreshing) 360f else 0f,
-        animationSpec = tween(
-            durationMillis = AppTheme.motion.durationShortMs,
-            easing = androidx.compose.animation.core.LinearEasing
-        ),
+
+    // Rotação contínua infinita durante sincronização
+    val infiniteTransition = androidx.compose.animation.core.rememberInfiniteTransition(
         label = "refresh_rotation"
+    )
+    val rotationAngle by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = androidx.compose.animation.core.infiniteRepeatable(
+            animation = tween(
+                durationMillis = 1000,
+                easing = androidx.compose.animation.core.LinearEasing
+            ),
+            repeatMode = androidx.compose.animation.core.RepeatMode.Restart
+        ),
+        label = "rotation"
     )
 
     IconButton(
@@ -237,10 +267,12 @@ private fun RefreshButton(
         Icon(
             imageVector = Icons.Default.Refresh,
             contentDescription = stringResource(id = R.string.cd_refresh_data),
-            tint = if (isRefreshing) colors.outline else colors.primary,
+            tint = if (isRefreshing) colors.primary else colors.onSurfaceVariant,
             modifier = Modifier
                 .size(iconMedium())
-                .graphicsLayer { rotationZ = rotationAngle }
+                .graphicsLayer {
+                    rotationZ = if (isRefreshing) rotationAngle else 0f
+                }
         )
     }
 }
@@ -292,14 +324,7 @@ private fun HomeErrorState(messageResId: Int?, onRetry: () -> Unit) {
     )
 }
 
-
-
-// ==================== PREVIEW ====================
-// OBSERVAÇÃO: Para adicionar @Preview, precisa incluir:
-// import androidx.compose.ui.tooling.preview.Preview
-// import androidx.compose.material3.Surface
-// import com.cebolao.lotofacil.ui.theme.CebolaoTheme
-
+// ==================== SEÇÃO DE NAVEGAÇÃO RÁPIDA ====================
 @Composable
 private fun QuickNavSection(
     onNavigateToInsights: () -> Unit,
@@ -363,64 +388,3 @@ private fun QuickNavSection(
         }
     }
 }
-
-//
-// @Preview(name = "HomeScreenContent - Light", showBackground = true)
-// @Composable
-// fun PreviewHomeScreenContentLight() {
-//     CebolaoTheme(darkTheme = false) {
-//         Surface {
-//             HomeScreenContent(
-//                 state = HomeUiState(
-//                     isScreenLoading = false,
-//                     errorMessageResId = null,
-//                     lastUpdateTime = "Última atualização: 2 min atrás",
-//                     nextDrawDate = "20/01/2025",
-//                     nextDrawContest = "Concurso 3000",
-//                     isTodayDrawDay = true,
-//                     isRefreshing = false,
-//                     lastDrawStats = null,
-//                     statistics = emptyMap(),
-//                     isStatsLoading = false,
-//                     selectedTimeWindow = "7_days",
-//                     selectedPattern = "all"
-//                 ),
-//                 snackbarHostState = remember { SnackbarHostState() },
-//                 onAction = {},
-//                 onNavigateToExploreFilters = {},
-//                 onNavigateToChecker = {},
-//                 onNavigateToInsights = {}
-//             )
-//         }
-//     }
-// }
-//
-// @Preview(name = "HomeScreenContent - Dark", showBackground = true)
-// @Composable
-// fun PreviewHomeScreenContentDark() {
-//     CebolaoTheme(darkTheme = true) {
-//         Surface {
-//             HomeScreenContent(
-//                 state = HomeUiState(
-//                     isScreenLoading = false,
-//                     errorMessageResId = null,
-//                     lastUpdateTime = "Última atualização: 2 min atrás",
-//                     nextDrawDate = "20/01/2025",
-//                     nextDrawContest = "Concurso 3000",
-//                     isTodayDrawDay = true,
-//                     isRefreshing = false,
-//                     lastDrawStats = null,
-//                     statistics = emptyMap(),
-//                     isStatsLoading = false,
-//                     selectedTimeWindow = "7_days",
-//                     selectedPattern = "all"
-//                 ),
-//                 snackbarHostState = remember { SnackbarHostState() },
-//                 onAction = {},
-//                 onNavigateToExploreFilters = {},
-//                 onNavigateToChecker = {},
-//                 onNavigateToInsights = {}
-//             )
-//         }
-//     }
-// }

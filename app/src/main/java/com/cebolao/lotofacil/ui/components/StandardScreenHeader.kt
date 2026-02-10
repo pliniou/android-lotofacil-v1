@@ -8,25 +8,38 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.MediumTopAppBar
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import com.cebolao.lotofacil.R
-import com.cebolao.lotofacil.ui.theme.AppSize
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
+/**
+ * Cabeçalho padrão de tela usando MediumTopAppBar do Material 3.
+ *
+ * Colapsa suavemente ao rolar, mostrando o título grande no estado expandido
+ * e título compacto no estado colapsado.
+ *
+ * @param title Título principal da tela
+ * @param subtitle Subtítulo opcional exibido abaixo do título
+ * @param icon Ícone opcional exibido na navegação (quando sem botão voltar)
+ * @param iconPainter Painter alternativo para o ícone de navegação
+ * @param onBackClick Callback do botão voltar (quando não-nulo, exibe seta de retorno)
+ * @param actions Ações da barra de ferramentas
+ * @param scrollBehavior Comportamento de rolagem para uso com nestedScroll
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StandardScreenHeader(
@@ -42,17 +55,14 @@ fun StandardScreenHeader(
     val colors = MaterialTheme.colorScheme
 
     Column(modifier = modifier.fillMaxWidth()) {
-        TopAppBar(
+        MediumTopAppBar(
             title = {
-                Column(
-                    verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center,
-                    horizontalAlignment = Alignment.Start
-                ) {
+                Column {
                     Text(
                         text = title,
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = colors.onBackground,
-                        modifier = Modifier.semantics { heading() }
+                        modifier = Modifier.semantics { heading() },
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                     subtitle?.let {
                         Text(
@@ -69,7 +79,7 @@ fun StandardScreenHeader(
                 when {
                     onBackClick != null -> {
                         IconButton(onClick = onBackClick) {
-                            androidx.compose.material3.Icon(
+                            Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = stringResource(id = R.string.cd_navigate_back),
                                 tint = colors.primary
@@ -81,22 +91,21 @@ fun StandardScreenHeader(
                             icon = icon,
                             painter = iconPainter,
                             contentDescription = null,
-                            size = AppSize.touchTargetMinimum,
-                            iconSize = AppSize.iconSmallMedium
+                            size = com.cebolao.lotofacil.ui.theme.AppSize.touchTargetMinimum,
+                            iconSize = com.cebolao.lotofacil.ui.theme.AppSize.iconSmallMedium
                         )
                     }
                 }
             },
             actions = { actions?.invoke(this) },
-            colors = TopAppBarDefaults.topAppBarColors(
+            colors = TopAppBarDefaults.mediumTopAppBarColors(
                 containerColor = colors.surface,
                 scrolledContainerColor = colors.surfaceContainer,
                 titleContentColor = colors.onSurface,
                 navigationIconContentColor = colors.primary,
                 actionIconContentColor = colors.primary
             ),
-            scrollBehavior = scrollBehavior,
-            windowInsets = TopAppBarDefaults.windowInsets
+            scrollBehavior = scrollBehavior
         )
 
         HorizontalDivider(

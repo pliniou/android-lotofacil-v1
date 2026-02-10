@@ -43,6 +43,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
@@ -256,7 +257,7 @@ private fun TimeWindowFilterSection(
         }
         if (totalDraws > 0) {
             Text(
-                text = stringResource(R.string.total_draws_available_label, totalDraws),
+                text = pluralStringResource(R.plurals.total_draws_available_label, totalDraws, totalDraws),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = AppSpacing.xs)
@@ -373,7 +374,7 @@ private fun FrequencySection(analysis: FrequencyAnalysis) {
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            stringResource(R.string.draws_ago_label, overdue),
+                            pluralStringResource(R.plurals.draws_ago_label, overdue, overdue),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -613,7 +614,7 @@ private fun TrendSection(
 ) {
     SectionHeader(
         title = stringResource(R.string.trends_title),
-        icon = Icons.Outlined.TrendingUp
+        icon = Icons.AutoMirrored.Outlined.TrendingUp
     )
 
     // Type selector

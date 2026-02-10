@@ -29,6 +29,8 @@ import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppTheme
 import com.cebolao.lotofacil.ui.theme.iconMedium
 import com.cebolao.lotofacil.viewmodels.DataLoadSource
+import androidx.compose.material.icons.filled.AccessTime
+import androidx.compose.material.icons.filled.Sync
 
 @Composable
 fun WelcomeBanner(
@@ -40,6 +42,7 @@ fun WelcomeBanner(
     historySource: DataLoadSource = DataLoadSource.CACHE,
     statisticsSource: DataLoadSource = DataLoadSource.CACHE,
     isShowingStaleData: Boolean = false,
+    isRefreshing: Boolean = false,
     onExploreFilters: () -> Unit = {},
     onOpenChecker: () -> Unit = {}
 ) {
@@ -89,13 +92,45 @@ fun WelcomeBanner(
                     isTodayDrawDay = isTodayDrawDay
                 )
 
-                lastUpdateTime?.let { time ->
-                    Text(
-                        text = stringResource(id = R.string.last_update_status, time),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = colors.outline
-                    )
+                // Indicador de sincronização ou data da última atualização
+                if (isRefreshing) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+                    ) {
+                        androidx.compose.material3.CircularProgressIndicator(
+                            modifier = Modifier.size(14.dp),
+                            strokeWidth = 2.dp,
+                            color = colors.primary
+                        )
+                        Text(
+                            text = stringResource(id = R.string.syncing_data),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = colors.primary,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                } else {
+                    lastUpdateTime?.let { time ->
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.AccessTime,
+                                contentDescription = null,
+                                tint = colors.outline,
+                                modifier = Modifier.size(14.dp)
+                            )
+                            Text(
+                                text = stringResource(id = R.string.last_update_status, time),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = colors.outline
+                            )
+                        }
+                    }
                 }
+
                 CacheSourceInfo(
                     historySource = historySource,
                     statisticsSource = statisticsSource,

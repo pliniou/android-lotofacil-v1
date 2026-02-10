@@ -50,6 +50,8 @@ import com.cebolao.lotofacil.viewmodels.GameUiState
 import com.cebolao.lotofacil.viewmodels.GameViewModel
 import com.cebolao.lotofacil.domain.model.LotofacilGame
 import com.cebolao.lotofacil.ui.theme.AppTheme
+import com.cebolao.lotofacil.core.utils.GameShareUtils
+import android.content.Intent
 
 @Composable
 fun GeneratedGamesScreen(
@@ -92,6 +94,18 @@ fun GeneratedGamesScreen(
                 is GeneratedGamesAction.TogglePinState -> gameViewModel.togglePinState(action.game)
                 is GeneratedGamesAction.DeleteGameRequested -> gameViewModel.onDeleteGameRequested(action.game)
                 is GeneratedGamesAction.DismissAnalysisDialog -> gameViewModel.dismissAnalysisDialog()
+                is GeneratedGamesAction.ShareGame -> {
+                    val shareText = GameShareUtils.formatGameForWhatsApp(action.game)
+                    val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                        putExtra(Intent.EXTRA_TEXT, shareText)
+                        type = "text/plain"
+                    }
+                    val chooser = Intent.createChooser(
+                        sendIntent,
+                        context.getString(R.string.share_game_chooser_title)
+                    )
+                    context.startActivity(chooser)
+                }
             }
         }
     )
@@ -105,6 +119,7 @@ sealed class GeneratedGamesAction {
     data class ConfirmDeleteGame(val game: LotofacilGame) : GeneratedGamesAction()
     object DismissDeleteDialog : GeneratedGamesAction()
     data class AnalyzeGame(val game: LotofacilGame) : GeneratedGamesAction()
+    data class ShareGame(val game: LotofacilGame) : GeneratedGamesAction()
     data class TogglePinState(val game: LotofacilGame) : GeneratedGamesAction()
     data class DeleteGameRequested(val game: LotofacilGame) : GeneratedGamesAction()
     object DismissAnalysisDialog : GeneratedGamesAction()
@@ -228,6 +243,7 @@ fun GeneratedGamesScreenContent(
                         GameCard(
                             game = game,
                             onAnalyzeClick = { onAction(GeneratedGamesAction.AnalyzeGame(game)) },
+                            onShareClick = { onAction(GeneratedGamesAction.ShareGame(game)) },
                             onPinClick = { onAction(GeneratedGamesAction.TogglePinState(game)) },
                             onDeleteClick = { onAction(GeneratedGamesAction.DeleteGameRequested(game)) }
                         )

@@ -71,12 +71,12 @@ sealed interface Destination {
     }
 }
 
+// Destinos exibidos na barra de navegação inferior (4 abas)
 val bottomNavDestinations = listOf(
     Destination.Home,
     Destination.Filters,
     Destination.GeneratedGames,
-    Destination.Checker(),
-    Destination.About
+    Destination.Checker()
 )
 
 val Destination.titleRes: Int

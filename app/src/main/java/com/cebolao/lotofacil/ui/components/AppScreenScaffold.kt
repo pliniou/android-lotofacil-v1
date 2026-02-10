@@ -45,7 +45,7 @@ fun AppScreenScaffold(
     onBackClick: (() -> Unit)? = null,
     actions: (@Composable androidx.compose.foundation.layout.RowScope.() -> Unit)? = null,
     snackbarHostState: SnackbarHostState? = null,
-    scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(),
+    scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(),
     content: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(

@@ -91,7 +91,7 @@ object AccessibilityValidator {
  * Ensures the app has proper dark mode colors defined for all states.
  */
 @Composable
-fun validateDarkModeSupport() {
+fun ValidateDarkModeSupport() {
     val colors = MaterialTheme.colorScheme
     
     // Validate that onSurface colors have sufficient contrast

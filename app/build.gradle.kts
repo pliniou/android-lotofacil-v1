@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.cebolao.lotofacil"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.cebolao.lotofacil"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -76,6 +76,8 @@ android {
         checkDependencies = true
         checkReleaseBuilds = true
         baseline = file("lint-baseline.xml")
+        // Bug no detector MutableCollectionMutableStateDetector (NoClassDefFoundError)
+        disable += "MutableCollectionMutableState"
     }
 
     testOptions {
@@ -144,6 +146,7 @@ dependencies {
     // Splashscreen
     implementation(libs.androidx.core.splashscreen)
     releaseImplementation(libs.androidx.profileinstaller)
+    implementation(libs.androidx.startup)
 
     // Baseline Profile
     baselineProfile(project(":baseline-profile"))
@@ -165,8 +168,3 @@ dependencies {
     kspAndroidTest(libs.hilt.compiler)
     testImplementation(kotlin("test"))
 }
-
-
-
-
-

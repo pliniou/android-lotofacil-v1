@@ -68,38 +68,43 @@ object AppTheme {
         @Composable get() = LocalMotion.current
     val cardDefaults: AppCardDefaultsTokens
         @Composable get() = LocalCardDefaults.current
+    /** Cores semânticas de status (sucesso, aviso, info). */
+    val semanticColors: SemanticColors
+        @Composable get() = LocalSemanticColors.current
 }
 
+// Atalhos estáticos de espaçamento — usam valores default diretamente para evitar overhead de recomposição
 object AppSpacing {
-    val xs: Dp @Composable get() = AppTheme.spacing.xs
-    val sm: Dp @Composable get() = AppTheme.spacing.sm
-    val md: Dp @Composable get() = AppTheme.spacing.md
-    val lg: Dp @Composable get() = AppTheme.spacing.lg
-    val xl: Dp @Composable get() = AppTheme.spacing.xl
-    val xxl: Dp @Composable get() = AppTheme.spacing.xxl
-    val xxxl: Dp @Composable get() = AppTheme.spacing.xxxl
+    val xs: Dp = DefaultSpacing.xs
+    val sm: Dp = DefaultSpacing.sm
+    val md: Dp = DefaultSpacing.md
+    val lg: Dp = DefaultSpacing.lg
+    val xl: Dp = DefaultSpacing.xl
+    val xxl: Dp = DefaultSpacing.xxl
+    val xxxl: Dp = DefaultSpacing.xxxl
 }
 
+// Atalhos estáticos de elevação
 object AppElevation {
-    val none: Dp @Composable get() = AppTheme.elevation.none
-    val xs: Dp @Composable get() = AppTheme.elevation.xs
-    val sm: Dp @Composable get() = AppTheme.elevation.sm
-    val md: Dp @Composable get() = AppTheme.elevation.md
-    val lg: Dp @Composable get() = AppTheme.elevation.lg
-    val xl: Dp @Composable get() = AppTheme.elevation.xl
+    val none: Dp = DefaultElevation.none
+    val xs: Dp = DefaultElevation.xs
+    val sm: Dp = DefaultElevation.sm
+    val md: Dp = DefaultElevation.md
+    val lg: Dp = DefaultElevation.lg
+    val xl: Dp = DefaultElevation.xl
 }
 
 object AppCardDefaults {
-    val defaultPadding: Dp @Composable get() = AppTheme.cardDefaults.defaultPadding
-    val contentSpacing: Dp @Composable get() = AppTheme.cardDefaults.contentSpacing
-    val buttonSpacing: Dp @Composable get() = AppTheme.cardDefaults.buttonSpacing
-    val elevation: Dp @Composable get() = AppTheme.cardDefaults.elevation
-    val pinnedElevation: Dp @Composable get() = AppTheme.cardDefaults.pinnedElevation
-    val hoverElevation: Dp @Composable get() = AppTheme.cardDefaults.hoverElevation
+    val defaultPadding: Dp = DefaultCardDefaults.defaultPadding
+    val contentSpacing: Dp = DefaultCardDefaults.contentSpacing
+    val buttonSpacing: Dp = DefaultCardDefaults.buttonSpacing
+    val elevation: Dp = DefaultCardDefaults.elevation
+    val pinnedElevation: Dp = DefaultCardDefaults.pinnedElevation
+    val hoverElevation: Dp = DefaultCardDefaults.hoverElevation
 }
 
 object AppShapes {
-    // Corner radii for different components
+    // Raios de cantos para diferentes componentes
     val none = ZeroCornerSize
 
     val xs = RoundedCornerShape(4.dp)
@@ -110,7 +115,7 @@ object AppShapes {
     val xxl = RoundedCornerShape(20.dp)
     val xxxl = RoundedCornerShape(24.dp)
 
-    // Specialized shapes
+    // Shapes especializados
     val circle = CircleShape
     val button = sm
     val card = md
@@ -121,7 +126,7 @@ object AppShapes {
     val numberBall = CircleShape
 }
 
-// Composable helpers for common sizes that might be used across the app
+// Helpers @Composable para tamanhos de ícones comuns no app
 @Composable
 fun iconSmall() = AppTheme.sizes.iconSmall
 

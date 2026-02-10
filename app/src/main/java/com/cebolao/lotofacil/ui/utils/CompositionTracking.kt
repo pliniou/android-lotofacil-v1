@@ -61,12 +61,12 @@ fun TrackComposition(name: String, depth: Int = 0) {
  * - Performance regression detection
  */
 @Composable
-fun rememberRecompositionCount(name: String): androidx.compose.runtime.MutableState<Int> {
-    val count = remember { androidx.compose.runtime.mutableStateOf(0) }
+fun rememberRecompositionCount(name: String): androidx.compose.runtime.MutableIntState {
+    val count = remember { androidx.compose.runtime.mutableIntStateOf(0) }
     remember {
         if (BuildConfig.DEBUG) {
-            count.value++
-            Log.d("RecompositionCount", "$name: ${count.value}")
+            count.intValue++
+            Log.d("RecompositionCount", "$name: ${count.intValue}")
         }
         {}
     }

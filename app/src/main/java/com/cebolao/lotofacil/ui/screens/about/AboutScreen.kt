@@ -2,6 +2,7 @@ package com.cebolao.lotofacil.ui.screens.about
 
 import android.content.Intent
 import android.net.Uri
+import androidx.core.net.toUri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -345,7 +346,7 @@ private fun ExternalLinkCard(
         variant = CardVariant.Clickable,
         onClick = {
             hapticFeedback.performHapticFeedback(HapticFeedbackType.TextHandleMove)
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            val intent = Intent(Intent.ACTION_VIEW, url.toUri())
             context.startActivity(intent)
         },
         shape = MaterialTheme.shapes.medium,

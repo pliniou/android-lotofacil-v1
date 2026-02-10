@@ -43,19 +43,19 @@ import com.cebolao.lotofacil.ui.theme.AppAnimationConstants
 import com.cebolao.lotofacil.core.utils.NumberFormatUtils
 import com.cebolao.lotofacil.ui.testtags.AppTestTags
 
-// ==================== LAYER 1: DISPLAY (Pure rendering) ====================
+// ==================== CAMADA 1: EXIBIÇÃO (Renderização pura) ====================
 /**
- * Pure presentation layer - renders number ball with no state management.
- * Perfect for lists, previews, and simple displays.
- * 
- * @param number The number to display (1-25)
- * @param containerColor Background color
- * @param contentColor Text color
- * @param borderColor Border color (if no border, use containerColor)
- * @param size Ball diameter
- * @param borderWidth Border thickness
- * @param shape Card shape
- * @param modifier Modifier for additional styling
+ * Camada de apresentação pura — renderiza a bola numérica sem gerenciamento de estado.
+ * Ideal para listas, previews e exibições simples.
+ *
+ * @param number O número a exibir (1-25)
+ * @param containerColor Cor de fundo
+ * @param contentColor Cor do texto
+ * @param borderColor Cor da borda (se sem borda, usar containerColor)
+ * @param size Diâmetro da bola
+ * @param borderWidth Espessura da borda
+ * @param shape Shape do componente
+ * @param modifier Modifier para estilização adicional
  */
 @Stable
 @Composable
@@ -106,18 +106,18 @@ fun NumberBallDisplay(
     }
 }
 
-// ==================== LAYER 2: INTERACTIVE (With state transitions) ====================
+// ==================== CAMADA 2: INTERATIVO (Com transições de estado) ====================
 /**
- * Interactive presentation layer - renders animated number ball with interaction handling.
- * Supports animation on state changes but user provides colors/visibility.
- * Good for controlled components where parent manages state.
- * 
- * @param number The number to display
- * @param containerColor Static container color
- * @param contentColor Static content color
- * @param borderColor Static border color
- * @param isDisabled Whether ball is disabled
- * @param onClick Click handler
+ * Camada de apresentação interativa — renderiza bola numérica animada com tratamento de interação.
+ * Suporta animação nas mudanças de estado. O chamador fornece cores/visibilidade.
+ * Ideal para componentes controlados onde o pai gerencia o estado.
+ *
+ * @param number O número a exibir
+ * @param containerColor Cor de fundo estática
+ * @param contentColor Cor do conteúdo estática
+ * @param borderColor Cor da borda estática
+ * @param isDisabled Se a bola está desabilitada
+ * @param onClick Callback de clique
  */
 @Composable
 fun NumberBallInteractive(
@@ -206,22 +206,22 @@ fun NumberBallInteractive(
     }
 }
 
-// ==================== LAYER 3: FULL COMPONENT (With state logic) ====================
+// ==================== CAMADA 3: COMPONENTE COMPLETO (Com lógica de estado) ====================
 /**
- * Complete NumberBall component - manages its own state, colors, and interactions.
- * This is the main entry point most components should use.
- * 
- * Provides intelligent color management based on state:
- * - Disabled: Faded appearance
- * - Selected: Primary color with higher border width
- * - Highlighted: Container variant with border highlight
- * - Default: Surface variant appearance
- * 
- * @param number The lottery number (1-25)
- * @param isSelected Whether number is currently selected
- * @param isHighlighted Whether number should be highlighted
- * @param isDisabled Whether number is disabled (no interaction)
- * @param onClick Callback when number is clicked
+ * Componente completo NumberBall — gerencia seu próprio estado, cores e interações.
+ * Este é o ponto de entrada principal que a maioria dos componentes deve usar.
+ *
+ * Fornece gerenciamento inteligente de cores baseado no estado:
+ * - Desabilitado: Aparência esmaecida
+ * - Selecionado: Cor primária com borda mais espessa
+ * - Destacado: Variante de container com destaque na borda
+ * - Padrão: Aparência de surface variant
+ *
+ * @param number O número da loteria (1-25)
+ * @param isSelected Se o número está selecionado
+ * @param isHighlighted Se o número deve ser destacado
+ * @param isDisabled Se o número está desabilitado (sem interação)
+ * @param onClick Callback ao clicar no número
  */
 @Stable
 @Composable
@@ -237,7 +237,7 @@ fun NumberBall(
     val shape = MaterialTheme.shapes.medium
     val colors = MaterialTheme.colorScheme
 
-    // State-based colors
+    // Cores baseadas no estado
     val (containerColor, contentColor, borderColor) = when {
         isDisabled -> Triple(
             colors.onSurface.copy(alpha = 0.08f),
