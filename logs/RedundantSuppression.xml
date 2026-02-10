@@ -1,0 +1,18 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/utils/RetryExtensions.kt</file>
+  <line>1</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.utils</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/utils/RetryExtensions.kt" />
+  <problem_class id="RedundantSuppression" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant suppression</problem_class>
+  <hints>
+    <hint value="RedundantSuspendModifier;kotlin" />
+  </hints>
+  <description>Redundant suppression</description>
+  <highlighted_element>@file:Suppress(&quot;RedundantSuspendModifier&quot;) package com.cebolao.lotofacil.core.utils import kotlinx...</highlighted_element>
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>1931</length>
+</problem>
+</problems>

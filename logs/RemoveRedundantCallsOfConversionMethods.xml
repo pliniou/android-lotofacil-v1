@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/NumberBall.kt</file>
+  <line>136</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.NumberBallKt void NumberBallInteractive(int number, long containerColor, long contentColor, long borderColor, androidx.compose.ui.Modifier modifier, float size, float borderWidth, androidx.compose.ui.graphics.Shape shape, boolean isDisabled, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onClick, java.lang.String contentDescription)" />
+  <problem_class id="RemoveRedundantCallsOfConversionMethods" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant call of the conversion method</problem_class>
+  <description>Redundant call of the conversion method</description>
+  <highlighted_element>toInt()</highlighted_element>
+  <language>kotlin</language>
+  <offset>67</offset>
+  <length>7</length>
+</problem>
+</problems>

@@ -1,0 +1,58 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/BaseUiState.kt</file>
+  <line>8</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.BaseUiState boolean isLoading()" />
+  <problem_class id="SameReturnValue" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Method always returns the same value</problem_class>
+  <hints />
+  <description>Method &lt;code&gt;get()&lt;/code&gt; always returns &lt;code&gt;false&lt;/code&gt;</description>
+  <highlighted_element>get</highlighted_element>
+  <language>kotlin</language>
+  <offset>27</offset>
+  <length>3</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/BaseUiState.kt</file>
+  <line>9</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.BaseUiState boolean getHasError()" />
+  <problem_class id="SameReturnValue" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Method always returns the same value</problem_class>
+  <hints />
+  <description>Method &lt;code&gt;get()&lt;/code&gt; always returns &lt;code&gt;false&lt;/code&gt;</description>
+  <highlighted_element>get</highlighted_element>
+  <language>kotlin</language>
+  <offset>26</offset>
+  <length>3</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/BaseUiState.kt</file>
+  <line>10</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.BaseUiState java.lang.Integer getErrorMessageResId()" />
+  <problem_class id="SameReturnValue" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Method always returns the same value</problem_class>
+  <hints />
+  <description>Method &lt;code&gt;get()&lt;/code&gt; always returns &lt;code&gt;null&lt;/code&gt;</description>
+  <highlighted_element>get</highlighted_element>
+  <language>kotlin</language>
+  <offset>32</offset>
+  <length>3</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/BaseUiState.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.BaseUiState java.lang.String getErrorMessage()" />
+  <problem_class id="SameReturnValue" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Method always returns the same value</problem_class>
+  <hints />
+  <description>Method &lt;code&gt;get()&lt;/code&gt; always returns &lt;code&gt;null&lt;/code&gt;</description>
+  <highlighted_element>get</highlighted_element>
+  <language>kotlin</language>
+  <offset>30</offset>
+  <length>3</length>
+</problem>
+</problems>

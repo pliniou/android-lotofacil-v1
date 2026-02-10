@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/GameViewModel.kt</file>
+  <line>56</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.GameViewModel GameViewModel(com.cebolao.lotofacil.domain.usecase.GetSavedGamesUseCase getSavedGamesUseCase, com.cebolao.lotofacil.domain.usecase.CheckGameUseCase checkGameUseCase, com.cebolao.lotofacil.domain.usecase.ClearUnpinnedGamesUseCase clearUnpinnedGamesUseCase, com.cebolao.lotofacil.domain.usecase.ToggleGamePinUseCase toggleGamePinUseCase, com.cebolao.lotofacil.domain.usecase.DeleteGameUseCase deleteGameUseCase)" />
+  <problem_class id="CanBeParameter" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Constructor parameter is never used as a property</problem_class>
+  <description>Constructor parameter is never used as a property</description>
+  <highlighted_element>val</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>3</length>
+</problem>
+</problems>

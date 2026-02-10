@@ -1,0 +1,121 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/build.gradle.kts</file>
+  <line>12</line>
+  <module>Lotofacil.app</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/build.gradle.kts" />
+  <problem_class id="AndroidLintGradleDependency" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Obsolete Gradle Dependency</problem_class>
+  <hints />
+  <description>&lt;html&gt;A newer version of &lt;code&gt;compileSdk&lt;/code&gt; than 34 is available: 36&lt;/html&gt;</description>
+  <highlighted_element>compileSdk = 34</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/baseline-profile/build.gradle.kts</file>
+  <line>21</line>
+  <module>Lotofacil.baseline-profile</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/baseline-profile/build.gradle.kts" />
+  <problem_class id="AndroidLintGradleDependency" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Obsolete Gradle Dependency</problem_class>
+  <hints />
+  <description>&lt;html&gt;A newer version of &lt;code&gt;compileSdk&lt;/code&gt; than 34 is available: 36&lt;/html&gt;</description>
+  <highlighted_element>compileSdk = 34</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/gradle/libs.versions.toml</file>
+  <line>10</line>
+  <module>Lotofacil</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/gradle/libs.versions.toml" />
+  <problem_class id="AndroidLintGradleDependency" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Obsolete Gradle Dependency</problem_class>
+  <hints />
+  <description>&lt;html&gt;A newer version of androidx.core:core-ktx than 1.13.1 is available: 1.17.0&lt;/html&gt;</description>
+  <highlighted_element>&quot;1.13.1&quot;</highlighted_element>
+  <language>TOML</language>
+  <offset>10</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/gradle/libs.versions.toml</file>
+  <line>11</line>
+  <module>Lotofacil</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/gradle/libs.versions.toml" />
+  <problem_class id="AndroidLintGradleDependency" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Obsolete Gradle Dependency</problem_class>
+  <hints />
+  <description>&lt;html&gt;A newer version of androidx.lifecycle:lifecycle-runtime-compose than 2.8.7 is available: 2.10.0&lt;/html&gt;</description>
+  <highlighted_element>&quot;2.8.7&quot;</highlighted_element>
+  <language>TOML</language>
+  <offset>22</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/gradle/libs.versions.toml</file>
+  <line>11</line>
+  <module>Lotofacil</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/gradle/libs.versions.toml" />
+  <problem_class id="AndroidLintGradleDependency" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Obsolete Gradle Dependency</problem_class>
+  <hints />
+  <description>&lt;html&gt;A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.10.0&lt;/html&gt;</description>
+  <highlighted_element>&quot;2.8.7&quot;</highlighted_element>
+  <language>TOML</language>
+  <offset>22</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/gradle/libs.versions.toml</file>
+  <line>11</line>
+  <module>Lotofacil</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/gradle/libs.versions.toml" />
+  <problem_class id="AndroidLintGradleDependency" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Obsolete Gradle Dependency</problem_class>
+  <hints />
+  <description>&lt;html&gt;A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.8.7 is available: 2.10.0&lt;/html&gt;</description>
+  <highlighted_element>&quot;2.8.7&quot;</highlighted_element>
+  <language>TOML</language>
+  <offset>22</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/gradle/libs.versions.toml</file>
+  <line>12</line>
+  <module>Lotofacil</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/gradle/libs.versions.toml" />
+  <problem_class id="AndroidLintGradleDependency" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Obsolete Gradle Dependency</problem_class>
+  <hints />
+  <description>&lt;html&gt;A newer version of androidx.activity:activity-compose than 1.9.0 is available: 1.12.3&lt;/html&gt;</description>
+  <highlighted_element>&quot;1.9.0&quot;</highlighted_element>
+  <language>TOML</language>
+  <offset>18</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/gradle/libs.versions.toml</file>
+  <line>13</line>
+  <module>Lotofacil</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/gradle/libs.versions.toml" />
+  <problem_class id="AndroidLintGradleDependency" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Obsolete Gradle Dependency</problem_class>
+  <hints />
+  <description>&lt;html&gt;A newer version of androidx.compose:compose-bom than 2024.06.00 is available: 2026.01.01&lt;/html&gt;</description>
+  <highlighted_element>&quot;2024.06.00&quot;</highlighted_element>
+  <language>TOML</language>
+  <offset>13</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/gradle/libs.versions.toml</file>
+  <line>35</line>
+  <module>Lotofacil</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/gradle/libs.versions.toml" />
+  <problem_class id="AndroidLintGradleDependency" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Obsolete Gradle Dependency</problem_class>
+  <hints />
+  <description>&lt;html&gt;A newer version of androidx.datastore:datastore-preferences than 1.1.7 is available: 1.2.0&lt;/html&gt;</description>
+  <highlighted_element>&quot;1.1.7&quot;</highlighted_element>
+  <language>TOML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+</problems>

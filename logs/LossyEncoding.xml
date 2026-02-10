@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/baseline-profile/src/main/java/com/cebolao/lotofacil/baselineprofile/BaselineProfileGenerator.kt</file>
+  <line>1</line>
+  <module>Lotofacil.baseline-profile.main</module>
+  <package>com.cebolao.lotofacil.baselineprofile</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/baseline-profile/src/main/java/com/cebolao/lotofacil/baselineprofile/BaselineProfileGenerator.kt" />
+  <problem_class id="LossyEncoding" severity="ERROR" attribute_key="ERRORS_ATTRIBUTES">Lossy encoding</problem_class>
+  <description>The file was loaded in a wrong encoding: 'UTF-8'</description>
+  <highlighted_element>package com.cebolao.lotofacil.baselineprofile import androidx.benchmark.macro.MacrobenchmarkScope i...</highlighted_element>
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>1490</length>
+</problem>
+</problems>

@@ -1,0 +1,12 @@
+package com.cebolao.lotofacil.domain.usecase
+
+import com.cebolao.lotofacil.domain.model.HistoricalDraw
+import com.cebolao.lotofacil.domain.repository.HistoryRepository
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+class GetHistoryUseCase @Inject constructor(
+    private val historyRepository: HistoryRepository
+) {
+    operator fun invoke(): Flow<List<HistoricalDraw>> = historyRepository.getHistory()
+}

@@ -1,0 +1,106 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/PerformanceMetrics.kt</file>
+  <line>235</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.PerformanceMetricsKt void PerformanceMetricsButton(androidx.compose.ui.Modifier modifier, boolean isDebugBuild)" />
+  <problem_class id="AssignedValueIsNeverRead" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Assigned value is never read</problem_class>
+  <description>Assigned value is never read</description>
+  <highlighted_element>isVisible</highlighted_element>
+  <language>kotlin</language>
+  <offset>30</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/PerformanceMetrics.kt</file>
+  <line>240</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.PerformanceMetricsKt void PerformanceMetricsButton(androidx.compose.ui.Modifier modifier, boolean isDebugBuild)" />
+  <problem_class id="AssignedValueIsNeverRead" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Assigned value is never read</problem_class>
+  <description>Assigned value is never read</description>
+  <highlighted_element>isVisible</highlighted_element>
+  <language>kotlin</language>
+  <offset>24</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/about/AboutScreen.kt</file>
+  <line>75</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.about</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.about.AboutScreenKt void AboutScreen(androidx.compose.ui.Modifier modifier, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onNavigateToUserStats)" />
+  <problem_class id="AssignedValueIsNeverRead" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Assigned value is never read</problem_class>
+  <description>Assigned value is never read</description>
+  <highlighted_element>dialogContent</highlighted_element>
+  <language>kotlin</language>
+  <offset>20</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/about/AboutScreen.kt</file>
+  <line>79</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.about</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.about.AboutScreenKt void AboutScreen(androidx.compose.ui.Modifier modifier, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onNavigateToUserStats)" />
+  <problem_class id="AssignedValueIsNeverRead" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Assigned value is never read</problem_class>
+  <description>Assigned value is never read</description>
+  <highlighted_element>dialogContent</highlighted_element>
+  <language>kotlin</language>
+  <offset>20</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/filters/FiltersScreen.kt</file>
+  <line>85</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.filters</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.filters.FiltersScreenKt void FiltersScreen(androidx.compose.ui.Modifier modifier, com.cebolao.lotofacil.viewmodels.FiltersViewModel filtersViewModel, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onNavigateToGeneratedGames)" />
+  <problem_class id="AssignedValueIsNeverRead" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Assigned value is never read</problem_class>
+  <description>Assigned value is never read</description>
+  <highlighted_element>showDialogFor</highlighted_element>
+  <language>kotlin</language>
+  <offset>25</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/filters/FiltersScreen.kt</file>
+  <line>87</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.filters</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.filters.FiltersScreenKt void FiltersScreen(androidx.compose.ui.Modifier modifier, com.cebolao.lotofacil.viewmodels.FiltersViewModel filtersViewModel, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onNavigateToGeneratedGames)" />
+  <problem_class id="AssignedValueIsNeverRead" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Assigned value is never read</problem_class>
+  <description>Assigned value is never read</description>
+  <highlighted_element>showResetConfirmation</highlighted_element>
+  <language>kotlin</language>
+  <offset>36</offset>
+  <length>21</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/filters/FiltersScreen.kt</file>
+  <line>94</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.filters</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.filters.FiltersScreenKt void FiltersScreen(androidx.compose.ui.Modifier modifier, com.cebolao.lotofacil.viewmodels.FiltersViewModel filtersViewModel, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onNavigateToGeneratedGames)" />
+  <problem_class id="AssignedValueIsNeverRead" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Assigned value is never read</problem_class>
+  <description>Assigned value is never read</description>
+  <highlighted_element>showResetConfirmation</highlighted_element>
+  <language>kotlin</language>
+  <offset>20</offset>
+  <length>21</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/insights/FrequencyAnalysisScreen.kt</file>
+  <line>136</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.insights</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.insights.FrequencyAnalysisScreenKt void FrequencyAnalysisScreenContent(com.cebolao.lotofacil.viewmodels.InsightsUiState state, androidx.compose.ui.Modifier modifier, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onNavigateBack, kotlin.jvm.functions.Function1&lt;? super com.cebolao.lotofacil.ui.screens.insights.FrequencyAnalysisAction,kotlin.Unit&gt; onAction)" />
+  <problem_class id="AssignedValueIsNeverRead" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Assigned value is never read</problem_class>
+  <description>Assigned value is never read</description>
+  <highlighted_element>showGaussCurve</highlighted_element>
+  <language>kotlin</language>
+  <offset>49</offset>
+  <length>14</length>
+</problem>
+</problems>

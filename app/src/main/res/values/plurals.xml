@@ -1,0 +1,10 @@
+<resources>
+    <plurals name="generate_games_label">
+        <item quantity="one">Gerar %d jogo</item>
+        <item quantity="other">Gerar %d jogos</item>
+    </plurals>
+    <plurals name="times_count">
+        <item quantity="one">%d vez</item>
+        <item quantity="other">%d vezes</item>
+    </plurals>
+</resources>

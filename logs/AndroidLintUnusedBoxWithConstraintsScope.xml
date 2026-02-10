@@ -1,0 +1,44 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/BarChart.kt</file>
+  <line>130</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/BarChart.kt" />
+  <problem_class id="AndroidLintUnusedBoxWithConstraintsScope" severity="ERROR" attribute_key="ERRORS_ATTRIBUTES">BoxWithConstraints content should use the constraints provided via BoxWithConstraintsScope</problem_class>
+  <hints />
+  <description>&lt;html&gt;BoxWithConstraints scope is not used&lt;/html&gt;</description>
+  <highlighted_element>{ val isWide = maxWidth &gt;= AppSize.breakpointTablet val minChartWidth = remember(dat...</highlighted_element>
+  <language>kotlin</language>
+  <offset>44</offset>
+  <length>6016</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/TrendChart.kt</file>
+  <line>55</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/TrendChart.kt" />
+  <problem_class id="AndroidLintUnusedBoxWithConstraintsScope" severity="ERROR" attribute_key="ERRORS_ATTRIBUTES">BoxWithConstraints content should use the constraints provided via BoxWithConstraintsScope</problem_class>
+  <hints />
+  <description>&lt;html&gt;BoxWithConstraints scope is not used&lt;/html&gt;</description>
+  <highlighted_element>{ val isWide = maxWidth &gt;= AppSize.breakpointTablet val horizontalPadding = AppSpaci...</highlighted_element>
+  <language>kotlin</language>
+  <offset>44</offset>
+  <length>3731</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/insights/FrequencyAnalysisScreen.kt</file>
+  <line>303</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.insights</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/insights/FrequencyAnalysisScreen.kt" />
+  <problem_class id="AndroidLintUnusedBoxWithConstraintsScope" severity="ERROR" attribute_key="ERRORS_ATTRIBUTES">BoxWithConstraints content should use the constraints provided via BoxWithConstraintsScope</problem_class>
+  <hints />
+  <description>&lt;html&gt;BoxWithConstraints scope is not used&lt;/html&gt;</description>
+  <highlighted_element>{ val isWide = maxWidth &gt;= AppSize.breakpointTablet if (isWide) { Row( ...</highlighted_element>
+  <language>kotlin</language>
+  <offset>23</offset>
+  <length>1236</length>
+</problem>
+</problems>

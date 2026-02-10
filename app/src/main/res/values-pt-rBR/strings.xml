@@ -1,0 +1,96 @@
+﻿<resources>
+    <!-- App name -->
+    <string name="app_name">CeboLotoGen</string>
+
+    <!-- Error messages -->
+    <string name="error_no_history">NÃ£o foi possÃ­vel carregar o histÃ³rico.</string>
+    <string name="error_load_data_failed">Falha ao carregar dados.</string>
+    <string name="error_analysis_failed">Falha na anÃ¡lise.</string>`r`n    <string name="error_analysis_timeout">A anÃ¡lise demorou demais. Tente novamente.</string>
+    <string name="error_unknown">Erro desconhecido.</string>
+    <string name="error_network_connection">Sem conexÃ£o com o servidor. Tente novamente.</string>
+    <string name="error_persistence">Erro ao acessar armazenamento local.</string>
+    <string name="error_parsing">Erro ao processar dados remotos.</string>
+    <string name="error_history_unavailable">HistÃ³rico indisponÃ­vel.</string>
+    <string name="error_unexpected">Erro inesperado.</string>
+    <string name="error_sync_failed">Erro ao sincronizar dados. Tente novamente.</string>
+    <string name="error_generating_games">Erro desconhecido ao gerar jogos.</string>
+    <string name="try_again">Tentar novamente</string>
+
+    <!-- Studio information -->
+    <string name="studio_name">Cebola Studios</string>
+    <string name="studio_slogan">Sorte e estatÃ­stica.</string>
+    <string name="studio_logo_description">Logo Cebola Studios</string>
+    <string name="about_section_guide">Guia e InformaÃ§Ãµes</string>
+    <string name="about_section_legal">Legal e Privacidade</string>
+
+    <!-- About section -->
+    <string name="about_purpose_desc_body">Este app ajuda a analisar jogos da LotofÃ¡cil.</string>
+    <string name="about_purpose_desc_footer">Use com responsabilidade.</string>
+    <string name="about_purpose_item1_title">AnÃ¡lise</string>
+    <string name="about_purpose_item1_desc">Analise seus jogos.</string>
+    <string name="about_purpose_item2_title">HistÃ³rico</string>
+    <string name="about_purpose_item2_desc">Veja resultados anteriores.</string>
+    <string name="about_purpose_item3_title">EstatÃ­sticas</string>
+    <string name="about_purpose_item3_desc">Acompanhe a frequÃªncia das dezenas.</string>
+
+    <!-- Legal section -->
+    <string name="about_legal_desc_header">Aviso legal</string>
+    <string name="about_legal_item1">NÃ£o Ã© afiliado Ã  Caixa.</string>
+    <string name="about_legal_item2">ConteÃºdo apenas informativo.</string>
+    <string name="about_legal_item3">NÃ£o hÃ¡ garantia de prÃªmio.</string>
+    <string name="about_legal_footer">Termos de uso</string>
+
+    <!-- Privacy section -->
+    <string name="about_privacy_desc_header">Privacidade</string>
+    <string name="about_privacy_desc_body">Respeitamos sua privacidade.</string>
+    <string name="about_privacy_item1">Nenhum dado pessoal Ã© coletado.</string>
+    <string name="about_privacy_item2">Armazenamento apenas local.</string>
+    <string name="about_privacy_item3">Sem rastreamento.</string>
+
+    <!-- Rules section -->
+    <string name="about_rules_desc_header">Regras</string>
+    <string name="about_rules_item1">Escolha de 15 a 20 nÃºmeros.</string>
+    <string name="about_rules_item2">Ganha com 11, 12, 13, 14 ou 15 acertos.</string>
+    <string name="about_rules_item3">Sorteios diÃ¡rios, exceto domingos.</string>
+
+    <!-- Probability Table -->
+    <string name="probability_table_header_prize">PrÃªmio</string>
+    <string name="probability_table_header_probability">Probabilidade</string>
+    <string name="probability_15_hits">15 acertos</string>
+    <string name="probability_14_hits">14 acertos</string>
+    <string name="probability_13_hits">13 acertos</string>
+    <string name="probability_12_hits">12 acertos</string>
+    <string name="probability_11_hits">11 acertos</string>
+
+    <!-- Game generation -->
+    <string name="game_quantity">Quantidade de jogos</string>
+    <string name="total_cost">Custo total</string>
+
+    <!-- Filters -->
+    <string name="filters_header_title">Filtros</string>
+    <string name="filters_header_subtitle">Configure suas preferÃªncias</string>
+    <string name="reset_filters">Redefinir filtros</string>
+    <string name="filter_icon_content_description">Ãcone do filtro %1$s</string>
+    <string name="filter_info_content_description">InformaÃ§Ãµes sobre %1$s</string>
+    <string name="data_unavailable">Dados indisponÃ­veis</string>
+
+    <!-- Success messages -->
+    <string name="refresh_success">Dados atualizados com sucesso.</string>
+    <string name="home_source_history_network">histÃ³rico: rede</string>
+    <string name="home_source_history_cache">histÃ³rico: cache local</string>
+    <string name="home_source_stats_network">estatÃ­sticas: rede</string>
+    <string name="home_source_stats_cache">estatÃ­sticas: cache</string>
+    <string name="home_source_stats_computed">estatÃ­sticas: calculadas</string>
+    <string name="home_source_status_format">%1$s | %2$s</string>
+    <string name="home_stale_data_warning">VocÃª estÃ¡ vendo dados locais (offline).</string>
+    <string name="gaussian_toggle_label_on">Gauss</string>
+    <string name="gaussian_toggle_label_off">Barras</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">InÃ­cio</string>
+    <string name="nav_filters">Filtros</string>
+    <string name="nav_history">HistÃ³rico</string>
+    <string name="nav_games">Jogos</string>
+    <string name="nav_about">Sobre</string>
+</resources>
+

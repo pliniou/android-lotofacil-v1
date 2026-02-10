@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/debug/AndroidManifest.xml</file>
+  <line>6</line>
+  <module>Lotofacil.app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/debug/AndroidManifest.xml" />
+  <problem_class id="AndroidLintExportedContentProvider" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Content provider does not require permission</problem_class>
+  <hints />
+  <description>&lt;html&gt;Exported content providers can provide access to potentially sensitive data&lt;/html&gt;</description>
+  <highlighted_element>provider</highlighted_element>
+  <language>XML</language>
+  <offset>9</offset>
+  <length>8</length>
+</problem>
+</problems>

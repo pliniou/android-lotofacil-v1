@@ -1,0 +1,67 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryLocalDataSourceTest.kt</file>
+  <line>1</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.datasource</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryLocalDataSourceTest.kt" />
+  <problem_class id="PackageDirectoryMismatch" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Package name does not match containing directory</problem_class>
+  <description>Package directive does not match the file location</description>
+  <highlighted_element>package com.cebolao.lotofacil.data.datasource</highlighted_element>
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>45</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt</file>
+  <line>1</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt" />
+  <problem_class id="PackageDirectoryMismatch" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Package name does not match containing directory</problem_class>
+  <description>Package directive does not match the file location</description>
+  <highlighted_element>package com.cebolao.lotofacil.data.repository</highlighted_element>
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>45</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/UserPreferencesRepositoryTest.kt</file>
+  <line>1</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/UserPreferencesRepositoryTest.kt" />
+  <problem_class id="PackageDirectoryMismatch" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Package name does not match containing directory</problem_class>
+  <description>Package directive does not match the file location</description>
+  <highlighted_element>package com.cebolao.lotofacil.data.repository</highlighted_element>
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>45</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/CheckGameUseCaseTest.kt</file>
+  <line>1</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/CheckGameUseCaseTest.kt" />
+  <problem_class id="PackageDirectoryMismatch" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Package name does not match containing directory</problem_class>
+  <description>Package directive does not match the file location</description>
+  <highlighted_element>package com.cebolao.lotofacil.domain.usecase</highlighted_element>
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>44</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/GetSavedGamesUseCaseTest.kt</file>
+  <line>1</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/GetSavedGamesUseCaseTest.kt" />
+  <problem_class id="PackageDirectoryMismatch" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Package name does not match containing directory</problem_class>
+  <description>Package directive does not match the file location</description>
+  <highlighted_element>package com.cebolao.lotofacil.domain.usecase</highlighted_element>
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>44</length>
+</problem>
+</problems>

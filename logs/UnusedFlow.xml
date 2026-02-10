@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt</file>
+  <line>62</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.HistoryRepositoryImplTest void getHistory should delegate to local data source()" />
+  <problem_class id="UnusedFlow" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused flow</problem_class>
+  <description>Flow is constructed but not used</description>
+  <highlighted_element>getHistory()</highlighted_element>
+  <language>kotlin</language>
+  <offset>32</offset>
+  <length>12</length>
+</problem>
+</problems>

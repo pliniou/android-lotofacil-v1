@@ -1,0 +1,1965 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/error/ErrorMapper.kt</file>
+  <line>42</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.error</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.error.ErrorMapper java.lang.String messageFor(com.cebolao.lotofacil.core.error.AppError error, android.content.Context context)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;messageFor&quot; is never used</description>
+  <highlighted_element>messageFor</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/result/AppResult.kt</file>
+  <line>20</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.result</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.result.AppResultKt T getOrNull(com.cebolao.lotofacil.core.result.AppResult&lt;? extends T&gt; $this$getOrNull)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;getOrNull&quot; is never used</description>
+  <highlighted_element>getOrNull</highlighted_element>
+  <language>kotlin</language>
+  <offset>21</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/result/AppResult.kt</file>
+  <line>28</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.result</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.result.AppResultKt T getOrDefault(com.cebolao.lotofacil.core.result.AppResult&lt;? extends T&gt; $this$getOrDefault, T default)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;getOrDefault&quot; is never used</description>
+  <highlighted_element>getOrDefault</highlighted_element>
+  <language>kotlin</language>
+  <offset>21</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/result/AppResult.kt</file>
+  <line>36</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.result</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.result.AppResultKt com.cebolao.lotofacil.core.result.AppResult&lt;T&gt; onSuccess(com.cebolao.lotofacil.core.result.AppResult&lt;? extends T&gt; $this$onSuccess, kotlin.jvm.functions.Function1&lt;? super T,kotlin.Unit&gt; action)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;onSuccess&quot; is never used</description>
+  <highlighted_element>onSuccess</highlighted_element>
+  <language>kotlin</language>
+  <offset>28</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/result/AppResult.kt</file>
+  <line>44</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.result</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.result.AppResultKt com.cebolao.lotofacil.core.result.AppResult&lt;T&gt; onFailure(com.cebolao.lotofacil.core.result.AppResult&lt;? extends T&gt; $this$onFailure, kotlin.jvm.functions.Function1&lt;? super com.cebolao.lotofacil.core.error.AppError,kotlin.Unit&gt; action)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;onFailure&quot; is never used</description>
+  <highlighted_element>onFailure</highlighted_element>
+  <language>kotlin</language>
+  <offset>28</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/result/AppResult.kt</file>
+  <line>60</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.result</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.result.AppResultKt com.cebolao.lotofacil.core.result.AppResult&lt;T&gt; mapFailure(com.cebolao.lotofacil.core.result.AppResult&lt;? extends T&gt; $this$mapFailure, kotlin.jvm.functions.Function1&lt;? super com.cebolao.lotofacil.core.error.AppError,? extends com.cebolao.lotofacil.core.error.AppError&gt; transform)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;mapFailure&quot; is never used</description>
+  <highlighted_element>mapFailure</highlighted_element>
+  <language>kotlin</language>
+  <offset>28</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/security/RateLimiter.kt</file>
+  <line>48</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.security</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.security.RateLimiter int getRemainingRequests()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;getRemainingRequests&quot; is never used</description>
+  <highlighted_element>getRemainingRequests</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>20</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/security/RateLimiter.kt</file>
+  <line>70</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.security</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.security.RateLimiter void reset()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;reset&quot; is never used</description>
+  <highlighted_element>reset</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/security/RateLimiter.kt</file>
+  <line>82</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.security</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.security.RateLimiter.Companion com.cebolao.lotofacil.core.security.RateLimiter createDefault()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;createDefault&quot; is never used</description>
+  <highlighted_element>createDefault</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/security/RateLimiter.kt</file>
+  <line>85</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.security</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.security.RateLimiter.Companion com.cebolao.lotofacil.core.security.RateLimiter createStrict()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;createStrict&quot; is never used</description>
+  <highlighted_element>createStrict</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/utils/CompositionMetrics.kt</file>
+  <line>10</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.utils</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.core.utils.CompositionMetrics" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;CompositionMetrics&quot; is never used</description>
+  <highlighted_element>CompositionMetrics</highlighted_element>
+  <language>kotlin</language>
+  <offset>11</offset>
+  <length>18</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/utils/CompositionMetrics.kt</file>
+  <line>38</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.utils.CompositionMetricsKt T measureComposition(java.lang.String name, androidx.compose.runtime.internal.ComposableFunction0&lt;? extends T&gt; block)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;measureComposition&quot; is never used</description>
+  <highlighted_element>measureComposition</highlighted_element>
+  <language>kotlin</language>
+  <offset>15</offset>
+  <length>18</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/utils/CompositionMetrics.kt</file>
+  <line>81</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.utils.CompositionMetricsKt boolean isMemoryCritical(float threshold)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;isMemoryCritical&quot; is never used</description>
+  <highlighted_element>isMemoryCritical</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/utils/NumberFormatUtils.kt</file>
+  <line>39</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.utils.NumberFormatUtils java.lang.String formatInteger(long number)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;formatInteger&quot; is never used</description>
+  <highlighted_element>formatInteger</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/core/utils/RetryExtensions.kt</file>
+  <line>51</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.core.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.utils.RetryExtensionsKt java.lang.Object retryLinear(int maxRetries, long delayMs, kotlin.jvm.functions.Function1&lt;? super kotlin.coroutines.Continuation&lt;? super T&gt;,? extends java.lang.Object&gt; block, kotlin.coroutines.Continuation&lt;? super T&gt; $completion)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;retryLinear&quot; is never used</description>
+  <highlighted_element>retryLinear</highlighted_element>
+  <language>kotlin</language>
+  <offset>16</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/HistoryRemoteDataSource.kt</file>
+  <line>33</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.data.datasource.HistoryRemoteDataSourceImpl BATCH_SIZE" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;BATCH_SIZE&quot; is never used</description>
+  <highlighted_element>BATCH_SIZE</highlighted_element>
+  <language>kotlin</language>
+  <offset>26</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/DataSourceModule.kt</file>
+  <line>17</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.di.DataSourceModule" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;DataSourceModule&quot; is never used</description>
+  <highlighted_element>DataSourceModule</highlighted_element>
+  <language>kotlin</language>
+  <offset>15</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/DataSourceModule.kt</file>
+  <line>21</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.DataSourceModule com.cebolao.lotofacil.data.datasource.HistoryLocalDataSource bindHistoryLocalDataSource(com.cebolao.lotofacil.data.datasource.HistoryLocalDataSourceImpl historyLocalDataSourceImpl)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;bindHistoryLocalDataSource&quot; is never used</description>
+  <highlighted_element>bindHistoryLocalDataSource</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>26</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/DataSourceModule.kt</file>
+  <line>27</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.DataSourceModule com.cebolao.lotofacil.data.datasource.HistoryRemoteDataSource bindHistoryRemoteDataSource(com.cebolao.lotofacil.data.datasource.HistoryRemoteDataSourceImpl historyRemoteDataSourceImpl)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;bindHistoryRemoteDataSource&quot; is never used</description>
+  <highlighted_element>bindHistoryRemoteDataSource</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/DataSourceModule.kt</file>
+  <line>33</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.DataSourceModule com.cebolao.lotofacil.data.datasource.CheckHistoryLocalDataSource bindCheckHistoryLocalDataSource(com.cebolao.lotofacil.data.datasource.CheckHistoryLocalDataSourceImpl checkHistoryLocalDataSourceImpl)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;bindCheckHistoryLocalDataSource&quot; is never used</description>
+  <highlighted_element>bindCheckHistoryLocalDataSource</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>31</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/RepositoryModule.kt</file>
+  <line>21</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.di.RepositoryModule" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;RepositoryModule&quot; is never used</description>
+  <highlighted_element>RepositoryModule</highlighted_element>
+  <language>kotlin</language>
+  <offset>15</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/RepositoryModule.kt</file>
+  <line>25</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.RepositoryModule com.cebolao.lotofacil.domain.repository.GameRepository bindGameRepository(com.cebolao.lotofacil.data.repository.GameRepositoryImpl gameRepositoryImpl)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;bindGameRepository&quot; is never used</description>
+  <highlighted_element>bindGameRepository</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>18</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/RepositoryModule.kt</file>
+  <line>31</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.RepositoryModule com.cebolao.lotofacil.domain.repository.HistoryRepository bindHistoryRepository(com.cebolao.lotofacil.data.repository.HistoryRepositoryImpl historyRepositoryImpl)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;bindHistoryRepository&quot; is never used</description>
+  <highlighted_element>bindHistoryRepository</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>21</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/RepositoryModule.kt</file>
+  <line>37</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.RepositoryModule com.cebolao.lotofacil.domain.repository.UserPreferencesRepository bindUserPreferencesRepository(com.cebolao.lotofacil.data.repository.UserPreferencesRepositoryImpl userPreferencesRepositoryImpl)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;bindUserPreferencesRepository&quot; is never used</description>
+  <highlighted_element>bindUserPreferencesRepository</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>29</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/RepositoryModule.kt</file>
+  <line>43</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.RepositoryModule com.cebolao.lotofacil.domain.repository.StatisticsRepository bindStatisticsRepository(com.cebolao.lotofacil.data.repository.StatisticsRepositoryImpl statisticsRepositoryImpl)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;bindStatisticsRepository&quot; is never used</description>
+  <highlighted_element>bindStatisticsRepository</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>24</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/RepositoryModule.kt</file>
+  <line>49</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.RepositoryModule com.cebolao.lotofacil.domain.repository.CheckHistoryRepository bindCheckHistoryRepository(com.cebolao.lotofacil.data.repository.CheckHistoryRepositoryImpl checkHistoryRepositoryImpl)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;bindCheckHistoryRepository&quot; is never used</description>
+  <highlighted_element>bindCheckHistoryRepository</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>26</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/model/LotofacilConstants.kt</file>
+  <line>13</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilConstants ALL_NUMBERS" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;ALL_NUMBERS&quot; is never used</description>
+  <highlighted_element>ALL_NUMBERS</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/repository/StatisticsRepository.kt</file>
+  <line>87</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.repository.CacheStatistics float getHitRate()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;hitRate&quot; is never used</description>
+  <highlighted_element>hitRate</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/service/SimpleLotofacilPredictor.kt</file>
+  <line>81</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.service</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.service.SimpleLotofacilPredictor java.lang.Object calculatePatterns(java.util.List&lt;com.cebolao.lotofacil.domain.model.HistoricalDraw&gt; history, kotlin.coroutines.Continuation&lt;? super java.util.Map&lt;java.lang.String,? extends java.lang.Object&gt;&gt; $completion)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;calculatePatterns&quot; is never used</description>
+  <highlighted_element>calculatePatterns</highlighted_element>
+  <language>kotlin</language>
+  <offset>16</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetCheckHistoryUseCase.kt</file>
+  <line>24</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetCheckHistoryUseCase kotlinx.coroutines.flow.Flow&lt;java.util.List&lt;com.cebolao.lotofacil.domain.model.CheckHistory&gt;&gt; getAll()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;getAll&quot; is never used</description>
+  <highlighted_element>getAll</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>6</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetCheckHistoryUseCase.kt</file>
+  <line>35</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetCheckHistoryUseCase kotlinx.coroutines.flow.Flow&lt;java.util.List&lt;com.cebolao.lotofacil.domain.model.CheckHistory&gt;&gt; getByContest(int contestNumber)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;getByContest&quot; is never used</description>
+  <highlighted_element>getByContest</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetCheckHistoryUseCase.kt</file>
+  <line>46</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetCheckHistoryUseCase kotlinx.coroutines.flow.Flow&lt;java.util.List&lt;com.cebolao.lotofacil.domain.model.CheckHistory&gt;&gt; getRecent(int limit)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;getRecent&quot; is never used</description>
+  <highlighted_element>getRecent</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/ShareGameUseCase.kt</file>
+  <line>18</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.ShareGameUseCase java.lang.String generateDeepLink(long gameId, java.util.Set&lt;java.lang.Integer&gt; gameNumbers)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;generateDeepLink&quot; is never used</description>
+  <highlighted_element>generateDeepLink</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/ShareGameUseCase.kt</file>
+  <line>30</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.ShareGameUseCase java.lang.String generateShareText(java.util.Set&lt;java.lang.Integer&gt; gameNumbers, java.lang.String notes)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;generateShareText&quot; is never used</description>
+  <highlighted_element>generateShareText</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/ShareGameUseCase.kt</file>
+  <line>43</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.ShareGameUseCase long generateGameId(java.util.Set&lt;java.lang.Integer&gt; gameNumbers)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;generateGameId&quot; is never used</description>
+  <highlighted_element>generateGameId</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>14</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/BaseComponents.kt</file>
+  <line>153</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.BaseComponentsKt void ClickableCard(kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onClick, androidx.compose.ui.Modifier modifier, androidx.compose.ui.graphics.Shape shape, androidx.compose.ui.graphics.Color backgroundColor, androidx.compose.ui.graphics.Color contentColor, androidx.compose.foundation.BorderStroke border, float elevation, boolean enabled, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; content)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;ClickableCard&quot; is never used</description>
+  <highlighted_element>ClickableCard</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/BaseComponents.kt</file>
+  <line>183</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.BaseComponentsKt void SurfaceCard(androidx.compose.ui.Modifier modifier, float tonalElevation, androidx.compose.ui.graphics.Shape shape, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; content)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;SurfaceCard&quot; is never used</description>
+  <highlighted_element>SurfaceCard</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/ExpandableSection.kt</file>
+  <line>45</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.ExpandableSectionKt void ExpandableSection(java.lang.String title, androidx.compose.ui.Modifier modifier, boolean isExpandedByDefault, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; content)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;ExpandableSection&quot; is never used</description>
+  <highlighted_element>ExpandableSection</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/NumberBall.kt</file>
+  <line>62</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.NumberBallKt void NumberBallDisplay(int number, long containerColor, long contentColor, long borderColor, androidx.compose.ui.Modifier modifier, float size, float borderWidth, androidx.compose.ui.graphics.Shape shape, java.lang.String contentDescription)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;NumberBallDisplay&quot; is never used</description>
+  <highlighted_element>NumberBallDisplay</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/PerformanceMetrics.kt</file>
+  <line>218</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.PerformanceMetricsKt void PerformanceMetricsButton(androidx.compose.ui.Modifier modifier, boolean isDebugBuild)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;PerformanceMetricsButton&quot; is never used</description>
+  <highlighted_element>PerformanceMetricsButton</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>24</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/ShimmerLoader.kt</file>
+  <line>103</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.ShimmerLoaderKt void ShimmerListLoader(androidx.compose.ui.Modifier modifier, int itemCount)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;ShimmerListLoader&quot; is never used</description>
+  <highlighted_element>ShimmerListLoader</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/SnackbarHost.kt</file>
+  <line>19</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.SnackbarHostKt void SnackbarHost(androidx.compose.material3.SnackbarHostState hostState, androidx.compose.ui.Modifier modifier)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;SnackbarHost&quot; is never used</description>
+  <highlighted_element>SnackbarHost</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/StatusScreen.kt</file>
+  <line>54</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.StatusScreenKt void StatusScreen(com.cebolao.lotofacil.ui.components.ScreenStatus&lt;T&gt; status, androidx.compose.ui.Modifier modifier, java.lang.String loadingMessage, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onRetry, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; onEmpty, androidx.compose.runtime.internal.ComposableFunction1&lt;? super T,kotlin.Unit&gt; onSuccess)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;StatusScreen&quot; is never used</description>
+  <highlighted_element>StatusScreen</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/StatusScreen.kt</file>
+  <line>104</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.StatusScreenKt void LoadingOrContent(boolean isLoading, androidx.compose.ui.Modifier modifier, java.lang.String loadingMessage, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; content)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Type parameter &quot;T&quot; is never used</description>
+  <highlighted_element>T</highlighted_element>
+  <language>kotlin</language>
+  <offset>5</offset>
+  <length>1</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/StatusScreen.kt</file>
+  <line>104</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.StatusScreenKt void LoadingOrContent(boolean isLoading, androidx.compose.ui.Modifier modifier, java.lang.String loadingMessage, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; content)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;LoadingOrContent&quot; is never used</description>
+  <highlighted_element>LoadingOrContent</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/ValidationComponents.kt</file>
+  <line>38</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.ValidationComponentsKt void ValidatedInputBox(com.cebolao.lotofacil.ui.components.ValidationState validationState, androidx.compose.ui.Modifier modifier, long backgroundColor, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; content)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;ValidatedInputBox&quot; is never used</description>
+  <highlighted_element>ValidatedInputBox</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/ValidationComponents.kt</file>
+  <line>85</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.ValidationComponentsKt com.cebolao.lotofacil.ui.components.ValidationState validateFilterSelection(java.lang.Integer minValue, java.lang.Integer maxValue, int minAllowed, int maxAllowed)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;validateFilterSelection&quot; is never used</description>
+  <highlighted_element>validateFilterSelection</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>23</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/ValidationComponents.kt</file>
+  <line>111</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.ValidationComponentsKt com.cebolao.lotofacil.ui.components.ValidationState validateGameSelection(java.util.Set&lt;java.lang.Integer&gt; selectedNumbers, int requiredCount)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;validateGameSelection&quot; is never used</description>
+  <highlighted_element>validateGameSelection</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>21</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/filters/FiltersScreenComponents.kt</file>
+  <line>27</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.filters</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.filters.FiltersScreenComponentsKt void FiltersHeader(kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onResetFilters, androidx.compose.ui.Modifier modifier)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;FiltersHeader&quot; is never used</description>
+  <highlighted_element>FiltersHeader</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/home/StatisticsExplanationCard.kt</file>
+  <line>25</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.home</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.home.StatisticsExplanationCardKt void StatisticsExplanationCard()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;StatisticsExplanationCard&quot; is never used</description>
+  <highlighted_element>StatisticsExplanationCard</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>25</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/screens/home/StatisticsSection.kt</file>
+  <line>55</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.screens.home</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.home.StatisticsSectionKt void StatisticsSection(com.cebolao.lotofacil.domain.model.StatisticsReport stats, boolean isStatsLoading, int selectedTimeWindow, com.cebolao.lotofacil.viewmodels.StatisticPattern selectedPattern, kotlin.jvm.functions.Function1&lt;? super java.lang.Integer,kotlin.Unit&gt; onTimeWindowSelected, kotlin.jvm.functions.Function1&lt;? super com.cebolao.lotofacil.viewmodels.StatisticPattern,kotlin.Unit&gt; onPatternSelected, androidx.compose.ui.Modifier modifier)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;StatisticsSection&quot; is never used</description>
+  <highlighted_element>StatisticsSection</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>47</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Durations VeryShort" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;VeryShort&quot; is never used</description>
+  <highlighted_element>VeryShort</highlighted_element>
+  <language>kotlin</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>59</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Durations VeryLong" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;VeryLong&quot; is never used</description>
+  <highlighted_element>VeryLong</highlighted_element>
+  <language>kotlin</language>
+  <offset>18</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>65</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Durations Filter" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;Filter&quot; is never used</description>
+  <highlighted_element>Filter</highlighted_element>
+  <language>kotlin</language>
+  <offset>18</offset>
+  <length>6</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>68</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Durations Visibility" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;Visibility&quot; is never used</description>
+  <highlighted_element>Visibility</highlighted_element>
+  <language>kotlin</language>
+  <offset>18</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>71</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Durations SnackBar" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;SnackBar&quot; is never used</description>
+  <highlighted_element>SnackBar</highlighted_element>
+  <language>kotlin</language>
+  <offset>18</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>80</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Easings Linear" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;Linear&quot; is never used</description>
+  <highlighted_element>Linear</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>6</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>83</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Easings Decelerate" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;Decelerate&quot; is never used</description>
+  <highlighted_element>Decelerate</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>91</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Specs" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Object &quot;Specs&quot; is never used</description>
+  <highlighted_element>Specs</highlighted_element>
+  <language>kotlin</language>
+  <offset>11</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>93</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Specs androidx.compose.animation.core.TweenSpec&lt;java.lang.Float&gt; standard(int durationMillis)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;standard&quot; is never used</description>
+  <highlighted_element>standard</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>97</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Specs androidx.compose.animation.core.TweenSpec&lt;java.lang.Float&gt; quick()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;quick&quot; is never used</description>
+  <highlighted_element>quick</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>101</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Specs androidx.compose.animation.core.SpringSpec&lt;java.lang.Float&gt; spring(float dampingRatio, float stiffness)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;spring&quot; is never used</description>
+  <highlighted_element>spring</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>6</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>107</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Specs androidx.compose.animation.core.TweenSpec&lt;java.lang.Float&gt; gentle(int durationMillis)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;gentle&quot; is never used</description>
+  <highlighted_element>gentle</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>6</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AnimationConstants.kt</file>
+  <line>113</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAnimationConstants.Delays None" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;None&quot; is never used</description>
+  <highlighted_element>None</highlighted_element>
+  <language>kotlin</language>
+  <offset>18</offset>
+  <length>4</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha textPrimary" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;textPrimary&quot; is never used</description>
+  <highlighted_element>textPrimary</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>13</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha textTertiary" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;textTertiary&quot; is never used</description>
+  <highlighted_element>textTertiary</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>14</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha textHint" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;textHint&quot; is never used</description>
+  <highlighted_element>textHint</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>18</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha stateEnabled" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;stateEnabled&quot; is never used</description>
+  <highlighted_element>stateEnabled</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>19</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha stateHovered" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;stateHovered&quot; is never used</description>
+  <highlighted_element>stateHovered</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>20</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha statePressed" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;statePressed&quot; is never used</description>
+  <highlighted_element>statePressed</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>21</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha stateDisabled" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;stateDisabled&quot; is never used</description>
+  <highlighted_element>stateDisabled</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>22</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha stateFocused" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;stateFocused&quot; is never used</description>
+  <highlighted_element>stateFocused</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>25</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha surfaceLow" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;surfaceLow&quot; is never used</description>
+  <highlighted_element>surfaceLow</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>26</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha surfaceMedium" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;surfaceMedium&quot; is never used</description>
+  <highlighted_element>surfaceMedium</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>27</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha surfaceHigh" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;surfaceHigh&quot; is never used</description>
+  <highlighted_element>surfaceHigh</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>30</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha emphasisHigh" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;emphasisHigh&quot; is never used</description>
+  <highlighted_element>emphasisHigh</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>31</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha emphasisMedium" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;emphasisMedium&quot; is never used</description>
+  <highlighted_element>emphasisMedium</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>14</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>32</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha emphasisLow" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;emphasisLow&quot; is never used</description>
+  <highlighted_element>emphasisLow</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>35</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha iconActive" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;iconActive&quot; is never used</description>
+  <highlighted_element>iconActive</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>36</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha iconInactive" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;iconInactive&quot; is never used</description>
+  <highlighted_element>iconInactive</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>37</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha iconDisabled" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;iconDisabled&quot; is never used</description>
+  <highlighted_element>iconDisabled</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>40</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha borderDefault" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;borderDefault&quot; is never used</description>
+  <highlighted_element>borderDefault</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>41</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha borderStrong" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;borderStrong&quot; is never used</description>
+  <highlighted_element>borderStrong</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>42</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha dividerDefault" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;dividerDefault&quot; is never used</description>
+  <highlighted_element>dividerDefault</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>14</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>45</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha shimmerBase" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;shimmerBase&quot; is never used</description>
+  <highlighted_element>shimmerBase</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppAlpha.kt</file>
+  <line>46</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppAlpha shimmerHighlight" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;shimmerHighlight&quot; is never used</description>
+  <highlighted_element>shimmerHighlight</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>84</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;numberBallLarge&quot; is never used</description>
+  <highlighted_element>numberBallLarge</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>89</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;chartHeightSmall&quot; is never used</description>
+  <highlighted_element>chartHeightSmall</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>91</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;chartHeightLarge&quot; is never used</description>
+  <highlighted_element>chartHeightLarge</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>97</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;chartLabelMinSpacingCompact&quot; is never used</description>
+  <highlighted_element>chartLabelMinSpacingCompact</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>99</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;chartLabelMinSpacingExpanded&quot; is never used</description>
+  <highlighted_element>chartLabelMinSpacingExpanded</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>28</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>101</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;chartValueLabelMinBarWidthCompact&quot; is never used</description>
+  <highlighted_element>chartValueLabelMinBarWidthCompact</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>103</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;chartValueLabelMinBarWidthExpanded&quot; is never used</description>
+  <highlighted_element>chartValueLabelMinBarWidthExpanded</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>34</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>108</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;trendMinPointSpacingExpanded&quot; is never used</description>
+  <highlighted_element>trendMinPointSpacingExpanded</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>28</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>115</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;cardCornerSmall&quot; is never used</description>
+  <highlighted_element>cardCornerSmall</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>117</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;cardCornerMedium&quot; is never used</description>
+  <highlighted_element>cardCornerMedium</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>119</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;cardCornerLarge&quot; is never used</description>
+  <highlighted_element>cardCornerLarge</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>128</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;iconMediumLarge&quot; is never used</description>
+  <highlighted_element>iconMediumLarge</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>130</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;iconLarge&quot; is never used</description>
+  <highlighted_element>iconLarge</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>132</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;iconExtraLarge&quot; is never used</description>
+  <highlighted_element>iconExtraLarge</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>14</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>140</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;buttonHeightSmall&quot; is never used</description>
+  <highlighted_element>buttonHeightSmall</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>142</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;buttonHeightLarge&quot; is never used</description>
+  <highlighted_element>buttonHeightLarge</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>145</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;dividerThickness&quot; is never used</description>
+  <highlighted_element>dividerThickness</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>147</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;dividerThicknessBold&quot; is never used</description>
+  <highlighted_element>dividerThicknessBold</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>20</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>150</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;progressIndicatorSmall&quot; is never used</description>
+  <highlighted_element>progressIndicatorSmall</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>22</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>152</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;progressIndicatorMedium&quot; is never used</description>
+  <highlighted_element>progressIndicatorMedium</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>23</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>154</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;progressIndicatorLarge&quot; is never used</description>
+  <highlighted_element>progressIndicatorLarge</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>22</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>157</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;chipHeight&quot; is never used</description>
+  <highlighted_element>chipHeight</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>159</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;badgeSize&quot; is never used</description>
+  <highlighted_element>badgeSize</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>110</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize int getTrendMaxPointMarkersCompact()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;trendMaxPointMarkersCompact&quot; is never used</description>
+  <highlighted_element>trendMaxPointMarkersCompact</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/AppSize.kt</file>
+  <line>112</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.theme.AppSize int getTrendMaxPointMarkersExpanded()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;trendMaxPointMarkersExpanded&quot; is never used</description>
+  <highlighted_element>trendMaxPointMarkersExpanded</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>28</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>8</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt BrandSubtle" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;BrandSubtle&quot; is never used</description>
+  <highlighted_element>BrandSubtle</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>44</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt Warning" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;Warning&quot; is never used</description>
+  <highlighted_element>Warning</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>45</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt Info" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;Info&quot; is never used</description>
+  <highlighted_element>Info</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>4</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>48</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt BaseBackground" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;BaseBackground&quot; is never used</description>
+  <highlighted_element>BaseBackground</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>14</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>49</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt Surface1" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;Surface1&quot; is never used</description>
+  <highlighted_element>Surface1</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>50</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt Surface2" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;Surface2&quot; is never used</description>
+  <highlighted_element>Surface2</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>51</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt OutlineStroke" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;OutlineStroke&quot; is never used</description>
+  <highlighted_element>OutlineStroke</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>52</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt TextPrimary" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;TextPrimary&quot; is never used</description>
+  <highlighted_element>TextPrimary</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>53</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt TextSecondary" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;TextSecondary&quot; is never used</description>
+  <highlighted_element>TextSecondary</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt</file>
+  <line>54</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/Color.kt TextTertiary" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;TextTertiary&quot; is never used</description>
+  <highlighted_element>TextTertiary</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>89</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppElevation" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;xl&quot; is never used</description>
+  <highlighted_element>xl</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>2</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>95</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.theme.AppCardDefaults" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;buttonSpacing&quot; is never used</description>
+  <highlighted_element>buttonSpacing</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>103</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppShapes none" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;none&quot; is never used</description>
+  <highlighted_element>none</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>4</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>110</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppShapes xxl" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;xxl&quot; is never used</description>
+  <highlighted_element>xxl</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>3</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>111</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppShapes xxxl" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;xxxl&quot; is never used</description>
+  <highlighted_element>xxxl</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>4</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>114</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppShapes circle" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;circle&quot; is never used</description>
+  <highlighted_element>circle</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>6</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>117</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppShapes dialog" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;dialog&quot; is never used</description>
+  <highlighted_element>dialog</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>6</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>118</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppShapes listItem" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;listItem&quot; is never used</description>
+  <highlighted_element>listItem</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>119</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppShapes chip" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;chip&quot; is never used</description>
+  <highlighted_element>chip</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>4</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>120</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppShapes badge" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;badge&quot; is never used</description>
+  <highlighted_element>badge</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/theme/DesignSystem.kt</file>
+  <line>121</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.theme</package>
+  <entry_point TYPE="field" FQNAME="com.cebolao.lotofacil.ui.theme.AppShapes numberBall" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;numberBall&quot; is never used</description>
+  <highlighted_element>numberBall</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/utils/AccessibilityChecks.kt</file>
+  <line>77</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.utils.AccessibilityValidator kotlin.Pair&lt;java.lang.Boolean,java.lang.Float&gt; isContrastCompliant(long textColor, long backgroundColor, boolean isLargeText)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;isContrastCompliant&quot; is never used</description>
+  <highlighted_element>isContrastCompliant</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>19</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/utils/AccessibilityChecks.kt</file>
+  <line>94</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.utils.AccessibilityChecksKt void validateDarkModeSupport()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;validateDarkModeSupport&quot; is never used</description>
+  <highlighted_element>validateDarkModeSupport</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>23</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/utils/AccessibilityChecks.kt</file>
+  <line>121</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.utils.AccessibilityChecksKt boolean isFontSizeAccessible(androidx.compose.ui.text.TextStyle style)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;isFontSizeAccessible&quot; is never used</description>
+  <highlighted_element>isFontSizeAccessible</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>20</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/utils/AccessibilityChecks.kt</file>
+  <line>134</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.utils</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.utils.RequiresContentDescription" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;RequiresContentDescription&quot; is never used</description>
+  <highlighted_element>RequiresContentDescription</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>26</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/utils/AccessibilityChecks.kt</file>
+  <line>139</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.utils</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.utils.DarkModeValidated" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;DarkModeValidated&quot; is never used</description>
+  <highlighted_element>DarkModeValidated</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>17</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/utils/AccessibilityChecks.kt</file>
+  <line>144</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.utils</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.utils.WCAGAACompliant" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;WCAGAACompliant&quot; is never used</description>
+  <highlighted_element>WCAGAACompliant</highlighted_element>
+  <language>kotlin</language>
+  <offset>17</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/utils/AccessibilityChecks.kt</file>
+  <line>144</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.utils.WCAGAACompliant float minContrast()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;minContrast&quot; is never used</description>
+  <highlighted_element>minContrast</highlighted_element>
+  <language>kotlin</language>
+  <offset>37</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/utils/CompositionTracking.kt</file>
+  <line>64</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.utils.CompositionTrackingKt androidx.compose.runtime.MutableState&lt;java.lang.Integer&gt; rememberRecompositionCount(java.lang.String name)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;rememberRecompositionCount&quot; is never used</description>
+  <highlighted_element>rememberRecompositionCount</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>26</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/utils/CompositionTracking.kt</file>
+  <line>94</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.utils.CompositionTrackingKt void MonitoredComposable(java.lang.String name, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; content)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;MonitoredComposable&quot; is never used</description>
+  <highlighted_element>MonitoredComposable</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>19</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/BaseUiState.kt</file>
+  <line>7</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.viewmodels.BaseUiState" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Interface &quot;BaseUiState&quot; is never used</description>
+  <highlighted_element>BaseUiState</highlighted_element>
+  <language>kotlin</language>
+  <offset>10</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/BaseUiState.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.BaseUiState java.lang.String getErrorMessage()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;errorMessage&quot; is never used</description>
+  <highlighted_element>errorMessage</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/BaseUiState.kt</file>
+  <line>13</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.BaseUiState boolean isReady()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Property &quot;isReady&quot; is never used</description>
+  <highlighted_element>isReady</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/JobTracker.kt</file>
+  <line>50</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.JobTracker boolean hasActiveJobs()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;hasActiveJobs&quot; is never used</description>
+  <highlighted_element>hasActiveJobs</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/UserStatsViewModel.kt</file>
+  <line>45</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.UserStatsViewModel void recordGameUsage(java.lang.String gameId)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;recordGameUsage&quot; is never used</description>
+  <highlighted_element>recordGameUsage</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/testing/FakeRepositories.kt</file>
+  <line>72</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core.testing</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.core.testing.FakeHistoryRepository" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;FakeHistoryRepository&quot; is never used</description>
+  <highlighted_element>FakeHistoryRepository</highlighted_element>
+  <language>kotlin</language>
+  <offset>6</offset>
+  <length>21</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/testing/FakeRepositories.kt</file>
+  <line>90</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core.testing</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.testing.FakeHistoryRepository void setHistory(java.util.List&lt;com.cebolao.lotofacil.domain.model.HistoricalDraw&gt; history)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;setHistory&quot; is never used</description>
+  <highlighted_element>setHistory</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/testing/FakeRepositories.kt</file>
+  <line>105</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core.testing</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.core.testing.FakeStatisticsRepository" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;FakeStatisticsRepository&quot; is never used</description>
+  <highlighted_element>FakeStatisticsRepository</highlighted_element>
+  <language>kotlin</language>
+  <offset>6</offset>
+  <length>24</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/utils/TestTimeProvider.kt</file>
+  <line>8</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.utils.TestTimeProvider void advanceBy(long deltaMs)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;advanceBy&quot; is never used</description>
+  <highlighted_element>advanceBy</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/utils/TestTimeProvider.kt</file>
+  <line>12</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core.utils</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.utils.TestTimeProvider void setCurrentTimeMillis(long timeMs)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;setCurrentTimeMillis&quot; is never used</description>
+  <highlighted_element>setCurrentTimeMillis</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>20</length>
+</problem>
+</problems>

@@ -1,0 +1,28 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/NumberBall.kt</file>
+  <line>70</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.NumberBallKt void NumberBallDisplay(int number, long containerColor, long contentColor, long borderColor, androidx.compose.ui.Modifier modifier, float size, float borderWidth, androidx.compose.ui.graphics.Shape shape, java.lang.String contentDescription)" />
+  <problem_class id="RemoveRedundantQualifierName" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant qualifier name</problem_class>
+  <description>Remove redundant qualifier name</description>
+  <highlighted_element>androidx.compose.ui.graphics</highlighted_element>
+  <language>kotlin</language>
+  <offset>11</offset>
+  <length>28</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/NumberGrid.kt</file>
+  <line>48</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.NumberGridKt void NumberGrid(java.util.List&lt;com.cebolao.lotofacil.ui.components.NumberBallItem&gt; items, androidx.compose.ui.Modifier modifier, int columns, androidx.compose.ui.unit.Dp ballSize, kotlin.jvm.functions.Function1&lt;? super java.lang.Integer,kotlin.Unit&gt; onNumberClicked)" />
+  <problem_class id="RemoveRedundantQualifierName" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant qualifier name</problem_class>
+  <description>Remove redundant qualifier name</description>
+  <highlighted_element>androidx.compose.ui.unit</highlighted_element>
+  <language>kotlin</language>
+  <offset>14</offset>
+  <length>24</length>
+</problem>
+</problems>

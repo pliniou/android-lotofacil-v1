@@ -1,0 +1,34 @@
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Gradle
+.gradle/
+.gradle-cache/
+gradle/
+gradlew
+gradlew.bat
+
+# Build
+/build/
+**/build/
+/captures/
+
+# Native Build
+.externalNativeBuild/
+.cxx/
+
+# Kotlin
+.kotlin/
+*.kt.bak
+
+# Local Configuration
+local.properties
+
+# OS
+.DS_Store
+.gitkeep
+
+# Lint Reports
+lint-results-*.txt

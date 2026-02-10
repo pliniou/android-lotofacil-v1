@@ -1,0 +1,3062 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/AppFlowTest.kt</file>
+  <line>22</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.AppFlowTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>30</length>
+  <highlighted_element>@RunWith(AndroidJUnit4::class)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/AppFlowTest.kt</file>
+  <line>32</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.AppFlowTest void setUp()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/AppFlowTest.kt</file>
+  <line>37</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.AppFlowTest void homeRefreshAction_isAvailable()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/AppFlowTest.kt</file>
+  <line>47</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.AppFlowTest void filtersGenerate_navigatesToGeneratedGames()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/AppFlowTest.kt</file>
+  <line>59</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.AppFlowTest void insightsGaussianToggle_isInteractive()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/CheckerScreenTest.kt</file>
+  <line>23</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.CheckerScreenTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>30</length>
+  <highlighted_element>@RunWith(AndroidJUnit4::class)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/CheckerScreenTest.kt</file>
+  <line>33</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.CheckerScreenTest void setUp()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/CheckerScreenTest.kt</file>
+  <line>40</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.CheckerScreenTest void checkerScreen_when15NumbersAreSelected_checkButtonIsEnabled()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/CheckerScreenTest.kt</file>
+  <line>53</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.CheckerScreenTest void checkerScreen_whenCheckButtonIsClicked_resultIsShown()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/androidTest/java/com/cebolao/lotofacil/CheckerScreenTest.kt</file>
+  <line>77</line>
+  <module>Lotofacil.app.androidTest</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.CheckerScreenTest void checkerScreen_clearButtonResetsSelection()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/CebolaoApplication.kt</file>
+  <line>6</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.CebolaoApplication" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>15</length>
+  <highlighted_element>@HiltAndroidApp</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/MainActivity.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.MainActivity" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>18</length>
+  <highlighted_element>@AndroidEntryPoint</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/CheckHistoryLocalDataSourceImpl.kt</file>
+  <line>16</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.CheckHistoryLocalDataSourceImpl CheckHistoryLocalDataSourceImpl(com.cebolao.lotofacil.data.datasource.database.CheckHistoryDao dao)" />
+  <language>kotlin</language>
+  <offset>38</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/HistoryRemoteDataSource.kt</file>
+  <line>25</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.HistoryRemoteDataSourceImpl HistoryRemoteDataSourceImpl(com.cebolao.lotofacil.data.network.ApiService apiService, com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider, com.cebolao.lotofacil.core.utils.AppLogger logger)" />
+  <language>kotlin</language>
+  <offset>34</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/database/LotofacilDatabase.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource.database</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.data.datasource.database.LotofacilDatabase" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>10</length>
+  <highlighted_element>@Database(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Abstract&amp;nbsp;class is not implemented.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/database/entity/HistoricalDrawEntity.kt</file>
+  <line>51</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource.database.entity</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.data.datasource.database.entity.Converters" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>18</length>
+  <highlighted_element>class Converters {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/database/entity/HistoricalDrawEntity.kt</file>
+  <line>54</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource.database.entity</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.database.entity.Converters java.lang.String fromIntSet(java.util.Set&lt;java.lang.Integer&gt; value)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>14</length>
+  <highlighted_element>@TypeConverter</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/database/entity/HistoricalDrawEntity.kt</file>
+  <line>59</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource.database.entity</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.database.entity.Converters java.util.Set&lt;java.lang.Integer&gt; toIntSet(java.lang.String value)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>14</length>
+  <highlighted_element>@TypeConverter</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/database/entity/HistoricalDrawEntity.kt</file>
+  <line>68</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource.database.entity</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.database.entity.Converters java.lang.String fromPrizeList(java.util.List&lt;com.cebolao.lotofacil.domain.model.PrizeTier&gt; value)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>14</length>
+  <highlighted_element>@TypeConverter</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/database/entity/HistoricalDrawEntity.kt</file>
+  <line>73</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource.database.entity</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.database.entity.Converters java.util.List&lt;com.cebolao.lotofacil.domain.model.PrizeTier&gt; toPrizeList(java.lang.String value)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>14</length>
+  <highlighted_element>@TypeConverter</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/database/entity/HistoricalDrawEntity.kt</file>
+  <line>82</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource.database.entity</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.database.entity.Converters java.lang.String fromWinnerLocationList(java.util.List&lt;com.cebolao.lotofacil.domain.model.WinnerLocation&gt; value)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>14</length>
+  <highlighted_element>@TypeConverter</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/datasource/database/entity/HistoricalDrawEntity.kt</file>
+  <line>87</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.datasource.database.entity</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.database.entity.Converters java.util.List&lt;com.cebolao.lotofacil.domain.model.WinnerLocation&gt; toWinnerLocationList(java.lang.String value)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>14</length>
+  <highlighted_element>@TypeConverter</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/repository/CheckHistoryRepositoryImpl.kt</file>
+  <line>13</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.CheckHistoryRepositoryImpl CheckHistoryRepositoryImpl(com.cebolao.lotofacil.data.datasource.CheckHistoryLocalDataSource localDataSource)" />
+  <language>kotlin</language>
+  <offset>33</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/repository/GameRepositoryImpl.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.GameRepositoryImpl GameRepositoryImpl(com.cebolao.lotofacil.domain.repository.UserPreferencesRepository userPreferencesRepository, kotlinx.coroutines.CoroutineScope repositoryScope, com.cebolao.lotofacil.core.utils.TimeProvider timeProvider)" />
+  <language>kotlin</language>
+  <offset>25</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/data/repository/UserPreferencesRepositoryImpl.kt</file>
+  <line>25</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.UserPreferencesRepositoryImpl UserPreferencesRepositoryImpl(android.content.Context context, com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider, com.cebolao.lotofacil.core.utils.AppLogger logger)" />
+  <language>kotlin</language>
+  <offset>36</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/AppModule.kt</file>
+  <line>17</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.di.AppModule" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>7</length>
+  <highlighted_element>@Module</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/AppModule.kt</file>
+  <line>21</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.AppModule com.cebolao.lotofacil.core.coroutine.DispatchersProvider providesDispatchersProvider()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/AppModule.kt</file>
+  <line>25</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.AppModule com.cebolao.lotofacil.core.utils.AppLogger provideAppLogger()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/AppModule.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.AppModule com.cebolao.lotofacil.core.utils.TimeProvider provideTimeProvider()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/AppModule.kt</file>
+  <line>33</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.AppModule kotlinx.coroutines.CoroutineScope provideApplicationScope(com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/DatabaseModule.kt</file>
+  <line>17</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.di.DatabaseModule" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>7</length>
+  <highlighted_element>@Module</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/DatabaseModule.kt</file>
+  <line>21</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.DatabaseModule com.cebolao.lotofacil.data.datasource.database.LotofacilDatabase provideLotofacilDatabase(android.content.Context context)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/DatabaseModule.kt</file>
+  <line>40</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.DatabaseModule com.cebolao.lotofacil.data.datasource.database.HistoryDao provideHistoryDao(com.cebolao.lotofacil.data.datasource.database.LotofacilDatabase database)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/DatabaseModule.kt</file>
+  <line>46</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.DatabaseModule com.cebolao.lotofacil.data.datasource.database.CheckHistoryDao provideCheckHistoryDao(com.cebolao.lotofacil.data.datasource.database.LotofacilDatabase database)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/DatabaseModule.kt</file>
+  <line>52</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.DatabaseModule com.cebolao.lotofacil.data.datasource.database.StatisticsCacheDao provideStatisticsCacheDao(com.cebolao.lotofacil.data.datasource.database.LotofacilDatabase database)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/NetworkModule.kt</file>
+  <line>24</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.di.NetworkModule" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>7</length>
+  <highlighted_element>@Module</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/NetworkModule.kt</file>
+  <line>31</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.NetworkModule kotlinx.serialization.json.Json provideJson()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/NetworkModule.kt</file>
+  <line>38</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.NetworkModule okhttp3.Cache provideHttpCache(android.content.Context context)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/NetworkModule.kt</file>
+  <line>45</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.NetworkModule com.cebolao.lotofacil.core.security.RateLimiter provideRateLimiter()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/NetworkModule.kt</file>
+  <line>49</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.NetworkModule okhttp3.OkHttpClient provideOkHttpClient(okhttp3.Cache cache, com.cebolao.lotofacil.core.security.RateLimiter rateLimiter)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/NetworkModule.kt</file>
+  <line>68</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.NetworkModule retrofit2.Retrofit provideRetrofit(okhttp3.OkHttpClient okHttpClient, kotlinx.serialization.json.Json json)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/NetworkModule.kt</file>
+  <line>79</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.NetworkModule com.cebolao.lotofacil.data.network.ApiService provideApiService(retrofit2.Retrofit retrofit)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/UtilityModule.kt</file>
+  <line>12</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.di.UtilityModule" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>7</length>
+  <highlighted_element>@Module</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/UtilityModule.kt</file>
+  <line>15</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.UtilityModule com.cebolao.lotofacil.data.parser.HistoryParser provideHistoryParser(com.cebolao.lotofacil.core.utils.AppLogger logger)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/di/UtilityModule.kt</file>
+  <line>19</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.di</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.di.UtilityModule java.util.Random provideRandom()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>9</length>
+  <highlighted_element>@Provides</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/service/GameGenerator.kt</file>
+  <line>16</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.service</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.service.GameGenerator GameGenerator(com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider, java.util.Random random)" />
+  <language>kotlin</language>
+  <offset>20</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/service/GameInsightsAnalyzer.kt</file>
+  <line>8</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.service</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.service.GameInsightsAnalyzer GameInsightsAnalyzer()" />
+  <language>kotlin</language>
+  <offset>27</offset>
+  <length>21</length>
+  <highlighted_element>@Inject constructor()</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/service/GameStatsAnalyzer.kt</file>
+  <line>12</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.service</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.service.GameStatsAnalyzer GameStatsAnalyzer(com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider)" />
+  <language>kotlin</language>
+  <offset>24</offset>
+  <length>73</length>
+  <highlighted_element>@Inject constructor(private val dispatchersProvider: DispatchersProvider)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/service/SimpleLotofacilPredictor.kt</file>
+  <line>15</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.service</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.service.SimpleLotofacilPredictor SimpleLotofacilPredictor(com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider)" />
+  <language>kotlin</language>
+  <offset>31</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/service/StatisticsAnalyzer.kt</file>
+  <line>13</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.service</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.service.StatisticsAnalyzer StatisticsAnalyzer(com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider)" />
+  <language>kotlin</language>
+  <offset>25</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/service/UserStatisticsService.kt</file>
+  <line>21</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.service</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.service.UserStatisticsService UserStatisticsService()" />
+  <language>kotlin</language>
+  <offset>28</offset>
+  <length>21</length>
+  <highlighted_element>@Inject constructor()</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/ClearUnpinnedGamesUseCase.kt</file>
+  <line>6</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.ClearUnpinnedGamesUseCase ClearUnpinnedGamesUseCase(com.cebolao.lotofacil.domain.repository.GameRepository repository)" />
+  <language>kotlin</language>
+  <offset>32</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/DeleteGameUseCase.kt</file>
+  <line>7</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.DeleteGameUseCase DeleteGameUseCase(com.cebolao.lotofacil.domain.repository.GameRepository repository)" />
+  <language>kotlin</language>
+  <offset>24</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetCheckHistoryUseCase.kt</file>
+  <line>14</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetCheckHistoryUseCase GetCheckHistoryUseCase(com.cebolao.lotofacil.domain.repository.CheckHistoryRepository checkHistoryRepository, com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider)" />
+  <language>kotlin</language>
+  <offset>29</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetEvolutionMetricsUseCase.kt</file>
+  <line>18</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetEvolutionMetricsUseCase GetEvolutionMetricsUseCase(com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository, com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider)" />
+  <language>kotlin</language>
+  <offset>33</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetFrequencyAnalysisUseCase.kt</file>
+  <line>17</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetFrequencyAnalysisUseCase GetFrequencyAnalysisUseCase(com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository, com.cebolao.lotofacil.domain.service.GameInsightsAnalyzer analyzer)" />
+  <language>kotlin</language>
+  <offset>34</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetHistoryUseCase.kt</file>
+  <line>8</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetHistoryUseCase GetHistoryUseCase(com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository)" />
+  <language>kotlin</language>
+  <offset>24</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetHomeScreenDataUseCase.kt</file>
+  <line>25</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetHomeScreenDataUseCase GetHomeScreenDataUseCase(com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository, com.cebolao.lotofacil.domain.service.StatisticsAnalyzer statisticsAnalyzer, com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider)" />
+  <language>kotlin</language>
+  <offset>31</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetPatternAnalysisUseCase.kt</file>
+  <line>16</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetPatternAnalysisUseCase GetPatternAnalysisUseCase(com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository, com.cebolao.lotofacil.domain.service.GameInsightsAnalyzer analyzer)" />
+  <language>kotlin</language>
+  <offset>32</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetTrendAnalysisUseCase.kt</file>
+  <line>20</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetTrendAnalysisUseCase GetTrendAnalysisUseCase(com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository, com.cebolao.lotofacil.domain.service.StatisticsAnalyzer analyzer)" />
+  <language>kotlin</language>
+  <offset>30</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/GetUserGameStatisticsUseCase.kt</file>
+  <line>12</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetUserGameStatisticsUseCase GetUserGameStatisticsUseCase(com.cebolao.lotofacil.domain.repository.GameRepository gameRepository, com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository, com.cebolao.lotofacil.domain.service.UserStatisticsService userStatisticsService)" />
+  <language>kotlin</language>
+  <offset>35</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/PredictNumbersUseCase.kt</file>
+  <line>18</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.PredictNumbersUseCase PredictNumbersUseCase(com.cebolao.lotofacil.domain.service.SimpleLotofacilPredictor predictor, com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository, com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider)" />
+  <language>kotlin</language>
+  <offset>28</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/SaveCheckUseCase.kt</file>
+  <line>17</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.SaveCheckUseCase SaveCheckUseCase(com.cebolao.lotofacil.domain.repository.CheckHistoryRepository checkHistoryRepository, com.cebolao.lotofacil.core.coroutine.DispatchersProvider dispatchersProvider)" />
+  <language>kotlin</language>
+  <offset>23</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/ShareGameUseCase.kt</file>
+  <line>9</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.ShareGameUseCase ShareGameUseCase()" />
+  <language>kotlin</language>
+  <offset>23</offset>
+  <length>21</length>
+  <highlighted_element>@Inject constructor()</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/domain/usecase/ToggleGamePinUseCase.kt</file>
+  <line>7</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.ToggleGamePinUseCase ToggleGamePinUseCase(com.cebolao.lotofacil.domain.repository.GameRepository repository)" />
+  <language>kotlin</language>
+  <offset>27</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/BaseComponents.kt</file>
+  <line>148</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.BaseComponentsKt void ClickableCard(kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onClick, androidx.compose.ui.Modifier modifier, androidx.compose.ui.graphics.Shape shape, androidx.compose.ui.graphics.Color backgroundColor, androidx.compose.ui.graphics.Color contentColor, androidx.compose.foundation.BorderStroke border, float elevation, boolean enabled, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; content)" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>12</length>
+  <highlighted_element>@Deprecated(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/ui/components/BaseComponents.kt</file>
+  <line>178</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.ui.components</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.components.BaseComponentsKt void SurfaceCard(androidx.compose.ui.Modifier modifier, float tonalElevation, androidx.compose.ui.graphics.Shape shape, androidx.compose.runtime.internal.ComposableFunction0&lt;kotlin.Unit&gt; content)" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>12</length>
+  <highlighted_element>@Deprecated(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/CheckerViewModel.kt</file>
+  <line>51</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.CheckerViewModel CheckerViewModel(com.cebolao.lotofacil.domain.usecase.CheckGameUseCase checkGameUseCase, com.cebolao.lotofacil.domain.usecase.SaveCheckUseCase saveCheckUseCase, androidx.lifecycle.SavedStateHandle savedStateHandle)" />
+  <language>kotlin</language>
+  <offset>23</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/FiltersViewModel.kt</file>
+  <line>43</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.FiltersViewModel FiltersViewModel(com.cebolao.lotofacil.domain.repository.GameRepository gameRepository, com.cebolao.lotofacil.domain.usecase.GenerateGamesUseCase generateGamesUseCase, com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository)" />
+  <language>kotlin</language>
+  <offset>23</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/GameViewModel.kt</file>
+  <line>55</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.GameViewModel GameViewModel(com.cebolao.lotofacil.domain.usecase.GetSavedGamesUseCase getSavedGamesUseCase, com.cebolao.lotofacil.domain.usecase.CheckGameUseCase checkGameUseCase, com.cebolao.lotofacil.domain.usecase.ClearUnpinnedGamesUseCase clearUnpinnedGamesUseCase, com.cebolao.lotofacil.domain.usecase.ToggleGamePinUseCase toggleGamePinUseCase, com.cebolao.lotofacil.domain.usecase.DeleteGameUseCase deleteGameUseCase)" />
+  <language>kotlin</language>
+  <offset>20</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/MainViewModel.kt</file>
+  <line>23</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.MainViewModel MainViewModel(com.cebolao.lotofacil.domain.repository.HistoryRepository historyRepository)" />
+  <language>kotlin</language>
+  <offset>20</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/cebolao/lotofacil/viewmodels/UserStatsViewModel.kt</file>
+  <line>22</line>
+  <module>Lotofacil.app.main</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.UserStatsViewModel UserStatsViewModel(com.cebolao.lotofacil.domain.usecase.GetUserGameStatisticsUseCase getUserGameStatisticsUseCase, com.cebolao.lotofacil.domain.repository.GameRepository gameRepository)" />
+  <language>kotlin</language>
+  <offset>25</offset>
+  <length>20</length>
+  <highlighted_element>@Inject constructor(</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/RetryExtensionsTest.kt</file>
+  <line>9</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.core.RetryExtensionsTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>27</length>
+  <highlighted_element>class RetryExtensionsTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/RetryExtensionsTest.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.RetryExtensionsTest void retryExponentialBackoff should succeed on first attempt()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/RetryExtensionsTest.kt</file>
+  <line>22</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.RetryExtensionsTest void retryExponentialBackoff should retry on failure()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/RetryExtensionsTest.kt</file>
+  <line>34</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.RetryExtensionsTest void retryExponentialBackoff should fail after max retries exceeded()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/core/RetryExtensionsTest.kt</file>
+  <line>47</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.core</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.core.RetryExtensionsTest void retryExponentialBackoff should have exponential backoff delay()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryLocalDataSourceTest.kt</file>
+  <line>22</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.datasource</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.data.datasource.HistoryLocalDataSourceTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>34</length>
+  <highlighted_element>class HistoryLocalDataSourceTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryLocalDataSourceTest.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.datasource</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.HistoryLocalDataSourceTest void setup()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryLocalDataSourceTest.kt</file>
+  <line>43</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.datasource</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.HistoryLocalDataSourceTest void getHistory should map DAO entities to domain draws()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryLocalDataSourceTest.kt</file>
+  <line>61</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.datasource</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.HistoryLocalDataSourceTest void getLatestDraw should return mapped domain draw when available()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryLocalDataSourceTest.kt</file>
+  <line>77</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.datasource</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.datasource.HistoryLocalDataSourceTest void saveNewContests should return early for empty input()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt</file>
+  <line>23</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.data.repository.HistoryRepositoryImplTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>33</length>
+  <highlighted_element>class HistoryRepositoryImplTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.HistoryRepositoryImplTest void setup()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt</file>
+  <line>36</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.HistoryRepositoryImplTest void init should populate local database and mark initialized()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt</file>
+  <line>51</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.HistoryRepositoryImplTest void getHistory should delegate to local data source()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt</file>
+  <line>65</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.HistoryRepositoryImplTest void getLastDraw should delegate to local data source()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt</file>
+  <line>79</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.HistoryRepositoryImplTest void syncHistory should fetch and persist new contests when remote is newer()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/HistoryRepositoryImplTest.kt</file>
+  <line>102</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.HistoryRepositoryImplTest void syncHistory should return failure when remote throws()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/StatisticsRepositoryImplTest.kt</file>
+  <line>26</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.data.StatisticsRepositoryImplTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>36</length>
+  <highlighted_element>class StatisticsRepositoryImplTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/StatisticsRepositoryImplTest.kt</file>
+  <line>33</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.StatisticsRepositoryImplTest void setup()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/StatisticsRepositoryImplTest.kt</file>
+  <line>44</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.StatisticsRepositoryImplTest void cacheStatistics and getCachedStatistics should return persisted data()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/StatisticsRepositoryImplTest.kt</file>
+  <line>66</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.StatisticsRepositoryImplTest void getCachedStatistics should return null for expired cache when policy is OnlyValid()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/StatisticsRepositoryImplTest.kt</file>
+  <line>84</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.StatisticsRepositoryImplTest void getCachedStatistics should return stale cache when policy allows stale()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/StatisticsRepositoryImplTest.kt</file>
+  <line>102</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.StatisticsRepositoryImplTest void clearCache should support window and full invalidation()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/StatisticsRepositoryImplTest.kt</file>
+  <line>114</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.StatisticsRepositoryImplTest void clearExpiredCache should delegate to dao()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/StatisticsRepositoryImplTest.kt</file>
+  <line>125</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.StatisticsRepositoryImplTest void hasValidCache should return true only for non expired entry()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/UserPreferencesRepositoryTest.kt</file>
+  <line>9</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.data.repository.UserPreferencesRepositoryTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>37</length>
+  <highlighted_element>class UserPreferencesRepositoryTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/UserPreferencesRepositoryTest.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.UserPreferencesRepositoryTest void pinnedGames should emit empty set by default()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/UserPreferencesRepositoryTest.kt</file>
+  <line>20</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.repository</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.repository.UserPreferencesRepositoryTest void savePinnedGames should update emitted set()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/network/RateLimiterInterceptorTest.kt</file>
+  <line>22</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.network</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.data.network.RateLimiterInterceptorTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>34</length>
+  <highlighted_element>class RateLimiterInterceptorTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/network/RateLimiterInterceptorTest.kt</file>
+  <line>24</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.network</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.network.RateLimiterInterceptorTest void interceptor throws IOException-compatible rate limit exception when blocked()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/data/network/RateLimiterInterceptorTest.kt</file>
+  <line>41</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.data.network</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.data.network.RateLimiterInterceptorTest void interceptor proceeds request when under limit()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/CheckGameUseCaseTest.kt</file>
+  <line>21</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.domain.usecase.CheckGameUseCaseTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>28</length>
+  <highlighted_element>class CheckGameUseCaseTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/CheckGameUseCaseTest.kt</file>
+  <line>28</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.CheckGameUseCaseTest void setup()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/CheckGameUseCaseTest.kt</file>
+  <line>36</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.CheckGameUseCaseTest void invoke should emit success with expected check result()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/CheckGameUseCaseTest.kt</file>
+  <line>70</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.CheckGameUseCaseTest void invoke should emit failure when history is empty()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/GetSavedGamesUseCaseTest.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.domain.usecase.GetSavedGamesUseCaseTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>32</length>
+  <highlighted_element>class GetSavedGamesUseCaseTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/GetSavedGamesUseCaseTest.kt</file>
+  <line>16</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetSavedGamesUseCaseTest void setup()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/GetSavedGamesUseCaseTest.kt</file>
+  <line>22</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetSavedGamesUseCaseTest void invoke should return empty list when there are no games()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/GetSavedGamesUseCaseTest.kt</file>
+  <line>28</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GetSavedGamesUseCaseTest void invoke should sort pinned first then by creation timestamp desc()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/FilterStateTest.kt</file>
+  <line>8</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.domain.model.FilterStateTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>23</length>
+  <highlighted_element>class FilterStateTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/FilterStateTest.kt</file>
+  <line>10</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.FilterStateTest void filter state should correctly report enabled status()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/FilterStateTest.kt</file>
+  <line>23</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.FilterStateTest void filter state should correctly calculate range percentage()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/FilterStateTest.kt</file>
+  <line>36</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.FilterStateTest void disabled filter should have zero range percentage()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/FilterStateTest.kt</file>
+  <line>47</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.FilterStateTest void containsValue should return true for values in range()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/FilterStateTest.kt</file>
+  <line>60</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.FilterStateTest void containsValue should return false for values outside range()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/FilterStateTest.kt</file>
+  <line>72</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.FilterStateTest void containsValue should return true for disabled filter()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>7</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>25</length>
+  <highlighted_element>class LotofacilGameTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>9</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void game with valid numbers should be created successfully()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>20</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void game should correctly count prime numbers()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>28</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void game should correctly count frame numbers()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>36</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void game should correctly count portrait numbers()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>44</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void game should correctly count fibonacci numbers()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>52</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void game should correctly count multiples of 3()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>60</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void repeatedFrom should return correct intersection count()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>69</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void repeatedFrom with null lastDraw should return 0()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>77</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void toCompactString should produce parseable string()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>90</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void game with less than 15 numbers should throw exception()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>49</length>
+  <highlighted_element>@Test(expected = IllegalArgumentException::class)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/model/LotofacilGameTest.kt</file>
+  <line>96</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.model</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.model.LotofacilGameTest void game with numbers outside 1-25 range should throw exception()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>49</length>
+  <highlighted_element>@Test(expected = IllegalArgumentException::class)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/usecase/GenerateGamesUseCaseTest.kt</file>
+  <line>22</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.domain.usecase.GenerateGamesUseCaseTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>32</length>
+  <highlighted_element>class GenerateGamesUseCaseTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/usecase/GenerateGamesUseCaseTest.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GenerateGamesUseCaseTest void setup()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/usecase/GenerateGamesUseCaseTest.kt</file>
+  <line>37</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GenerateGamesUseCaseTest void generate games without repetitive filter should succeed()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/usecase/GenerateGamesUseCaseTest.kt</file>
+  <line>51</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GenerateGamesUseCaseTest void generate games with repetitive filter should use last draw()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/domain/usecase/GenerateGamesUseCaseTest.kt</file>
+  <line>71</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.domain.usecase</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.domain.usecase.GenerateGamesUseCaseTest void generate games with restrictive filters should throw exception()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/DeepLinkTest.kt</file>
+  <line>9</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.navigation.DeepLinkTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>20</length>
+  <highlighted_element>class DeepLinkTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/DeepLinkTest.kt</file>
+  <line>13</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.DeepLinkTest void home destination is serializable()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/DeepLinkTest.kt</file>
+  <line>21</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.DeepLinkTest void checker destination with numbers is serializable()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/DeepLinkTest.kt</file>
+  <line>31</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.DeepLinkTest void checker destination without numbers is serializable()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/DeepLinkTest.kt</file>
+  <line>40</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.DeepLinkTest void all destinations have navigation properties()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/DeepLinkTest.kt</file>
+  <line>59</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.DeepLinkTest void bottom nav destinations are configured()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/DeepLinkTest.kt</file>
+  <line>67</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.DeepLinkTest void checker destination numbers can be parsed()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/DeepLinkTest.kt</file>
+  <line>76</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.DeepLinkTest void invalid numbers in checker destination are handled gracefully()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/NavigationTest.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.navigation.NavigationTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>22</length>
+  <highlighted_element>class NavigationTest {</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/NavigationTest.kt</file>
+  <line>16</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.NavigationTest void bottom nav destinations list contains expected items()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/NavigationTest.kt</file>
+  <line>22</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.NavigationTest void each destination has valid title resource()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/NavigationTest.kt</file>
+  <line>39</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.NavigationTest void each destination has selected icon()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/NavigationTest.kt</file>
+  <line>57</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.NavigationTest void each destination has unselected icon()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/NavigationTest.kt</file>
+  <line>75</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.NavigationTest void checker destination preserves numbers parameter()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/navigation/NavigationTest.kt</file>
+  <line>82</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.navigation</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.navigation.NavigationTest void checker destination default numbers is null()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/CheckerScreenSnapshotTest.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.screens.CheckerScreenSnapshotTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>67</length>
+  <highlighted_element>@Ignore(&quot;Run snapshot tests with dedicated Paparazzi tasks in CI.&quot;)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/CheckerScreenSnapshotTest.kt</file>
+  <line>19</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.CheckerScreenSnapshotTest void checkerScreenIdleState()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/CheckerScreenSnapshotTest.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.CheckerScreenSnapshotTest void checkerScreenLoadingState()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/CheckerScreenSnapshotTest.kt</file>
+  <line>39</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.CheckerScreenSnapshotTest void checkerScreenSuccessState()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/FiltersScreenSnapshotTest.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.screens.FiltersScreenSnapshotTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>67</length>
+  <highlighted_element>@Ignore(&quot;Run snapshot tests with dedicated Paparazzi tasks in CI.&quot;)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/FiltersScreenSnapshotTest.kt</file>
+  <line>19</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.FiltersScreenSnapshotTest void filtersScreenLoadingState()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/FiltersScreenSnapshotTest.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.FiltersScreenSnapshotTest void filtersScreenWithFilters()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/FiltersScreenSnapshotTest.kt</file>
+  <line>39</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.FiltersScreenSnapshotTest void filtersScreenAfterGeneration()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/GeneratedGamesScreenSnapshotTest.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.screens.GeneratedGamesScreenSnapshotTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>67</length>
+  <highlighted_element>@Ignore(&quot;Run snapshot tests with dedicated Paparazzi tasks in CI.&quot;)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/GeneratedGamesScreenSnapshotTest.kt</file>
+  <line>19</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.GeneratedGamesScreenSnapshotTest void generatedGamesScreenLoadingState()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/GeneratedGamesScreenSnapshotTest.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.GeneratedGamesScreenSnapshotTest void generatedGamesScreenWithGames()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/GeneratedGamesScreenSnapshotTest.kt</file>
+  <line>39</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.GeneratedGamesScreenSnapshotTest void generatedGamesScreenEmptyState()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/HomeScreenSnapshotTest.kt</file>
+  <line>11</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.ui.screens.HomeScreenSnapshotTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>67</length>
+  <highlighted_element>@Ignore(&quot;Run snapshot tests with dedicated Paparazzi tasks in CI.&quot;)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/HomeScreenSnapshotTest.kt</file>
+  <line>19</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.HomeScreenSnapshotTest void homeScreenLoadingState()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/HomeScreenSnapshotTest.kt</file>
+  <line>29</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.HomeScreenSnapshotTest void homeScreenWithData()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/ui/screens/HomeScreenSnapshotTest.kt</file>
+  <line>39</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.ui.screens</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.ui.screens.HomeScreenSnapshotTest void homeScreenErrorState()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/HomeViewModelTest.kt</file>
+  <line>36</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.viewmodels.HomeViewModelTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>40</length>
+  <highlighted_element>@OptIn(ExperimentalCoroutinesApi::class)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/HomeViewModelTest.kt</file>
+  <line>50</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.HomeViewModelTest void setup()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/HomeViewModelTest.kt</file>
+  <line>74</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.HomeViewModelTest void tearDown()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>6</length>
+  <highlighted_element>@After</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/HomeViewModelTest.kt</file>
+  <line>79</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.HomeViewModelTest void initial state should have loading true and no error()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/HomeViewModelTest.kt</file>
+  <line>106</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.HomeViewModelTest void onTimeWindowSelected should update selectedTimeWindow()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/HomeViewModelTest.kt</file>
+  <line>156</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.HomeViewModelTest void onPatternSelected should update selectedPattern()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/HomeViewModelTest.kt</file>
+  <line>202</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.HomeViewModelTest void refreshData should update state and show success snackbar()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/InsightsViewModelTest.kt</file>
+  <line>32</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.viewmodels.InsightsViewModelTest" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>40</length>
+  <highlighted_element>@OptIn(ExperimentalCoroutinesApi::class)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/InsightsViewModelTest.kt</file>
+  <line>44</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.InsightsViewModelTest void setup()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>7</length>
+  <highlighted_element>@Before</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/InsightsViewModelTest.kt</file>
+  <line>52</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.InsightsViewModelTest void tearDown()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>6</length>
+  <highlighted_element>@After</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/InsightsViewModelTest.kt</file>
+  <line>57</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.InsightsViewModelTest void init loads all insights sections successfully()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/test/java/com/cebolao/lotofacil/viewmodels/InsightsViewModelTest.kt</file>
+  <line>83</line>
+  <module>Lotofacil.app.unitTest</module>
+  <package>com.cebolao.lotofacil.viewmodels</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.viewmodels.InsightsViewModelTest void pattern failure should not set global error()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/baseline-profile/src/main/java/com/cebolao/lotofacil/baselineprofile/BaselineProfileGenerator.kt</file>
+  <line>13</line>
+  <module>Lotofacil.baseline-profile.main</module>
+  <package>com.cebolao.lotofacil.baselineprofile</package>
+  <entry_point TYPE="class" FQNAME="com.cebolao.lotofacil.baselineprofile.BaselineProfileGenerator" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>30</length>
+  <highlighted_element>@RunWith(AndroidJUnit4::class)</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Class is not instantiated.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/baseline-profile/src/main/java/com/cebolao/lotofacil/baselineprofile/BaselineProfileGenerator.kt</file>
+  <line>20</line>
+  <module>Lotofacil.baseline-profile.main</module>
+  <package>com.cebolao.lotofacil.baselineprofile</package>
+  <entry_point TYPE="method" FQNAME="com.cebolao.lotofacil.baselineprofile.BaselineProfileGenerator void generate()" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>5</length>
+  <highlighted_element>@Test</highlighted_element>
+  <problem_class id="" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+</problems>

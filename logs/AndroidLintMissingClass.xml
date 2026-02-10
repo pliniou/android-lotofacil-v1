@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/debug/AndroidManifest.xml</file>
+  <line>7</line>
+  <module>Lotofacil.app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/debug/AndroidManifest.xml" />
+  <problem_class id="AndroidLintMissingClass" severity="ERROR" attribute_key="ERRORS_ATTRIBUTES">Missing registered class</problem_class>
+  <hints />
+  <description>&lt;html&gt;Class referenced in the manifest, &lt;code&gt;androidx.startup.InitializationProvider&lt;/code&gt;, was not found in the project or the libraries&lt;/html&gt;</description>
+  <highlighted_element>androidx.startup.InitializationProvider</highlighted_element>
+  <language>XML</language>
+  <offset>26</offset>
+  <length>39</length>
+</problem>
+</problems>

@@ -1,0 +1,309 @@
+<resources>
+    <string name="app_name">Cebolão Lotofacil</string>
+
+    <string name="error_no_history">Unable to load history.</string>
+    <string name="error_load_data_failed">Failed to load data.</string>
+    <string name="error_analysis_failed">Analysis failed.</string>`r`n    <string name="error_analysis_timeout">Analysis timed out. Please try again.</string>
+    <string name="error_unknown">Unknown error.</string>
+    <string name="try_again">Try again</string>
+
+    <string name="studio_name">Cebola Studios</string>
+    <string name="studio_slogan">Luck and statistics.</string>
+    <string name="studio_logo_description">Cebola Studios Logo</string>
+
+    <string name="about_purpose_desc_body">This app helps analyze Lotofacil games.</string>
+    <string name="about_purpose_desc_footer">Use responsibly.</string>
+    <string name="about_purpose_item1_title">Analysis</string>
+    <string name="about_purpose_item1_desc">Analyze your games.</string>
+    <string name="about_purpose_item2_title">History</string>
+    <string name="about_purpose_item2_desc">See past results.</string>
+    <string name="about_purpose_item3_title">Statistics</string>
+    <string name="about_purpose_item3_desc">Track number frequency.</string>
+
+    <string name="about_legal_desc_header">Legal Notice</string>
+    <string name="about_legal_item1">Not affiliated with Caixa.</string>
+    <string name="about_legal_item2">Content for informational purposes only.</string>
+    <string name="about_legal_item3">No prize guarantee.</string>
+    <string name="about_legal_footer">Terms of Use</string>
+
+    <string name="about_privacy_desc_header">Privacy</string>
+    <string name="about_privacy_desc_body">We respect your privacy.</string>
+    <string name="about_privacy_item1">No personal data is collected.</string>
+    <string name="about_privacy_item2">Local storage only.</string>
+    <string name="about_privacy_item3">No tracking.</string>
+
+    <string name="about_rules_desc_header">Rules</string>
+    <string name="about_rules_item1">Choose 15 to 20 numbers.</string>
+    <string name="about_rules_item2">Win with 11, 12, 13, 14 or 15 hits.</string>
+    <string name="about_rules_item3">Daily draws, except Sundays.</string>
+
+    <string name="about_bolao_desc_body">Increase your chances with group play.</string>
+    <string name="about_bolao_desc_footer">Check official rules.</string>
+
+    <!-- Probability Table -->
+    <string name="probability_table_header_prize">Prize</string>
+    <string name="probability_table_header_probability">Probability</string>
+    <string name="probability_15_hits">15 hits</string>
+    <string name="probability_14_hits">14 hits</string>
+    <string name="probability_13_hits">13 hits</string>
+    <string name="probability_12_hits">12 hits</string>
+    <string name="probability_11_hits">11 hits</string>
+    <string name="probability_15_hits_value">1 in 3,268,760</string>
+    <string name="probability_14_hits_value">1 in 21,792</string>
+    <string name="probability_13_hits_value">1 in 692</string>
+    <string name="probability_12_hits_value">1 in 60</string>
+    <string name="probability_11_hits_value">1 in 11</string>
+
+    <!-- HomeScreen -->
+    <string name="sync_failed_message">Unable to update. Showing local data.</string>
+    <!-- HomeScreen -->
+    <string name="welcome_banner_title">Welcome to Cebolão!</string>
+    <string name="welcome_banner_subtitle">Your luck with statistical intelligence</string>
+    <string name="welcome_tip_filters">Explore filters to refine your games</string>
+    <string name="welcome_tip_checker">Test your games against history</string>
+    <string name="last_update_status">Data updated %s ago</string>
+    <string name="refresh_confirmation_title">Update data?</string>
+    <string name="refresh_confirmation_message">This will download the latest data from Caixa. Do you want to continue?</string>
+    <string name="refresh_success">Data updated successfully!</string>
+    <string name="refresh_error">Failed to update data. Try again.</string>
+    <string name="prize_details_title">Prize details</string>
+    <string name="prize_details_expand">See details</string>
+    <string name="prize_details_collapse">Hide details</string>
+    <string name="prize_per_winner">Prize per winner</string>
+    <string name="winners">winners</string>
+    <string name="winners_by_state">Winners by state</string>
+
+    <string name="cebolao_title">Cebolão</string>
+    <string name="lotofacil_subtitle">Lotofacil Generator</string>
+    <string name="last_contest">Last draw</string>
+    <string name="sum_label">Sum</string>
+    <string name="even_label">Evens</string>
+    <string name="odd_label">Odds</string>
+    <string name="prime_label">Primes</string>
+    <string name="frame_label">Frame</string>
+    <string name="portrait_label">Portrait</string>
+    <string name="fibonacci_label">Fibonacci</string>
+    <string name="multiples_of_3_label">Multiples of 3</string>
+    <string name="statistics_center">Statistics Center</string>
+    <string name="most_delayed_numbers">Most delayed numbers</string>
+    <string name="delayed_suffix"> ago</string>
+    <string name="most_drawn_numbers">Most drawn numbers</string>
+    <string name="frequency_suffix">x</string>
+    <string name="drawn_ago">draws ago</string>
+    <string name="trend_analysis_title">Trend Analysis</string>
+    <string name="analysis_period_title">Analysis period</string>
+    <string name="time_window_all">All</string>
+    <string name="time_window_last">Last %d</string>
+    <!-- GeneratedGamesScreen -->
+    <string name="clear_games_title">Clear games?</string>
+    <string name="clear_games_message">This will remove all unpinned games. Do you want to continue?</string>
+    <string name="clear_button">Clear</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="delete_game_title">Delete game?</string>
+    <string name="delete_game_message">This action is permanent. Do you want to delete this game?</string>
+    <string name="delete_button">Delete</string>
+    <string name="analyzing_game">Analyzing game…</string>
+    <string name="analysis_error_title">Analysis error</string>
+    <string name="my_games">My games</string>
+    <string name="my_games_subtitle">View, analyze and manage your games</string>
+    <string name="empty_games_message">No games generated yet.\nGo to the Generator screen to start!</string>
+    <string name="game_analysis_title">Game analysis</string>
+    <string name="close_button">Close</string>
+    <string name="historical_performance">Historical performance</string>
+    <string name="never_won_message">This game was never awarded in the analyzed draws.</string>
+    <string name="recent_hits_title">Hits in last 15 draws</string>
+    <string name="game_stats_title">Game statistics</string>
+    <string name="selected_numbers_progress">%1$d of 15 numbers</string>
+
+    <!-- CheckerScreen -->
+    <string name="check_game_title">Checker</string>
+    <string name="check_game_subtitle">Test your game against history</string>
+    <string name="check_game_button">Check game</string>
+    <string name="clear_selection_button">Clear selection</string>
+    <string name="checker_clear_selection_title">Clear selection?</string>
+    <string name="checker_clear_selection_message">This will remove all selected numbers. Do you want to continue?</string>
+    <string name="checker_clear_confirmation">Selection cleared successfully.</string>
+    <string name="checker_checking_success">Game checked successfully!</string>
+    <string name="checker_checking_error">Error checking game. Try again.</string>
+    <string name="checker_incomplete_selection">Select exactly 15 numbers to check.</string>
+    <string name="checker_results_cleared_title">Clear results?</string>
+    <string name="checker_results_cleared_message">This will remove the current check results. Do you want to continue?</string>
+    <string name="checker_loading_history">Loading history…</string>
+    <string name="checker_calculating_results">Calculating results…</string>
+    <string name="checker_analyzing_stats">Analyzing statistics…</string>
+
+    <!-- FiltersScreen -->
+    <string name="filters_header_title">Smart Generator</string>
+    <string name="filters_header_subtitle">Refine luck based on statistics</string>
+    <string name="reset_filters">Reset filters</string>
+    <string name="reset_filters_title">Reset filters?</string>
+    <string name="reset_filters_message">This will disable all filters and restore defaults. Do you want to continue?</string>
+
+    <!-- GameCard -->
+    <string name="analyze_button">Analyze</string>
+    <string name="pin_game">Pin game</string>
+    <string name="unpin_game">Unpin game</string>
+    <string name="delete_game">Delete game</string>
+
+    <!-- Common Actions -->
+    <string name="confirm_button">Confirm</string>
+    <string name="reset_button">Reset</string>
+
+    <!-- FilterCard -->
+    <string name="data_unavailable">Data unavailable</string>
+    <string name="filter_info_content_description">More information about filter %1$s</string>
+    <string name="filter_icon_content_description">Icon for filter %1$s</string>
+
+    <!-- Filter Actions -->
+    
+    
+    <!-- FilterRangeSlider -->
+    
+    
+
+    <!-- Generation Actions -->
+    <string name="min_value">Minimum</string>
+    <string name="max_value">Maximum</string>
+
+    <!-- FilterStatsPanel -->
+    <string name="filters_analysis_title">Filters analysis</string>
+    <string name="success_probability_title">Chance of success</string>
+    <string name="no_active_filters">No active filters.</string>
+    <string name="restrictiveness_very_tight">Very tight</string>
+    <string name="restrictiveness_tight">Tight</string>
+    <string name="restrictiveness_moderate">Moderate</string>
+    <string name="restrictiveness_loose">Flexible</string>
+    <string name="restrictiveness_very_loose">Very flexible</string>
+    <string name="restrictiveness_disabled">Disabled</string>
+
+    <!-- CheckResultCard -->
+    <string name="awards_occurred">Prizes occurred</string>
+    <string name="performance_analysis">Performance analysis</string>
+    <!-- Plurals for internationalization -->
+    <plurals name="analysis_in_contests">
+        <item quantity="one">Analysis in %d draw</item>
+        <item quantity="other">Analysis in %d draws</item>
+    </plurals>
+    <plurals name="hits_count_label">
+        <item quantity="one">%d hit</item>
+        <item quantity="other">%d hits</item>
+    </plurals>
+    <plurals name="last_award">
+        <item quantity="one">Last prize in draw %1$d with %2$d hit.</item>
+        <item quantity="other">Last prize in draw %1$d with %2$d hits.</item>
+    </plurals>
+    <string name="no_awards_found">No prizes found.</string>
+
+    <!-- GenerationActionsPanel -->
+    <string name="game_quantity">Number of games</string>
+    <string name="total_cost">Total cost:</string>
+    <string name="decrease_quantity">Decrease</string>
+    <string name="increase_quantity">Increase</string>
+
+    <!-- Filter Types -->
+    <string name="filter_soma_dezenas_title">Sum of numbers</string>
+    <string name="filter_soma_dezenas_description">The sum of the 15 numbers. The vast majority of draws (about 72%) have a sum between 170 and 220. This is one of the most effective filters for eliminating unlikely combinations.</string>
+
+    <string name="filter_pares_title">Even numbers</string>
+    <string name="filter_pares_description">The amount of even numbers. Balance is ideal. About 78% of draws have between 6 and 9 even numbers.</string>
+
+    <string name="filter_primos_title">Prime numbers</string>
+    <string name="filter_primos_description">The amount of prime numbers. There are 9 primes (2, 3, 5, 7, 11, 13, 17, 19, 23). About 74% of draws have between 4 and 7 primes.</string>
+
+    <string name="filter_moldura_title">Numbers in frame</string>
+    <string name="filter_moldura_description">The amount of numbers on the edge of the ticket (16 numbers total). About 76% of draws have between 8 and 11 frame numbers.</string>
+
+    <string name="filter_retrato_title">Numbers in portrait</string>
+    <string name="filter_retrato_description">The amount of numbers in the center of the ticket (9 numbers total). About 71% of draws have between 4 and 7 portrait numbers.</string>
+
+    <string name="filter_fibonacci_title">Fibonacci sequence</string>
+    <string name="filter_fibonacci_description">The amount of numbers from the Fibonacci sequence (1, 2, 3, 5, 8, 13, 21). About 68% of draws have between 3 and 5 Fibonacci numbers.</string>
+
+    <string name="filter_multiplos_3_title">Multiples of 3</string>
+    <string name="filter_multiplos_3_description">The amount of numbers that are multiples of 3. About 69% of draws have between 3 and 6 multiples of 3.</string>
+
+    <string name="filter_repetidas_anterior_title">Repeated from previous</string>
+    <string name="filter_repetidas_anterior_description">The amount of numbers repeated from the previous draw. This is a very strong pattern: 84% of draws repeat between 8 and 10 numbers.</string>
+
+    <!-- InfoItem Resources -->
+    <string name="info_item_rules_title">Rules and prizes</string>
+    <string name="info_item_rules_subtitle">Official Caixa manual</string>
+    <string name="info_item_probabilities_title">The reality of numbers</string>
+    <string name="info_item_probabilities_subtitle">The math of (bad) luck</string>
+    <string name="info_item_bolao_title">Syndicate: more chances</string>
+    <string name="info_item_bolao_subtitle">Splitting the prize (and the bet)</string>
+    <string name="info_item_purpose_title">App purpose</string>
+    <string name="info_item_purpose_subtitle">What this app is (not) for</string>
+    <string name="info_item_legal_title">Legalese</string>
+    <string name="info_item_legal_subtitle">The boring but necessary part</string>
+    <string name="info_item_privacy_title">Your privacy</string>
+    <string name="info_item_privacy_subtitle">How we do not use your data</string>
+
+    <!-- Dialogs -->
+    <string name="understood_button">Understood</string>
+    <string name="info_dialog_icon_description">Dialog info icon</string>
+    <string name="icon_check_circle_description">Check circle icon</string>
+    <string name="icon_gavel_description">Gavel icon (legal)</string>
+    <string name="icon_shield_description">Shield icon (privacy)</string>
+    <string name="icon_rule_description">Rule icon</string>
+    <string name="game_deleted_confirmation">Game deleted successfully.</string>
+    <string name="unpinned_games_cleared">Unpinned games removed.</string>
+    <string name="accumulated">ACCUMULATED!</string>
+    <string name="prize_estimate">Prize Estimate</string>
+    <string name="next_draw_date">Draw on %s</string>
+    <string name="stats_guide_title">Filters and Statistics Guide</string>
+    <string name="how_filters_work">How do filters work?</string>
+    <string name="stats_explanation_sum">The total sum of the 15 drawn numbers. In Lotofácil, most draws stay between 170 and 220.</string>
+    <string name="stats_explanation_even_odd">Balance between even and odd numbers. The most common pattern is 7 even and 8 odd numbers (or vice versa).</string>
+    <string name="stats_explanation_primes">Prime numbers are divisible only by 1 and themselves (e.g., 2, 3, 5, 7, 11, 13, 17, 19, 23).</string>
+    <string name="stats_explanation_frame_portrait">The frame contains edge numbers on the ticket (16 numbers). The portrait contains the 9 central numbers.</string>
+    <string name="stats_explanation_frequency_title">Frequency and delay</string>
+    <string name="stats_explanation_frequency">Frequency shows which numbers are drawn more often. Delay shows how many draws a number has gone without appearing.</string>
+    
+    <!-- Content Descriptions -->
+    <string name="cd_refresh_data">Update data</string>
+    <string name="cd_navigate_back">Back</string>
+    <string name="cd_clear_games">Clear unpinned games</string>
+    <string name="next_contest_format">Next Draw: #%s</string>
+    <string name="prize_tier_format">Tier %d</string>
+    <string name="number_state_selected">selected</string>
+    <string name="number_state_highlighted">highlighted</string>
+    <string name="number_state_disabled">disabled</string>
+    <string name="number_state_available">available</string>
+    <string name="number_content_description">Number %1$d, %2$s</string>
+    <string name="pattern_analysis_title">Analysis</string>
+    
+    <!-- Ranking positions -->
+    <string name="position_abbr">#%1$d</string>
+    
+    <!-- Accessibility - Componentes -->
+    <plurals name="chart_frequency_description">
+        <item quantity="one">Frequency chart with %1$d number, maximum value %2$d</item>
+        <item quantity="other">Frequency chart with %1$d numbers, maximum value %2$d</item>
+    </plurals>
+    <string name="prize_tier_description">Prize category %1$d, %2$s per winner</string>
+    <string name="ranked_number_description">Position %1$dth, number %2$d</string>
+    <string name="trend_indicator_description">Trend %1$s, variation %2$s</string>
+    <string name="expandable_section_description">Section %1$s, %2$s. Click to toggle.</string>
+    <string name="expanded_state">expanded</string>
+    <string name="collapsed_state">collapsed</string>
+    <string name="gaussian_toggle_description">Include gaussian curve, %1$s</string>
+    <string name="gaussian_toggle_active">active</string>
+    <string name="gaussian_toggle_inactive">inactive</string>
+    <string name="gaussian_toggle_label_on">Gauss</string>
+    <string name="gaussian_toggle_label_off">Bars</string>
+    <string name="performance_metrics_title">Performance metrics</string>
+    <string name="performance_metrics_close">Close metrics</string>
+    <string name="performance_metrics_memory_title">Memory usage</string>
+    <string name="performance_metrics_metric_used">Used</string>
+    <string name="performance_metrics_metric_available">Available</string>
+    <string name="performance_metrics_metric_native">Native</string>
+    <string name="performance_metrics_performance_title">Performance</string>
+    <string name="performance_metrics_metric_frame_time">Frame time</string>
+    <string name="performance_metrics_metric_recompositions">Recompositions</string>
+    <string name="performance_metrics_metric_status">Status</string>
+    <string name="performance_metrics_status_smooth">60 FPS</string>
+    <string name="performance_metrics_status_jank">Dropping frames</string>
+    <string name="performance_metrics_update_interval">Updates every 1 second</string>
+    <string name="performance_metrics_toggle">Perf</string>
+</resources>
