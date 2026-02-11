@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -58,7 +59,11 @@ class HistoryRepositoryImpl @Inject constructor(
         return localDataSource.getLatestDraw()
     }
 
-    override suspend fun syncHistory(): AppResult<Unit> = syncMutex.withLock {
+    override suspend fun syncHistory(): AppResult<Unit> {
+        // Wait for initialization (db population) to complete
+        isInitialized.first { it }
+
+        return syncMutex.withLock {
         if (_syncStatus.value == SyncStatus.Syncing) return AppResult.Success(Unit)
         _syncStatus.value = SyncStatus.Syncing
         return try {

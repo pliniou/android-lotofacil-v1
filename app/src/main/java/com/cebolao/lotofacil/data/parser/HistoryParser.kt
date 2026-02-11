@@ -13,9 +13,7 @@ import javax.inject.Inject
 class HistoryParser @Inject constructor(
     private val logger: AppLogger
 ) {
-    // Relaxed regex to handle potential trailing spaces or invisible characters
-    // Matches "1234 - 01,02,..." with flexible whitespace around the separator
-    private val lineRegex = "^\\d+\\s*-\\s*[\\d, ]+.*$".toRegex()
+
 
     /**
      * Parse the given raw text into a list of [HistoricalDraw] objects.  Any
