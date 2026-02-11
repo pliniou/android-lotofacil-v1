@@ -22,7 +22,8 @@ interface HistoryRemoteDataSource {
     suspend fun getLatestDraw(): HistoricalDraw?
     suspend fun getDrawsInRange(
         range: IntRange,
-        onProgress: (Int) -> Unit = {}
+        onProgress: (Int) -> Unit = {},
+        onBatchFetched: suspend (List<HistoricalDraw>) -> Unit = {}
     ): List<HistoricalDraw>
 }
 
@@ -73,7 +74,8 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun getDrawsInRange(
         range: IntRange,
-        onProgress: (Int) -> Unit
+        onProgress: (Int) -> Unit,
+        onBatchFetched: suspend (List<HistoricalDraw>) -> Unit
     ): List<HistoricalDraw> = withContext(dispatchersProvider.io) {
         if (range.isEmpty()) return@withContext emptyList()
 
@@ -92,6 +94,9 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
                 }.awaitAll().filterNotNull()
                 
                 results.addAll(batchResults)
+                if (batchResults.isNotEmpty()) {
+                    onBatchFetched(batchResults)
+                }
                 fetchedCount += window.size
                 onProgress(fetchedCount)
                 
