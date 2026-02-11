@@ -227,7 +227,7 @@ private fun UserStatsCard(onClick: () -> Unit) {
                 imageVector = Icons.Default.Person,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(32.dp)
+                modifier = Modifier.size(iconLarge())
             )
             Spacer(modifier = Modifier.width(AppSpacing.md))
             Column(modifier = Modifier.weight(1f)) {
@@ -277,7 +277,7 @@ private fun StudioHero() {
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(180.dp)
+                .height(com.cebolao.lotofacil.ui.theme.AppSize.chartHeightSmall)
                 .alpha(0.15f),
             contentScale = ContentScale.Crop,
             delayMillis = 100L,

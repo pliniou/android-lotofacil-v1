@@ -207,7 +207,7 @@ private fun PrizeDetailsSection(
                 imageVector = if (showPrizes) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
                 contentDescription = null,
                 tint = colors.primary,
-                modifier = Modifier.size(iconSmall())
+                modifier = Modifier.size(AppSize.iconSmall)
             )
         }
 
@@ -384,7 +384,7 @@ private fun WinnerBadge(winner: WinnerLocation) {
     Surface(
         shape = CircleShape,
         color = colors.secondaryContainer,
-        modifier = Modifier.height(32.dp)
+        modifier = Modifier.height(AppSize.chipHeight)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -397,11 +397,11 @@ private fun WinnerBadge(winner: WinnerLocation) {
                 color = colors.onSecondaryContainer
             )
             if (winner.winnersCount > 1) {
-                Spacer(modifier = Modifier.width(4.dp))
+                Spacer(modifier = Modifier.width(AppSpacing.xs))
                 Box(
                     modifier = Modifier
                         .background(colors.primary, CircleShape)
-                        .padding(horizontal = 4.dp, vertical = 2.dp)
+                        .padding(horizontal = AppSpacing.xs, vertical = 2.dp)
                 ) {
                     Text(
                         text = NumberFormatUtils.formatInteger(winner.winnersCount),
@@ -465,7 +465,7 @@ private fun NextDrawCard(
                             Icons.Filled.Star,
                             contentDescription = null,
                             tint = colors.error,
-                            modifier = Modifier.size(16.dp)
+                            modifier = Modifier.size(AppSize.iconSmall)
                         )
                     }
                     Text(

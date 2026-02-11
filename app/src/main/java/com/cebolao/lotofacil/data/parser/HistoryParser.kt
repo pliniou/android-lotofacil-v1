@@ -13,17 +13,28 @@ import javax.inject.Inject
 class HistoryParser @Inject constructor(
     private val logger: AppLogger
 ) {
-    private val lineRegex = "^\\d+\\s*-\\s*[\\d, ]+$".toRegex()
+    // Relaxed regex to handle potential trailing spaces or invisible characters
+    // Matches "1234 - 01,02,..." with flexible whitespace around the separator
+    private val lineRegex = "^\\d+\\s*-\\s*[\\d, ]+.*$".toRegex()
 
     /**
      * Parse the given raw text into a list of [HistoricalDraw] objects.  Any
      * malformed lines are skipped.  Errors are logged only in debug builds.
      */
-    fun parse(lines: Sequence<String>): List<HistoricalDraw> = lines
-        .filter { it.isNotBlank() && it.matches(lineRegex) }
-        .mapNotNull { parseLine(it) }
-        .sortedByDescending { it.contestNumber }
-        .toList()
+    fun parse(lines: Sequence<String>): List<HistoricalDraw> {
+        return lines
+            .filter { it.isNotBlank() }
+            .mapNotNull { 
+                try {
+                    parseLine(it) 
+                } catch (e: Exception) {
+                    logger.e(TAG, "Failed to parse line: $it", e)
+                    null
+                }
+            }
+            .sortedByDescending { it.contestNumber }
+            .toList()
+    }
 
     private fun parseLine(line: String): HistoricalDraw? {
         return try {

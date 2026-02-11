@@ -19,13 +19,15 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import java.io.File
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://loteriascaixa-api.herokuapp.com/api/lotofacil/"
+    private const val HEROKU_BASE_URL = "https://loteriascaixa-api.herokuapp.com/api/lotofacil/"
+    private const val CAIXA_BASE_URL = "https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil/"
     private const val CACHE_SIZE_BYTES = 10 * 1_024 * 1_024L // 10 MB
 
     @Provides
@@ -56,6 +58,10 @@ object NetworkModule {
             level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
             else HttpLoggingInterceptor.Level.NONE
         }
+        
+        // Custom trust manager might be needed for Caixa if they use gov certs not in standard truststore,
+        // but for now we try standard. If SSL fails, we might need a custom SSLContext.
+        
         return OkHttpClient.Builder()
             .cache(cache)
             .addInterceptor(RateLimiterInterceptor(rateLimiter))
@@ -67,10 +73,11 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit {
+    @Named("HerokuRetrofit")
+    fun provideHerokuRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit {
         val contentType = "application/json".toMediaType()
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(HEROKU_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(json.asConverterFactory(contentType))
             .build()
@@ -78,7 +85,30 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService =
-        retrofit.create(ApiService::class.java)
-}
+    @Named("CaixaRetrofit")
+    fun provideCaixaRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit {
+        val contentType = "application/json".toMediaType()
+        return Retrofit.Builder()
+            .baseUrl(CAIXA_BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(json.asConverterFactory(contentType))
+            .build()
+    }
 
+    @Provides
+    @Singleton
+    @Named("HerokuApi")
+    fun provideHerokuApiService(@Named("HerokuRetrofit") retrofit: Retrofit): ApiService =
+        retrofit.create(ApiService::class.java)
+
+    @Provides
+    @Singleton
+    @Named("CaixaApi")
+    fun provideCaixaApiService(@Named("CaixaRetrofit") retrofit: Retrofit): ApiService =
+        retrofit.create(ApiService::class.java)
+        
+    // Default provider for backward compatibility if needed, though we should migrate users
+    @Provides
+    @Singleton
+    fun provideDefaultApiService(@Named("HerokuApi") apiService: ApiService): ApiService = apiService
+}

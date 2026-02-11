@@ -14,6 +14,7 @@ import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
 
 interface HistoryRemoteDataSource {
@@ -23,7 +24,8 @@ interface HistoryRemoteDataSource {
 
 @Singleton
 class HistoryRemoteDataSourceImpl @Inject constructor(
-    private val apiService: ApiService,
+    @Named("CaixaApi") private val caixaService: ApiService,
+    @Named("HerokuApi") private val herokuService: ApiService,
     private val dispatchersProvider: DispatchersProvider,
     private val logger: AppLogger
 ) : HistoryRemoteDataSource {
@@ -43,11 +45,24 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
     private val networkSemaphore = Semaphore(MAX_CONCURRENT_REQUESTS)
 
     override suspend fun getLatestDraw(): HistoricalDraw? = withContext(dispatchersProvider.io) {
+        // Try Caixa first
         try {
-            val result = retry { apiService.getLatestResult() }
-            result.toHistoricalDraw()
+            val result = retry { caixaService.getLatestResult() }
+            val draw = result.toHistoricalDraw()
+            logger.d(TAG, "Successfully fetched latest draw from Caixa API")
+            return@withContext draw
         } catch (e: Exception) {
-            logger.e(TAG, "Failed to fetch latest draw", e)
+            logger.w(TAG, "Failed to fetch latest draw from Caixa API, falling back to Heroku", e)
+        }
+
+        // Fallback to Heroku
+        try {
+            val result = retry { herokuService.getLatestResult() }
+            val draw = result.toHistoricalDraw()
+            logger.d(TAG, "Successfully fetched latest draw from Heroku API")
+            return@withContext draw
+        } catch (e: Exception) {
+            logger.e(TAG, "Failed to fetch latest draw from Heroku (fallback)", e)
             null
         }
     }
@@ -82,11 +97,24 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
     }
 
     private suspend fun fetchContest(contestNumber: Int): HistoricalDraw? {
-        return try {
-            val result = retry { apiService.getResultByContest(contestNumber) }
-            result.toHistoricalDraw()
+        // Try Caixa first
+        try {
+            val result = retry { caixaService.getResultByContest(contestNumber) }
+            val draw = result.toHistoricalDraw()
+            // logger.v(TAG, "Fetched contest $contestNumber from Caixa") // Verbose logging if needed
+            return draw
         } catch (e: Exception) {
-            logger.w(TAG, "Failed to fetch contest $contestNumber", e)
+            logger.w(TAG, "Failed to fetch contest $contestNumber from Caixa, attempting fallback", e)
+        }
+
+        // Fallback to Heroku
+        try {
+            val result = retry { herokuService.getResultByContest(contestNumber) }
+            val draw = result.toHistoricalDraw()
+            logger.d(TAG, "Fetched contest $contestNumber from Heroku (fallback)")
+            return draw
+        } catch (e: Exception) {
+            logger.w(TAG, "Failed to fetch contest $contestNumber from Heroku (fallback)", e)
             null
         }
     }

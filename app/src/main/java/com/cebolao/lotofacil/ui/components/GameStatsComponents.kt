@@ -26,6 +26,7 @@ import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.GameStatistic
 import com.cebolao.lotofacil.domain.model.GameStatisticType
 import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.ui.theme.AppSize
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
@@ -74,7 +75,7 @@ private fun GameStatisticType.label(): String {
 fun RecentHitsChartContent(
     recentHits: List<Pair<Int, Int>>,
     modifier: Modifier = Modifier,
-    chartHeight: Dp = 180.dp
+    chartHeight: Dp = AppSize.chartHeightSmall
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)) {
         Row(
@@ -83,7 +84,7 @@ fun RecentHitsChartContent(
         ) {
             Box(
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(AppSize.iconMedium)
                     .background(
                         MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
                         CircleShape
@@ -91,7 +92,7 @@ fun RecentHitsChartContent(
                 contentAlignment = Alignment.Center
             ) {
                 // Using a small dot or icon for chart header
-                Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
+                Box(Modifier.size(AppSpacing.sm).background(MaterialTheme.colorScheme.primary, CircleShape))
             }
             Text(stringResource(id = R.string.recent_hits_title), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
         }

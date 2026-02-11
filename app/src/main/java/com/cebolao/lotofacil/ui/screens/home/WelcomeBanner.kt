@@ -31,6 +31,7 @@ import com.cebolao.lotofacil.ui.theme.iconMedium
 import com.cebolao.lotofacil.viewmodels.DataLoadSource
 import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.Sync
+import com.cebolao.lotofacil.ui.theme.iconSmall
 
 @Composable
 fun WelcomeBanner(
@@ -99,7 +100,7 @@ fun WelcomeBanner(
                         horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
                     ) {
                         androidx.compose.material3.CircularProgressIndicator(
-                            modifier = Modifier.size(14.dp),
+                            modifier = Modifier.size(iconSmall()),
                             strokeWidth = 2.dp,
                             color = colors.primary
                         )
@@ -120,7 +121,7 @@ fun WelcomeBanner(
                                 imageVector = Icons.Default.AccessTime,
                                 contentDescription = null,
                                 tint = colors.outline,
-                                modifier = Modifier.size(14.dp)
+                                modifier = Modifier.size(iconSmall())
                             )
                             Text(
                                 text = stringResource(id = R.string.last_update_status, time),
@@ -211,7 +212,7 @@ private fun DrawScheduleInfo(
             imageVector = if (isTodayDrawDay) Icons.Default.Today else Icons.Default.CalendarMonth,
             contentDescription = null,
             tint = if (isTodayDrawDay) colors.error else colors.primary,
-            modifier = Modifier.size(16.dp)
+            modifier = Modifier.size(iconSmall())
         )
         when {
             isTodayDrawDay && nextDrawContest != null -> {

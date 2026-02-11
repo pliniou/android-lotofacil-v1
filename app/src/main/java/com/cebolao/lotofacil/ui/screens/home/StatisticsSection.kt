@@ -45,6 +45,7 @@ import com.cebolao.lotofacil.ui.components.NumberBall
 import com.cebolao.lotofacil.ui.components.shimmer
 import com.cebolao.lotofacil.ui.theme.AppElevation
 import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.ui.theme.AppTheme
 import com.cebolao.lotofacil.ui.theme.iconMedium
 import com.cebolao.lotofacil.ui.theme.iconSmall
 import com.cebolao.lotofacil.viewmodels.StatisticPattern
@@ -75,7 +76,7 @@ fun StatisticsSection(
                 Icons.Default.Timeline,
                 contentDescription = null,
                 tint = colors.primary,
-                modifier = Modifier.size(28.dp)
+                modifier = Modifier.size(AppTheme.sizes.iconMediumLarge)
             )
             Text(
                 text = stringResource(id = R.string.statistics_center),
@@ -317,10 +318,10 @@ fun StatsLoadingSkeleton() {
     Column(verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)) {
         Card(modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = colors.surface)) {
             Column(Modifier.padding(AppSpacing.lg), verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)) {
-                Box(Modifier.size(150.dp, 20.dp).clip(MaterialTheme.shapes.small).shimmer())
+                Box(Modifier.size(150.dp, AppTheme.sizes.iconSmall).clip(MaterialTheme.shapes.small).shimmer())
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                     for (i in 0 until 5) {
-                        Box(Modifier.size(40.dp).clip(MaterialTheme.shapes.medium).shimmer())
+                        Box(Modifier.size(AppTheme.sizes.progressIndicatorMedium).clip(MaterialTheme.shapes.medium).shimmer())
                     }
                 }
             }

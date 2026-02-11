@@ -28,7 +28,7 @@ fun ProbabilitiesTable(modifier: Modifier = Modifier) {
     )
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+        verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
     ) {
         TableHeader()
         HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f))

@@ -47,11 +47,18 @@ class HistoryLocalDataSourceImpl @Inject constructor(
     override suspend fun populateIfNeeded() {
         withContext(dispatchersProvider.io) {
             val dbCount = historyDao.getCount()
+            logger.d("HistoryLocalDataSource", "Checking database population. Current count: $dbCount")
             if (dbCount == 0) {
                 val assetDraws = parseHistoryFromAssets()
+                logger.d("HistoryLocalDataSource", "Parsed ${assetDraws.size} draws from assets.")
                 if (assetDraws.isNotEmpty()) {
                     historyDao.upsertAll(assetDraws.map { it.toEntity() })
+                    logger.d("HistoryLocalDataSource", "Successfully populated database from assets.")
+                } else {
+                    logger.w("HistoryLocalDataSource", "Asset file was empty or failed to parse.")
                 }
+            } else {
+                logger.d("HistoryLocalDataSource", "Database already populated. Skipping asset load.")
             }
         }
     }
