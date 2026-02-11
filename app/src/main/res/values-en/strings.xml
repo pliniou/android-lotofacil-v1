@@ -72,6 +72,8 @@
     <string name="welcome_tip_filters">Explore filters to refine your games</string>
     <string name="welcome_tip_checker">Test your games against history</string>
     <string name="last_update_status">Data updated %s ago</string>
+    <string name="initial_sync_label">Initial Sync</string>
+    <string name="refresh_sync_label">Updating Data</string>
     <string name="refresh_success">Data updated successfully!</string>
     <string name="sync_failed_message">Unable to update. Showing local data.</string>
     <string name="home_source_history_network">history: network</string>
@@ -230,6 +232,13 @@
     <string name="restrictiveness_loose">Flexible</string>
     <string name="restrictiveness_very_loose">Very flexible</string>
     <string name="restrictiveness_disabled">Disabled</string>
+    <string name="presets_title">Quick Presets</string>
+    <string name="preset_common_title">Most Common</string>
+    <string name="preset_common_desc">Classic statistics (72% of draws)</string>
+    <string name="preset_gauss_title">Gauss Peak</string>
+    <string name="preset_gauss_desc">Maximum restriction (frequent targets)</string>
+    <string name="preset_extremes_title">Outliers</string>
+    <string name="preset_extremes_desc">Search for rare and extreme results</string>
 
     <!-- CheckResultCard -->
     <string name="awards_occurred">Prizes occurred</string>

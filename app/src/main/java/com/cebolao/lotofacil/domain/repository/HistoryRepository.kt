@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 sealed interface SyncStatus {
     object Idle : SyncStatus
     object Syncing : SyncStatus
+    data class Progress(val current: Int, val total: Int) : SyncStatus
     object Success : SyncStatus
     data class Failed(val message: String) : SyncStatus
 }

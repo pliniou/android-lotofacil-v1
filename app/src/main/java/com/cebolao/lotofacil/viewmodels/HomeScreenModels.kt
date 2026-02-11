@@ -58,5 +58,7 @@ data class HomeUiState(
     val lastUpdateTime: String? = null,
     val nextDrawDate: String? = null,
     val nextDrawContest: Int? = null,
-    val isTodayDrawDay: Boolean = false
+    val isTodayDrawDay: Boolean = false,
+    val syncProgress: Pair<Int, Int>? = null,
+    val isInitialSync: Boolean = false
 )

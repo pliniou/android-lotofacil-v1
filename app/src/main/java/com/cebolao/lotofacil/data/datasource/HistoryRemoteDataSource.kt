@@ -20,7 +20,10 @@ import javax.inject.Singleton
 
 interface HistoryRemoteDataSource {
     suspend fun getLatestDraw(): HistoricalDraw?
-    suspend fun getDrawsInRange(range: IntRange): List<HistoricalDraw>
+    suspend fun getDrawsInRange(
+        range: IntRange,
+        onProgress: (Int) -> Unit = {}
+    ): List<HistoricalDraw>
 }
 
 @Singleton
@@ -33,13 +36,13 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
 
     companion object {
         private const val TAG = "HistoryRemoteDataSource"
-        private const val BATCH_SIZE = 20 // Reduced batch size
-        // Further reduced to prevent rate limiting issues
-        private const val MAX_CONCURRENT_REQUESTS = 2
+        private const val BATCH_SIZE = 20
+        // Increased for better performance while keeping safety
+        private const val MAX_CONCURRENT_REQUESTS = 5
         private const val RETRY_ATTEMPTS = 2
-        private const val RETRY_DELAY_MS = 500L // Increased delay
-        // Longer delay between batches to avoid rate limiting
-        private const val INTER_BATCH_DELAY_MS = 1000L
+        private const val RETRY_DELAY_MS = 500L
+        // Reduced delay between batches for faster catch-up
+        private const val INTER_BATCH_DELAY_MS = 400L
     }
 
     // Global semaphore to limit concurrent network requests
@@ -68,12 +71,15 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun getDrawsInRange(range: IntRange): List<HistoricalDraw> =
-        withContext(dispatchersProvider.io) {
+    override suspend fun getDrawsInRange(
+        range: IntRange,
+        onProgress: (Int) -> Unit
+    ): List<HistoricalDraw> = withContext(dispatchersProvider.io) {
         if (range.isEmpty()) return@withContext emptyList()
 
         val results = mutableListOf<HistoricalDraw>()
         val windows = range.chunked(MAX_CONCURRENT_REQUESTS)
+        var fetchedCount = 0
         
         coroutineScope {
             windows.forEachIndexed { index, window ->
@@ -86,6 +92,8 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
                 }.awaitAll().filterNotNull()
                 
                 results.addAll(batchResults)
+                fetchedCount += window.size
+                onProgress(fetchedCount)
                 
                 // Add delay between batches to avoid overwhelming the rate limiter
                 if (index < windows.lastIndex) {

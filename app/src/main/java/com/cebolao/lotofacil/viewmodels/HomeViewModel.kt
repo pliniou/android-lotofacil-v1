@@ -50,8 +50,20 @@ class HomeViewModel @Inject constructor(
     private fun observeSyncStatus() {
         syncStatusJob = viewModelScope.launch {
             historyRepository.syncStatus.collect { status ->
-                if (status is SyncStatus.Failed) {
-                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_sync_failed))
+                when (status) {
+                    is SyncStatus.Progress -> {
+                        updateState { it.copy(syncProgress = status.current to status.total) }
+                    }
+                    is SyncStatus.Success -> {
+                        updateState { it.copy(syncProgress = null, isInitialSync = false) }
+                    }
+                    is SyncStatus.Failed -> {
+                        updateState { it.copy(syncProgress = null) }
+                        sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_sync_failed))
+                    }
+                    else -> {
+                        updateState { it.copy(syncProgress = null) }
+                    }
                 }
             }
         }
@@ -89,6 +101,11 @@ class HomeViewModel @Inject constructor(
                 }
                 // Only sync in background if data is not fresh
                 if (historyRepository.syncStatus.value !is SyncStatus.Success) {
+                    // Check if it's the very first sync (gap from asset)
+                    val isPotentiallyInitial = lastDraw?.contestNumber != null && lastDraw.contestNumber <= 3455
+                    if (isPotentiallyInitial) {
+                        updateState { it.copy(isInitialSync = true) }
+                    }
                     syncInBackground()
                 }
             } else {

@@ -74,6 +74,8 @@
     <string name="welcome_tip_filters">Explore os filtros para refinar seus jogos</string>
     <string name="welcome_tip_checker">Teste seus jogos contra o histórico</string>
     <string name="last_update_status">Dados atualizados há %s</string>
+    <string name="initial_sync_label">Sincronização Inicial</string>
+    <string name="refresh_sync_label">Atualizando Dados</string>
 
     <string name="refresh_success">Dados atualizados com sucesso!</string>
     <string name="sync_failed_message">Não foi possível atualizar. Exibindo dados locais.</string>
@@ -243,7 +245,14 @@
     <string name="restrictiveness_moderate">Moderado</string>
     <string name="restrictiveness_loose">Flexível</string>
     <string name="restrictiveness_very_loose">Muito flexível</string>
-    <string name="restrictiveness_disabled">Desabilitado</string>
+    <string name="restrictiveness_disabled">Desativado</string>
+    <string name="presets_title">Dicas Rápidas (Presets)</string>
+    <string name="preset_common_title">Mais Comuns</string>
+    <string name="preset_common_desc">Estatísticas clássicas (72% dos sorteios)</string>
+    <string name="preset_gauss_title">Pico de Gauss</string>
+    <string name="preset_gauss_desc">Máxima restrição (alvos frequentes)</string>
+    <string name="preset_extremes_title">Fora da Curva</string>
+    <string name="preset_extremes_desc">Busca por resultados raros e extremos</string>
 
     <!-- CheckResultCard -->
     <string name="awards_occurred">Premiações já ocorridas</string>

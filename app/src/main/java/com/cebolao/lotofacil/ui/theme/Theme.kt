@@ -155,7 +155,7 @@ val LocalSemanticColors = androidx.compose.runtime.staticCompositionLocalOf {
 @Composable
 fun CebolaoLotofacilTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = false, // Disabled for consistent brand colors
+    dynamicColor: Boolean = true, // Enabled for Android 12+ premium experience
     animationsEnabled: Boolean = true,
     content: @Composable () -> Unit
 ) {

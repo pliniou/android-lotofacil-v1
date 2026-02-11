@@ -10,6 +10,7 @@ import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.domain.repository.GameRepository
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.usecase.GenerateGamesUseCase
+import com.cebolao.lotofacil.domain.model.FilterPreset
 import com.cebolao.lotofacil.navigation.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -34,7 +35,6 @@ data class FiltersUiState(
     val isGenerating: Boolean = false,
     val lastDraw: ImmutableSet<Int>? = null,
     val activeFiltersCount: Int = 0,
-    val successProbability: Float = 1f,
     val generationState: GenerationUiState = GenerationUiState.Idle
 )
 
@@ -46,18 +46,12 @@ class FiltersViewModel @Inject constructor(
     private val historyRepository: HistoryRepository
 ) : StateViewModel<FiltersUiState>(FiltersUiState()) {
 
-    // Throttle probability calculations to prevent excessive recomputations
-    private var probabilityCalculationJob: Job? = null
-    private val calculationThrottleMs = 150L // Throttle for 150ms
-
     init {
         loadLastDraw()
     }
 
     override fun onCleared() {
         super.onCleared()
-        // Cancel probability calculation job to prevent memory leaks
-        probabilityCalculationJob?.cancel()
     }
 
     private fun loadLastDraw() {
@@ -69,19 +63,19 @@ class FiltersViewModel @Inject constructor(
                     filterStates = FilterType.entries.map { FilterState(type = it) }.toImmutableList()
                 )
             }
-            updateProbability()
         }
     }
 
     fun onFilterToggle(type: FilterType, isEnabled: Boolean) {
         updateState { state ->
+            val newFilterStates = state.filterStates.map { f ->
+                if (f.type == type) f.copy(isEnabled = isEnabled) else f
+            }.toImmutableList()
             state.copy(
-                filterStates = state.filterStates.map { f ->
-                    if (f.type == type) f.copy(isEnabled = isEnabled) else f
-                }.toImmutableList()
+                filterStates = newFilterStates,
+                activeFiltersCount = newFilterStates.count { it.isEnabled }
             )
         }
-        updateProbability()
     }
 
     fun onRangeAdjust(type: FilterType, newRange: ClosedFloatingPointRange<Float>) {
@@ -93,35 +87,36 @@ class FiltersViewModel @Inject constructor(
                 }.toImmutableList()
             )
         }
-        scheduleProbabilityUpdate()
     }
 
-    private fun scheduleProbabilityUpdate() {
-        // Cancel existing job to prevent multiple simultaneous calculations
-        probabilityCalculationJob?.cancel()
-        
-        probabilityCalculationJob = viewModelScope.launch {
-            // Throttle calculation to prevent excessive recomputations
-            delay(calculationThrottleMs)
-            updateProbability()
-        }
-    }
+    fun applyPreset(preset: FilterPreset) {
+        updateState { state ->
+            val newFilterStates = when (preset) {
+                FilterPreset.COMMON -> FilterType.entries.map { type ->
+                    FilterState(type = type, isEnabled = true, selectedRange = type.defaultRange)
+                }
+                FilterPreset.GAUSS -> FilterType.entries.map { type ->
+                    // Narrow range around the middle of the default range
+                    val center = (type.defaultRange.start + type.defaultRange.endInclusive) / 2
+                    val halfWidth = (type.defaultRange.endInclusive - type.defaultRange.start) / 4
+                    val narrowRange = (center - halfWidth).roundToInt().toFloat()..(center + halfWidth).roundToInt().toFloat()
+                    FilterState(type = type, isEnabled = true, selectedRange = narrowRange)
+                }
+                FilterPreset.EXTREMES -> FilterType.entries.map { type ->
+                    // Pick a range outside the common ones (either low or high part of full range)
+                    val isLow = type.ordinal % 2 == 0
+                    val range = if (isLow) {
+                        type.fullRange.start..type.defaultRange.start
+                    } else {
+                        type.defaultRange.endInclusive..type.fullRange.endInclusive
+                    }
+                    FilterState(type = type, isEnabled = true, selectedRange = range)
+                }
+            }.toImmutableList()
 
-    private fun updateProbability() {
-        _uiState.update { state ->
-            val activeFilters = state.filterStates.filter { it.isEnabled }
-            val activeFiltersCount = activeFilters.size
-            
-            // Only recalculate probability if there are active filters
-            val successProbability = if (activeFiltersCount > 0) {
-                calculateSuccessProbability(activeFilters)
-            } else {
-                1f // Default probability when no filters are active
-            }
-            
             state.copy(
-                activeFiltersCount = activeFiltersCount,
-                successProbability = successProbability
+                filterStates = newFilterStates,
+                activeFiltersCount = newFilterStates.count { it.isEnabled }
             )
         }
     }
@@ -152,11 +147,10 @@ class FiltersViewModel @Inject constructor(
     }
 
     fun resetFilters() {
-        _uiState.update { state ->
+        updateState { state ->
             state.copy(
                 filterStates = FilterType.entries.map { FilterState(type = it) }.toImmutableList(),
-                activeFiltersCount = 0,
-                successProbability = 1f
+                activeFiltersCount = 0
             )
         }
     }
@@ -171,40 +165,4 @@ class FiltersViewModel @Inject constructor(
         resetFilters()
     }
 
-    private fun calculateSuccessProbability(activeFilters: List<FilterState>): Float {
-        if (activeFilters.isEmpty()) return 1f
-        
-        // Performance optimization: Use efficient fold operation with early termination
-        // for probability calculation when results become too low
-        val probability = activeFilters.fold(1.0) { acc, filter ->
-            val rangeCoverage = calculateRangeCoverage(filter)
-            val filterSuccessChance = filter.type.historicalSuccessRate.toDouble().pow(1.0 - rangeCoverage)
-            val newAcc = acc * filterSuccessChance
-            
-            // Early termination if probability becomes negligible
-            if (newAcc < 0.001) return@fold 0.0
-            newAcc
-        }
-        return probability.toFloat().coerceIn(0f, 1f)
-    }
-
-    private fun calculateRangeCoverage(filter: FilterState): Float {
-        if (!filter.isEnabled) return 0f
-        
-        // Performance optimization: Normalize ranges efficiently to avoid inverted calculations
-        val selectedRange = filter.selectedRange
-        val start = selectedRange.start.coerceAtMost(selectedRange.endInclusive)
-        val endInclusive = selectedRange.endInclusive.coerceAtLeast(selectedRange.start)
-        val normalizedRange = start..endInclusive
-        
-        // Return 1f when the range is empty or invalid
-        if (normalizedRange.isEmpty() || start > endInclusive) return 1f
-        
-        val totalRange = filter.type.fullRange.endInclusive - filter.type.fullRange.start
-        return if (totalRange > 0) {
-            (normalizedRange.endInclusive - normalizedRange.start) / totalRange
-        } else {
-            1f // Return 1f for invalid total range
-        }
-    }
 }

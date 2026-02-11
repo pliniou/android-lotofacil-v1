@@ -26,6 +26,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material.icons.filled.Sync
+import androidx.compose.material3.Surface
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.fadeOut
+import androidx.compose.ui.draw.clip
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -55,6 +64,7 @@ import com.cebolao.lotofacil.ui.theme.AppTheme
 import com.cebolao.lotofacil.ui.theme.iconButtonSize
 import com.cebolao.lotofacil.ui.theme.iconExtraLarge
 import com.cebolao.lotofacil.ui.theme.iconMedium
+import com.cebolao.lotofacil.ui.theme.iconSmall
 import com.cebolao.lotofacil.ui.testtags.AppTestTags
 import com.cebolao.lotofacil.viewmodels.HomeUiState
 import com.cebolao.lotofacil.viewmodels.HomeViewModel
@@ -145,21 +155,19 @@ fun HomeScreenContent(
                 .fillMaxSize()
                 .screenContentPadding(innerPadding)
         ) {
-            // Indicador de progresso sutil durante sincronização
-            androidx.compose.animation.AnimatedVisibility(
-                visible = state.isRefreshing,
-                enter = androidx.compose.animation.expandVertically() +
-                        androidx.compose.animation.fadeIn(),
-                exit = androidx.compose.animation.shrinkVertically() +
-                       androidx.compose.animation.fadeOut()
+            // Banner de sincronização inicial ou progresso manual
+            AnimatedVisibility(
+                visible = state.syncProgress != null,
+                enter = expandVertically() + fadeIn(),
+                exit = shrinkVertically() + fadeOut()
             ) {
-                androidx.compose.material3.LinearProgressIndicator(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = AppSpacing.sm),
-                    color = MaterialTheme.colorScheme.primary,
-                    trackColor = MaterialTheme.colorScheme.surfaceContainerHighest
-                )
+                state.syncProgress?.let { (current, total) ->
+                    SyncProgressBanner(
+                        current = current,
+                        total = total,
+                        isInitialSync = state.isInitialSync
+                    )
+                }
             }
 
             LazyColumn(
@@ -384,6 +392,77 @@ private fun QuickNavSection(
                         modifier = Modifier.size(iconMedium())
                     )
                 }
+            )
+        }
+    }
+}
+@Composable
+private fun SyncProgressBanner(
+    current: Int,
+    total: Int,
+    isInitialSync: Boolean
+) {
+    val colors = MaterialTheme.colorScheme
+    val progress = (current.toFloat() / total).coerceIn(0f, 1f)
+    
+    // Tonal elevation for a modern "premium" feel
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = AppSpacing.md),
+        shape = MaterialTheme.shapes.medium,
+        color = colors.surfaceContainerHigh,
+        tonalElevation = 2.dp,
+        border = androidx.compose.foundation.BorderStroke(
+            1.dp, 
+            colors.outlineVariant.copy(alpha = 0.5f)
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(AppSpacing.md),
+            verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Sync,
+                        contentDescription = null,
+                        tint = colors.primary,
+                        modifier = Modifier.size(iconSmall())
+                    )
+                    Text(
+                        text = if (isInitialSync) {
+                            stringResource(id = R.string.initial_sync_label)
+                        } else {
+                            stringResource(id = R.string.refresh_sync_label)
+                        },
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = colors.onSurface
+                    )
+                }
+                Text(
+                    text = "$current / $total",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = colors.primary,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            
+            LinearProgressIndicator(
+                progress = { progress },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(MaterialTheme.shapes.small),
+                color = colors.primary,
+                trackColor = colors.surfaceContainerHighest
             )
         }
     }

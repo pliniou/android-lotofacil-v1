@@ -96,6 +96,10 @@ fun FiltersScreen(
                 is FiltersAction.OnFilterToggle -> filtersViewModel.onFilterToggle(action.type, action.enabled)
                 is FiltersAction.OnRangeChange -> filtersViewModel.onRangeAdjust(action.type, action.range)
                 is FiltersAction.GenerateGames -> filtersViewModel.generateGames(action.quantity)
+                is FiltersAction.ApplyPreset -> {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    filtersViewModel.applyPreset(action.preset)
+                }
             }
         }
     )
@@ -108,6 +112,7 @@ sealed class FiltersAction {
     data class OnFilterToggle(val type: FilterType, val enabled: Boolean) : FiltersAction()
     data class OnRangeChange(val type: FilterType, val range: ClosedFloatingPointRange<Float>) : FiltersAction()
     data class GenerateGames(val quantity: Int) : FiltersAction()
+    data class ApplyPreset(val preset: com.cebolao.lotofacil.domain.model.FilterPreset) : FiltersAction()
 }
 
 // ==================== STATELESS CONTENT ====================
@@ -123,9 +128,9 @@ fun FiltersScreenContent(
     onShowResetConfirmation: (Boolean) -> Unit = {},
     onAction: (FiltersAction) -> Unit = {}
 ) {
-    // Derived state para evitar recomposições desnecessárias
-    val successProbability by remember(state.successProbability) { 
-        derivedStateOf { state.successProbability } 
+    // Simplified state
+    val activeFiltersCount by remember(state.activeFiltersCount) { 
+        derivedStateOf { state.activeFiltersCount } 
     }
 
     // Filter info dialog
@@ -180,10 +185,15 @@ fun FiltersScreenContent(
             verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(AppSpacing.xl)
         ) {
 
+            item(key = "presets", contentType = "presets") {
+                PresetsPanel(
+                    onApplyPreset = { preset -> onAction(FiltersAction.ApplyPreset(preset)) }
+                )
+            }
+
             item(key = "active_filters", contentType = "active_filters") {
                 ActiveFiltersPanel(
-                    activeFilters = state.filterStates.filter { it.isEnabled },
-                    successProbability = successProbability
+                    activeFilters = state.filterStates.filter { it.isEnabled }
                 )
             }
 

@@ -67,10 +67,10 @@ fun AppBottomBar(
                 },
                 alwaysShowLabel = true,
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = colors.primary,
+                    selectedIconColor = colors.onPrimaryContainer,
                     selectedTextColor = colors.primary,
-                    unselectedIconColor = colors.onSurfaceVariant,
-                    unselectedTextColor = colors.onSurfaceVariant,
+                    unselectedIconColor = colors.onSurfaceVariant.copy(alpha = 0.7f),
+                    unselectedTextColor = colors.onSurfaceVariant.copy(alpha = 0.7f),
                     indicatorColor = colors.primaryContainer
                 )
             )
