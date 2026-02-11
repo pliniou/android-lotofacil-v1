@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.cebolao.lotofacil"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.cebolao.lotofacil"
         minSdk = 31  // Android 12+ for modern platform features
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 

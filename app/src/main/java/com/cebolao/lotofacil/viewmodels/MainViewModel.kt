@@ -1,13 +1,16 @@
 package com.cebolao.lotofacil.viewmodels
 
 import androidx.compose.runtime.Stable
+import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.core.result.Result
 import com.cebolao.lotofacil.core.result.ErrorMessageMapper
+import com.cebolao.lotofacil.core.utils.AppLogger
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.ui.theme.DefaultAppMotion
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
 
@@ -26,11 +29,16 @@ data class MainUiState(
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val historyRepository: HistoryRepository,
+    private val logger: AppLogger,
     errorMessageMapper: ErrorMessageMapper
 ) : EnhancedStateViewModel<MainUiState>(
     initialState = MainUiState(),
     errorMessageMapper = errorMessageMapper
 ) {
+
+    companion object {
+        private const val TAG = "MainViewModel"
+    }
 
     init {
         initializeApp()
@@ -49,10 +57,8 @@ class MainViewModel @Inject constructor(
             // Start initialization in background without blocking splash
             val startTime = System.currentTimeMillis()
             
-            // Initialize history asynchronously with timeout
-            val initResult = withTimeoutOrNull(3000L) { // 3 second timeout
-                initializeHistory()
-            } ?: Result.Error(Exception("Initialization timeout"), "App initialization took too long")
+            // Initialize history asynchronously without timeout
+            val initResult = initializeHistory()
             
             // Ensure minimum splash duration for better UX
             val elapsedTime = System.currentTimeMillis() - startTime
@@ -65,15 +71,21 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private suspend fun initializeHistory(): Result<Unit> {
-        return when (val syncResult = historyRepository.syncHistory()) {
-            is AppResult.Success -> Result.Success(Unit)
-            is AppResult.Failure -> {
-                val error = syncResult.error
-                val throwable = (error as? Throwable) ?: Exception(error.toString())
-                Result.Error(throwable, "Failed to initialize history")
+    private fun initializeHistory(): Result<Unit> {
+        // Launch sync in background without blocking initialization
+        viewModelScope.launch {
+            when (val syncResult = historyRepository.syncHistory()) {
+                is AppResult.Success -> {
+                    logger.d(TAG, "History sync completed successfully")
+                }
+                is AppResult.Failure -> {
+                    val error = syncResult.error
+                    logger.e(TAG, "History sync failed", (error as? Throwable) ?: Exception(error.toString()))
+                }
             }
         }
+        // Return success immediately to allow app initialization
+        return Result.Success(Unit)
     }
 
     fun retryInitialization() {
