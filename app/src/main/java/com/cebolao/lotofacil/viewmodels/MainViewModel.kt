@@ -47,8 +47,8 @@ class MainViewModel @Inject constructor(
     private fun initializeApp() {
         executeWithResult(
             loadingState = { it.copy(isLoading = true, hasError = false, errorMessage = null) },
-            successState = { it, _ -> 
-                it.copy(isLoading = false, hasError = false, errorMessage = null)
+            successState = { it, data -> 
+                it.copy(isLoading = false, hasError = false, errorMessage = null, initializationResult = Result.Success(data))
             },
             errorState = { it, errorMessage -> 
                 it.copy(isLoading = false, hasError = true, errorMessage = errorMessage)

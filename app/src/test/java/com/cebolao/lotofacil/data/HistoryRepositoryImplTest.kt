@@ -90,8 +90,17 @@ class HistoryRepositoryImplTest {
         whenever(remoteDataSource.getLatestDraw()).thenReturn(remoteLatest)
         
         // Match the range and any progress callback
-        whenever(remoteDataSource.getDrawsInRange(org.mockito.kotlin.eq(3001..3002), org.mockito.kotlin.any()))
-            .thenReturn(newDraws)
+        whenever(remoteDataSource.getDrawsInRange(
+            org.mockito.kotlin.eq(3001..3002), 
+            org.mockito.kotlin.any(),
+            org.mockito.kotlin.any()
+        )).thenAnswer { invocation ->
+            val callback = invocation.arguments[2] as suspend (List<HistoricalDraw>) -> Unit
+            kotlinx.coroutines.runBlocking {
+               callback(newDraws)
+            }
+            newDraws
+        }
 
         val repository = HistoryRepositoryImpl(localDataSource, remoteDataSource, applicationScope, TestAppLogger())
 

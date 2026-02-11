@@ -43,7 +43,7 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
         private const val RETRY_ATTEMPTS = 2
         private const val RETRY_DELAY_MS = 500L
         // Reduced delay between batches for faster catch-up
-        private const val INTER_BATCH_DELAY_MS = 400L
+        private const val INTER_BATCH_DELAY_MS = 100L
     }
 
     // Global semaphore to limit concurrent network requests
