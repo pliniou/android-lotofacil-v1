@@ -1,6 +1,6 @@
 ﻿<resources>
     <!-- App name -->
-    <string name="app_name">CeboLotoGen</string>
+    <string name="app_name">Lotofácil Generator</string>
 
     <!-- Error messages -->
     <string name="error_no_history">Não foi possível carregar o histórico.</string>

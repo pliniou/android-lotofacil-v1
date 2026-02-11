@@ -3,11 +3,12 @@ package com.cebolao.lotofacil.viewmodels
 import kotlinx.coroutines.Job
 
 /**
- * Rastreador centralizado de coroutine Jobs para garantir limpeza segura em onCleared().
+ * Centralized coroutine Job tracker to ensure safe cleanup in onCleared().
+ * Thread-safe implementation for concurrent job operations.
  *
- * Uso:
+ * Usage:
  * ```
- * class MyViewModel : BaseViewModel() {
+ * class MyViewModel : ViewModel() {
  *     private val jobTracker = JobTracker()
  *
  *     init {
@@ -23,19 +24,34 @@ import kotlinx.coroutines.Job
  */
 class JobTracker {
     private val jobs = mutableListOf<Job>()
+    private val lock = Any()
 
     /**
-     * Rastreia um novo Job para cancelamento posterior.
+     * Tracks a new Job for later cancellation.
+     * @param job The Job to track
+     * @return The same Job for chaining
      */
-    fun track(job: Job): Job {
+    fun track(job: Job): Job = synchronized(lock) {
         jobs.add(job)
-        return job
+        job
     }
 
     /**
-     * Cancela todos os Jobs rastreados.
+     * Non-blocking version of track for simple cases.
+     * Note: Use suspend version when possible for thread safety.
      */
-    fun cancelAll() {
+    fun trackNonBlocking(job: Job): Job {
+        return synchronized(lock) {
+            jobs.add(job)
+            job
+        }
+    }
+
+    /**
+     * Cancels all tracked jobs safely.
+     * Thread-safe and removes completed/cancelled jobs from tracking.
+     */
+    fun cancelAll() = synchronized(lock) {
         jobs.forEach { job ->
             if (!job.isCancelled) {
                 job.cancel()
@@ -45,7 +61,23 @@ class JobTracker {
     }
 
     /**
-     * Retorna True se há Jobs ativos (não completados/cancelados).
+     * Returns true if there are active jobs (not completed/cancelled).
      */
-    fun hasActiveJobs(): Boolean = jobs.any { !it.isCompleted }
+    fun hasActiveJobs(): Boolean = synchronized(lock) {
+        jobs.any { !it.isCompleted }
+    }
+
+    /**
+     * Returns the count of tracked jobs.
+     */
+    fun getJobCount(): Int = synchronized(lock) {
+        jobs.size
+    }
+
+    /**
+     * Removes completed jobs from tracking to prevent memory leaks.
+     */
+    fun cleanupCompleted() = synchronized(lock) {
+        jobs.removeAll { it.isCompleted }
+    }
 }

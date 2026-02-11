@@ -68,12 +68,10 @@ object AppTheme {
         @Composable get() = LocalMotion.current
     val cardDefaults: AppCardDefaultsTokens
         @Composable get() = LocalCardDefaults.current
-    /** Cores semânticas de status (sucesso, aviso, info). */
     val semanticColors: SemanticColors
         @Composable get() = LocalSemanticColors.current
 }
 
-// Atalhos estáticos de espaçamento — usam valores default diretamente para evitar overhead de recomposição
 object AppSpacing {
     val xs: Dp = DefaultSpacing.xs
     val sm: Dp = DefaultSpacing.sm
@@ -84,7 +82,6 @@ object AppSpacing {
     val xxxl: Dp = DefaultSpacing.xxxl
 }
 
-// Atalhos estáticos de elevação
 object AppElevation {
     val none: Dp = DefaultElevation.none
     val xs: Dp = DefaultElevation.xs
@@ -104,7 +101,6 @@ object AppCardDefaults {
 }
 
 object AppShapes {
-    // Raios de cantos para diferentes componentes
     val none = ZeroCornerSize
 
     val xs = RoundedCornerShape(4.dp)
@@ -115,7 +111,6 @@ object AppShapes {
     val xxl = RoundedCornerShape(20.dp)
     val xxxl = RoundedCornerShape(24.dp)
 
-    // Shapes especializados
     val circle = CircleShape
     val button = sm
     val card = md
@@ -126,7 +121,6 @@ object AppShapes {
     val numberBall = CircleShape
 }
 
-// Helpers @Composable para tamanhos de ícones comuns no app
 @Composable
 fun iconSmall() = AppTheme.sizes.iconSmall
 

@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.cebolao.lotofacil"
-        minSdk = 26
+        minSdk = 31  // Android 12+ for modern platform features
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"

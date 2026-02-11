@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">CeboLotoGen</string>
+    <string name="app_name">LotofÃ¡cil Generator</string>
 
     <string name="error_no_history">NÃ£o foi possÃ­vel carregar o histÃ³rico.</string>
 
@@ -122,25 +122,25 @@
     <string name="time_window_last">Ãšltimos %d</string>
     
     <!-- Frequency Analysis -->
-    <string name="insights_title">Estatísticas avançadas</string>
-    <string name="frequency_analysis_title">Frequência dos números</string>
-    <string name="frequency_chart_subtitle">Veja quantas vezes cada número saiu nos concursos analisados.</string>
+    <string name="insights_title">Estatï¿½sticas avanï¿½adas</string>
+    <string name="frequency_analysis_title">Frequï¿½ncia dos nï¿½meros</string>
+    <string name="frequency_chart_subtitle">Veja quantas vezes cada nï¿½mero saiu nos concursos analisados.</string>
     <string name="top_numbers_title">Mais frequentes</string>
-    <string name="top_numbers_subtitle">Os números que mais apareceram no histórico.</string>
+    <string name="top_numbers_subtitle">Os nï¿½meros que mais apareceram no histï¿½rico.</string>
     <string name="total_draws_analyzed_format">Total de sorteios analisados: %d</string>
     <string name="chart_x_axis_label">NÃºmero</string>
     <string name="chart_y_axis_label">FrequÃªncia</string>
     
-    <string name="patterns_title">Padrões de combinação</string>
-    <string name="patterns_subtitle">Combinações mais recorrentes entre os sorteios.</string>
+    <string name="patterns_title">Padrï¿½es de combinaï¿½ï¿½o</string>
+    <string name="patterns_subtitle">Combinaï¿½ï¿½es mais recorrentes entre os sorteios.</string>
     <string name="pattern_size_pairs">Pares</string>
     <string name="pattern_size_triplets">Trincas</string>
     <string name="pattern_size_quadruplets">Quadras</string>
     <string name="pattern_info_tooltip">A anÃ¡lise de padrÃµes identifica grupos de nÃºmeros (de 2 a 4) que apareceram juntos nos sorteios histÃ³ricos com maior frequÃªncia.</string>
     <string name="cd_info">InformaÃ§Ãµes</string>
     
-    <string name="trends_title">Tendência por período</string>
-    <string name="trends_subtitle">Médias móveis por janela de concursos.</string>
+    <string name="trends_title">Tendï¿½ncia por perï¿½odo</string>
+    <string name="trends_subtitle">Mï¿½dias mï¿½veis por janela de concursos.</string>
     <plurals name="trend_window_label">
         <item quantity="one">Janela: %d concurso</item>
         <item quantity="other">Janela: %d concursos</item>
@@ -161,12 +161,12 @@
     <string name="user_stats_card_title">Meus Dados e Conquistas</string>
     <string name="user_stats_card_subtitle">Veja seu histÃ³rico de uso e nÃºmeros favoritos.</string>
     
-    <string name="recency_title">Números atrasados</string>
-    <string name="recency_subtitle">Há quantos concursos cada número não sai.</string>
+    <string name="recency_title">Nï¿½meros atrasados</string>
+    <string name="recency_subtitle">Hï¿½ quantos concursos cada nï¿½mero nï¿½o sai.</string>
     <string name="overdue_label">concursos</string>
-    <string name="trend_analysis_title">Tendência ao longo do tempo</string>
+    <string name="trend_analysis_title">Tendï¿½ncia ao longo do tempo</string>
     <string name="advanced_stats_card_title">EstatÃ­sticas avanÃ§adas</string>
-    <string name="advanced_stats_card_subtitle">Frequência, atrasos, padrões e tendências em um só lugar.</string>
+    <string name="advanced_stats_card_subtitle">Frequï¿½ncia, atrasos, padrï¿½es e tendï¿½ncias em um sï¿½ lugar.</string>
     <string name="frequency_summary_title">Resumo de FrequÃªncia</string>
     <!-- GeneratedGamesScreen -->
     <string name="clear_games_title">Limpar jogos?</string>
@@ -221,8 +221,8 @@
     <string name="delete_game">Excluir jogo</string>
     <string name="pinned_label">Fixado</string>
     <string name="cd_share_game">Compartilhar jogo</string>
-    <string name="share_game_chooser_title">Compartilhar jogo via…</string>
-    <string name="syncing_data">Sincronizando…</string>
+    <string name="share_game_chooser_title">Compartilhar jogo viaï¿½</string>
+    <string name="syncing_data">Sincronizandoï¿½</string>
 
     <!-- Common Actions -->
     <string name="confirm_button">Confirmar</string>
@@ -385,77 +385,84 @@
     <string name="retry_button">Tentar novamente</string>
     <string name="empty_state_title">Nada encontrado</string>
     <string name="empty_state_message">Nenhum dado disponÃ­vel no momento.</string>
-    <string name="performance_metrics_title">Métricas de performance</string>
-    <string name="performance_metrics_close">Fechar métricas</string>
-    <string name="performance_metrics_memory_title">Uso de memória</string>
+    <string name="performance_metrics_title">Mï¿½tricas de performance</string>
+    <string name="performance_metrics_close">Fechar mï¿½tricas</string>
+    <string name="performance_metrics_memory_title">Uso de memï¿½ria</string>
     <string name="performance_metrics_metric_used">Usado</string>
-    <string name="performance_metrics_metric_available">Disponível</string>
+    <string name="performance_metrics_metric_available">Disponï¿½vel</string>
     <string name="performance_metrics_metric_native">Nativo</string>
     <string name="performance_metrics_performance_title">Performance</string>
     <string name="performance_metrics_metric_frame_time">Tempo de frame</string>
-    <string name="performance_metrics_metric_recompositions">Recomposições</string>
+    <string name="performance_metrics_metric_recompositions">Recomposiï¿½ï¿½es</string>
     <string name="performance_metrics_metric_status">Status</string>
     <string name="performance_metrics_status_smooth">60 FPS</string>
     <string name="performance_metrics_status_jank">Perda de frames</string>
-    <string name="performance_metrics_update_interval">Atualização a cada 1 segundo</string>
+    <string name="performance_metrics_update_interval">Atualizaï¿½ï¿½o a cada 1 segundo</string>
     <string name="performance_metrics_toggle">Perf</string>
 
     <!-- Statistics Screen -->
-    <string name="time_window_filter_label">Período de análise</string>
+    <string name="time_window_filter_label">Perï¿½odo de anï¿½lise</string>
     <string name="all_draws_label">Todos</string>
-    <string name="last_n_draws_label">Últimos %d</string>
+    <string name="last_n_draws_label">ï¿½ltimos %d</string>
     <plurals name="total_draws_available_label">
-        <item quantity="one">%d concurso disponível</item>
-        <item quantity="other">%d concursos disponíveis</item>
+        <item quantity="one">%d concurso disponï¿½vel</item>
+        <item quantity="other">%d concursos disponï¿½veis</item>
     </plurals>
     <string name="draws_analyzed_label">Concursos analisados</string>
-    <string name="average_sum_label">Soma média</string>
+    <string name="average_sum_label">Soma mï¿½dia</string>
     <string name="top_numbers_label">Mais frequentes</string>
     <string name="overdue_numbers_label">Mais atrasados</string>
     <plurals name="draws_ago_label">
-        <item quantity="one">%d atrás</item>
-        <item quantity="other">%d atrás</item>
+        <item quantity="one">%d atrï¿½s</item>
+        <item quantity="other">%d atrï¿½s</item>
     </plurals>
-    <string name="distributions_title">Distribuições</string>
+    <string name="distributions_title">Distribuiï¿½ï¿½es</string>
     <string name="most_common_label">mais comum</string>
     <string name="pairs_label">Pares</string>
     <string name="triplets_label">Trincas</string>
     <string name="quads_label">Quadras</string>
-    <string name="average_value_label">Valor médio</string>
+    <string name="average_value_label">Valor mï¿½dio</string>
     <string name="refresh_button">Atualizar</string>
 
     <!-- HomeScreen - Distribution Summary -->
-    <string name="distribution_summary_title">Visão geral</string>
-    <string name="even_odd_ratio_label">Par/Ímpar</string>
+    <string name="distribution_summary_title">Visï¿½o geral</string>
+    <string name="even_odd_ratio_label">Par/ï¿½mpar</string>
     <string name="prime_count_label">Primos</string>
-    <string name="avg_sum_range_label">Soma média</string>
+    <string name="avg_sum_range_label">Soma mï¿½dia</string>
 
     <!-- HomeScreen - Quick Navigation -->
     <string name="quick_links_title">Explorar</string>
-    <string name="nav_statistics_label">Estatísticas</string>
+    <string name="nav_statistics_label">Estatï¿½sticas</string>
     <string name="nav_my_games_label">Meus Jogos</string>
     <string name="nav_about_label">Sobre</string>
 
     <!-- AboutScreen - Useful Links -->
-    <string name="about_section_links">Links Úteis</string>
+    <string name="about_section_links">Links ï¿½teis</string>
     <string name="link_caixa_title">Site oficial da Caixa</string>
-    <string name="link_caixa_subtitle">Resultados e regulamentos da Lotofácil</string>
+    <string name="link_caixa_subtitle">Resultados e regulamentos da Lotofï¿½cil</string>
     <string name="link_github_title">GitHub do desenvolvedor</string>
-    <string name="link_github_subtitle">Código-fonte e contribuições</string>
+    <string name="link_github_subtitle">Cï¿½digo-fonte e contribuiï¿½ï¿½es</string>
 
     <!-- AboutScreen - Tips -->
-    <string name="info_item_tips_title">Dicas Lotofácil</string>
-    <string name="info_item_tips_subtitle">Estratégias baseadas em estatísticas</string>
-    <string name="tips_intro">Dicas baseadas em análise estatística dos sorteios históricos da Lotofácil:</string>
+    <string name="info_item_tips_title">Dicas Lotofï¿½cil</string>
+    <string name="info_item_tips_subtitle">Estratï¿½gias baseadas em estatï¿½sticas</string>
+    <string name="tips_intro">Dicas baseadas em anï¿½lise estatï¿½stica dos sorteios histï¿½ricos da Lotofï¿½cil:</string>
     <string name="tips_sum_title">Faixa de soma ideal</string>
-    <string name="tips_sum_desc">A grande maioria dos sorteios (˜72%) tem soma entre 170 e 220. Jogos fora dessa faixa são estatisticamente raros.</string>
-    <string name="tips_even_odd_title">Equilíbrio par/ímpar</string>
-    <string name="tips_even_odd_desc">O padrão mais frequente é 7 pares e 8 ímpares (ou vice-versa). Evite extremos como só pares ou só ímpares.</string>
-    <string name="tips_primes_title">Números primos</string>
-    <string name="tips_primes_desc">Cerca de 74% dos sorteios contêm entre 4 e 7 números primos (2, 3, 5, 7, 11, 13, 17, 19, 23).</string>
+    <string name="tips_sum_desc">A grande maioria dos sorteios (ï¿½72%) tem soma entre 170 e 220. Jogos fora dessa faixa sï¿½o estatisticamente raros.</string>
+    <string name="tips_even_odd_title">Equilï¿½brio par/ï¿½mpar</string>
+    <string name="tips_even_odd_desc">O padrï¿½o mais frequente ï¿½ 7 pares e 8 ï¿½mpares (ou vice-versa). Evite extremos como sï¿½ pares ou sï¿½ ï¿½mpares.</string>
+    <string name="tips_primes_title">Nï¿½meros primos</string>
+    <string name="tips_primes_desc">Cerca de 74% dos sorteios contï¿½m entre 4 e 7 nï¿½meros primos (2, 3, 5, 7, 11, 13, 17, 19, 23).</string>
     <string name="tips_frame_title">Moldura e miolo</string>
-    <string name="tips_frame_desc">Distribua bem entre moldura (bordas do volante, 16 números) e miolo (centro, 9 números). O ideal é 8–11 da moldura.</string>
-    <string name="tips_repeat_title">Repetição do anterior</string>
-    <string name="tips_repeat_desc">84% dos sorteios repetem entre 8 e 10 números do concurso anterior. Considere incluir parte dos números anteriores.</string>
+    <string name="tips_frame_desc">Distribua bem entre moldura (bordas do volante, 16 nï¿½meros) e miolo (centro, 9 nï¿½meros). O ideal ï¿½ 8ï¿½11 da moldura.</string>
+    <string name="tips_repeat_title">Repetiï¿½ï¿½o do anterior</string>
+    <string name="tips_repeat_desc">84% dos sorteios repetem entre 8 e 10 nï¿½meros do concurso anterior. Considere incluir parte dos nï¿½meros anteriores.</string>
+
+    <string name="welcome_title">Welcome to LotofÃ¡cil!</string>
+    <string name="setup_complete_message">Your app is ready with all platform features enabled</string>
+    <string name="biometric_title">Enable Quick Access</string>
+    <string name="biometric_subtitle">LotofÃ¡cil App</string>
+    <string name="biometric_description">Use your fingerprint or face for quick and secure access</string>
+    <string name="biometric_negative_button">Maybe Later</string>
 </resources>
 

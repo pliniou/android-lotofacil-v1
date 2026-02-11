@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cebolão Lotofacil</string>
+    <string name="app_name">Lotofácil Generator</string>
 
     <string name="error_no_history">Unable to load history.</string>
     <string name="error_load_data_failed">Failed to load data.</string>

@@ -36,14 +36,12 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
 
-        // Keep the splash screen on-screen until the ViewModel is ready
         splashScreen.setKeepOnScreenCondition {
             mainViewModel.uiState.value.isReady.not()
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             splashScreen.setOnExitAnimationListener { splashScreenView ->
-                // Custom exit animation: slide up and fade out
                 val slideUp = ObjectAnimator.ofFloat(
                     splashScreenView.view,
                     View.TRANSLATION_Y,

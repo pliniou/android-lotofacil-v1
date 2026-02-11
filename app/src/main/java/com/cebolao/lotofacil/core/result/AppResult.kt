@@ -1,64 +1,31 @@
 package com.cebolao.lotofacil.core.result
 
-import com.cebolao.lotofacil.core.error.AppError
+/**
+ * Backward-compatible result type used across existing domain/data layers.
+ * Kept while the codebase transitions to the newer Result abstraction.
+ */
+sealed class AppResult<out T> {
+    data class Success<T>(val value: T) : AppResult<T>()
+    data class Failure(val error: Any) : AppResult<Nothing>()
 
-sealed interface AppResult<out T> {
-    data class Success<out T>(val value: T) : AppResult<T>
-    data class Failure(val error: AppError) : AppResult<Nothing>
+    val isSuccess: Boolean get() = this is Success
+    val isFailure: Boolean get() = this is Failure
+
+    fun getOrNull(): T? = when (this) {
+        is Success -> value
+        is Failure -> null
+    }
+
+    inline fun onSuccess(block: (T) -> Unit): AppResult<T> {
+        if (this is Success) block(value)
+        return this
+    }
+
+    inline fun onFailure(block: (Any) -> Unit): AppResult<T> {
+        if (this is Failure) block(error)
+        return this
+    }
 }
 
-fun <T> T.toSuccess(): AppResult.Success<T> = AppResult.Success(this)
-
-/**
- * Extension functions for AppResult conversion in the domain layer.
- * These provide convenient methods for converting between success/failure types.
- */
-
-/**
- * Convert AppResult to nullable value, returning null for failures.
- */
-fun <T> AppResult<T>.getOrNull(): T? = when (this) {
-    is AppResult.Success -> value
-    is AppResult.Failure -> null
-}
-
-/**
- * Convert AppResult to nullable value with a default value for failures.
- */
-fun <T> AppResult<T>.getOrDefault(default: T): T = when (this) {
-    is AppResult.Success -> value
-    is AppResult.Failure -> default
-}
-
-/**
- * Execute action only for success cases.
- */
-inline fun <T> AppResult<T>.onSuccess(action: (T) -> Unit): AppResult<T> {
-    if (this is AppResult.Success) action(value)
-    return this
-}
-
-/**
- * Execute action only for failure cases.
- */
-inline fun <T> AppResult<T>.onFailure(action: (AppError) -> Unit): AppResult<T> {
-    if (this is AppResult.Failure) action(error)
-    return this
-}
-
-/**
- * Map success values to new types, preserving failures.
- */
-inline fun <T, R> AppResult<T>.map(crossinline transform: (T) -> R): AppResult<R> = when (this) {
-    is AppResult.Success -> AppResult.Success(transform(value))
-    is AppResult.Failure -> this
-}
-
-/**
- * Transform failures to new failures, preserving success values.
- */
-inline fun <T> AppResult<T>.mapFailure(crossinline transform: (AppError) -> AppError): AppResult<T> = when (this) {
-    is AppResult.Success -> this
-    is AppResult.Failure -> AppResult.Failure(transform(error))
-}
-
+fun <T> T.toSuccess(): AppResult<T> = AppResult.Success(this)
+fun toFailure(error: Any): AppResult<Nothing> = AppResult.Failure(error)

@@ -17,7 +17,7 @@ class GameGenerator @Inject constructor(
     private val dispatchersProvider: DispatchersProvider,
     private val random: Random = Random()
 ) {
-    private val allNumbers = AppConstants.LOTOFACIL_NUMBER_RANGE.toList()
+    private val allNumbers = AppConstants.VALID_NUMBER_RANGE.toList()
 
     suspend fun generateGames(
         activeFilters: List<FilterState>,

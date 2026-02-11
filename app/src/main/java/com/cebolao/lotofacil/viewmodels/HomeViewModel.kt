@@ -223,7 +223,7 @@ class HomeViewModel @Inject constructor(
                 statisticsRepository.clearExpiredCache()
             }
         }
-        jobTracker.track(statsJob!!)
+        jobTracker.trackNonBlocking(statsJob!!)
     }
 
     fun onPatternSelected(pattern: StatisticPattern) {

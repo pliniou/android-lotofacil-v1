@@ -1,7 +1,7 @@
 package com.cebolao.lotofacil.ui.screens
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,11 +18,6 @@ import com.cebolao.lotofacil.navigation.navigateToDestination
 import com.cebolao.lotofacil.ui.components.AppBottomBar
 import com.cebolao.lotofacil.viewmodels.MainViewModel
 
-/**
- * Displays the main screen with optimized performance.
- * Uses Scaffold with bottom navigation and proper content padding.
- * Modernized with consistent spacing and elevation.
- */
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
@@ -31,11 +26,7 @@ fun MainScreen(
 ) {
     val uiState by mainViewModel.uiState.collectAsStateWithLifecycle()
 
-
-    // Handle splash screen dismissal
-    if (!uiState.isReady) {
-        return
-    }
+    if (!uiState.isReady) return
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
