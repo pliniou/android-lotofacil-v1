@@ -24,7 +24,7 @@ class ErrorMessageMapper @Inject constructor(
         return when (throwable) {
             is DomainError.NetworkError -> "Erro de conexão. Verifique sua internet e tente novamente."
             is DomainError.DataError -> "Erro ao carregar dados. Verifique sua conexão e tente novamente."
-            is DomainError.ValidationError -> throwable.message ?: "Dados inválidos. Verifique as informações e tente novamente."
+            is DomainError.ValidationError -> throwable.message
             is DomainError.NotFoundError -> "${throwable.resource} não encontrado(a)."
             is DomainError.PermissionError -> "Permissão necessária: ${throwable.permission}. Verifique as configurações do app."
             is DomainError.HistoryUnavailable -> "Histórico indisponível no momento. Tente novamente mais tarde."

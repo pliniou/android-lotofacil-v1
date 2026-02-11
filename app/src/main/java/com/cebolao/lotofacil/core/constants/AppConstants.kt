@@ -1,6 +1,7 @@
 package com.cebolao.lotofacil.core.constants
 
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 /**
  * Unified application constants for the Lotofácil app.
@@ -220,7 +221,7 @@ object AppConstants {
      * Formats the game cost as a currency string.
      */
     fun formatGameCost(): String {
-        return "R$ ${GAME_COST.setScale(2, BigDecimal.ROUND_HALF_UP)}"
+        return "R$ ${GAME_COST.setScale(2, RoundingMode.HALF_UP)}"
     }
     
     /**

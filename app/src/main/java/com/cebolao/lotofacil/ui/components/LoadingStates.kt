@@ -216,8 +216,8 @@ fun <T> ResultHandler(
     result: Result<T>?,
     modifier: Modifier = Modifier,
     loadingContent: @Composable () -> Unit = { LoadingIndicator() },
-    errorContent: @Composable (String, (() -> Unit)?) -> Unit = { error, onRetry ->
-        ErrorDisplay(error = error, onRetry = onRetry)
+    errorContent: @Composable (String, (() -> Unit)?) -> Unit = { error, retryAction ->
+        ErrorDisplay(error = error, onRetry = retryAction)
     },
     successContent: @Composable (T) -> Unit,
     onRetry: (() -> Unit)? = null

@@ -96,6 +96,7 @@ abstract class EnhancedStateViewModel<S>(
         errorState: (S, String) -> S
     ) {
         flow
+            .onStart { updateState { loadingState(it) } }
             .onEach { result ->
                 result.onSuccess { data ->
                     updateState { successState(it, data) }

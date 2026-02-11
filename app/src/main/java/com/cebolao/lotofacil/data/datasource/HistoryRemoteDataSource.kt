@@ -115,7 +115,7 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
             return draw
         } catch (e: Exception) {
             logger.w(TAG, "Failed to fetch contest $contestNumber from Heroku (fallback)", e)
-            null
+            return null
         }
     }
 

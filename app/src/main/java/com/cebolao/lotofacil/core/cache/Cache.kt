@@ -38,6 +38,7 @@ class MemoryCache @Inject constructor() {
      */
     suspend fun <T> get(key: String): T? {
         return mutex.withLock {
+            @Suppress("UNCHECKED_CAST")
             val entry = cache[key] as? CacheEntry<T>
             if (entry != null && !entry.isExpired()) {
                 entry.value
