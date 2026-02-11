@@ -6,8 +6,24 @@ import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+
+/**
+ * Design system tokens for the Lotofácil app.
+ * Includes official brand colors and consistent spacing/elevation.
+ */
+
+// Official Lotofácil Brand Color Tokens
+object BrandColors {
+    val RoxoLotofacil = Color(0xFF803594) // R128 G53 B148 - Pantone 2593U
+    val RoxoEscuro = Color(0xFF702A82) // R112 G42 B130 - Pantone 2627U
+    val RoxoClaro = Color(0xFFB37FC6) // Lighter variant for dark theme
+    val VerdeLotofacil = Color(0xFF00A651) // Official green
+    val VerdeVibrante = Color(0xFF00C875) // Vibrant green for dark theme
+    val PretoProfundo = Color(0xFF0A0A0A) // Deep black background
+}
 
 @Immutable
 data class Spacing(
@@ -53,9 +69,9 @@ val DefaultCardDefaults = AppCardDefaultsTokens(
 
 val LocalSpacing = staticCompositionLocalOf { DefaultSpacing }
 val LocalElevation = staticCompositionLocalOf { DefaultElevation }
+val LocalCardDefaults = staticCompositionLocalOf { DefaultCardDefaults }
 val LocalSizes = staticCompositionLocalOf { DefaultAppSizes }
 val LocalMotion = staticCompositionLocalOf { DefaultAppMotion }
-val LocalCardDefaults = staticCompositionLocalOf { DefaultCardDefaults }
 
 object AppTheme {
     val spacing: Spacing

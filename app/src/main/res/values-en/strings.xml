@@ -200,7 +200,6 @@
 
     <!-- GameCard -->
     <string name="analyze_button">Analyze</string>
-    <string name="share_game_button">Share</string>
     <string name="pin_game">Pin game</string>
     <string name="unpin_game">Unpin game</string>
     <string name="delete_game">Delete game</string>
@@ -210,7 +209,6 @@
     <string name="syncing_data">Syncing…</string>
 
     <!-- Common Actions -->
-    <string name="confirm_button">Confirm</string>
     <string name="reset_button">Reset</string>
 
     <!-- FilterCard -->
@@ -317,7 +315,6 @@
     <!-- Navigation -->
     <string name="nav_home">Home</string>
     <string name="nav_filters">Generator</string>
-    <string name="nav_history">History</string>
     <string name="nav_games">Games</string>
     <string name="nav_checker">Checker</string>
     <string name="nav_about">About</string>
@@ -351,22 +348,7 @@
     <string name="gaussian_toggle_label_off">Bars</string>
     <string name="error_generic">An error occurred. Try again.</string>
     <string name="retry_button">Try again</string>
-    <string name="empty_state_title">Nothing found</string>
     <string name="empty_state_message">No data available at the moment.</string>
-    <string name="performance_metrics_title">Performance metrics</string>
-    <string name="performance_metrics_close">Close metrics</string>
-    <string name="performance_metrics_memory_title">Memory usage</string>
-    <string name="performance_metrics_metric_used">Used</string>
-    <string name="performance_metrics_metric_available">Available</string>
-    <string name="performance_metrics_metric_native">Native</string>
-    <string name="performance_metrics_performance_title">Performance</string>
-    <string name="performance_metrics_metric_frame_time">Frame time</string>
-    <string name="performance_metrics_metric_recompositions">Recompositions</string>
-    <string name="performance_metrics_metric_status">Status</string>
-    <string name="performance_metrics_status_smooth">60 FPS</string>
-    <string name="performance_metrics_status_jank">Dropping frames</string>
-    <string name="performance_metrics_update_interval">Updates every 1 second</string>
-    <string name="performance_metrics_toggle">Perf</string>
 
     <!-- Statistics Screen -->
     <string name="time_window_filter_label">Analysis period</string>
@@ -393,9 +375,6 @@
     <string name="refresh_button">Refresh</string>
 
     <!-- HomeScreen - Distribution Summary -->
-    <string name="distribution_summary_title">Overview</string>
-    <string name="even_odd_ratio_label">Even/Odd</string>
-    <string name="prime_count_label">Primes</string>
     <string name="avg_sum_range_label">Average sum</string>
 
     <!-- HomeScreen - Quick Navigation -->

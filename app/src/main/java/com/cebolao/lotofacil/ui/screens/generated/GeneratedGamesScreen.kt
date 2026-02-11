@@ -137,7 +137,8 @@ fun GeneratedGamesScreenContent(
 ) {
     val colors = MaterialTheme.colorScheme
 
-    // Optimize expensive calculations with derivedStateOf
+    // Performance optimization: Use derivedStateOf to avoid unnecessary recompositions
+    // when checking for unpinned games - only recalculates when games list changes
     val hasUnpinnedGames by remember(games) {
         derivedStateOf { games.any { !it.isPinned } }
     }

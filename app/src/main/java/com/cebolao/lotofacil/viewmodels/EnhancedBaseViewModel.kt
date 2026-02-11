@@ -2,9 +2,9 @@ package com.cebolao.lotofacil.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cebolao.lotofacil.core.result.ErrorMessageMapper
 import com.cebolao.lotofacil.core.result.Result
 import com.cebolao.lotofacil.core.result.mapErrorMessages
-import com.cebolao.lotofacil.core.result.ErrorMessageMapper
 import com.cebolao.lotofacil.navigation.UiEvent
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -14,10 +14,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /**
  * Enhanced Base ViewModel with Result pattern support and improved error handling.

@@ -76,9 +76,6 @@
     <string name="last_update_status">Dados atualizados há %s</string>
 
     <string name="refresh_success">Dados atualizados com sucesso!</string>
-    <string name="refresh_error">Falha ao atualizar dados. Tente novamente.</string>
-    <string name="refresh_confirmation_title">Atualizar dados?</string>
-    <string name="refresh_confirmation_message">Isso vai baixar os dados mais recentes da Caixa. Deseja continuar?</string>
     <string name="sync_failed_message">Não foi possível atualizar. Exibindo dados locais.</string>
     <string name="home_source_history_network">histórico: rede</string>
     <string name="home_source_history_cache">histórico: cache local</string>
@@ -93,7 +90,6 @@
     <string name="last_draw_info">Último sorteio: %1$s</string>
     <string name="prize_details_title">Detalhes do prêmio</string>
     <string name="prize_details_expand">Ver detalhes</string>
-    <string name="prize_details_collapse">Ocultar detalhes</string>
     <string name="prize_per_winner">Prêmio por ganhador</string>
     <string name="winners">ganhadores</string>
 
@@ -163,11 +159,7 @@
     
     <string name="recency_title">N�meros atrasados</string>
     <string name="recency_subtitle">H� quantos concursos cada n�mero n�o sai.</string>
-    <string name="overdue_label">concursos</string>
     <string name="trend_analysis_title">Tend�ncia ao longo do tempo</string>
-    <string name="advanced_stats_card_title">Estatísticas avançadas</string>
-    <string name="advanced_stats_card_subtitle">Frequ�ncia, atrasos, padr�es e tend�ncias em um s� lugar.</string>
-    <string name="frequency_summary_title">Resumo de Frequência</string>
     <!-- GeneratedGamesScreen -->
     <string name="clear_games_title">Limpar jogos?</string>
     <string name="clear_games_message">Isso removerá todos os jogos não fixados. Deseja continuar?</string>
@@ -215,7 +207,6 @@
 
     <!-- GameCard -->
     <string name="analyze_button">Analisar</string>
-    <string name="share_game_button">Compartilhar</string>
     <string name="pin_game">Fixar jogo</string>
     <string name="unpin_game">Desafixar jogo</string>
     <string name="delete_game">Excluir jogo</string>
@@ -225,7 +216,6 @@
     <string name="syncing_data">Sincronizando�</string>
 
     <!-- Common Actions -->
-    <string name="confirm_button">Confirmar</string>
 
     <string name="reset_button">Resetar</string>
 
@@ -338,18 +328,15 @@
     <string name="stats_explanation_frame_portrait">A moldura são os números das bordas do volante (16 números). O retrato são os 9 números centrais.</string>
     <string name="stats_explanation_frequency_title">Frequência e atraso</string>
     <string name="stats_explanation_frequency">A frequência mostra quais números saem mais. O atraso indica há quantos concursos um número não é sorteado.</string>
-    <string name="next_draw_date">Sorteio em %s</string>
     
     <!-- Content Descriptions -->
     <string name="cd_refresh_data">Atualizar dados</string>
     <string name="cd_navigate_back">Voltar</string>
     <string name="cd_clear_games">Limpar jogos não fixados</string>
     <string name="next_contest_format">Próximo Concurso: #%s</string>
-    <string name="prize_tier_format">Faixa %d</string>
 
     <string name="nav_home">Início</string>
     <string name="nav_filters">Gerador</string>
-    <string name="nav_history">Histórico</string>
     <string name="nav_games">Jogos</string>
     <string name="nav_checker">Conferidor</string>
     <string name="nav_about">Sobre</string>
@@ -383,22 +370,7 @@
     <string name="gaussian_toggle_label_on">Gauss</string>
     <string name="error_generic">Ocorreu um erro. Tente novamente.</string>
     <string name="retry_button">Tentar novamente</string>
-    <string name="empty_state_title">Nada encontrado</string>
     <string name="empty_state_message">Nenhum dado disponível no momento.</string>
-    <string name="performance_metrics_title">M�tricas de performance</string>
-    <string name="performance_metrics_close">Fechar m�tricas</string>
-    <string name="performance_metrics_memory_title">Uso de mem�ria</string>
-    <string name="performance_metrics_metric_used">Usado</string>
-    <string name="performance_metrics_metric_available">Dispon�vel</string>
-    <string name="performance_metrics_metric_native">Nativo</string>
-    <string name="performance_metrics_performance_title">Performance</string>
-    <string name="performance_metrics_metric_frame_time">Tempo de frame</string>
-    <string name="performance_metrics_metric_recompositions">Recomposi��es</string>
-    <string name="performance_metrics_metric_status">Status</string>
-    <string name="performance_metrics_status_smooth">60 FPS</string>
-    <string name="performance_metrics_status_jank">Perda de frames</string>
-    <string name="performance_metrics_update_interval">Atualiza��o a cada 1 segundo</string>
-    <string name="performance_metrics_toggle">Perf</string>
 
     <!-- Statistics Screen -->
     <string name="time_window_filter_label">Per�odo de an�lise</string>
@@ -425,9 +397,6 @@
     <string name="refresh_button">Atualizar</string>
 
     <!-- HomeScreen - Distribution Summary -->
-    <string name="distribution_summary_title">Vis�o geral</string>
-    <string name="even_odd_ratio_label">Par/�mpar</string>
-    <string name="prime_count_label">Primos</string>
     <string name="avg_sum_range_label">Soma m�dia</string>
 
     <!-- HomeScreen - Quick Navigation -->
@@ -458,11 +427,5 @@
     <string name="tips_repeat_title">Repeti��o do anterior</string>
     <string name="tips_repeat_desc">84% dos sorteios repetem entre 8 e 10 n�meros do concurso anterior. Considere incluir parte dos n�meros anteriores.</string>
 
-    <string name="welcome_title">Welcome to Lotofácil!</string>
-    <string name="setup_complete_message">Your app is ready with all platform features enabled</string>
-    <string name="biometric_title">Enable Quick Access</string>
-    <string name="biometric_subtitle">Lotofácil App</string>
-    <string name="biometric_description">Use your fingerprint or face for quick and secure access</string>
-    <string name="biometric_negative_button">Maybe Later</string>
 </resources>
 

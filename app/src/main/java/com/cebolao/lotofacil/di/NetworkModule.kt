@@ -5,6 +5,7 @@ import com.cebolao.lotofacil.BuildConfig
 import com.cebolao.lotofacil.core.security.RateLimiter
 import com.cebolao.lotofacil.data.network.RateLimiterInterceptor
 import com.cebolao.lotofacil.data.network.ApiService
+import com.cebolao.lotofacil.data.network.HerokuApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -98,8 +99,8 @@ object NetworkModule {
     @Provides
     @Singleton
     @Named("HerokuApi")
-    fun provideHerokuApiService(@Named("HerokuRetrofit") retrofit: Retrofit): ApiService =
-        retrofit.create(ApiService::class.java)
+    fun provideHerokuApiService(@Named("HerokuRetrofit") retrofit: Retrofit): HerokuApiService =
+        retrofit.create(HerokuApiService::class.java)
 
     @Provides
     @Singleton
@@ -110,5 +111,5 @@ object NetworkModule {
     // Default provider for backward compatibility if needed, though we should migrate users
     @Provides
     @Singleton
-    fun provideDefaultApiService(@Named("HerokuApi") apiService: ApiService): ApiService = apiService
+    fun provideDefaultApiService(@Named("HerokuApi") apiService: HerokuApiService): HerokuApiService = apiService
 }

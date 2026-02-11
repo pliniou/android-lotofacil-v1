@@ -1,4 +1,4 @@
-﻿<resources>
+<resources>
     <!-- App name -->
     <string name="app_name">Lotofácil Generator</string>
 
@@ -81,9 +81,6 @@
     <string name="welcome_tip_checker">Teste seus jogos contra o histórico</string>
     <string name="last_update_status">Dados atualizados há %s</string>
     <string name="refresh_success">Dados atualizados com sucesso!</string>
-    <string name="refresh_error">Falha ao atualizar dados. Tente novamente.</string>
-    <string name="refresh_confirmation_title">Atualizar dados?</string>
-    <string name="refresh_confirmation_message">Isso vai baixar os dados mais recentes da Caixa. Deseja continuar?</string>
     <string name="sync_failed_message">Não foi possível atualizar. Exibindo dados locais.</string>
     <string name="home_source_history_network">histórico: rede</string>
     <string name="home_source_history_cache">histórico: cache local</string>
@@ -98,7 +95,6 @@
     <string name="last_draw_info">Último sorteio: %1$s</string>
     <string name="prize_details_title">Detalhes do prêmio</string>
     <string name="prize_details_expand">Ver detalhes</string>
-    <string name="prize_details_collapse">Ocultar detalhes</string>
     <string name="prize_per_winner">Prêmio por ganhador</string>
     <string name="winners">ganhadores</string>
     <string name="winners_by_state">Ganhadores por estado</string>
@@ -122,13 +118,9 @@
     <string name="analysis_period_title">Período de análise</string>
     <string name="time_window_all">Todos</string>
     <string name="time_window_last">Últimos %d</string>
-    <string name="overdue_label">concursos</string>
 
     <!-- Frequency Analysis -->
     <string name="insights_title">Estatísticas avançadas</string>
-    <string name="advanced_stats_card_title">Estatísticas avançadas</string>
-    <string name="advanced_stats_card_subtitle">Frequência, atrasos, padrões e tendências em um só lugar.</string>
-    <string name="frequency_summary_title">Resumo de Frequência</string>
     <string name="frequency_analysis_title">Frequência dos números</string>
     <string name="frequency_chart_subtitle">Veja quantas vezes cada número saiu nos concursos analisados.</string>
     <string name="top_numbers_title">Mais frequentes</string>
@@ -217,7 +209,6 @@
 
     <!-- GameCard -->
     <string name="analyze_button">Analisar</string>
-    <string name="share_game_button">Compartilhar</string>
     <string name="pin_game">Fixar jogo</string>
     <string name="unpin_game">Desafixar jogo</string>
     <string name="delete_game">Excluir jogo</string>
@@ -227,7 +218,6 @@
     <string name="syncing_data">Sincronizando…</string>
 
     <!-- Common Actions -->
-    <string name="confirm_button">Confirmar</string>
     <string name="reset_button">Resetar</string>
 
     <!-- FilterCard -->
@@ -339,7 +329,6 @@
     <string name="nav_filters">Gerador</string>
     <string name="nav_games">Jogos</string>
     <string name="nav_checker">Conferidor</string>
-    <string name="nav_history">Histórico</string>
     <string name="nav_about">Sobre</string>
 
     <!-- Number ball states -->
@@ -353,8 +342,6 @@
     <!-- Ranking positions -->
     <string name="position_abbr">%1$dº</string>
 
-    <string name="next_draw_date">Sorteio em %s</string>
-    <string name="prize_tier_format">Faixa %d</string>
 
     <!-- Accessibility - Components -->
     <plurals name="chart_frequency_description">
@@ -375,22 +362,7 @@
     <string name="gaussian_toggle_label_on">Gauss</string>
     <string name="error_generic">Ocorreu um erro. Tente novamente.</string>
     <string name="retry_button">Tentar novamente</string>
-    <string name="empty_state_title">Nada encontrado</string>
     <string name="empty_state_message">Nenhum dado disponível no momento.</string>
-    <string name="performance_metrics_title">Métricas de performance</string>
-    <string name="performance_metrics_close">Fechar métricas</string>
-    <string name="performance_metrics_memory_title">Uso de memória</string>
-    <string name="performance_metrics_metric_used">Usado</string>
-    <string name="performance_metrics_metric_available">Disponível</string>
-    <string name="performance_metrics_metric_native">Nativo</string>
-    <string name="performance_metrics_performance_title">Performance</string>
-    <string name="performance_metrics_metric_frame_time">Tempo de frame</string>
-    <string name="performance_metrics_metric_recompositions">Recomposições</string>
-    <string name="performance_metrics_metric_status">Status</string>
-    <string name="performance_metrics_status_smooth">60 FPS</string>
-    <string name="performance_metrics_status_jank">Perda de frames</string>
-    <string name="performance_metrics_update_interval">Atualização a cada 1 segundo</string>
-    <string name="performance_metrics_toggle">Perf</string>
 
     <!-- Statistics Screen -->
     <string name="time_window_filter_label">Período de análise</string>
@@ -419,9 +391,6 @@
     <string name="refresh_button">Atualizar</string>
 
     <!-- HomeScreen - Distribution Summary -->
-    <string name="distribution_summary_title">Visão geral</string>
-    <string name="even_odd_ratio_label">Par/Ímpar</string>
-    <string name="prime_count_label">Primos</string>
     <string name="avg_sum_range_label">Soma média</string>
 
     <!-- HomeScreen - Quick Navigation -->

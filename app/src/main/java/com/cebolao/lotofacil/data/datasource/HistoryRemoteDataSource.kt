@@ -4,6 +4,7 @@ import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.utils.AppLogger
 import com.cebolao.lotofacil.core.utils.retryExponentialBackoff
 import com.cebolao.lotofacil.data.network.ApiService
+import com.cebolao.lotofacil.data.network.HerokuApiService
 import com.cebolao.lotofacil.data.network.toHistoricalDraw
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import kotlinx.coroutines.async
@@ -25,44 +26,44 @@ interface HistoryRemoteDataSource {
 @Singleton
 class HistoryRemoteDataSourceImpl @Inject constructor(
     @Named("CaixaApi") private val caixaService: ApiService,
-    @Named("HerokuApi") private val herokuService: ApiService,
+    @Named("HerokuApi") private val herokuService: HerokuApiService,
     private val dispatchersProvider: DispatchersProvider,
     private val logger: AppLogger
 ) : HistoryRemoteDataSource {
 
     companion object {
         private const val TAG = "HistoryRemoteDataSource"
-        private const val BATCH_SIZE = 30
-        // Reduced to work with rate limiter (30 requests/60s = ~2s per request on average)
-        private const val MAX_CONCURRENT_REQUESTS = 3
+        private const val BATCH_SIZE = 20 // Reduced batch size
+        // Further reduced to prevent rate limiting issues
+        private const val MAX_CONCURRENT_REQUESTS = 2
         private const val RETRY_ATTEMPTS = 2
-        private const val RETRY_DELAY_MS = 250L
-        // Small delay between batches to let rate limiter recover
-        private const val INTER_BATCH_DELAY_MS = 500L
+        private const val RETRY_DELAY_MS = 500L // Increased delay
+        // Longer delay between batches to avoid rate limiting
+        private const val INTER_BATCH_DELAY_MS = 1000L
     }
 
     // Global semaphore to limit concurrent network requests
     private val networkSemaphore = Semaphore(MAX_CONCURRENT_REQUESTS)
 
     override suspend fun getLatestDraw(): HistoricalDraw? = withContext(dispatchersProvider.io) {
-        // Try Caixa first
-        try {
-            val result = retry { caixaService.getLatestResult() }
-            val draw = result.toHistoricalDraw()
-            logger.d(TAG, "Successfully fetched latest draw from Caixa API")
-            return@withContext draw
-        } catch (e: Exception) {
-            logger.w(TAG, "Failed to fetch latest draw from Caixa API, falling back to Heroku", e)
-        }
-
-        // Fallback to Heroku
+        // Try Heroku first since it has proper /latest endpoint
         try {
             val result = retry { herokuService.getLatestResult() }
             val draw = result.toHistoricalDraw()
             logger.d(TAG, "Successfully fetched latest draw from Heroku API")
             return@withContext draw
         } catch (e: Exception) {
-            logger.e(TAG, "Failed to fetch latest draw from Heroku (fallback)", e)
+            logger.w(TAG, "Failed to fetch latest draw from Heroku API, trying Caixa", e)
+        }
+
+        // Try Caixa with a recent contest number (use 3500 as a reasonable recent number)
+        try {
+            val result = retry { caixaService.getResultByContest(3500) }
+            val draw = result.toHistoricalDraw()
+            logger.d(TAG, "Successfully fetched recent draw from Caixa API")
+            return@withContext draw
+        } catch (e: Exception) {
+            logger.e(TAG, "Failed to fetch draw from Caixa API", e)
             null
         }
     }

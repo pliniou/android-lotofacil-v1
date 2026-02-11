@@ -61,7 +61,8 @@ class HomeViewModel @Inject constructor(
         updateState { it.copy(isScreenLoading = true, errorMessageResId = null) }
 
         viewModelScope.launch {
-            val result = withTimeoutOrNull(5000L) {
+            // Reduced timeout to prevent UI blocking
+            val result = withTimeoutOrNull(3000L) {
                 getHomeScreenDataUseCase().first { it is AppResult.Success }
             }
 
@@ -86,7 +87,10 @@ class HomeViewModel @Inject constructor(
                         isTodayDrawDay = checkIsTodayDrawDay(nextDrawStats?.nextDate)
                     )
                 }
-                syncInBackground()
+                // Only sync in background if data is not fresh
+                if (historyRepository.syncStatus.value !is SyncStatus.Success) {
+                    syncInBackground()
+                }
             } else {
                 updateState {
                     it.copy(
@@ -96,7 +100,56 @@ class HomeViewModel @Inject constructor(
                         isShowingStaleData = true
                     )
                 }
+                // Try to load cached data as fallback
+                loadCachedDataAsFallback()
+            }
+        }
+    }
+
+    private fun loadCachedDataAsFallback() {
+        viewModelScope.launch {
+            try {
+                // Try to load any cached data as fallback
+                val fallbackHistory = withTimeoutOrNull(2000L) {
+                    historyRepository.getHistory().first()
+                }
+
+                if (!fallbackHistory.isNullOrEmpty()) {
+                    val lastDraw = fallbackHistory.firstOrNull()
+                    updateState {
+                        it.copy(
+                            lastDrawStats = null, // Will be computed later
+                            statistics = null, // Will be computed later
+                            lastUpdateTime = lastDraw?.date,
+                            isShowingStaleData = true
+                        )
+                    }
+                    cachedHistory = fallbackHistory
+                    // Compute basic stats in background
+                    computeBasicStats()
+                } else {
+                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
+                }
+            } catch (e: Exception) {
                 sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
+            }
+        }
+    }
+    
+    private fun computeBasicStats() {
+        statsJob = viewModelScope.launch(dispatchersProvider.io) {
+            try {
+                if (cachedHistory.isNotEmpty()) {
+                    val basicStats = statisticsEngine.analyze(cachedHistory.take(50)) // Last 50 draws
+                    updateState {
+                        it.copy(
+                            statistics = basicStats,
+                            statisticsSource = DataLoadSource.COMPUTED
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                // Silently fail - stats will be computed later
             }
         }
     }

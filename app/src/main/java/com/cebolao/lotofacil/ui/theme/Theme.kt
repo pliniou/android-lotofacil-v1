@@ -19,79 +19,79 @@ import android.os.Build
 val LocalAnimationEnabled = androidx.compose.runtime.staticCompositionLocalOf { true }
 
 /**
- * Enhanced color scheme with semantic colors for the Lotofácil app.
- * Includes brand colors and semantic color definitions.
+ * Enhanced color scheme with official Lotofácil brand colors.
+ * Features the official purple palette with premium deep black theme.
  */
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF1B5E20), // Material Green 800
+    primary = Color(0xFF803594), // Roxo Lotofácil (R128 G53 B148)
     onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFFA5D6A7), // Material Green 200
-    onPrimaryContainer = Color(0xFF1B5E20),
+    primaryContainer = Color(0xFFB37FC6), // Lighter purple container
+    onPrimaryContainer = Color(0xFF2D003B),
     
-    secondary = Color(0xFF388E3C), // Material Green 700
+    secondary = Color(0xFF702A82), // Roxo-Escuro (R112 G42 B130)
     onSecondary = Color(0xFFFFFFFF),
-    secondaryContainer = Color(0xFFC8E6C9), // Material Green 100
-    onSecondaryContainer = Color(0xFF1B5E20),
+    secondaryContainer = Color(0xFFE6D0ED), // Light purple variant
+    onSecondaryContainer = Color(0xFF2D003B),
     
-    tertiary = Color(0xFFFF6F00), // Material Orange A700
+    tertiary = Color(0xFF00A651), // Verde Lotofácil official
     onTertiary = Color(0xFFFFFFFF),
-    tertiaryContainer = Color(0xFFFFE0B2), // Material Orange 100
-    onTertiaryContainer = Color(0xFFE65100),
+    tertiaryContainer = Color(0xFFE8F5E8), // Light green variant
+    onTertiaryContainer = Color(0xFF003D1F),
     
-    error = Color(0xFFD32F2F),
+    error = Color(0xFFBA1A1A),
     onError = Color(0xFFFFFFFF),
-    errorContainer = Color(0xFFFFCDD2),
-    onErrorContainer = Color(0xFFB71C1C),
+    errorContainer = Color(0xFFFFDAD6),
+    onErrorContainer = Color(0xFF410002),
     
-    background = Color(0xFFFAFAFA),
-    onBackground = Color(0xFF1C1C1C),
+    background = Color(0xFFFAFAFA), // Clean white
+    onBackground = Color(0xFF1A1A1A), // Deep charcoal
     surface = Color(0xFFFFFFFF),
-    onSurface = Color(0xFF1C1C1C),
+    onSurface = Color(0xFF1A1A1A),
     surfaceVariant = Color(0xFFF5F5F5),
-    onSurfaceVariant = Color(0xFF49454F),
+    onSurfaceVariant = Color(0xFF666666),
     
-    outline = Color(0xFF79747E),
-    outlineVariant = Color(0xFFCAC4D0),
+    outline = Color(0xFFD1D5DB),
+    outlineVariant = Color(0xFFE5E7EB),
     scrim = Color(0xFF000000),
-    inverseSurface = Color(0xFF313033),
-    inverseOnSurface = Color(0xFFF4EFF4),
-    inversePrimary = Color(0xFF81C784)
+    inverseSurface = Color(0xFF2C2C2C),
+    inverseOnSurface = Color(0xFFF0F0F0),
+    inversePrimary = Color(0xFFB37FC6)
 )
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF81C784), // Material Green 300
-    onPrimary = Color(0xFF1B5E20),
-    primaryContainer = Color(0xFF2E7D32), // Material Green 800
-    onPrimaryContainer = Color(0xFFC8E6C9),
+    primary = Color(0xFFB37FC6), // Lighter Roxo Lotofácil for dark theme
+    onPrimary = Color(0xFF2D003B),
+    primaryContainer = Color(0xFF702A82), // Roxo-Escuro container
+    onPrimaryContainer = Color(0xFFE6D0ED),
     
-    secondary = Color(0xFF66BB6A), // Material Green 400
-    onSecondary = Color(0xFF1B5E20),
-    secondaryContainer = Color(0xFF2E7D32), // Material Green 800
-    onSecondaryContainer = Color(0xFFC8E6C9),
+    secondary = Color(0xFFE6D0ED), // Light purple accent for dark theme
+    onSecondary = Color(0xFF2D003B),
+    secondaryContainer = Color(0xFF803594), // Roxo Lotofácil container
+    onSecondaryContainer = Color(0xFFB37FC6),
     
-    tertiary = Color(0xFFFFB74D), // Material Orange 300
-    onTertiary = Color(0xFFBF360C),
-    tertiaryContainer = Color(0xFFE65100), // Material Orange A700
-    onTertiaryContainer = Color(0xFFFFE0B2),
+    tertiary = Color(0xFF00C875), // Vibrant green for dark theme
+    onTertiary = Color(0xFF003D1F),
+    tertiaryContainer = Color(0xFF005D33), // Deep green container
+    onTertiaryContainer = Color(0xFFE8F5E8),
     
-    error = Color(0xFFEF5350),
-    onError = Color(0xFFB71C1C),
-    errorContainer = Color(0xFFC62828),
-    onErrorContainer = Color(0xFFFFCDD2),
+    error = Color(0xFFFFB4AB),
+    onError = Color(0xFF690005),
+    errorContainer = Color(0xFF93000A),
+    onErrorContainer = Color(0xFFFFDAD6),
     
-    background = Color(0xFF121212),
-    onBackground = Color(0xFFE1E2E1),
-    surface = Color(0xFF1E1E1E),
-    onSurface = Color(0xFFE1E2E1),
-    surfaceVariant = Color(0xFF2C2C2C),
-    onSurfaceVariant = Color(0xFFCAC4D0),
+    background = Color(0xFF0A0A0A), // Deep black background
+    onBackground = Color(0xFFF5F5F5), // Light text
+    surface = Color(0xFF121212), // Slightly lighter black
+    onSurface = Color(0xFFE5E5E5), // Light surface text
+    surfaceVariant = Color(0xFF1A1A1A), // Dark variant
+    onSurfaceVariant = Color(0xFFA0A0A0), // Medium light gray
     
-    outline = Color(0xFF938F99),
-    outlineVariant = Color(0xFF49454F),
+    outline = Color(0xFF404040), // Dark gray outline
+    outlineVariant = Color(0xFF2A2A2A), // Very dark outline
     scrim = Color(0xFF000000),
-    inverseSurface = Color(0xFFE1E2E1),
-    inverseOnSurface = Color(0xFF1C1C1C),
-    inversePrimary = Color(0xFF1B5E20)
+    inverseSurface = Color(0xFFE5E5E5),
+    inverseOnSurface = Color(0xFF121212),
+    inversePrimary = Color(0xFF803594)
 )
 
 /**
@@ -113,33 +113,33 @@ data class SemanticColors(
 )
 
 private val LightSemanticColors = SemanticColors(
-    success = Color(0xFF2E7D32),
+    success = Color(0xFF00A651), // Verde Lotofácil official
     onSuccess = Color(0xFFFFFFFF),
-    successContainer = Color(0xFFC8E6C9),
-    onSuccessContainer = Color(0xFF1B5E20),
-    warning = Color(0xFFFF8F00),
+    successContainer = Color(0xFFE8F5E8),
+    onSuccessContainer = Color(0xFF003D1F),
+    warning = Color(0xFF702A82), // Roxo-Escuro for warnings
     onWarning = Color(0xFFFFFFFF),
-    warningContainer = Color(0xFFFFE082),
-    onWarningContainer = Color(0xFFBF360C),
-    info = Color(0xFF1976D2),
+    warningContainer = Color(0xFFE6D0ED),
+    onWarningContainer = Color(0xFF2D003B),
+    info = Color(0xFF803594), // Roxo Lotofácil for info
     onInfo = Color(0xFFFFFFFF),
-    infoContainer = Color(0xFFBBDEFB),
-    onInfoContainer = Color(0xFF0D47A1)
+    infoContainer = Color(0xFFB37FC6),
+    onInfoContainer = Color(0xFF2D003B)
 )
 
 private val DarkSemanticColors = SemanticColors(
-    success = Color(0xFF66BB6A),
-    onSuccess = Color(0xFF1B5E20),
-    successContainer = Color(0xFF2E7D32),
-    onSuccessContainer = Color(0xFFC8E6C9),
-    warning = Color(0xFFFFB74D),
-    onWarning = Color(0xFFBF360C),
-    warningContainer = Color(0xFFE65100),
-    onWarningContainer = Color(0xFFFFE082),
-    info = Color(0xFF64B5F6),
-    onInfo = Color(0xFF0D47A1),
-    infoContainer = Color(0xFF1565C0),
-    onInfoContainer = Color(0xFFBBDEFB)
+    success = Color(0xFF00C875), // Vibrant green for dark theme
+    onSuccess = Color(0xFF003D1F),
+    successContainer = Color(0xFF005D33),
+    onSuccessContainer = Color(0xFFE8F5E8),
+    warning = Color(0xFFB37FC6), // Lighter Roxo Lotofácil for warnings
+    onWarning = Color(0xFF2D003B),
+    warningContainer = Color(0xFF702A82),
+    onWarningContainer = Color(0xFFE6D0ED),
+    info = Color(0xFFE6D0ED), // Light purple for info
+    onInfo = Color(0xFF2D003B),
+    infoContainer = Color(0xFF803594),
+    onInfoContainer = Color(0xFFB37FC6)
 )
 
 /**
@@ -172,7 +172,12 @@ fun CebolaoLotofacilTheme(
 
     CompositionLocalProvider(
         LocalSemanticColors provides semanticColors,
-        LocalAnimationEnabled provides animationsEnabled
+        LocalAnimationEnabled provides animationsEnabled,
+        LocalSpacing provides DefaultSpacing,
+        LocalElevation provides DefaultElevation,
+        LocalCardDefaults provides DefaultCardDefaults,
+        LocalSizes provides DefaultAppSizes,
+        LocalMotion provides DefaultAppMotion
     ) {
         MaterialTheme(
             colorScheme = colorScheme,

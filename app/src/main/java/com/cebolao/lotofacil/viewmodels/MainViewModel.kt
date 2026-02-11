@@ -8,6 +8,7 @@ import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.ui.theme.DefaultAppMotion
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
 
 @Stable
@@ -38,16 +39,22 @@ class MainViewModel @Inject constructor(
     private fun initializeApp() {
         executeWithResult(
             loadingState = { it.copy(isLoading = true, hasError = false, errorMessage = null) },
-            successState = { it, _ -> it.copy(isLoading = false, hasError = false, errorMessage = null) },
-            errorState = { it, errorMessage -> it.copy(isLoading = false, hasError = true, errorMessage = errorMessage) }
+            successState = { it, _ -> 
+                it.copy(isLoading = false, hasError = false, errorMessage = null)
+            },
+            errorState = { it, errorMessage -> 
+                it.copy(isLoading = false, hasError = true, errorMessage = errorMessage)
+            }
         ) {
-            // Wait for both minimum splash duration and data initialization
+            // Start initialization in background without blocking splash
             val startTime = System.currentTimeMillis()
-
-            // Initialize history with Result pattern
-            val initResult = initializeHistory()
             
-            // Wait for minimum splash duration
+            // Initialize history asynchronously with timeout
+            val initResult = withTimeoutOrNull(3000L) { // 3 second timeout
+                initializeHistory()
+            } ?: Result.Error(Exception("Initialization timeout"), "App initialization took too long")
+            
+            // Ensure minimum splash duration for better UX
             val elapsedTime = System.currentTimeMillis() - startTime
             val remainingTime = DefaultAppMotion.splashMinDurationMs - elapsedTime
             if (remainingTime > 0) {

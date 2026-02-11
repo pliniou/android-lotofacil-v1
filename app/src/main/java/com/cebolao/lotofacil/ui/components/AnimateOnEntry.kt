@@ -1,76 +1,74 @@
 package com.cebolao.lotofacil.ui.components
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.animateDp
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.layout.Box
+import androidx.compose.animation.core.updateTransition
+import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.cebolao.lotofacil.ui.theme.AppTheme
-import com.cebolao.lotofacil.ui.theme.DefaultAppMotion
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.ui.theme.LocalAnimationEnabled
+import kotlinx.coroutines.delay
 
-/**
- * Um wrapper que anima a entrada de seu conteúdo na tela.
- * A animação pode ser controlada globalmente através do `LocalAnimationEnabled`.
- * Otimizado para performance com animações únicas e leves, usando remember para evitar recomposições.
- * Modernizado com durações reduzidas para melhor fluidez.
- */
 @Composable
 fun AnimateOnEntry(
+    visible: Boolean = true,
     modifier: Modifier = Modifier,
-    delayMillis: Long = 0,
-    durationMillis: Int = DefaultAppMotion.durationMediumMs,
-    content: @Composable () -> Unit
+    initialAlpha: Float = 0f,
+    finalAlpha: Float = 1f,
+    initialOffsetY: Dp = 16.dp,
+    finalOffsetY: Dp = 0.dp,
+    animationSpec: Int = 500,
+    delayMillis: Long = 0L,
+    content: @Composable (modifier: Modifier) -> Unit
 ) {
     val animationsEnabled = LocalAnimationEnabled.current
-    
-    // Optimize state management with proper remember key
-    var isVisible by remember(delayMillis) { mutableStateOf(false) }
 
-    LaunchedEffect(delayMillis) {
-        isVisible = true
+    if (!animationsEnabled) {
+        val alpha = if (visible) finalAlpha else initialAlpha
+        val offsetY = if (visible) finalOffsetY else initialOffsetY
+        content(
+            modifier = modifier
+                .alpha(alpha)
+                .offset(y = offsetY)
+        )
+        return
     }
 
-    if (animationsEnabled) {
-        AnimatedVisibility(
-            modifier = modifier,
-            visible = isVisible,
-            enter = slideInVertically(
-                initialOffsetY = { fullHeight -> fullHeight / 20 },
-                animationSpec = tween(
-                    durationMillis = durationMillis,
-                    easing = androidx.compose.animation.core.FastOutSlowInEasing
-                )
-            ) + fadeIn(
-                animationSpec = tween(
-                    durationMillis = durationMillis,
-                    easing = androidx.compose.animation.core.FastOutSlowInEasing
-                )
-            ),
-            exit = slideOutVertically(
-                targetOffsetY = { fullHeight -> fullHeight / 20 },
-                animationSpec = tween(AppTheme.motion.durationElevationMs)
-            ) + fadeOut(
-                animationSpec = tween(AppTheme.motion.durationElevationMs)
-            )
-        ) {
-            content()
-        }
-    } else {
-        // Se as animações estiverem desabilitadas, apenas mostra o conteúdo.
-        if (isVisible) {
-            Box(modifier) {
-                content()
+    val transitionState = remember { MutableTransitionState(initialState = false) }
+    LaunchedEffect(visible, delayMillis) {
+        if (visible) {
+            if (delayMillis > 0) {
+                delay(delayMillis)
             }
+            transitionState.targetState = true
+        } else {
+            transitionState.targetState = false
         }
     }
+
+    val transition = updateTransition(transitionState, label = "entryTransition")
+
+    val alpha by transition.animateFloat(
+        transitionSpec = { tween(durationMillis = animationSpec) },
+        label = "alphaTransition"
+    ) { if (it) finalAlpha else initialAlpha }
+
+    val offsetY by transition.animateDp(
+        transitionSpec = { tween(durationMillis = animationSpec) },
+        label = "offsetYTransition"
+    ) { if (it) finalOffsetY else initialOffsetY }
+
+    content(
+        modifier = modifier
+            .alpha(alpha)
+            .offset(y = offsetY)
+    )
 }
