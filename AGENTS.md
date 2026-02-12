@@ -19,7 +19,7 @@ All agents are orchestrated via this file to ensure the right specialist is chos
 | **`design`** | **Design System**. Tokens, Theme, Accessibility, Material 3. |
 | **`build`** | **Build/CI**. Gradle, Dependencies, Lint/Detekt. |
 | **`release`** | **Distribution**. Signing, Versioning, Play Store Pre-check. |
-| **`security`**| **Security**. Privacy, Encryption, Permissions Audit. |
+| **`security`** | **Security**. Privacy, Encryption, Permissions Audit. |
 | **`perf`** | **Performance**. Profiling, Optimization, Benchmarks. |
 | **`observe`** | **Observability**. Logs, Analytics, Crash Reporting. |
 

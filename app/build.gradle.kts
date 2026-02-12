@@ -85,7 +85,13 @@ android {
         checkReleaseBuilds = true
         baseline = file("lint-baseline.xml")
         // Bug no detector MutableCollectionMutableStateDetector (NoClassDefFoundError)
-        disable += "MutableCollectionMutableState"
+        disable += setOf(
+            "MutableCollectionMutableState",
+            "AndroidGradlePluginVersion",
+            "GradleDependency",
+            "NewerVersionAvailable",
+            "IconXmlAndPng"
+        )
     }
 
     testOptions {

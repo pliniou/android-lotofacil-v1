@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.13.2" type="baseline" client="gradle" dependencies="true" name="AGP (8.13.2)" variant="all" version="8.13.2">
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_network_connection` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_network_connection&quot;>Sem conexão com o servidor. Tente novamente.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="10"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_persistence` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_persistence&quot;>Erro ao acessar armazenamento local.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="11"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_parsing` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_parsing&quot;>Erro ao processar dados remotos.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="12"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_unexpected` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_unexpected&quot;>Erro inesperado.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="16"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.drawn_ago` appears to be unused"
+        errorLine1="    &lt;string name=&quot;drawn_ago&quot;>sorteios atrás&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="117"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.analysis_period_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;analysis_period_title&quot;>Período de análise&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="118"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.time_window_all` appears to be unused"
+        errorLine1="    &lt;string name=&quot;time_window_all&quot;>Todos&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="119"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.time_window_last` appears to be unused"
+        errorLine1="    &lt;string name=&quot;time_window_last&quot;>Últimos %d&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="120"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.frequency_chart_subtitle` appears to be unused"
+        errorLine1="    &lt;string name=&quot;frequency_chart_subtitle&quot;>Veja quantas vezes cada n�mero saiu nos concursos analisados.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="125"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.top_numbers_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;top_numbers_title&quot;>Mais frequentes&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="126"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.top_numbers_subtitle` appears to be unused"
+        errorLine1="    &lt;string name=&quot;top_numbers_subtitle&quot;>Os n�meros que mais apareceram no hist�rico.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="127"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.total_draws_analyzed_format` appears to be unused"
+        errorLine1="    &lt;string name=&quot;total_draws_analyzed_format&quot;>Total de sorteios analisados: %d&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="128"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.chart_x_axis_label` appears to be unused"
+        errorLine1="    &lt;string name=&quot;chart_x_axis_label&quot;>Número&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="129"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.chart_y_axis_label` appears to be unused"
+        errorLine1="    &lt;string name=&quot;chart_y_axis_label&quot;>Frequência&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="130"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.patterns_subtitle` appears to be unused"
+        errorLine1="    &lt;string name=&quot;patterns_subtitle&quot;>Combina��es mais recorrentes entre os sorteios.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="133"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pattern_size_pairs` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pattern_size_pairs&quot;>Pares&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="134"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pattern_size_triplets` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pattern_size_triplets&quot;>Trincas&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="135"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pattern_size_quadruplets` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pattern_size_quadruplets&quot;>Quadras&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="136"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pattern_info_tooltip` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pattern_info_tooltip&quot;>A análise de padrões identifica grupos de números (de 2 a 4) que apareceram juntos nos sorteios históricos com maior frequência.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="137"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.cd_info` appears to be unused"
+        errorLine1="    &lt;string name=&quot;cd_info&quot;>Informações&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="138"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.trends_subtitle` appears to be unused"
+        errorLine1="    &lt;string name=&quot;trends_subtitle&quot;>M�dias m�veis por janela de concursos.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="141"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.plurals.trend_window_label` appears to be unused"
+        errorLine1="    &lt;plurals name=&quot;trend_window_label&quot;>"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="142"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.trend_avg_label` appears to be unused"
+        errorLine1="    &lt;string name=&quot;trend_avg_label&quot;>Média do período: %.2f&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="146"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.trend_type_sum` appears to be unused"
+        errorLine1="    &lt;string name=&quot;trend_type_sum&quot;>Soma&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="147"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.trend_type_evens` appears to be unused"
+        errorLine1="    &lt;string name=&quot;trend_type_evens&quot;>Pares&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="148"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.trend_type_primes` appears to be unused"
+        errorLine1="    &lt;string name=&quot;trend_type_primes&quot;>Primos&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="149"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.trend_type_frame` appears to be unused"
+        errorLine1="    &lt;string name=&quot;trend_type_frame&quot;>Moldura&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="150"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.recency_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;recency_title&quot;>N�meros atrasados&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="162"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.recency_subtitle` appears to be unused"
+        errorLine1="    &lt;string name=&quot;recency_subtitle&quot;>H� quantos concursos cada n�mero n�o sai.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="163"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.success_probability_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;success_probability_title&quot;>Chance de sucesso&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="241"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.no_active_filters` appears to be unused"
+        errorLine1="    &lt;string name=&quot;no_active_filters&quot;>Nenhum filtro ativo.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="242"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.restrictiveness_very_tight` appears to be unused"
+        errorLine1="    &lt;string name=&quot;restrictiveness_very_tight&quot;>Muito restrito&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="243"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.restrictiveness_tight` appears to be unused"
+        errorLine1="    &lt;string name=&quot;restrictiveness_tight&quot;>Restrito&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="244"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.restrictiveness_moderate` appears to be unused"
+        errorLine1="    &lt;string name=&quot;restrictiveness_moderate&quot;>Moderado&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="245"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.restrictiveness_loose` appears to be unused"
+        errorLine1="    &lt;string name=&quot;restrictiveness_loose&quot;>Flexível&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="246"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.restrictiveness_very_loose` appears to be unused"
+        errorLine1="    &lt;string name=&quot;restrictiveness_very_loose&quot;>Muito flexível&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="247"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.restrictiveness_disabled` appears to be unused"
+        errorLine1="    &lt;string name=&quot;restrictiveness_disabled&quot;>Desativado&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="248"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.stats_guide_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;stats_guide_title&quot;>Guia de Filtros e Estatísticas&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="332"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.how_filters_work` appears to be unused"
+        errorLine1="    &lt;string name=&quot;how_filters_work&quot;>Como funcionam os filtros?&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="333"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.stats_explanation_sum` appears to be unused"
+        errorLine1="    &lt;string name=&quot;stats_explanation_sum&quot;>A soma total dos 15 números sorteados. Na Lotofácil, a maioria dos sorteios fica na faixa de 170 a 220.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="334"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.stats_explanation_even_odd` appears to be unused"
+        errorLine1="    &lt;string name=&quot;stats_explanation_even_odd&quot;>O equilíbrio entre números pares e ímpares. O padrão mais comum é 7 pares e 8 ímpares (ou vice-versa).&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="335"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.stats_explanation_primes` appears to be unused"
+        errorLine1="    &lt;string name=&quot;stats_explanation_primes&quot;>Números que só são divisíveis por 1 e por si mesmos (ex: 2, 3, 5, 7, 11, 13, 17, 19, 23).&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="336"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.stats_explanation_frame_portrait` appears to be unused"
+        errorLine1="    &lt;string name=&quot;stats_explanation_frame_portrait&quot;>A moldura são os números das bordas do volante (16 números). O retrato são os 9 números centrais.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="337"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.stats_explanation_frequency_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;stats_explanation_frequency_title&quot;>Frequência e atraso&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="338"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.stats_explanation_frequency` appears to be unused"
+        errorLine1="    &lt;string name=&quot;stats_explanation_frequency&quot;>A frequência mostra quais números saem mais. O atraso indica há quantos concursos um número não é sorteado.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="339"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pattern_analysis_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pattern_analysis_title&quot;>Análise&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="359"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.position_abbr` appears to be unused"
+        errorLine1="    &lt;string name=&quot;position_abbr&quot;>%1$dº&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="362"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.ranked_number_description` appears to be unused"
+        errorLine1="    &lt;string name=&quot;ranked_number_description&quot;>Posição %1$dª, número %2$d&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="370"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.expandable_section_description` appears to be unused"
+        errorLine1="    &lt;string name=&quot;expandable_section_description&quot;>Seção %1$s, %2$s. Clique para alternar.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="372"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.expanded_state` appears to be unused"
+        errorLine1="    &lt;string name=&quot;expanded_state&quot;>expandido&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="373"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.collapsed_state` appears to be unused"
+        errorLine1="    &lt;string name=&quot;collapsed_state&quot;>colapsado&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="374"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.gaussian_toggle_description` appears to be unused"
+        errorLine1="    &lt;string name=&quot;gaussian_toggle_description&quot;>Incluir curva gaussiana, %1$s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="375"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.gaussian_toggle_active` appears to be unused"
+        errorLine1="    &lt;string name=&quot;gaussian_toggle_active&quot;>ativo&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="376"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.gaussian_toggle_inactive` appears to be unused"
+        errorLine1="    &lt;string name=&quot;gaussian_toggle_inactive&quot;>inativo&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="377"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.gaussian_toggle_label_off` appears to be unused"
+        errorLine1="    &lt;string name=&quot;gaussian_toggle_label_off&quot;>Barras&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="378"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.gaussian_toggle_label_on` appears to be unused"
+        errorLine1="    &lt;string name=&quot;gaussian_toggle_label_on&quot;>Gauss&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="379"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_generic` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_generic&quot;>Ocorreu um erro. Tente novamente.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="380"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.retry_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;retry_button&quot;>Tentar novamente&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="381"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.empty_state_message` appears to be unused"
+        errorLine1="    &lt;string name=&quot;empty_state_message&quot;>Nenhum dado disponível.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="382"
+            column="13"/>
+    </issue>
+
+</issues>

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -39,7 +40,9 @@ fun SkeletonCard(
     height: androidx.compose.ui.unit.Dp = 120.dp
 ) {
     Card(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(min = height),
         shape = AppShapes.md,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -99,8 +102,8 @@ fun NumberBallSkeleton(
  */
 @Composable
 fun NumberBallRowSkeleton(
-    count: Int = 15,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    count: Int = 15
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -117,8 +120,8 @@ fun NumberBallRowSkeleton(
  */
 @Composable
 fun FullScreenLoading(
-    message: String = "Carregando...",
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    message: String = "Carregando..."
 ) {
     Box(
         modifier = modifier.fillMaxWidth(),

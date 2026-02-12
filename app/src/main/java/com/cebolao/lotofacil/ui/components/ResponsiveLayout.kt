@@ -27,7 +27,6 @@ import com.cebolao.lotofacil.ui.theme.AppTheme
 @Composable
 fun ResponsiveGrid(
     items: List<Any>,
-    itemCount: Int,
     modifier: Modifier = Modifier,
     minItemWidth: androidx.compose.ui.unit.Dp = 300.dp,
     content: @Composable (item: Any) -> Unit
@@ -69,26 +68,24 @@ fun ResponsiveRow(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
-    BoxWithConstraints(modifier = modifier) {
-        val configuration = LocalConfiguration.current
-        val screenWidth = configuration.screenWidthDp.dp
-        
-        if (screenWidth >= AppTheme.sizes.breakpointTablet) {
-            // Tablet layout - horizontal
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(AppSpacing.lg)
-            ) {
-                content()
-            }
-        } else {
-            // Phone layout - vertical
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
-            ) {
-                content()
-            }
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+
+    if (screenWidth >= AppTheme.sizes.breakpointTablet) {
+        // Tablet layout - horizontal
+        Row(
+            modifier = modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+        ) {
+            content()
+        }
+    } else {
+        // Phone layout - vertical
+        Column(
+            modifier = modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
+        ) {
+            content()
         }
     }
 }
@@ -99,27 +96,27 @@ fun AdaptiveLazyRow(
     modifier: Modifier = Modifier,
     content: @Composable (item: Any) -> Unit
 ) {
-    BoxWithConstraints(modifier = modifier) {
-        val configuration = LocalConfiguration.current
-        val screenWidth = configuration.screenWidthDp.dp
-        
-        if (screenWidth >= AppTheme.sizes.breakpointTablet) {
-            // Show more items on tablet
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(AppSpacing.md)
-            ) {
-                items(items.take(8)) { item ->
-                    content(item)
-                }
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+
+    if (screenWidth >= AppTheme.sizes.breakpointTablet) {
+        // Show more items on tablet
+        LazyRow(
+            modifier = modifier,
+            horizontalArrangement = Arrangement.spacedBy(AppSpacing.md)
+        ) {
+            items(items.take(8)) { item ->
+                content(item)
             }
-        } else {
-            // Show fewer items on phone
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
-            ) {
-                items(items.take(4)) { item ->
-                    content(item)
-                }
+        }
+    } else {
+        // Show fewer items on phone
+        LazyRow(
+            modifier = modifier,
+            horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+        ) {
+            items(items.take(4)) { item ->
+                content(item)
             }
         }
     }

@@ -1,6 +1,5 @@
 package com.cebolao.lotofacil.ui.components
 
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -31,9 +30,17 @@ fun PullToRefreshScreen(
     content: @Composable () -> Unit
 ) {
     val pullToRefreshState = rememberPullToRefreshState()
-    
-    if (pullToRefreshState.isRefreshing) {
-        LaunchedEffect(true) {
+
+    LaunchedEffect(isRefreshing) {
+        if (isRefreshing) {
+            pullToRefreshState.startRefresh()
+        } else {
+            pullToRefreshState.endRefresh()
+        }
+    }
+
+    LaunchedEffect(pullToRefreshState.isRefreshing) {
+        if (pullToRefreshState.isRefreshing && !isRefreshing) {
             onRefresh()
         }
     }
@@ -67,13 +74,17 @@ fun PullToRefreshLazyColumn(
     content: @Composable () -> Unit
 ) {
     val pullToRefreshState = rememberPullToRefreshState()
-    val progress by animateFloatAsState(
-        targetValue = if (isRefreshing) 1f else 0f,
-        label = "refresh_progress"
-    )
-    
-    if (pullToRefreshState.isRefreshing) {
-        LaunchedEffect(true) {
+
+    LaunchedEffect(isRefreshing) {
+        if (isRefreshing) {
+            pullToRefreshState.startRefresh()
+        } else {
+            pullToRefreshState.endRefresh()
+        }
+    }
+
+    LaunchedEffect(pullToRefreshState.isRefreshing) {
+        if (pullToRefreshState.isRefreshing && !isRefreshing) {
             onRefresh()
         }
     }

@@ -62,8 +62,8 @@ fun AccessibleClickArea(
 @Composable
 fun AccessibleText(
     text: String,
-    contentDescription: String? = null,
     modifier: Modifier = Modifier,
+    contentDescription: String? = null,
     maxLines: Int = Int.MAX_VALUE,
     color: Color = LocalContentColor.current
 ) {
@@ -84,9 +84,9 @@ fun AccessibleText(
 @Composable
 fun AccessibleButton(
     text: String,
-    contentDescription: String? = null,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    contentDescription: String? = null,
     enabled: Boolean = true
 ) {
     AppButton(
@@ -105,8 +105,8 @@ fun AccessibleButton(
 @Composable
 fun AccessibleCard(
     contentDescription: String,
-    onClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
+    onClick: (() -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
     AppCard(

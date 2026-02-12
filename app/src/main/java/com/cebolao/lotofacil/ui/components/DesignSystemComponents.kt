@@ -184,8 +184,8 @@ fun GradientSurface(
 @Composable
 fun SectionHeader(
     title: String,
-    subtitle: String? = null,
     modifier: Modifier = Modifier,
+    subtitle: String? = null,
     action: @Composable RowScope.() -> Unit = {}
 ) {
     Column(
