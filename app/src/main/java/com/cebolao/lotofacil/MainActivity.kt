@@ -76,8 +76,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     if (uiState.isReady) {
-                        val navController = androidx.navigation.compose.rememberNavController()
-                        MainScreen(navController = navController)
+                        MainScreen()
                     }
                 }
             }

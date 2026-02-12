@@ -9,8 +9,13 @@ import com.cebolao.lotofacil.data.datasource.database.entity.HistoricalDrawEntit
 import com.cebolao.lotofacil.data.datasource.database.entity.StatisticsCacheEntity
 
 @Database(
-    entities = [HistoricalDrawEntity::class, CheckHistoryEntity::class, StatisticsCacheEntity::class],
-    version = 4,
+    entities = [
+        HistoricalDrawEntity::class, 
+        CheckHistoryEntity::class, 
+        StatisticsCacheEntity::class,
+        com.cebolao.lotofacil.data.datasource.database.entity.GameEntity::class
+    ],
+    version = 5,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -18,6 +23,7 @@ abstract class LotofacilDatabase : RoomDatabase() {
     abstract fun historyDao(): HistoryDao
     abstract fun checkHistoryDao(): CheckHistoryDao
     abstract fun statisticsCacheDao(): StatisticsCacheDao
+    abstract fun gameDao(): GameDao
 
     companion object {
         /**

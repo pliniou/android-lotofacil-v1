@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.cebolao.lotofacil.BuildConfig
 import com.cebolao.lotofacil.data.datasource.database.CheckHistoryDao
+import com.cebolao.lotofacil.data.datasource.database.GameDao
 import com.cebolao.lotofacil.data.datasource.database.HistoryDao
 import com.cebolao.lotofacil.data.datasource.database.LotofacilDatabase
 import com.cebolao.lotofacil.data.datasource.database.StatisticsCacheDao
@@ -53,5 +54,11 @@ object DatabaseModule {
     @Singleton
     fun provideStatisticsCacheDao(database: LotofacilDatabase): StatisticsCacheDao {
         return database.statisticsCacheDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideGameDao(database: LotofacilDatabase): GameDao {
+        return database.gameDao()
     }
 }

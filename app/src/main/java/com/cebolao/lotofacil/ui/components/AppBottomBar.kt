@@ -42,7 +42,7 @@ fun AppBottomBar(
     ) {
         destinations.forEach { destination ->
             val selected = destination == selectedDestination
-            val itemTag = "${AppTestTags.BottomNavItemPrefix}${destination.route.substringBefore("?")}"
+            val itemTag = "${AppTestTags.BottomNavItemPrefix}${destination.titleRes}"
             
             NavigationBarItem(
                 modifier = Modifier.testTag(itemTag),

@@ -91,8 +91,8 @@ fun StandardScreenHeader(
                             icon = icon,
                             painter = iconPainter,
                             contentDescription = null,
-                            size = com.cebolao.lotofacil.ui.theme.AppSize.touchTargetMinimum,
-                            iconSize = com.cebolao.lotofacil.ui.theme.AppSize.iconSmallMedium
+                            size = com.cebolao.lotofacil.ui.theme.iconButtonSize(),
+                            iconSize = com.cebolao.lotofacil.ui.theme.iconMedium()
                         )
                     }
                 }

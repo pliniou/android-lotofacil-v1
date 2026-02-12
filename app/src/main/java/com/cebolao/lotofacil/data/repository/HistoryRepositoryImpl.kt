@@ -74,7 +74,7 @@ class HistoryRepositoryImpl @Inject constructor(
                     val rangeToFetch = (currentLatest + 1)..latestRemote.contestNumber
                     val totalToFetch = rangeToFetch.count()
                     
-                    val newDraws = remoteDataSource.getDrawsInRange(
+                    remoteDataSource.getDrawsInRange(
                         range = rangeToFetch,
                         onProgress = { progressCount ->
                             _syncStatus.value = SyncStatus.Progress(progressCount, totalToFetch)
@@ -84,6 +84,8 @@ class HistoryRepositoryImpl @Inject constructor(
                             logger.d(TAG, "Incrementally saved ${batch.size} draws.")
                         }
                     )
+                } else {
+                    logger.d(TAG, "Local history already up to date.")
                 }
                 _syncStatus.value = SyncStatus.Success
                 AppResult.Success(Unit)

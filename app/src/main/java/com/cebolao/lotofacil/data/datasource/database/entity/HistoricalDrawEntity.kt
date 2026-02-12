@@ -46,6 +46,4 @@ fun HistoricalDraw.toEntity() = HistoricalDrawEntity(
     accumulated = accumulated
 )
 
-class Converters {
-    private val json = Json { ignoreUnknownKeys = true }
-}
+

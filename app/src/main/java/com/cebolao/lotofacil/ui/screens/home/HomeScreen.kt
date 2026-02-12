@@ -246,22 +246,26 @@ private fun RefreshButton(
 ) {
     val colors = MaterialTheme.colorScheme
 
-    // Rotação contínua infinita durante sincronização
-    val infiniteTransition = androidx.compose.animation.core.rememberInfiniteTransition(
-        label = "refresh_rotation"
-    )
-    val rotationAngle by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 360f,
-        animationSpec = androidx.compose.animation.core.infiniteRepeatable(
-            animation = tween(
-                durationMillis = 1000,
-                easing = androidx.compose.animation.core.LinearEasing
+    val rotationAngle = if (isRefreshing) {
+        // Keep infinite animation active only while sync is running.
+        val infiniteTransition = androidx.compose.animation.core.rememberInfiniteTransition(
+            label = "refresh_rotation"
+        )
+        infiniteTransition.animateFloat(
+            initialValue = 0f,
+            targetValue = 360f,
+            animationSpec = androidx.compose.animation.core.infiniteRepeatable(
+                animation = tween(
+                    durationMillis = 1000,
+                    easing = androidx.compose.animation.core.LinearEasing
+                ),
+                repeatMode = androidx.compose.animation.core.RepeatMode.Restart
             ),
-            repeatMode = androidx.compose.animation.core.RepeatMode.Restart
-        ),
-        label = "rotation"
-    )
+            label = "rotation"
+        ).value
+    } else {
+        0f
+    }
 
     IconButton(
         onClick = onClick,
@@ -401,7 +405,8 @@ private fun SyncProgressBanner(
     isInitialSync: Boolean
 ) {
     val colors = MaterialTheme.colorScheme
-    val progress = (current.toFloat() / total).coerceIn(0f, 1f)
+    val safeTotal = total.coerceAtLeast(1)
+    val progress = (current.toFloat() / safeTotal).coerceIn(0f, 1f)
     
     // Tonal elevation for a modern "premium" feel
     Surface(
@@ -453,14 +458,14 @@ private fun SyncProgressBanner(
                     fontWeight = FontWeight.SemiBold
                 )
             }
-            
+
             LinearProgressIndicator(
-                progress = { progress },
+                progress = progress,
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(MaterialTheme.shapes.small),
                 color = colors.primary,
-                trackColor = colors.surfaceContainerHighest
+                trackColor = colors.primaryContainer
             )
         }
     }

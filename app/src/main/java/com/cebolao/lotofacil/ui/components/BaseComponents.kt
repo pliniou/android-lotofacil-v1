@@ -18,8 +18,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.ui.theme.AppCardDefaults
 import com.cebolao.lotofacil.ui.theme.AppElevation
+import com.cebolao.lotofacil.ui.theme.AppShapes
 
 /**
  * Unified Card component with flexible variant system.
@@ -43,84 +45,86 @@ fun AppCard(
     modifier: Modifier = Modifier,
     variant: CardVariant = CardVariant.Static,
     onClick: (() -> Unit)? = null,
-    shape: Shape = MaterialTheme.shapes.medium,
+    shape: Shape = AppShapes.lg, // Use consistent shape token
     backgroundColor: Color? = null,
     contentColor: Color? = null,
     border: BorderStroke? = null,
-    elevation: Dp = AppCardDefaults.elevation,
-    tonalElevation: Dp = AppElevation.none,
+    elevation: Dp = when (variant) {
+        CardVariant.Static -> AppElevation.sm
+        CardVariant.Clickable -> AppElevation.sm
+        CardVariant.Surfaced -> AppElevation.none
+    },
     enabled: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
-    val cardColors = if (backgroundColor != null || contentColor != null) {
-        CardDefaults.elevatedCardColors(
-            containerColor = backgroundColor ?: colors.surface,
-            contentColor = contentColor ?: colors.onSurface
-        )
-    } else {
-        CardDefaults.elevatedCardColors()
+    
+    val targetContainerColor = backgroundColor ?: when(variant) {
+        CardVariant.Surfaced -> colors.surfaceVariant.copy(alpha = 0.5f)
+        else -> colors.surface
     }
+    val targetContentColor = contentColor ?: colors.onSurface
+
+    val cardColors = CardDefaults.elevatedCardColors(
+        containerColor = targetContainerColor,
+        contentColor = targetContentColor
+    )
 
     when (variant) {
-        is CardVariant.Static -> {
+        CardVariant.Static -> {
             androidx.compose.material3.ElevatedCard(
                 modifier = modifier,
                 shape = shape,
                 colors = cardColors,
-                elevation = CardDefaults.elevatedCardElevation(
-                    defaultElevation = elevation,
-                    hoveredElevation = AppCardDefaults.hoverElevation
-                )
+                elevation = CardDefaults.elevatedCardElevation(defaultElevation = elevation)
             ) {
                 content()
             }
         }
-        is CardVariant.Clickable -> {
+        CardVariant.Clickable -> {
             val interactionSource = remember { MutableInteractionSource() }
             val isPressed by interactionSource.collectIsPressedAsState()
             
+            // Subtle scale animation
             val scale by animateFloatAsState(
                 targetValue = if (isPressed) 0.98f else 1f,
                 animationSpec = spring(
                     dampingRatio = Spring.DampingRatioMediumBouncy,
                     stiffness = Spring.StiffnessMediumLow
                 ),
-                label = "scale"
+                label = "cardScale"
             )
 
-            val cardModifier = modifier
-                .graphicsLayer {
-                    scaleX = scale
-                    scaleY = scale
-                }
-                .clip(shape)
-                .then(if (border != null) Modifier.border(border, shape) else Modifier)
-
             androidx.compose.material3.ElevatedCard(
-                modifier = cardModifier,
+                modifier = modifier
+                    .graphicsLayer {
+                        scaleX = scale
+                        scaleY = scale
+                    }
+                    .then(if (border != null) Modifier.border(border, shape) else Modifier),
                 onClick = onClick ?: {},
                 enabled = enabled,
                 shape = shape,
                 colors = cardColors,
+                interactionSource = interactionSource,
                 elevation = CardDefaults.elevatedCardElevation(
                     defaultElevation = elevation,
-                    pressedElevation = if (isPressed) elevation * 0.5f else elevation,
-                    hoveredElevation = AppCardDefaults.hoverElevation
+                    pressedElevation = elevation * 0.5f,
+                    hoveredElevation = AppElevation.md
                 )
             ) {
                 content()
             }
         }
-        is CardVariant.Surfaced -> {
-            androidx.compose.material3.ElevatedCard(
+        CardVariant.Surfaced -> {
+            androidx.compose.material3.OutlinedCard(
                 modifier = modifier,
                 shape = shape,
-                colors = cardColors,
-                elevation = CardDefaults.elevatedCardElevation(
-                    defaultElevation = if (tonalElevation == AppElevation.none) AppElevation.none else AppElevation.xs,
-                    hoveredElevation = AppCardDefaults.hoverElevation
-                )
+                colors = CardDefaults.outlinedCardColors(
+                    containerColor = targetContainerColor,
+                    contentColor = targetContentColor
+                ),
+                border = border ?: BorderStroke(1.dp, colors.outlineVariant),
             ) {
                 content()
             }
@@ -128,16 +132,8 @@ fun AppCard(
     }
 }
 
-// ==================== VARIANTES DE CARD ====================
-/**
- * Variantes de apresentação do Card.
- *
- * - Static: Card não interativo com elevação
- * - Clickable: Card interativo com animação de escala ao pressionar
- * - Surfaced: Card de baixa elevação para aparência de superfície
- */
 sealed class CardVariant {
-    object Static : CardVariant()
-    object Clickable : CardVariant()
-    object Surfaced : CardVariant()
+    data object Static : CardVariant()
+    data object Clickable : CardVariant()
+    data object Surfaced : CardVariant()
 }

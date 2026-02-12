@@ -26,7 +26,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
-import com.cebolao.lotofacil.ui.theme.AppSize
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppTheme
 
@@ -54,9 +53,9 @@ fun TrendChart(
     val chartDescription = stringResource(id = R.string.trend_analysis_title)
 
     BoxWithConstraints(modifier = modifier) {
-        val isWide = maxWidth >= AppSize.breakpointTablet
+        val isWide = maxWidth >= 600.dp
         val horizontalPadding = AppSpacing.sm * 2
-        val effectiveMinPointSpacing = if (isWide) resolvedMinPointSpacing else AppSize.trendMinPointSpacingCompact
+        val effectiveMinPointSpacing = if (isWide) resolvedMinPointSpacing else 32.dp
         val minChartWidth = remember(data, effectiveMinPointSpacing, horizontalPadding) {
             if (data.size <= 1) 0.dp else effectiveMinPointSpacing * (data.size - 1) + horizontalPadding
         }

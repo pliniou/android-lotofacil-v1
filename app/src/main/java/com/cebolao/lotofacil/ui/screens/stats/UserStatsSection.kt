@@ -28,7 +28,6 @@ import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.service.UserStats
 import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.NumberBall
-import com.cebolao.lotofacil.ui.theme.AppAlpha
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import kotlin.math.abs
 
@@ -187,7 +186,7 @@ private fun TrendIndicator(
         modifier = modifier
             .size(40.dp)
             .background(
-                color = color.copy(alpha = AppAlpha.textDisabled),
+                color = color.copy(alpha = 0.12f),
                 shape = RoundedCornerShape(AppSpacing.sm)
             )
             .semantics {

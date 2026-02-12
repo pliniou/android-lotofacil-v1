@@ -74,8 +74,9 @@ private fun GameStatisticType.label(): String {
 fun RecentHitsChartContent(
     recentHits: List<Pair<Int, Int>>,
     modifier: Modifier = Modifier,
-    chartHeight: Dp = AppSize.chartHeightSmall
+    chartHeight: Dp? = null
 ) {
+    val resolvedChartHeight = chartHeight ?: AppSize.chartHeightSmall
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -111,7 +112,7 @@ fun RecentHitsChartContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = AppSpacing.sm)
-                .height(chartHeight)
+                .height(resolvedChartHeight)
         )
     }
 }

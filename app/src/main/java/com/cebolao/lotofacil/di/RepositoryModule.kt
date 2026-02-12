@@ -9,7 +9,6 @@ import com.cebolao.lotofacil.domain.repository.CheckHistoryRepository
 import com.cebolao.lotofacil.domain.repository.GameRepository
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.repository.StatisticsRepository
-import com.cebolao.lotofacil.domain.repository.UserPreferencesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,11 +31,6 @@ abstract class RepositoryModule {
         historyRepositoryImpl: HistoryRepositoryImpl
     ): HistoryRepository
 
-    @Binds
-    @Singleton
-    abstract fun bindUserPreferencesRepository(
-        userPreferencesRepositoryImpl: UserPreferencesRepositoryImpl
-    ): UserPreferencesRepository
 
     @Binds
     @Singleton

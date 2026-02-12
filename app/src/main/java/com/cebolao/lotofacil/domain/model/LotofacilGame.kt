@@ -37,28 +37,50 @@ data class LotofacilGame(
         return lastDraw?.let { numbers.intersect(it).size } ?: 0
     }
 
-    /** Converts the game to a compact string for efficient storage. */
+    /**
+     * Compact representation used for local sharing/tests.
+     * Format: numbers|pinned|createdAt|usageCount|lastPlayed|id
+     */
     fun toCompactString(): String {
-        return "${numbers.sorted().joinToString(",")}|$isPinned|$creationTimestamp|$id|$usageCount|$lastPlayed"
+        val numbersPart = numbers.sorted().joinToString(",")
+        val pinnedPart = if (isPinned) "1" else "0"
+        val lastPlayedPart = lastPlayed?.toString().orEmpty()
+        return listOf(
+            numbersPart,
+            pinnedPart,
+            creationTimestamp.toString(),
+            usageCount.toString(),
+            lastPlayedPart,
+            id
+        ).joinToString("|")
     }
 
     companion object {
-        /** Creates a LotofacilGame from a compact string. */
-        fun fromCompactString(compactString: String): LotofacilGame? {
-            return try {
-                val parts = compactString.split("|")
-                val numbers = parts[0].split(",").map { it.toInt() }.toSet()
-                val isPinned = parts.getOrNull(1)?.toBoolean() ?: false
-                val timestamp = parts.getOrNull(2)?.toLong() ?: System.currentTimeMillis()
-                val id = parts.getOrNull(3) ?: java.util.UUID.randomUUID().toString()
-                val usageCount = parts.getOrNull(4)?.toInt() ?: 0
-                val lastPlayed = parts.getOrNull(5)?.toLongOrNull()
-                if (numbers.size == LotofacilConstants.GAME_SIZE) {
-                    LotofacilGame(numbers, isPinned, timestamp, usageCount, lastPlayed, id)
-                } else null
-            } catch (_: Exception) {
-                null
-            }
+        fun fromCompactString(compact: String): LotofacilGame? {
+            return runCatching {
+                val parts = compact.split("|")
+                require(parts.size >= 2)
+
+                val numbers = parts[0]
+                    .split(",")
+                    .mapNotNull { it.toIntOrNull() }
+                    .toSet()
+
+                val pinned = parts[1] == "1" || parts[1].equals("true", ignoreCase = true)
+                val createdAt = parts.getOrNull(2)?.toLongOrNull() ?: System.currentTimeMillis()
+                val usageCount = parts.getOrNull(3)?.toIntOrNull() ?: 0
+                val lastPlayed = parts.getOrNull(4)?.toLongOrNull()
+                val id = parts.getOrNull(5).orEmpty().ifBlank { java.util.UUID.randomUUID().toString() }
+
+                LotofacilGame(
+                    numbers = numbers,
+                    isPinned = pinned,
+                    creationTimestamp = createdAt,
+                    usageCount = usageCount,
+                    lastPlayed = lastPlayed,
+                    id = id
+                )
+            }.getOrNull()
         }
     }
 }

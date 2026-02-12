@@ -10,8 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import androidx.navigation.NavType
+import androidx.navigation.toRoute
 import com.cebolao.lotofacil.ui.screens.about.AboutScreen
 import com.cebolao.lotofacil.ui.screens.checker.CheckerScreen
 import com.cebolao.lotofacil.ui.screens.filters.FiltersScreen
@@ -24,7 +23,7 @@ import com.cebolao.lotofacil.ui.screens.stats.UserStatsScreen
  * Navigation utilities for type-safe navigation.
  */
 fun NavController.navigateToDestination(destination: Destination) {
-    navigate(destination.route) {
+    navigate(destination) {
         popUpTo(graph.findStartDestination().id) {
             saveState = true
         }
@@ -46,7 +45,7 @@ fun AppNavigation(
     
     NavHost(
         navController = navController,
-        startDestination = startDestination.route,
+        startDestination = startDestination,
         modifier = modifier,
         enterTransition = {
             slideIntoContainer(
@@ -73,7 +72,7 @@ fun AppNavigation(
             ) + fadeOut(animationSpec = tween(durationMillis = 180))
         }
     ) {
-        composable(Destination.Home.route) {
+        composable<Destination.Home> {
             HomeScreen(
                 onExploreFilters = {
                     navController.navigateToDestination(Destination.Filters)
@@ -93,43 +92,35 @@ fun AppNavigation(
             )
         }
         
-        composable(Destination.Filters.route) {
+        composable<Destination.Filters> {
             FiltersScreen {
                 onNavigateToGeneratedGames()
             }
         }
         
-        composable(Destination.GeneratedGames.route) {
+        composable<Destination.GeneratedGames> {
             GeneratedGamesScreen()
         }
         
-        composable(
-            route = Destination.Checker.ROUTE_PATTERN,
-            arguments = listOf(
-                navArgument("numbers") {
-                    type = NavType.StringType
-                    nullable = true
-                    defaultValue = null
-                }
-            )
-        ) {
+        composable<Destination.Checker> {
             CheckerScreen()
         }
         
-        composable(Destination.About.route) {
-            AboutScreen(onNavigateToUserStats = { navController.navigate(Destination.UserStats.route) })
+        composable<Destination.About> {
+            AboutScreen(onNavigateToUserStats = { navController.navigate(Destination.UserStats) })
         }
 
-        composable(Destination.Insights.route) {
+        composable<Destination.Insights> {
             StatisticsScreen(
                 onNavigateBack = { navController.popBackStack() }
             )
         }
 
-        composable(Destination.UserStats.route) {
+        composable<Destination.UserStats> {
             UserStatsScreen(
                 onNavigateBack = { navController.popBackStack() }
             )
         }
     }
 }
+

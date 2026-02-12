@@ -8,9 +8,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.cebolao.lotofacil.navigation.AppNavigation
 import com.cebolao.lotofacil.navigation.Destination
 import com.cebolao.lotofacil.navigation.bottomNavDestinations
@@ -21,7 +23,7 @@ import com.cebolao.lotofacil.viewmodels.MainViewModel
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    navController: NavHostController,
+    navController: NavHostController = rememberNavController(),
     mainViewModel: MainViewModel = hiltViewModel()
 ) {
     val uiState by mainViewModel.uiState.collectAsStateWithLifecycle()
@@ -38,12 +40,12 @@ fun MainScreen(
                 destinations = bottomNavDestinations,
                 selectedDestination = bottomNavDestinations.find { destination ->
                     currentDestination?.hierarchy?.any { navDestination ->
-                        navDestination.route?.substringBefore("?") == destination.route.substringBefore("?")
+                        navDestination.hasRoute(destination::class)
                     } == true
                 } ?: bottomNavDestinations.first(),
                 onDestinationSelected = { destination ->
                     val isSelected = currentDestination?.hierarchy?.any { navDestination ->
-                        navDestination.route?.substringBefore("?") == destination.route.substringBefore("?")
+                        navDestination.hasRoute(destination::class)
                     } == true
                     if (!isSelected) {
                         navController.navigateToDestination(destination)

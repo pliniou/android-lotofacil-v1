@@ -7,6 +7,7 @@ import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.error.AppError
 import com.cebolao.lotofacil.core.error.EmptyHistoryError
 import com.cebolao.lotofacil.core.error.UnknownError
+import com.cebolao.lotofacil.core.utils.AppLogger
 import com.cebolao.lotofacil.domain.model.CheckResult
 import com.cebolao.lotofacil.domain.model.GameStatistic
 import com.cebolao.lotofacil.domain.model.LotofacilConstants
@@ -50,8 +51,13 @@ sealed interface CheckerUiState {
 class CheckerViewModel @Inject constructor(
     private val checkGameUseCase: CheckGameUseCase,
     private val saveCheckUseCase: SaveCheckUseCase,
+    private val logger: AppLogger,
     savedStateHandle: SavedStateHandle
 ) : StateViewModel<CheckerScreenState>(CheckerScreenState()) {
+
+    companion object {
+        private const val TAG = "CheckerViewModel"
+    }
 
     private var checkJob: Job? = null
     
@@ -189,8 +195,7 @@ class CheckerViewModel @Inject constructor(
     private fun saveCheckToHistory(gameNumbers: Set<Int>, result: CheckResult) {
         saveCheckUseCase(gameNumbers, result.lastCheckedContest, result)
             .catch { e ->
-                // Log silenciosamente - não impede operação principal
-                android.util.Log.w("CheckerViewModel", "Failed to save check history: ${e.message}")
+                logger.w(TAG, "Failed to save check history", e)
             }
             .launchIn(viewModelScope)
     }

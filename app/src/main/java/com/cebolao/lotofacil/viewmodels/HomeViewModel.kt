@@ -73,9 +73,10 @@ class HomeViewModel @Inject constructor(
         updateState { it.copy(isScreenLoading = true, errorMessageResId = null) }
 
         viewModelScope.launch {
-            // Reduced timeout to prevent UI blocking
             val result = withTimeoutOrNull(3000L) {
-                getHomeScreenDataUseCase().first { it is AppResult.Success }
+                getHomeScreenDataUseCase().first {
+                    it is AppResult.Success || it is AppResult.Failure
+                }
             }
 
             if (result is AppResult.Success) {

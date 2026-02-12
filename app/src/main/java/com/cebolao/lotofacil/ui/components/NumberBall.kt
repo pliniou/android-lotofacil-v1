@@ -6,8 +6,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.ui.draw.scale
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -74,6 +76,7 @@ fun NumberBallInteractive(
 ) {
     val animationDuration = AppAnimationConstants.Durations.Medium
     val hapticFeedback = LocalHapticFeedback.current
+    val interactionSource = remember { MutableInteractionSource() }
     
     val animatedContainerColor by animateColorAsState(
         targetValue = containerColor,
@@ -91,10 +94,16 @@ fun NumberBallInteractive(
         label = "borderColor"
     )
 
-    val interactionSource = remember { MutableInteractionSource() }
+    // Animation for pressed state
+    val scale by androidx.compose.animation.core.animateFloatAsState(
+        targetValue = if (interactionSource.collectIsPressedAsState().value) 0.9f else 1f,
+        label = "scale"
+    )
+
     Surface(
         modifier = modifier
             .size(size)
+            .scale(scale)
             .clip(shape)
             .border(
                 width = borderWidth,
@@ -137,8 +146,8 @@ fun NumberBallInteractive(
                 text = formattedNumber,
                 color = animatedContentColor,
                 style = MaterialTheme.typography.titleMedium.copy(
-                    fontSize = (size.value / 2.6).sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    fontSize = (size.value * 0.4f).sp // Responsive font size
                 )
             )
         }

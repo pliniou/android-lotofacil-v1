@@ -38,7 +38,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cebolao.lotofacil.R
-import com.cebolao.lotofacil.ui.theme.AppSize
 import com.cebolao.lotofacil.ui.theme.AppTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlin.math.ceil
@@ -90,11 +89,10 @@ fun BarChart(
     val labelSpacingExpanded = sizes.chartLabelMinSpacingExpanded
     val valueLabelMinBarWidthCompact = sizes.chartValueLabelMinBarWidthCompact
     val valueLabelMinBarWidthExpanded = sizes.chartValueLabelMinBarWidthExpanded
+    val labelSmall = MaterialTheme.typography.labelSmall
     val density = LocalDensity.current
-    val chartScaleFactor = density.density.coerceIn(0.85f, 1.3f)
-    val baseTextSize = 10.sp * chartScaleFactor
+    val textSize = remember(density, labelSmall) { density.run { labelSmall.fontSize.toPx() } }
 
-    val textSize = remember(density, baseTextSize) { density.run { baseTextSize.toPx() } }
     val textPaint = remember(textSize, onSurfaceVariant) {
         Paint().apply {
             isAntiAlias = true
@@ -130,7 +128,7 @@ fun BarChart(
 
 
     BoxWithConstraints(modifier = modifier) {
-        val isWide = maxWidth >= AppSize.breakpointTablet
+        val isWide = maxWidth >= 600.dp
         val minChartWidth = remember(data, minBarWidth, barSpacing, yAxisLabelWidth) {
             if (data.isEmpty()) 0.dp else {
                 yAxisLabelWidth + (minBarWidth + barSpacing) * data.size + barSpacing

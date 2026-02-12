@@ -6,8 +6,8 @@ import androidx.compose.material.icons.automirrored.filled.ListAlt
 import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material.icons.outlined.Analytics
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
@@ -18,57 +18,32 @@ import com.cebolao.lotofacil.R
 import kotlinx.serialization.Serializable
 
 /**
- * Type-safe navigation destinations that encapsulate routes and arguments.
- * This replaces string-based navigation with compile-time safety.
+ * Type-safe navigation destinations.
  */
 @Stable
 @Serializable
 sealed interface Destination {
-    val route: String
 
     @Serializable
-    data object Home : Destination {
-        override val route = "home"
-    }
+    data object Home : Destination
 
     @Serializable
-    data object Filters : Destination {
-        override val route = "filters"
-    }
+    data object Filters : Destination
 
     @Serializable
-    data object GeneratedGames : Destination {
-        override val route = "games"
-    }
+    data object GeneratedGames : Destination
 
     @Serializable
-    data class Checker(val numbers: String? = null) : Destination {
-        override val route = if (numbers.isNullOrBlank()) {
-            BASE_ROUTE
-        } else {
-            "$BASE_ROUTE?numbers=$numbers"
-        }
-
-        companion object {
-            const val BASE_ROUTE = "checker"
-            const val ROUTE_PATTERN = "$BASE_ROUTE?numbers={numbers}"
-        }
-    }
+    data class Checker(val numbers: String? = null) : Destination
 
     @Serializable
-    data object About : Destination {
-        override val route = "about"
-    }
+    data object About : Destination
 
     @Serializable
-    data object Insights : Destination {
-        override val route = "insights"
-    }
+    data object Insights : Destination
 
     @Serializable
-    data object UserStats : Destination {
-        override val route = "user_stats"
-    }
+    data object UserStats : Destination
 }
 
 // Destinos exibidos na barra de navegação inferior (4 abas)
