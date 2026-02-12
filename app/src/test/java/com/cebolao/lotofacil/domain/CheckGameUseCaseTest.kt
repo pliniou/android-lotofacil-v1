@@ -1,4 +1,4 @@
-package com.cebolao.lotofacil.domain.usecase
+package com.cebolao.lotofacil.domain
 
 import app.cash.turbine.test
 import com.cebolao.lotofacil.core.coroutine.TestDispatchersProvider
@@ -8,6 +8,8 @@ import com.cebolao.lotofacil.domain.model.GameStatisticType
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.service.StatisticsEngine
+import com.cebolao.lotofacil.domain.usecase.CheckGameUseCase
+import com.cebolao.lotofacil.domain.usecase.GameCheckState
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals

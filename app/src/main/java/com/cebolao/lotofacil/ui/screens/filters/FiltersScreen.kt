@@ -1,47 +1,46 @@
 package com.cebolao.lotofacil.ui.screens.filters
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterAlt
 import androidx.compose.material.icons.filled.RestartAlt
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.navigation.UiEvent
+import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
 import com.cebolao.lotofacil.ui.components.ConfirmationDialog
 import com.cebolao.lotofacil.ui.components.InfoDialog
 import com.cebolao.lotofacil.ui.components.screenContentPadding
+import com.cebolao.lotofacil.ui.components.shimmer
 import com.cebolao.lotofacil.ui.model.descriptionRes
 import com.cebolao.lotofacil.ui.model.icon
 import com.cebolao.lotofacil.ui.model.titleRes
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.viewmodels.FiltersUiState
 import com.cebolao.lotofacil.viewmodels.FiltersViewModel
-import com.cebolao.lotofacil.ui.components.AppCard
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.ui.unit.dp
-import com.cebolao.lotofacil.ui.components.shimmer
 
 @Composable
 fun FiltersScreen(
@@ -128,10 +127,6 @@ fun FiltersScreenContent(
     onShowResetConfirmation: (Boolean) -> Unit = {},
     onAction: (FiltersAction) -> Unit = {}
 ) {
-    // Simplified state
-    val activeFiltersCount by remember(state.activeFiltersCount) { 
-        derivedStateOf { state.activeFiltersCount } 
-    }
 
     // Filter info dialog
     showDialogFor?.let { type ->

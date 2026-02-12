@@ -32,13 +32,6 @@ object NumberFormatUtils {
     fun formatInteger(number: Int): String {
         return integerFormat.format(number)
     }
-    
-    /**
-     * Formats an integer using the default locale's rules (e.g., 1.000 in PT-BR).
-     */
-    fun formatInteger(number: Long): String {
-        return integerFormat.format(number)
-    }
 
     /**
      * Formats a double as currency (BRL).

@@ -56,9 +56,6 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         }
     }
 
-
-
-
     private fun handleError(exception: Throwable, contextMessage: String) {
         logger.e(TAG, "Error $contextMessage", exception)
     }

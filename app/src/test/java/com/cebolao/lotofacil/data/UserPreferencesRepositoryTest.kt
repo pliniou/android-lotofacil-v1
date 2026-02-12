@@ -1,4 +1,4 @@
-package com.cebolao.lotofacil.data.repository
+package com.cebolao.lotofacil.data
 
 import com.cebolao.lotofacil.core.testing.FakeUserPreferencesRepository
 import kotlinx.coroutines.flow.first

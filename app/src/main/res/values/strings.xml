@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Lotofácil Generator</string>
 
     <string name="error_no_history">Não foi possível carregar o histórico.</string>
@@ -379,7 +379,7 @@
     <string name="gaussian_toggle_label_on">Gauss</string>
     <string name="error_generic">Ocorreu um erro. Tente novamente.</string>
     <string name="retry_button">Tentar novamente</string>
-    <string name="empty_state_message">Nenhum dado disponível no momento.</string>
+    <string name="empty_state_message">Nenhum dado disponível.</string>
 
     <!-- Statistics Screen -->
     <string name="time_window_filter_label">Per�odo de an�lise</string>

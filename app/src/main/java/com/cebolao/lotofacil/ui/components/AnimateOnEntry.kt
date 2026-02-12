@@ -1,5 +1,6 @@
 package com.cebolao.lotofacil.ui.components
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.animateFloat
@@ -20,7 +21,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun AnimateOnEntry(
     visible: Boolean = true,
-    modifier: Modifier = Modifier,
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
     initialAlpha: Float = 0f,
     finalAlpha: Float = 1f,
     initialOffsetY: Dp = 16.dp,
@@ -35,7 +36,7 @@ fun AnimateOnEntry(
         val alpha = if (visible) finalAlpha else initialAlpha
         val offsetY = if (visible) finalOffsetY else initialOffsetY
         content(
-            modifier = modifier
+            modifier
                 .alpha(alpha)
                 .offset(y = offsetY)
         )
@@ -67,7 +68,7 @@ fun AnimateOnEntry(
     ) { if (it) finalOffsetY else initialOffsetY }
 
     content(
-        modifier = modifier
+        modifier
             .alpha(alpha)
             .offset(y = offsetY)
     )

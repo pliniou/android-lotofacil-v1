@@ -37,12 +37,9 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
 
     companion object {
         private const val TAG = "HistoryRemoteDataSource"
-        private const val BATCH_SIZE = 20
-        // Increased for better performance while keeping safety
         private const val MAX_CONCURRENT_REQUESTS = 5
         private const val RETRY_ATTEMPTS = 2
         private const val RETRY_DELAY_MS = 500L
-        // Reduced delay between batches for faster catch-up
         private const val INTER_BATCH_DELAY_MS = 100L
     }
 

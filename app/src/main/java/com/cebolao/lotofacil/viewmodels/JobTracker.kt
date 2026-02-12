@@ -59,25 +59,4 @@ class JobTracker {
         }
         jobs.clear()
     }
-
-    /**
-     * Returns true if there are active jobs (not completed/cancelled).
-     */
-    fun hasActiveJobs(): Boolean = synchronized(lock) {
-        jobs.any { !it.isCompleted }
-    }
-
-    /**
-     * Returns the count of tracked jobs.
-     */
-    fun getJobCount(): Int = synchronized(lock) {
-        jobs.size
-    }
-
-    /**
-     * Removes completed jobs from tracking to prevent memory leaks.
-     */
-    fun cleanupCompleted() = synchronized(lock) {
-        jobs.removeAll { it.isCompleted }
-    }
 }

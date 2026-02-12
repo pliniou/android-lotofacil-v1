@@ -44,67 +44,6 @@ import com.cebolao.lotofacil.core.utils.NumberFormatUtils
 import com.cebolao.lotofacil.ui.testtags.AppTestTags
 
 // ==================== CAMADA 1: EXIBIÇÃO (Renderização pura) ====================
-/**
- * Camada de apresentação pura — renderiza a bola numérica sem gerenciamento de estado.
- * Ideal para listas, previews e exibições simples.
- *
- * @param number O número a exibir (1-25)
- * @param containerColor Cor de fundo
- * @param contentColor Cor do texto
- * @param borderColor Cor da borda (se sem borda, usar containerColor)
- * @param size Diâmetro da bola
- * @param borderWidth Espessura da borda
- * @param shape Shape do componente
- * @param modifier Modifier para estilização adicional
- */
-@Stable
-@Composable
-fun NumberBallDisplay(
-    number: Int,
-    containerColor: Color,
-    contentColor: Color,
-    borderColor: Color,
-    modifier: Modifier = Modifier,
-    size: Dp = 48.dp,
-    borderWidth: Dp = 1.dp,
-    shape: androidx.compose.ui.graphics.Shape = MaterialTheme.shapes.medium,
-    contentDescription: String = ""
-) {
-    val tonalElevation = AppElevation.none
-    
-    Surface(
-        modifier = modifier
-            .size(size)
-            .clip(shape)
-            .border(
-                width = borderWidth,
-                color = borderColor,
-                shape = shape
-            )
-            .semantics {
-                if (contentDescription.isNotEmpty()) {
-                    this.contentDescription = contentDescription
-                }
-                role = Role.Button
-            },
-        shape = shape,
-        color = containerColor,
-        tonalElevation = tonalElevation
-    ) {
-        val formattedNumber = remember(number) { NumberFormatUtils.formatLotteryNumber(number) }
-
-        Box(contentAlignment = Alignment.Center) {
-            Text(
-                text = formattedNumber,
-                color = contentColor,
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontSize = (size.value / 2.6).sp,
-                    fontWeight = FontWeight.Bold
-                )
-            )
-        }
-    }
-}
 
 // ==================== CAMADA 2: INTERATIVO (Com transições de estado) ====================
 /**
@@ -133,7 +72,7 @@ fun NumberBallInteractive(
     onClick: (() -> Unit)? = null,
     contentDescription: String = ""
 ) {
-    val animationDuration = AppAnimationConstants.Durations.Medium.toInt()
+    val animationDuration = AppAnimationConstants.Durations.Medium
     val hapticFeedback = LocalHapticFeedback.current
     
     val animatedContainerColor by animateColorAsState(

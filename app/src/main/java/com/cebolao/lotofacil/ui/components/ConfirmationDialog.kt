@@ -19,11 +19,10 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.cebolao.lotofacil.R
-import com.cebolao.lotofacil.ui.theme.AppSpacing
-import com.cebolao.lotofacil.ui.testtags.AppTestTags
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.cebolao.lotofacil.ui.testtags.AppTestTags
+import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 @Composable
 fun ConfirmationDialog(

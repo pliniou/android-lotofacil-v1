@@ -2,12 +2,9 @@ package com.cebolao.lotofacil.viewmodels
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.CropSquare
 import androidx.compose.material.icons.outlined.FormatListNumbered
 import androidx.compose.material.icons.outlined.Functions
-import androidx.compose.material.icons.outlined.Grid4x4
 import androidx.compose.material.icons.outlined.LooksTwo
-import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material.icons.outlined.Timeline
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -23,9 +20,6 @@ import com.cebolao.lotofacil.domain.model.StatisticsReport
 enum class StatisticPattern(@StringRes val titleRes: Int, val icon: ImageVector) {
     SUM(R.string.sum_label, Icons.Outlined.Functions),
     EVENS(R.string.even_label, Icons.Outlined.LooksTwo),
-    PRIMES(R.string.prime_label, Icons.Outlined.Star),
-    FRAME(R.string.frame_label, Icons.Outlined.Grid4x4),
-    PORTRAIT(R.string.portrait_label, Icons.Outlined.CropSquare),
     FIBONACCI(R.string.fibonacci_label, Icons.Outlined.Timeline),
     MULTIPLES_OF_3(R.string.multiples_of_3_label, Icons.Outlined.FormatListNumbered)
 }

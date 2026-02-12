@@ -75,49 +75,17 @@ data class AppSizes(
 val DefaultAppSizes = AppSizes()
 
 object AppSize {
-    val numberBallTiny: Dp
-        @Composable get() = AppTheme.sizes.numberBallTiny
     val numberBallSmall: Dp
         @Composable get() = AppTheme.sizes.numberBallSmall
-    val numberBallMedium: Dp
-        @Composable get() = AppTheme.sizes.numberBallMedium
-    val numberBallLarge: Dp
-        @Composable get() = AppTheme.sizes.numberBallLarge
 
-    val chartHeightDefault: Dp
-        @Composable get() = AppTheme.sizes.chartHeightDefault
     val chartHeightSmall: Dp
         @Composable get() = AppTheme.sizes.chartHeightSmall
-    val chartHeightLarge: Dp
-        @Composable get() = AppTheme.sizes.chartHeightLarge
 
     val breakpointTablet: Dp
         @Composable get() = AppTheme.sizes.breakpointTablet
 
-    val chartLabelMinSpacingCompact: Dp
-        @Composable get() = AppTheme.sizes.chartLabelMinSpacingCompact
-    val chartLabelMinSpacingExpanded: Dp
-        @Composable get() = AppTheme.sizes.chartLabelMinSpacingExpanded
-    val chartValueLabelMinBarWidthCompact: Dp
-        @Composable get() = AppTheme.sizes.chartValueLabelMinBarWidthCompact
-    val chartValueLabelMinBarWidthExpanded: Dp
-        @Composable get() = AppTheme.sizes.chartValueLabelMinBarWidthExpanded
-
     val trendMinPointSpacingCompact: Dp
         @Composable get() = AppTheme.sizes.trendMinPointSpacingCompact
-    val trendMinPointSpacingExpanded: Dp
-        @Composable get() = AppTheme.sizes.trendMinPointSpacingExpanded
-    val trendMaxPointMarkersCompact: Int
-        @Composable get() = AppTheme.sizes.trendMaxPointMarkersCompact
-    val trendMaxPointMarkersExpanded: Int
-        @Composable get() = AppTheme.sizes.trendMaxPointMarkersExpanded
-
-    val cardCornerSmall: Dp
-        @Composable get() = AppTheme.sizes.cardCornerSmall
-    val cardCornerMedium: Dp
-        @Composable get() = AppTheme.sizes.cardCornerMedium
-    val cardCornerLarge: Dp
-        @Composable get() = AppTheme.sizes.cardCornerLarge
 
     val iconSmall: Dp
         @Composable get() = AppTheme.sizes.iconSmall
@@ -125,37 +93,13 @@ object AppSize {
         @Composable get() = AppTheme.sizes.iconSmallMedium
     val iconMedium: Dp
         @Composable get() = AppTheme.sizes.iconMedium
-    val iconMediumLarge: Dp
-        @Composable get() = AppTheme.sizes.iconMediumLarge
-    val iconLarge: Dp
-        @Composable get() = AppTheme.sizes.iconLarge
-    val iconExtraLarge: Dp
-        @Composable get() = AppTheme.sizes.iconExtraLarge
 
     val touchTargetMinimum: Dp
         @Composable get() = AppTheme.sizes.touchTargetMinimum
 
     val buttonHeightDefault: Dp
         @Composable get() = AppTheme.sizes.buttonHeightDefault
-    val buttonHeightSmall: Dp
-        @Composable get() = AppTheme.sizes.buttonHeightSmall
-    val buttonHeightLarge: Dp
-        @Composable get() = AppTheme.sizes.buttonHeightLarge
-
-    val dividerThickness: Dp
-        @Composable get() = AppTheme.sizes.dividerThickness
-    val dividerThicknessBold: Dp
-        @Composable get() = AppTheme.sizes.dividerThicknessBold
-
-    val progressIndicatorSmall: Dp
-        @Composable get() = AppTheme.sizes.progressIndicatorSmall
-    val progressIndicatorMedium: Dp
-        @Composable get() = AppTheme.sizes.progressIndicatorMedium
-    val progressIndicatorLarge: Dp
-        @Composable get() = AppTheme.sizes.progressIndicatorLarge
 
     val chipHeight: Dp
         @Composable get() = AppTheme.sizes.chipHeight
-    val badgeSize: Dp
-        @Composable get() = AppTheme.sizes.badgeSize
 }

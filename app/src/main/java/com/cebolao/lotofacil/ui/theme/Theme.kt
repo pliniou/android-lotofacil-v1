@@ -1,7 +1,6 @@
 package com.cebolao.lotofacil.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.Typography
@@ -13,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import android.os.Build
 
 // CompositionLocal para habilitar/desabilitar animações globalmente
 val LocalAnimationEnabled = androidx.compose.runtime.staticCompositionLocalOf { true }
@@ -160,7 +158,7 @@ fun CebolaoLotofacilTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+        dynamicColor -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
@@ -187,9 +185,3 @@ fun CebolaoLotofacilTheme(
         )
     }
 }
-
-/**
- * Extension property to access semantic colors from MaterialTheme.
- */
-val MaterialTheme.semanticColors: SemanticColors
-    @Composable get() = LocalSemanticColors.current

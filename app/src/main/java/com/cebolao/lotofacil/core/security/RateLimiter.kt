@@ -1,7 +1,6 @@
 package com.cebolao.lotofacil.core.security
 
 import java.io.IOException
-import java.util.concurrent.atomic.AtomicLong
 
 /**
  * Simple in-memory rate limiter for protecting against local force-brute/DDoS attacks.
@@ -14,7 +13,6 @@ class RateLimiter(
     private val windowMillis: Long
 ) {
     private val requestTimestamps = mutableListOf<Long>()
-    private val lastCleanupTime = AtomicLong(System.currentTimeMillis())
     private val lock = Any()
 
     /**
@@ -35,22 +33,6 @@ class RateLimiter(
     }
 
     /**
-     * Get current request count in window.
-     */
-    fun getCurrentRequestCount(): Int = synchronized(lock) {
-        cleanupOldRequests(System.currentTimeMillis())
-        return requestTimestamps.size
-    }
-
-    /**
-     * Get remaining requests allowed in current window.
-     */
-    fun getRemainingRequests(): Int {
-        val current = getCurrentRequestCount()
-        return maxOf(0, maxRequests - current)
-    }
-
-    /**
      * Get time until next request is allowed (in milliseconds).
      * Returns 0 if request can be made immediately.
      */
@@ -64,25 +46,12 @@ class RateLimiter(
         return maxOf(0L, timeUntilOldestExpires)
     }
 
-    /**
-     * Reset the limiter.
-     */
-    fun reset() = synchronized(lock) {
-        requestTimestamps.clear()
-        lastCleanupTime.set(System.currentTimeMillis())
-    }
-
     private fun cleanupOldRequests(now: Long) {
         val cutoff = now - windowMillis
         requestTimestamps.removeAll { it < cutoff }
     }
 
     companion object {
-        // Recommended: max 10 requests per 60 seconds (typical API rate limit)
-        fun createDefault(): RateLimiter = RateLimiter(maxRequests = 10, windowMillis = 60_000)
-
-        // Strict: max 3 requests per 10 seconds
-        fun createStrict(): RateLimiter = RateLimiter(maxRequests = 3, windowMillis = 10_000)
 
         // Lenient: max 30 requests per 60 seconds
         fun createLenient(): RateLimiter = RateLimiter(maxRequests = 30, windowMillis = 60_000)

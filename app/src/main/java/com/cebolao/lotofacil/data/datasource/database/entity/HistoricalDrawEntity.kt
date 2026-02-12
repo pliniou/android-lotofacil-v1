@@ -2,11 +2,9 @@ package com.cebolao.lotofacil.data.datasource.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.domain.model.PrizeTier
 import com.cebolao.lotofacil.domain.model.WinnerLocation
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Entity(tableName = "historical_draws")
@@ -50,46 +48,4 @@ fun HistoricalDraw.toEntity() = HistoricalDrawEntity(
 
 class Converters {
     private val json = Json { ignoreUnknownKeys = true }
-
-    @TypeConverter
-    fun fromIntSet(value: Set<Int>): String {
-        return json.encodeToString(value)
-    }
-
-    @TypeConverter
-    fun toIntSet(value: String): Set<Int> {
-        return try {
-            json.decodeFromString(value)
-        } catch (e: Exception) {
-            emptySet()
-        }
-    }
-
-    @TypeConverter
-    fun fromPrizeList(value: List<PrizeTier>): String {
-        return json.encodeToString(value)
-    }
-
-    @TypeConverter
-    fun toPrizeList(value: String): List<PrizeTier> {
-        return try {
-            json.decodeFromString(value)
-        } catch (e: Exception) {
-            emptyList()
-        }
-    }
-
-    @TypeConverter
-    fun fromWinnerLocationList(value: List<WinnerLocation>): String {
-        return json.encodeToString(value)
-    }
-
-    @TypeConverter
-    fun toWinnerLocationList(value: String): List<WinnerLocation> {
-        return try {
-            json.decodeFromString(value)
-        } catch (e: Exception) {
-            emptyList()
-        }
-    }
 }

@@ -1,6 +1,5 @@
 package com.cebolao.lotofacil.viewmodels
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.navigation.UiEvent

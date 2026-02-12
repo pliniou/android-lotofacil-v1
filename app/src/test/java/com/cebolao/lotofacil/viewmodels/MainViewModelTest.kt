@@ -58,7 +58,7 @@ class MainViewModelTest {
             
             var state = if (initialState.isLoading) awaitItem() else initialState
             
-            // If the first state wasn't the result, keep awaiting until we get a result or timeout
+            // If the first state wasn't the result, keep waiting until we get a result or timeout
              while (!state.isReady && !state.hasError) {
                 state = awaitItem()
             }

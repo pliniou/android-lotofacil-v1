@@ -1,8 +1,5 @@
 package com.cebolao.lotofacil.core.error
 
-import android.content.Context
-import com.cebolao.lotofacil.R
-
 /**
  * Converts low‑level exceptions into [AppError] instances and human‑readable
  * messages.  Centralising this logic avoids duplication in repositories and
@@ -35,16 +32,4 @@ object ErrorMapper {
         else -> "Unexpected error."
     }
 
-    /**
-     * Provide a user‑friendly message for an [AppError] using string resources.
-     * This version is used by Android UI components that have access to Context.
-     */
-    fun messageFor(error: AppError, context: Context): String = when (error) {
-        is NetworkError -> context.getString(R.string.error_network_connection)
-        is PersistenceError -> context.getString(R.string.error_persistence)
-        is ParsingError -> context.getString(R.string.error_parsing)
-        is EmptyHistoryError -> context.getString(R.string.error_history_unavailable)
-        is UnknownError -> context.getString(R.string.error_unexpected)
-        else -> context.getString(R.string.error_unexpected)
-    }
 }

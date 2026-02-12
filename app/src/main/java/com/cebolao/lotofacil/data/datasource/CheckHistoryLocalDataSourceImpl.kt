@@ -1,7 +1,6 @@
 package com.cebolao.lotofacil.data.datasource
 
 import com.cebolao.lotofacil.data.datasource.database.CheckHistoryDao
-import com.cebolao.lotofacil.data.datasource.database.entity.CheckHistoryEntity
 import com.cebolao.lotofacil.data.datasource.database.entity.toDomain
 import com.cebolao.lotofacil.data.datasource.database.entity.toEntity
 import com.cebolao.lotofacil.domain.model.CheckHistory

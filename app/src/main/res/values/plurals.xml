@@ -1,9 +1,9 @@
 <resources>
-    <plurals name="generate_games_label">
+    <plurals name="generate_games_label" translatable="false">
         <item quantity="one">Gerar %d jogo</item>
         <item quantity="other">Gerar %d jogos</item>
     </plurals>
-    <plurals name="times_count">
+    <plurals name="times_count" translatable="false">
         <item quantity="one">%d vez</item>
         <item quantity="other">%d vezes</item>
     </plurals>

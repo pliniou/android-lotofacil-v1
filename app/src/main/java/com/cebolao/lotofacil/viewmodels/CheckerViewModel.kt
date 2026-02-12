@@ -14,7 +14,6 @@ import com.cebolao.lotofacil.domain.usecase.CheckGameUseCase
 import com.cebolao.lotofacil.domain.usecase.GameCheckPhase
 import com.cebolao.lotofacil.domain.usecase.GameCheckState
 import com.cebolao.lotofacil.domain.usecase.SaveCheckUseCase
-import com.cebolao.lotofacil.navigation.Destination
 import com.cebolao.lotofacil.navigation.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.ImmutableList

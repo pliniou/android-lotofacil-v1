@@ -1,18 +1,24 @@
 package com.cebolao.lotofacil.ui.screens.filters
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -21,37 +27,13 @@ import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.FilterPreset
 import com.cebolao.lotofacil.domain.model.FilterState
 import com.cebolao.lotofacil.domain.model.FilterType
-import com.cebolao.lotofacil.ui.components.*
+import com.cebolao.lotofacil.ui.components.AnimateOnEntry
+import com.cebolao.lotofacil.ui.components.FilterCard
+import com.cebolao.lotofacil.ui.components.GenerationActionsPanel
 import com.cebolao.lotofacil.ui.model.titleRes
-import com.cebolao.lotofacil.ui.theme.*
+import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.ui.theme.AppTheme
 import com.cebolao.lotofacil.viewmodels.GenerationUiState
-
-@Composable
-fun FiltersHeader(
-    onResetFilters: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    val haptic = androidx.compose.ui.platform.LocalHapticFeedback.current
-    
-    StandardScreenHeader(
-        modifier = modifier,
-        title = stringResource(id = R.string.filters_header_title),
-        subtitle = stringResource(id = R.string.filters_header_subtitle),
-        icon = Icons.Default.FilterAlt,
-        actions = {
-            IconButton(onClick = {
-                haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                onResetFilters()
-            }) {
-                Icon(
-                    Icons.Default.RestartAlt,
-                    contentDescription = stringResource(id = R.string.reset_filters),
-                    tint = MaterialTheme.colorScheme.primary
-                )
-            }
-        }
-    )
-}
 
 @Composable
 fun PresetsPanel(

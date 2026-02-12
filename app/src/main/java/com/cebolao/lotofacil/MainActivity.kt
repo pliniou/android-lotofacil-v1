@@ -2,7 +2,6 @@ package com.cebolao.lotofacil
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnticipateInterpolator
@@ -40,30 +39,28 @@ class MainActivity : ComponentActivity() {
             mainViewModel.uiState.value.isReady.not()
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            splashScreen.setOnExitAnimationListener { splashScreenView ->
-                val slideUp = ObjectAnimator.ofFloat(
-                    splashScreenView.view,
-                    View.TRANSLATION_Y,
-                    0f,
-                    -splashScreenView.view.height.toFloat()
-                )
-                slideUp.interpolator = AnticipateInterpolator()
-                slideUp.duration = DefaultAppMotion.durationLongMs.toLong()
+        splashScreen.setOnExitAnimationListener { splashScreenView ->
+            val slideUp = ObjectAnimator.ofFloat(
+                splashScreenView.view,
+                View.TRANSLATION_Y,
+                0f,
+                -splashScreenView.view.height.toFloat()
+            )
+            slideUp.interpolator = AnticipateInterpolator()
+            slideUp.duration = DefaultAppMotion.durationLongMs.toLong()
 
-                val fadeOut = ObjectAnimator.ofFloat(
-                    splashScreenView.view,
-                    View.ALPHA,
-                    1f,
-                    0f
-                )
-                fadeOut.duration = DefaultAppMotion.durationLongMs.toLong()
+            val fadeOut = ObjectAnimator.ofFloat(
+                splashScreenView.view,
+                View.ALPHA,
+                1f,
+                0f
+            )
+            fadeOut.duration = DefaultAppMotion.durationLongMs.toLong()
 
-                AnimatorSet().apply {
-                    playTogether(slideUp, fadeOut)
-                    doOnEnd { splashScreenView.remove() }
-                    start()
-                }
+            AnimatorSet().apply {
+                playTogether(slideUp, fadeOut)
+                doOnEnd { splashScreenView.remove() }
+                start()
             }
         }
 

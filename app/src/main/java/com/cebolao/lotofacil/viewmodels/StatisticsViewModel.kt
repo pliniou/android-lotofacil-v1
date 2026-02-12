@@ -35,7 +35,7 @@ data class StatisticsUiState(
     val selectedTrendWindow: Int = 50,
 
     // Available time windows
-    val timeWindows: List<Int> = listOf(0, 50, 100, 200, 500),
+    val timeWindows: List<Int> = listOf(0, 10, 20, 50, 100, 200, 500, 1500, 2000),
 
     // Error states
     val errorMessageResId: Int? = null,

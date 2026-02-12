@@ -3,15 +3,14 @@ package com.cebolao.lotofacil.viewmodels
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.core.result.AppResult
-import com.cebolao.lotofacil.core.result.Result
 import com.cebolao.lotofacil.core.result.ErrorMessageMapper
+import com.cebolao.lotofacil.core.result.Result
 import com.cebolao.lotofacil.core.utils.AppLogger
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.ui.theme.DefaultAppMotion
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
 
 @Stable
@@ -86,29 +85,5 @@ class MainViewModel @Inject constructor(
         }
         // Return success immediately to allow app initialization
         return Result.Success(Unit)
-    }
-
-    fun retryInitialization() {
-        initializeApp()
-    }
-
-    fun onBiometricAuthSuccess() {
-        updateState { it.copy(needsBiometricAuth = false) }
-    }
-
-    fun onBiometricAuthFailed() {
-        // Handle auth failure - could show error or retry
-    }
-
-    fun onBiometricAuthSkipped() {
-        updateState { it.copy(needsBiometricAuth = false) }
-    }
-
-    fun onPermissionGranted() {
-        updateState { it.copy(needsPermissionRequest = false) }
-    }
-
-    fun onPermissionDenied() {
-        updateState { it.copy(needsPermissionRequest = false) }
     }
 }

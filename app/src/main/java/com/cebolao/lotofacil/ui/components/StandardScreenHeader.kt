@@ -36,7 +36,7 @@ import com.cebolao.lotofacil.ui.theme.AppSpacing
  * @param subtitle Subtítulo opcional exibido abaixo do título
  * @param icon Ícone opcional exibido na navegação (quando sem botão voltar)
  * @param iconPainter Painter alternativo para o ícone de navegação
- * @param onBackClick Callback do botão voltar (quando não-nulo, exibe seta de retorno)
+ * @param onBackClick Callback do botão voltar (quando não nulo, exibe seta de retorno)
  * @param actions Ações da barra de ferramentas
  * @param scrollBehavior Comportamento de rolagem para uso com nestedScroll
  */

@@ -2,7 +2,6 @@ package com.cebolao.lotofacil.core.result
 
 import androidx.compose.runtime.Immutable
 import com.cebolao.lotofacil.core.error.AppError
-import kotlin.UnsafeVariance
 
 /**
  * Unified Result type for the entire application.
@@ -43,24 +42,7 @@ sealed class Result<out T> {
         is Success -> data
         else -> null
     }
-    
-    /**
-     * Returns the success data or the provided default value.
-     */
-    fun getOrDefault(default: @UnsafeVariance T): T = when (this) {
-        is Success -> data
-        else -> default
-    }
-    
-    /**
-     * Returns the success data or throws the exception if this is an error.
-     */
-    fun getOrThrow(): T = when (this) {
-        is Success -> data
-        is Error -> throw exception
-        is Loading -> throw IllegalStateException("Result is still loading")
-    }
-    
+
     /**
      * Checks if this result is a success.
      */
@@ -87,16 +69,7 @@ sealed class Result<out T> {
         is Error -> this
         is Loading -> Loading
     }
-    
-    /**
-     * Maps the error to another error type.
-     */
-    inline fun mapError(transform: (Throwable) -> Throwable): Result<T> = when (this) {
-        is Success -> this
-        is Error -> Error(transform(exception), message, appError)
-        is Loading -> Loading
-    }
-    
+
     /**
      * Performs an action if this is a success.
      */
@@ -112,15 +85,7 @@ sealed class Result<out T> {
         if (this is Error) action(exception)
         return this
     }
-    
-    /**
-     * Performs an action if this is loading.
-     */
-    inline fun onLoading(action: () -> Unit): Result<T> {
-        if (this is Loading) action()
-        return this
-    }
-    
+
     companion object {
         
         /**
@@ -152,47 +117,5 @@ sealed class Result<out T> {
                 Error(e)
             }
         }
-    }
-}
-
-// Extension functions for convenient conversion
-
-/**
- * Converts any value to a success result.
- */
-fun <T> T.toResult(): Result<T> = Result.success(this)
-
-/**
- * Converts a throwable to an error result.
- */
-fun <T> Throwable.toErrorResult(): Result<T> = Result.error(this)
-
-/**
- * Converts a nullable value to a result, treating null as error.
- */
-fun <T> T?.toResultOrError(error: Throwable = IllegalStateException("Value is null")): Result<T> {
-    return this?.let { Result.success(it) } ?: Result.error(error)
-}
-
-// Kotlin Result interop
-
-/**
- * Converts Kotlin's Result to our Result.
- */
-fun <T> kotlin.Result<T>.toAppResult(): Result<T> {
-    return fold(
-        onSuccess = { Result.success(it) },
-        onFailure = { Result.error(it) }
-    )
-}
-
-/**
- * Converts our Result to Kotlin's Result.
- */
-fun <T> Result<T>.toKotlinResult(): kotlin.Result<T> {
-    return when (this) {
-        is Result.Success -> kotlin.Result.success(data)
-        is Result.Error -> kotlin.Result.failure(exception)
-        is Result.Loading -> kotlin.Result.failure(IllegalStateException("Result is loading"))
     }
 }

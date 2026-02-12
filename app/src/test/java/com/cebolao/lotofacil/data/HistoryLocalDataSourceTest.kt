@@ -1,8 +1,10 @@
-package com.cebolao.lotofacil.data.datasource
+package com.cebolao.lotofacil.data
 
 import android.content.Context
 import com.cebolao.lotofacil.core.coroutine.TestDispatchersProvider
 import com.cebolao.lotofacil.core.utils.TestAppLogger
+import com.cebolao.lotofacil.data.datasource.HistoryLocalDataSource
+import com.cebolao.lotofacil.data.datasource.HistoryLocalDataSourceImpl
 import com.cebolao.lotofacil.data.datasource.database.HistoryDao
 import com.cebolao.lotofacil.data.datasource.database.entity.HistoricalDrawEntity
 import com.cebolao.lotofacil.data.parser.HistoryParser

@@ -83,11 +83,6 @@ data class CacheStatistics(
     val cacheHits: Long = 0,
     val cacheMisses: Long = 0,
     val lastUpdated: Long = 0L
-) {
-    val hitRate: Float
-        get() = if (cacheHits + cacheMisses > 0) {
-            cacheHits.toFloat() / (cacheHits + cacheMisses).toFloat()
-        } else 0f
-}
+)
 
 const val DEFAULT_TTL_MS = 5 * 60 * 1000L // 5 minutes

@@ -1,7 +1,8 @@
-package com.cebolao.lotofacil.domain.usecase
+package com.cebolao.lotofacil.domain
 
 import com.cebolao.lotofacil.core.testing.FakeGameRepository
 import com.cebolao.lotofacil.domain.model.LotofacilGame
+import com.cebolao.lotofacil.domain.usecase.GetSavedGamesUseCase
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals

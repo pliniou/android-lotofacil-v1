@@ -132,7 +132,7 @@ fun AppCard(
 /**
  * Variantes de apresentação do Card.
  *
- * - Static: Card não-interativo com elevação
+ * - Static: Card não interativo com elevação
  * - Clickable: Card interativo com animação de escala ao pressionar
  * - Surfaced: Card de baixa elevação para aparência de superfície
  */

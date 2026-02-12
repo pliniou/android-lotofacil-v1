@@ -1,6 +1,5 @@
 package com.cebolao.lotofacil.viewmodels
 
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.R
@@ -22,7 +21,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
@@ -53,7 +51,7 @@ sealed interface GameAnalysisUiState {
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
-    private val getSavedGamesUseCase: GetSavedGamesUseCase,
+    getSavedGamesUseCase: GetSavedGamesUseCase,
     private val checkGameUseCase: CheckGameUseCase,
     private val clearUnpinnedGamesUseCase: ClearUnpinnedGamesUseCase,
     private val toggleGamePinUseCase: ToggleGamePinUseCase,

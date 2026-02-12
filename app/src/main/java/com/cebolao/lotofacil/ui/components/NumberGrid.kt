@@ -45,7 +45,7 @@ fun NumberGrid(
     items: List<NumberBallItem>,
     modifier: Modifier = Modifier,
     columns: Int = 5,
-    ballSize: androidx.compose.ui.unit.Dp? = null,
+    ballSize: Dp? = null,
     onNumberClicked: ((Int) -> Unit)? = null
 ) {
     val configuration = LocalConfiguration.current

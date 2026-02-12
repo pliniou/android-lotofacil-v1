@@ -58,16 +58,6 @@ class InsightsViewModel @Inject constructor(
         }
     }
 
-    fun onPatternSizeSelected(size: Int) {
-        if (uiState.value.selectedPatternSize == size) return
-        updateState { it.copy(selectedPatternSize = size) }
-        loadPatternAnalysis(size)
-    }
-
-    fun refreshPatternAnalysis() {
-        loadPatternAnalysis(uiState.value.selectedPatternSize)
-    }
-
     private fun loadPatternAnalysis(size: Int) {
         viewModelScope.launch {
             updateState { it.copy(isPatternLoading = true, patternErrorMessageResId = null) }
@@ -85,22 +75,6 @@ class InsightsViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    fun onTrendTypeSelected(type: TrendType) {
-        if (uiState.value.selectedTrendType == type) return
-        updateState { it.copy(selectedTrendType = type) }
-        loadTrendAnalysis(type, uiState.value.selectedTrendWindow)
-    }
-
-    fun onTrendWindowSelected(window: Int) {
-        if (uiState.value.selectedTrendWindow == window) return
-        updateState { it.copy(selectedTrendWindow = window) }
-        loadTrendAnalysis(uiState.value.selectedTrendType, window)
-    }
-
-    fun refreshTrendAnalysis() {
-        loadTrendAnalysis(uiState.value.selectedTrendType, uiState.value.selectedTrendWindow)
     }
 
     private fun loadTrendAnalysis(type: TrendType, windowSize: Int) {

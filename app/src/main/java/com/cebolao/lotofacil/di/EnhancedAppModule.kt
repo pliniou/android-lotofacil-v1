@@ -9,7 +9,6 @@ import com.cebolao.lotofacil.core.utils.AppLogger
 import com.cebolao.lotofacil.core.utils.AndroidAppLogger
 import com.cebolao.lotofacil.core.utils.TimeProvider
 import com.cebolao.lotofacil.core.utils.SystemTimeProvider
-import com.cebolao.lotofacil.data.repository.EnhancedHistoryRepository
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import dagger.Module
 import dagger.Provides

@@ -1,9 +1,6 @@
-@file:Suppress("RedundantSuspendModifier")
-
 package com.cebolao.lotofacil.core.utils
 
 import kotlinx.coroutines.delay
-import kotlin.math.pow
 
 /**
  * Executa uma operação com retry exponencial.
@@ -33,35 +30,6 @@ suspend fun <T> retryExponentialBackoff(
             if (attempt < maxRetries) {
                 delay(currentDelayMs)
                 currentDelayMs = (currentDelayMs * multiplier).toLong().coerceAtMost(maxDelayMs)
-            }
-        }
-    }
-
-    throw lastException ?: RuntimeException("Max retries exceeded")
-}
-
-/**
- * Executa uma operação com retry linear.
- *
- * @param maxRetries Número máximo de tentativas
- * @param delayMs Delay entre tentativas em milissegundos
- * @param block Operação a executar
- * @return Resultado da operação
- */
-suspend fun <T> retryLinear(
-    maxRetries: Int = 3,
-    delayMs: Long = 100,
-    block: suspend () -> T
-): T {
-    var lastException: Exception? = null
-
-    for (attempt in 0..maxRetries) {
-        try {
-            return block()
-        } catch (e: Exception) {
-            lastException = e
-            if (attempt < maxRetries) {
-                delay(delayMs)
             }
         }
     }

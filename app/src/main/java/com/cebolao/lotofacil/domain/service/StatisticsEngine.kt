@@ -13,11 +13,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Single source of truth for all statistics computation in the domain layer.
- *
- * Consolidates logic previously scattered across [StatisticsAnalyzer],
- * [GameInsightsAnalyzer], and [GameStatsAnalyzer] into one cohesive engine.
- *
  * This class receives raw lottery data ([HistoricalDraw] or [LotofacilGame])
  * and returns computed statistics models. It has **no coupling** to UI,
  * database, or repository layers.

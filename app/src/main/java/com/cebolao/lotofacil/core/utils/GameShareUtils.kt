@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.cebolao.lotofacil.core.utils
 
 import com.cebolao.lotofacil.domain.model.LotofacilGame
@@ -28,8 +30,7 @@ object GameShareUtils {
         }.joinToString("\n")
 
         return buildString {
-            appendLine("🍀 *LOTOFÁCIL — JOGO GERADO* 🍀")
-            appendLine("━━━━━━━━━━━━━━━━━━━━")
+            appendLine("🍀 *Cebolão Lotofácil Generator* 🍀")
             appendLine()
             appendLine("🎱 *Números:*")
             appendLine("```")
@@ -45,12 +46,8 @@ object GameShareUtils {
             appendLine("• Múltiplos de 3: *${game.multiplesOf3}*")
             appendLine()
             appendLine("📅 Gerado em: $createdAt")
-            if (game.isPinned) {
-                appendLine("📌 Jogo fixado")
-            }
             appendLine()
-            appendLine("━━━━━━━━━━━━━━━━━━━━")
-            append("_Gerado pelo CebolãoGenerator_ 🧅")
+            append("_Cebola Studios_ 🧅")
         }
     }
 }

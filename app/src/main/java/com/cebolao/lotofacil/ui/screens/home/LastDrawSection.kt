@@ -44,26 +44,25 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cebolao.lotofacil.R
+import com.cebolao.lotofacil.core.utils.NumberFormatUtils
 import com.cebolao.lotofacil.domain.model.LastDrawStats
 import com.cebolao.lotofacil.domain.model.PrizeTier
 import com.cebolao.lotofacil.domain.model.WinnerLocation
 import com.cebolao.lotofacil.ui.components.NumberBall
 import com.cebolao.lotofacil.ui.theme.AppElevation
-import com.cebolao.lotofacil.ui.theme.AppTheme
-import com.cebolao.lotofacil.ui.theme.AppSpacing
-import com.cebolao.lotofacil.ui.theme.AppAlpha
 import com.cebolao.lotofacil.ui.theme.AppSize
-import com.cebolao.lotofacil.ui.theme.iconSmall
-import com.cebolao.lotofacil.core.utils.NumberFormatUtils
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.role
-import androidx.compose.ui.semantics.Role
+import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.ui.theme.AppTheme
+
 @Composable
 fun LastDrawSection(stats: LastDrawStats) {
 

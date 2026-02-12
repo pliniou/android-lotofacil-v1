@@ -26,6 +26,7 @@ Uma solução da Cebola Studios para gerar jogos da Lotofácil com base em estat
 
 ## 📸 Screenshots
 
+<!--suppress ALL -->
 <table>
   <tr>
     <td><img src="screenshots/tela1.png" alt="Tela Inicial" width="216"/></td>

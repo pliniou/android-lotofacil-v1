@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.AppRegistration
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.CheckCircle
@@ -28,10 +29,8 @@ import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppTheme
 import com.cebolao.lotofacil.ui.theme.iconMedium
-import com.cebolao.lotofacil.viewmodels.DataLoadSource
-import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.Sync
 import com.cebolao.lotofacil.ui.theme.iconSmall
+import com.cebolao.lotofacil.viewmodels.DataLoadSource
 
 @Composable
 fun WelcomeBanner(

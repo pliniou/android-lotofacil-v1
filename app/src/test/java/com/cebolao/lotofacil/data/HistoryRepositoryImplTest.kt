@@ -1,21 +1,27 @@
-package com.cebolao.lotofacil.data.repository
+@file:Suppress("UNCHECKED_CAST")
+
+package com.cebolao.lotofacil.data
 
 import com.cebolao.lotofacil.core.error.UnknownError
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.core.utils.TestAppLogger
 import com.cebolao.lotofacil.data.datasource.HistoryLocalDataSource
 import com.cebolao.lotofacil.data.datasource.HistoryRemoteDataSource
+import com.cebolao.lotofacil.data.repository.HistoryRepositoryImpl
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.domain.repository.SyncStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.mockito.kotlin.any
+import org.mockito.kotlin.eq
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
@@ -54,7 +60,12 @@ class HistoryRepositoryImplTest {
         whenever(localDataSource.populateIfNeeded()).thenReturn(Unit)
         whenever(localDataSource.getHistory()).thenReturn(flowOf(draws))
 
-        val repository = HistoryRepositoryImpl(localDataSource, remoteDataSource, applicationScope, TestAppLogger())
+        val repository = HistoryRepositoryImpl(
+            localDataSource,
+            remoteDataSource,
+            applicationScope,
+            TestAppLogger()
+        )
 
         val result = repository.getHistory().first()
 
@@ -68,7 +79,12 @@ class HistoryRepositoryImplTest {
         whenever(localDataSource.populateIfNeeded()).thenReturn(Unit)
         whenever(localDataSource.getLatestDraw()).thenReturn(latest)
 
-        val repository = HistoryRepositoryImpl(localDataSource, remoteDataSource, applicationScope, TestAppLogger())
+        val repository = HistoryRepositoryImpl(
+            localDataSource,
+            remoteDataSource,
+            applicationScope,
+            TestAppLogger()
+        )
 
         val result = repository.getLastDraw()
 
@@ -91,18 +107,23 @@ class HistoryRepositoryImplTest {
         
         // Match the range and any progress callback
         whenever(remoteDataSource.getDrawsInRange(
-            org.mockito.kotlin.eq(3001..3002), 
-            org.mockito.kotlin.any(),
-            org.mockito.kotlin.any()
+            eq(3001..3002),
+            any(),
+            any()
         )).thenAnswer { invocation ->
             val callback = invocation.arguments[2] as suspend (List<HistoricalDraw>) -> Unit
-            kotlinx.coroutines.runBlocking {
+            runBlocking {
                callback(newDraws)
             }
             newDraws
         }
 
-        val repository = HistoryRepositoryImpl(localDataSource, remoteDataSource, applicationScope, TestAppLogger())
+        val repository = HistoryRepositoryImpl(
+            localDataSource,
+            remoteDataSource,
+            applicationScope,
+            TestAppLogger()
+        )
 
         val result = repository.syncHistory()
 
@@ -116,7 +137,12 @@ class HistoryRepositoryImplTest {
         whenever(localDataSource.populateIfNeeded()).thenReturn(Unit)
         whenever(remoteDataSource.getLatestDraw()).thenThrow(RuntimeException("network down"))
 
-        val repository = HistoryRepositoryImpl(localDataSource, remoteDataSource, applicationScope, TestAppLogger())
+        val repository = HistoryRepositoryImpl(
+            localDataSource,
+            remoteDataSource,
+            applicationScope,
+            TestAppLogger()
+        )
 
         val result = repository.syncHistory()
 
