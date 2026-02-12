@@ -84,6 +84,9 @@
     <string name="home_source_status_format">%1$s | %2$s</string>
     <string name="home_stale_data_warning">You are viewing local data (offline).</string>
     <string name="loading_data">Loading data…</string>
+    <string name="home_loading_message">Preparing Lotofacil data...</string>
+    <string name="home_empty_message">No local draws were found yet. Tap Refresh to try again.</string>
+    <string name="home_last_draw_unavailable">The latest draw is not available yet.</string>
     <string name="today_draw_day">Draw today! Contest #%1$d</string>
     <string name="next_draw_info">Next: #%1$d on %2$s</string>
     <string name="last_draw_info">Last draw: %1$s</string>
@@ -115,6 +118,7 @@
 
     <!-- Frequency Analysis -->
     <string name="insights_title">Advanced statistics</string>
+    <string name="insights_empty_message">There is not enough data yet to display insights.</string>
     <string name="frequency_analysis_title">Number frequency</string>
     <string name="frequency_chart_subtitle">See how many times each number was drawn in the analyzed contests.</string>
     <string name="top_numbers_title">Most frequent</string>

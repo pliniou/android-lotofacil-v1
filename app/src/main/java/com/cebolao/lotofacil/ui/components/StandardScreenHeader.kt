@@ -1,5 +1,6 @@
 package com.cebolao.lotofacil.ui.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,35 +12,25 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.ui.theme.iconButtonSize
+import com.cebolao.lotofacil.ui.theme.iconMedium
 
-/**
- * Cabeçalho padrão de tela usando MediumTopAppBar do Material 3.
- *
- * Colapsa suavemente ao rolar, mostrando o título grande no estado expandido
- * e título compacto no estado colapsado.
- *
- * @param title Título principal da tela
- * @param subtitle Subtítulo opcional exibido abaixo do título
- * @param icon Ícone opcional exibido na navegação (quando sem botão voltar)
- * @param iconPainter Painter alternativo para o ícone de navegação
- * @param onBackClick Callback do botão voltar (quando não nulo, exibe seta de retorno)
- * @param actions Ações da barra de ferramentas
- * @param scrollBehavior Comportamento de rolagem para uso com nestedScroll
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StandardScreenHeader(
@@ -53,23 +44,40 @@ fun StandardScreenHeader(
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
     val colors = MaterialTheme.colorScheme
+    val isCompactWidth = LocalConfiguration.current.screenWidthDp < 360
+    val titleStyle = if (isCompactWidth) {
+        MaterialTheme.typography.titleMedium
+    } else {
+        MaterialTheme.typography.titleLarge
+    }
+    val subtitleStyle = if (isCompactWidth) {
+        MaterialTheme.typography.bodySmall
+    } else {
+        MaterialTheme.typography.bodyMedium
+    }
 
     Column(modifier = modifier.fillMaxWidth()) {
-        MediumTopAppBar(
+        TopAppBar(
             title = {
-                Column {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(end = AppSpacing.sm),
+                    verticalArrangement = Arrangement.spacedBy(2.dp)
+                ) {
                     Text(
                         text = title,
                         modifier = Modifier.semantics { heading() },
+                        style = titleStyle,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                     subtitle?.let {
                         Text(
                             text = it,
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = subtitleStyle,
                             color = colors.onSurfaceVariant,
-                            maxLines = 2,
+                            maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
                     }
@@ -86,19 +94,20 @@ fun StandardScreenHeader(
                             )
                         }
                     }
+
                     icon != null || iconPainter != null -> {
                         IconBadge(
                             icon = icon,
                             painter = iconPainter,
                             contentDescription = null,
-                            size = com.cebolao.lotofacil.ui.theme.iconButtonSize(),
-                            iconSize = com.cebolao.lotofacil.ui.theme.iconMedium()
+                            size = iconButtonSize(),
+                            iconSize = iconMedium()
                         )
                     }
                 }
             },
             actions = { actions?.invoke(this) },
-            colors = TopAppBarDefaults.mediumTopAppBarColors(
+            colors = TopAppBarDefaults.topAppBarColors(
                 containerColor = colors.surface,
                 scrolledContainerColor = colors.surfaceContainer,
                 titleContentColor = colors.onSurface,
@@ -109,7 +118,7 @@ fun StandardScreenHeader(
         )
 
         HorizontalDivider(
-            modifier = Modifier.padding(horizontal = AppSpacing.lg),
+            modifier = Modifier.padding(horizontal = AppSpacing.md),
             color = colors.outlineVariant
         )
     }

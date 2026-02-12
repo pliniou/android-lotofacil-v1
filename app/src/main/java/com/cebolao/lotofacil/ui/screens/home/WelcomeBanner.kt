@@ -42,7 +42,6 @@ fun WelcomeBanner(
     historySource: DataLoadSource = DataLoadSource.CACHE,
     statisticsSource: DataLoadSource = DataLoadSource.CACHE,
     isShowingStaleData: Boolean = false,
-    isRefreshing: Boolean = false,
     onExploreFilters: () -> Unit = {},
     onOpenChecker: () -> Unit = {}
 ) {
@@ -92,42 +91,22 @@ fun WelcomeBanner(
                     isTodayDrawDay = isTodayDrawDay
                 )
 
-                // Indicador de sincronização ou data da última atualização
-                if (isRefreshing) {
+                lastUpdateTime?.let { time ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+                        horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)
                     ) {
-                        androidx.compose.material3.CircularProgressIndicator(
-                            modifier = Modifier.size(iconSmall()),
-                            strokeWidth = 2.dp,
-                            color = colors.primary
+                        Icon(
+                            imageVector = Icons.Default.AccessTime,
+                            contentDescription = null,
+                            tint = colors.outline,
+                            modifier = Modifier.size(iconSmall())
                         )
                         Text(
-                            text = stringResource(id = R.string.syncing_data),
-                            style = MaterialTheme.typography.labelMedium,
-                            color = colors.primary,
-                            fontWeight = FontWeight.SemiBold
+                            text = stringResource(id = R.string.last_update_status, time),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = colors.outline
                         )
-                    }
-                } else {
-                    lastUpdateTime?.let { time ->
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.AccessTime,
-                                contentDescription = null,
-                                tint = colors.outline,
-                                modifier = Modifier.size(iconSmall())
-                            )
-                            Text(
-                                text = stringResource(id = R.string.last_update_status, time),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = colors.outline
-                            )
-                        }
                     }
                 }
 
@@ -222,6 +201,7 @@ private fun DrawScheduleInfo(
                     fontWeight = FontWeight.Bold
                 )
             }
+
             nextDrawDate != null && nextDrawContest != null -> {
                 Text(
                     text = stringResource(id = R.string.next_draw_info, nextDrawContest, nextDrawDate),
@@ -229,6 +209,7 @@ private fun DrawScheduleInfo(
                     color = colors.primary
                 )
             }
+
             else -> {
                 Text(
                     text = stringResource(id = R.string.last_draw_info, todayDate),

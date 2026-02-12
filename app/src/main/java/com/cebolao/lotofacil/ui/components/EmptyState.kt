@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +28,9 @@ fun EmptyState(
     message: String,
     modifier: Modifier = Modifier,
     icon: ImageVector? = null,
-    iconSize: androidx.compose.ui.unit.Dp = 64.dp
+    iconSize: androidx.compose.ui.unit.Dp = 64.dp,
+    actionLabel: String? = null,
+    onAction: (() -> Unit)? = null
 ) {
     val colors = MaterialTheme.colorScheme
     Box(
@@ -73,6 +76,12 @@ fun EmptyState(
                     textAlign = TextAlign.Center,
                     color = colors.onSurface
                 )
+
+                if (!actionLabel.isNullOrBlank() && onAction != null) {
+                    Button(onClick = onAction) {
+                        Text(text = actionLabel)
+                    }
+                }
             }
         }
     }
@@ -83,12 +92,16 @@ fun EmptyState(
     messageResId: Int,
     modifier: Modifier = Modifier,
     icon: ImageVector? = null,
-    iconSize: androidx.compose.ui.unit.Dp = 64.dp
+    iconSize: androidx.compose.ui.unit.Dp = 64.dp,
+    actionLabelResId: Int? = null,
+    onAction: (() -> Unit)? = null
 ) {
     EmptyState(
         message = stringResource(id = messageResId),
         modifier = modifier,
         icon = icon,
-        iconSize = iconSize
+        iconSize = iconSize,
+        actionLabel = actionLabelResId?.let { stringResource(id = it) },
+        onAction = onAction
     )
 }

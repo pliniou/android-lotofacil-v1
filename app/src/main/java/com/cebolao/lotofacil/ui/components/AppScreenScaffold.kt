@@ -2,19 +2,18 @@ package com.cebolao.lotofacil.ui.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.Dp
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
@@ -45,13 +44,19 @@ fun AppScreenScaffold(
     onBackClick: (() -> Unit)? = null,
     actions: (@Composable androidx.compose.foundation.layout.RowScope.() -> Unit)? = null,
     snackbarHostState: SnackbarHostState? = null,
-    scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(),
+    scrollBehavior: TopAppBarScrollBehavior? = null,
     content: @Composable (PaddingValues) -> Unit
 ) {
-    Scaffold(
-        modifier = modifier
+    val scaffoldModifier = if (scrollBehavior != null) {
+        modifier
             .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection),
+            .nestedScroll(scrollBehavior.nestedScrollConnection)
+    } else {
+        modifier.fillMaxSize()
+    }
+
+    Scaffold(
+        modifier = scaffoldModifier,
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             StandardScreenHeader(

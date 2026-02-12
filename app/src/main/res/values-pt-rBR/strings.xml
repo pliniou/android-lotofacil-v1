@@ -92,6 +92,9 @@
     <string name="home_source_status_format">%1$s | %2$s</string>
     <string name="home_stale_data_warning">Você está vendo dados locais (offline).</string>
     <string name="loading_data">Carregando dados…</string>
+    <string name="home_loading_message">Preparando dados da Lotofacil...</string>
+    <string name="home_empty_message">Ainda nao encontramos concursos locais. Toque em Atualizar para tentar novamente.</string>
+    <string name="home_last_draw_unavailable">O ultimo concurso ainda nao esta disponivel.</string>
     <string name="today_draw_day">Hoje tem sorteio! Concurso #%1$d</string>
     <string name="next_draw_info">Próximo: #%1$d em %2$s</string>
     <string name="last_draw_info">Último sorteio: %1$s</string>
@@ -123,6 +126,7 @@
 
     <!-- Frequency Analysis -->
     <string name="insights_title">Estatísticas avançadas</string>
+    <string name="insights_empty_message">Ainda nao ha dados suficientes para mostrar as estatisticas.</string>
     <string name="frequency_analysis_title">Frequência dos números</string>
     <string name="frequency_chart_subtitle">Veja quantas vezes cada número saiu nos concursos analisados.</string>
     <string name="top_numbers_title">Mais frequentes</string>

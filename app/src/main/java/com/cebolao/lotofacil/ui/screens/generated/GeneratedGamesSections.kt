@@ -4,13 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ListAlt
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,7 +15,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.LotofacilGame
 import com.cebolao.lotofacil.ui.components.AnimateOnEntry
@@ -27,13 +22,11 @@ import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.components.CheckResultCard
 import com.cebolao.lotofacil.ui.components.ConfirmationDialog
-import com.cebolao.lotofacil.ui.components.EmptyState
 import com.cebolao.lotofacil.ui.components.GameStatsList
 import com.cebolao.lotofacil.ui.components.InfoDialog
 import com.cebolao.lotofacil.ui.components.LoadingDialog
 import com.cebolao.lotofacil.ui.components.RecentHitsChartContent
 import com.cebolao.lotofacil.ui.components.cards.GameCard
-import com.cebolao.lotofacil.ui.components.shimmer
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppTheme
 import com.cebolao.lotofacil.viewmodels.GameAnalysisResult
@@ -128,41 +121,27 @@ internal fun GeneratedGamesOverviewCard(
 }
 
 internal fun LazyListScope.generatedGamesListContent(
-    state: GameUiState,
     games: List<LotofacilGame>,
     onAction: (GeneratedGamesAction) -> Unit
 ) {
-    if (state.isLoading) {
-        items(5, contentType = { "game_card_skeleton" }) {
-            GameCardSkeleton()
+    itemsIndexed(
+        games,
+        key = { _, game -> game.id },
+        contentType = { _, _ -> "game_card" }
+    ) { index, game ->
+        val motion = AppTheme.motion
+        val animationDelay = remember(index, motion.delayStaggerMs, motion.maxStaggerDelayMs) {
+            (index.toLong() * motion.delayStaggerMs)
+                .coerceAtMost(motion.maxStaggerDelayMs)
         }
-    } else if (games.isEmpty()) {
-        item(contentType = "empty_state") {
-            EmptyState(
-                messageResId = R.string.empty_games_message,
-                icon = Icons.AutoMirrored.Filled.ListAlt
+        AnimateOnEntry(delayMillis = animationDelay) {
+            GameCard(
+                game = game,
+                onAnalyzeClick = { onAction(GeneratedGamesAction.AnalyzeGame(game)) },
+                onShareClick = { onAction(GeneratedGamesAction.ShareGame(game)) },
+                onPinClick = { onAction(GeneratedGamesAction.TogglePinState(game)) },
+                onDeleteClick = { onAction(GeneratedGamesAction.DeleteGameRequested(game)) }
             )
-        }
-    } else {
-        itemsIndexed(
-            games,
-            key = { _, game -> game.id },
-            contentType = { _, _ -> "game_card" }
-        ) { index, game ->
-            val motion = AppTheme.motion
-            val animationDelay = remember(index, motion.delayStaggerMs, motion.maxStaggerDelayMs) {
-                (index.toLong() * motion.delayStaggerMs)
-                    .coerceAtMost(motion.maxStaggerDelayMs)
-            }
-            AnimateOnEntry(delayMillis = animationDelay) {
-                GameCard(
-                    game = game,
-                    onAnalyzeClick = { onAction(GeneratedGamesAction.AnalyzeGame(game)) },
-                    onShareClick = { onAction(GeneratedGamesAction.ShareGame(game)) },
-                    onPinClick = { onAction(GeneratedGamesAction.TogglePinState(game)) },
-                    onDeleteClick = { onAction(GeneratedGamesAction.DeleteGameRequested(game)) }
-                )
-            }
         }
     }
 }
@@ -227,18 +206,5 @@ private fun GameAnalysisDialog(
         HorizontalDivider(modifier = Modifier.padding(vertical = AppSpacing.xs))
         GameStatsList(stats = result.simpleStats)
 
-    }
-}
-
-@Composable
-private fun GameCardSkeleton() {
-    AppCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(120.dp)
-            .shimmer(),
-        backgroundColor = MaterialTheme.colorScheme.surface
-    ) {
-        // Shimmering placeholder card
     }
 }

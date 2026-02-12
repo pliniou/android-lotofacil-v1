@@ -1,8 +1,5 @@
 package com.cebolao.lotofacil.ui.screens.statistics.components
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -17,7 +14,6 @@ import androidx.compose.material.icons.outlined.Pattern
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.PatternAnalysis
 import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.SectionFeedbackState
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -68,22 +65,10 @@ fun PatternSection(
 
     Spacer(modifier = Modifier.height(AppSpacing.sm))
 
-    AnimatedVisibility(visible = isLoading, enter = fadeIn(), exit = fadeOut()) {
-        LinearProgressIndicator(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = AppSpacing.sm)
-        )
-    }
-
-    if (errorResId != null) {
-        Text(
-            stringResource(errorResId),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.error,
-            modifier = Modifier.padding(AppSpacing.sm)
-        )
-    }
+    SectionFeedbackState(
+        isLoading = isLoading,
+        errorResId = errorResId
+    )
 
     analysis?.let { patternData ->
         AppCard {

@@ -28,6 +28,8 @@ import com.cebolao.lotofacil.domain.model.LotofacilGame
 import com.cebolao.lotofacil.navigation.UiEvent
 import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
+import com.cebolao.lotofacil.ui.components.AppScreenStateHost
+import com.cebolao.lotofacil.ui.components.ScreenContentState
 import com.cebolao.lotofacil.ui.components.screenContentPadding
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.viewmodels.GameUiState
@@ -123,6 +125,19 @@ fun GeneratedGamesScreenContent(
     val pinnedGamesCount by remember(games) {
         derivedStateOf { games.count { it.isPinned } }
     }
+    val pageState by remember(state.isLoading, isGamesEmpty) {
+        derivedStateOf {
+            when {
+                state.isLoading -> ScreenContentState.Loading()
+                isGamesEmpty -> ScreenContentState.Empty(
+                    messageResId = R.string.empty_games_message,
+                    icon = Icons.AutoMirrored.Filled.ListAlt
+                )
+
+                else -> ScreenContentState.Success
+            }
+        }
+    }
 
     GeneratedGamesDialogs(
         state = state,
@@ -147,14 +162,17 @@ fun GeneratedGamesScreenContent(
             }
         }
     ) { innerPadding ->
-        LazyColumn(
+        AppScreenStateHost(
+            state = pageState,
             modifier = Modifier
                 .fillMaxSize()
-                .screenContentPadding(innerPadding),
-            contentPadding = AppScreenDefaults.listContentPadding(),
-            verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
+                .screenContentPadding(innerPadding)
         ) {
-            if (!state.isLoading && !isGamesEmpty) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = AppScreenDefaults.listContentPadding(),
+                verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
+            ) {
                 item(key = "games_overview", contentType = "games_overview") {
                     GeneratedGamesOverviewCard(
                         totalGames = games.size,
@@ -162,13 +180,12 @@ fun GeneratedGamesScreenContent(
                         modifier = Modifier.padding(bottom = AppSpacing.xs)
                     )
                 }
-            }
 
-            generatedGamesListContent(
-                state = state,
-                games = games,
-                onAction = onAction
-            )
+                generatedGamesListContent(
+                    games = games,
+                    onAction = onAction
+                )
+            }
         }
     }
 }

@@ -26,15 +26,42 @@ import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.iconSmall
 
+internal sealed interface SyncFeedbackState {
+    data class Progress(
+        val current: Int,
+        val total: Int,
+        val isInitialSync: Boolean
+    ) : SyncFeedbackState
+
+    data object Refreshing : SyncFeedbackState
+}
+
 @Composable
 internal fun SyncProgressBanner(
-    current: Int,
-    total: Int,
-    isInitialSync: Boolean
+    feedbackState: SyncFeedbackState
 ) {
     val colors = MaterialTheme.colorScheme
-    val safeTotal = total.coerceAtLeast(1)
-    val progressValue = (current.toFloat() / safeTotal).coerceIn(0f, 1f)
+
+    val titleText = when (feedbackState) {
+        is SyncFeedbackState.Progress -> {
+            if (feedbackState.isInitialSync) {
+                stringResource(id = R.string.initial_sync_label)
+            } else {
+                stringResource(id = R.string.refresh_sync_label)
+            }
+        }
+
+        SyncFeedbackState.Refreshing -> stringResource(id = R.string.refresh_sync_label)
+    }
+
+    val progress = when (feedbackState) {
+        is SyncFeedbackState.Progress -> {
+            val safeTotal = feedbackState.total.coerceAtLeast(1)
+            (feedbackState.current.toFloat() / safeTotal).coerceIn(0f, 1f)
+        }
+
+        SyncFeedbackState.Refreshing -> null
+    }
 
     AppCard(
         modifier = Modifier
@@ -68,33 +95,48 @@ internal fun SyncProgressBanner(
                         modifier = Modifier.size(iconSmall())
                     )
                     Text(
-                        text = if (isInitialSync) {
-                            stringResource(id = R.string.initial_sync_label)
-                        } else {
-                            stringResource(id = R.string.refresh_sync_label)
-                        },
+                        text = titleText,
                         style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.SemiBold,
                         color = colors.onSurface
                     )
                 }
 
-                Text(
-                    text = "$current / $total",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = colors.primary,
-                    fontWeight = FontWeight.SemiBold
-                )
+                if (feedbackState is SyncFeedbackState.Progress) {
+                    Text(
+                        text = "${feedbackState.current} / ${feedbackState.total}",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = colors.primary,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                } else {
+                    Text(
+                        text = stringResource(id = R.string.syncing_data),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = colors.primary,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
             }
 
-            LinearProgressIndicator(
-                progress = { progressValue },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(MaterialTheme.shapes.small),
-                color = colors.primary,
-                trackColor = colors.primaryContainer
-            )
+            if (progress != null) {
+                LinearProgressIndicator(
+                    progress = { progress },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(MaterialTheme.shapes.small),
+                    color = colors.primary,
+                    trackColor = colors.primaryContainer
+                )
+            } else {
+                LinearProgressIndicator(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(MaterialTheme.shapes.small),
+                    color = colors.primary,
+                    trackColor = colors.primaryContainer
+                )
+            }
         }
     }
 }
