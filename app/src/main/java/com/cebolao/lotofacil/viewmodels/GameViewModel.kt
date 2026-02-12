@@ -27,7 +27,7 @@ import javax.inject.Inject
 
 @Immutable
 data class GameUiState(
-    val isLoading: Boolean = false,
+    val isLoading: Boolean = true,
     val analysisState: GameAnalysisUiState = GameAnalysisUiState.Idle,
     val analysisResult: GameAnalysisResult? = null,
     val showClearGamesDialog: Boolean = false,
@@ -64,6 +64,16 @@ class GameViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = persistentListOf()
         )
+
+    init {
+        viewModelScope.launch {
+            generatedGames.collect {
+                if (currentState.isLoading) {
+                    updateState { state -> state.copy(isLoading = false) }
+                }
+            }
+        }
+    }
     fun onClearGamesRequested() {
         viewModelScope.launch { updateState { it.copy(showClearGamesDialog = true) } }
     }

@@ -21,29 +21,5 @@ data class HistoricalDrawEntity(
     val accumulated: Boolean = false
 )
 
-// Mapping extension functions
-fun HistoricalDrawEntity.toDomain() = HistoricalDraw(
-    contestNumber = contestNumber,
-    numbers = numbers,
-    date = date,
-    prizes = prizes,
-    winners = winners,
-    nextContest = nextContest,
-    nextDate = nextDate,
-    nextEstimate = nextEstimate,
-    accumulated = accumulated
-)
-
-fun HistoricalDraw.toEntity() = HistoricalDrawEntity(
-    contestNumber = contestNumber,
-    numbers = numbers,
-    date = date,
-    prizes = prizes,
-    winners = winners,
-    nextContest = nextContest,
-    nextDate = nextDate,
-    nextEstimate = nextEstimate,
-    accumulated = accumulated
-)
 
 

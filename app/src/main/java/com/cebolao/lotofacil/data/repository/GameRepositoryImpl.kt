@@ -1,10 +1,11 @@
 package com.cebolao.lotofacil.data.repository
 
 import com.cebolao.lotofacil.core.error.ErrorMapper
+import com.cebolao.lotofacil.core.extensions.toDomain
+import com.cebolao.lotofacil.core.extensions.toEntity
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.core.utils.TimeProvider
 import com.cebolao.lotofacil.data.datasource.database.GameDao
-import com.cebolao.lotofacil.data.datasource.database.entity.GameEntity
 import com.cebolao.lotofacil.di.ApplicationScope
 import com.cebolao.lotofacil.domain.model.LotofacilGame
 import com.cebolao.lotofacil.domain.repository.GameRepository
@@ -46,7 +47,7 @@ class GameRepositoryImpl @Inject constructor(
         )
 
     override suspend fun addGeneratedGames(newGames: List<LotofacilGame>): AppResult<Unit> = try {
-        val entities = newGames.map { GameEntity.fromDomain(it) }
+        val entities = newGames.map { it.toEntity() }
         gameDao.insertGames(entities)
         AppResult.Success(Unit)
     } catch (e: Exception) {
@@ -62,14 +63,14 @@ class GameRepositoryImpl @Inject constructor(
 
     override suspend fun togglePinState(gameToToggle: LotofacilGame): AppResult<Unit> = try {
         val updatedGame = gameToToggle.copy(isPinned = !gameToToggle.isPinned)
-        gameDao.updateGame(GameEntity.fromDomain(updatedGame))
+        gameDao.updateGame(updatedGame.toEntity())
         AppResult.Success(Unit)
     } catch (e: Exception) {
         AppResult.Failure(ErrorMapper.toAppError(e))
     }
 
     override suspend fun deleteGame(gameToDelete: LotofacilGame): AppResult<Unit> = try {
-        gameDao.deleteGame(GameEntity.fromDomain(gameToDelete))
+        gameDao.deleteGame(gameToDelete.toEntity())
         AppResult.Success(Unit)
     } catch (e: Exception) {
         AppResult.Failure(ErrorMapper.toAppError(e))
@@ -89,4 +90,3 @@ class GameRepositoryImpl @Inject constructor(
         AppResult.Failure(ErrorMapper.toAppError(e))
     }
 }
-

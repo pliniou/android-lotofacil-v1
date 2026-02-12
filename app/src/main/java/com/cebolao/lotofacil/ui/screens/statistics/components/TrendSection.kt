@@ -34,8 +34,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
-import com.cebolao.lotofacil.domain.usecase.TrendAnalysis
-import com.cebolao.lotofacil.domain.usecase.TrendType
+import com.cebolao.lotofacil.domain.model.TrendAnalysis
+import com.cebolao.lotofacil.domain.model.TrendType
 import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 

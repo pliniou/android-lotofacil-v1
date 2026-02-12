@@ -6,8 +6,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
@@ -18,18 +16,12 @@ import com.cebolao.lotofacil.navigation.Destination
 import com.cebolao.lotofacil.navigation.bottomNavDestinations
 import com.cebolao.lotofacil.navigation.navigateToDestination
 import com.cebolao.lotofacil.ui.components.AppBottomBar
-import com.cebolao.lotofacil.viewmodels.MainViewModel
 
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
-    mainViewModel: MainViewModel = hiltViewModel()
+    navController: NavHostController = rememberNavController()
 ) {
-    val uiState by mainViewModel.uiState.collectAsStateWithLifecycle()
-
-    if (!uiState.isReady) return
-
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 

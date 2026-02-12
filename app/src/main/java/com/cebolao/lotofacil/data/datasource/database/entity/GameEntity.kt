@@ -18,30 +18,4 @@ data class GameEntity(
         return if (numbers.isBlank()) emptyList()
         else numbers.split(",").map { it.toInt() }
     }
-
-    companion object {
-        fun fromDomain(game: com.cebolao.lotofacil.domain.model.LotofacilGame): GameEntity {
-            return GameEntity(
-                id = game.id,
-                numbers = game.numbers.sorted().joinToString(","),
-                isPinned = game.isPinned,
-                creationTimestamp = game.creationTimestamp,
-                usageCount = game.usageCount,
-                lastPlayed = game.lastPlayed
-            )
-        }
-    }
-
-    fun toDomain(): com.cebolao.lotofacil.domain.model.LotofacilGame? {
-        val parsedNumbers = getNumbersList().toSet()
-        if (parsedNumbers.size != LotofacilConstants.GAME_SIZE) return null
-        return com.cebolao.lotofacil.domain.model.LotofacilGame(
-            numbers = parsedNumbers,
-            isPinned = isPinned,
-            creationTimestamp = creationTimestamp,
-            usageCount = usageCount,
-            lastPlayed = lastPlayed,
-            id = id
-        )
-    }
 }

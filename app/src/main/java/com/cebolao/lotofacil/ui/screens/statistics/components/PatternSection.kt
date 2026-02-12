@@ -26,7 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.cebolao.lotofacil.R
-import com.cebolao.lotofacil.domain.usecase.PatternAnalysis
+import com.cebolao.lotofacil.domain.model.PatternAnalysis
 import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 

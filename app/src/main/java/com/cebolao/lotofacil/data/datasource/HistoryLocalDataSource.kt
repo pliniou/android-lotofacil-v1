@@ -5,9 +5,9 @@ import android.content.Context
 import com.cebolao.lotofacil.core.constants.AppConstants
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.utils.AppLogger
+import com.cebolao.lotofacil.core.extensions.toDomain
+import com.cebolao.lotofacil.core.extensions.toEntity
 import com.cebolao.lotofacil.data.datasource.database.HistoryDao
-import com.cebolao.lotofacil.data.datasource.database.entity.toDomain
-import com.cebolao.lotofacil.data.datasource.database.entity.toEntity
 import com.cebolao.lotofacil.data.parser.HistoryParser
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import dagger.hilt.android.qualifiers.ApplicationContext

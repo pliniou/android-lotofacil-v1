@@ -17,16 +17,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cebolao.lotofacil.R
+import com.cebolao.lotofacil.domain.model.FrequencyAnalysis
+import com.cebolao.lotofacil.domain.model.PatternAnalysis
 import com.cebolao.lotofacil.domain.model.StatisticsReport
-import com.cebolao.lotofacil.domain.usecase.FrequencyAnalysis
-import com.cebolao.lotofacil.domain.usecase.PatternAnalysis
-import com.cebolao.lotofacil.domain.usecase.TrendAnalysis
-import com.cebolao.lotofacil.domain.usecase.TrendType
+import com.cebolao.lotofacil.domain.model.TrendAnalysis
+import com.cebolao.lotofacil.domain.model.TrendType
 import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
 import com.cebolao.lotofacil.ui.components.ErrorCard
-import com.cebolao.lotofacil.ui.components.LoadingData
+import com.cebolao.lotofacil.ui.components.FullScreenLoading
 import com.cebolao.lotofacil.ui.components.screenContentPadding
 import com.cebolao.lotofacil.ui.screens.statistics.components.DistributionSection
 import com.cebolao.lotofacil.ui.screens.statistics.components.FrequencySection
@@ -97,7 +97,7 @@ fun StatisticsScreenContent(
     ) { innerPadding ->
         when {
             state.isLoading -> {
-                LoadingData(
+                FullScreenLoading(
                     message = stringResource(R.string.loading_data),
                     modifier = Modifier
                         .fillMaxSize()

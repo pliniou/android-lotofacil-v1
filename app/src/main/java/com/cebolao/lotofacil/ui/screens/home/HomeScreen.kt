@@ -42,12 +42,18 @@ import com.cebolao.lotofacil.navigation.UiEvent
 import com.cebolao.lotofacil.ui.components.AnimateOnEntry
 import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
+import com.cebolao.lotofacil.ui.components.EnhancedCard
 import com.cebolao.lotofacil.ui.components.ErrorActions
 import com.cebolao.lotofacil.ui.components.ErrorCard
+import com.cebolao.lotofacil.ui.components.FullScreenLoading
+import com.cebolao.lotofacil.ui.components.PullToRefreshScreen
+import com.cebolao.lotofacil.ui.components.SkeletonCard
+import com.cebolao.lotofacil.ui.components.StatsCard
 import com.cebolao.lotofacil.ui.components.screenContentPadding
 import com.cebolao.lotofacil.ui.testtags.AppTestTags
 import com.cebolao.lotofacil.ui.theme.AppAnimationConstants
 import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.ui.theme.AppTheme
 import com.cebolao.lotofacil.ui.theme.iconButtonSize
 import com.cebolao.lotofacil.ui.theme.iconExtraLarge
 import com.cebolao.lotofacil.ui.theme.iconMedium
@@ -117,19 +123,23 @@ fun HomeScreenContent(
     onNavigateToAbout: () -> Unit = {},
     onNavigateToGames: () -> Unit = {}
 ) {
-    AppScreenScaffold(
-        modifier = Modifier.fillMaxSize(),
-        title = stringResource(id = R.string.cebolao_title),
-        subtitle = stringResource(id = R.string.lotofacil_subtitle),
-        iconPainter = painterResource(id = R.drawable.ic_cebolalogo),
-        snackbarHostState = snackbarHostState,
-        actions = {
-            RefreshButton(
-                isRefreshing = state.isRefreshing,
-                onClick = { onAction(HomeAction.RefreshData) }
-            )
-        }
-    ) { innerPadding ->
+    PullToRefreshScreen(
+        isRefreshing = state.isRefreshing,
+        onRefresh = { onAction(HomeAction.RefreshData) }
+    ) {
+        AppScreenScaffold(
+            modifier = Modifier.fillMaxSize(),
+            title = stringResource(id = R.string.cebolao_title),
+            subtitle = stringResource(id = R.string.lotofacil_subtitle),
+            iconPainter = painterResource(id = R.drawable.ic_cebolalogo),
+            snackbarHostState = snackbarHostState,
+            actions = {
+                RefreshButton(
+                    isRefreshing = state.isRefreshing,
+                    onClick = { onAction(HomeAction.RefreshData) }
+                )
+            }
+        ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -157,7 +167,9 @@ fun HomeScreenContent(
                 when {
                     state.isScreenLoading -> {
                         item(key = "loading", contentType = "loading") {
-                            HomeScreenLoadingState()
+                            FullScreenLoading(
+                                message = "Carregando dados da Lotofácil..."
+                            )
                         }
                     }
 
@@ -171,39 +183,57 @@ fun HomeScreenContent(
 
                     else -> {
                         item(key = "welcome_banner", contentType = "welcome_banner") {
-                            WelcomeBanner(
-                                lastUpdateTime = state.lastUpdateTime,
-                                nextDrawDate = state.nextDrawDate,
-                                nextDrawContest = state.nextDrawContest,
-                                isTodayDrawDay = state.isTodayDrawDay,
-                                historySource = state.historySource,
-                                statisticsSource = state.statisticsSource,
-                                isShowingStaleData = state.isShowingStaleData,
-                                isRefreshing = state.isRefreshing,
-                                onExploreFilters = onNavigateToExploreFilters,
-                                onOpenChecker = onNavigateToChecker
-                            )
+                            EnhancedCard(
+                                modifier = Modifier.fillMaxWidth(),
+                                elevation = AppTheme.elevation.xs
+                            ) {
+                                WelcomeBanner(
+                                    lastUpdateTime = state.lastUpdateTime,
+                                    nextDrawDate = state.nextDrawDate,
+                                    nextDrawContest = state.nextDrawContest,
+                                    isTodayDrawDay = state.isTodayDrawDay,
+                                    historySource = state.historySource,
+                                    statisticsSource = state.statisticsSource,
+                                    isShowingStaleData = state.isShowingStaleData,
+                                    isRefreshing = state.isRefreshing,
+                                    onExploreFilters = onNavigateToExploreFilters,
+                                    onOpenChecker = onNavigateToChecker
+                                )
+                            }
                         }
+                        
                         item(key = "last_draw", contentType = "last_draw") {
                             state.lastDrawStats?.let { stats ->
                                 AnimateOnEntry(
                                     delayMillis = AppAnimationConstants.Delays.Minimal.toLong()
                                 ) {
-                                    LastDrawSection(stats)
+                                    EnhancedCard(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        elevation = AppTheme.elevation.xs
+                                    ) {
+                                        LastDrawSection(stats)
+                                    }
                                 }
-                            }
+                            } ?: SkeletonCard()
                         }
+                        
                         item(key = "statistics", contentType = "statistics_preview") {
                             AnimateOnEntry(
                                 delayMillis = AppAnimationConstants.Delays.Short.toLong()
                             ) {
-                                CompactStatisticsPreview(
-                                    stats = state.statistics,
-                                    isLoading = state.isStatsLoading,
-                                    onViewAll = onNavigateToInsights
-                                )
+                                EnhancedCard(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    elevation = AppTheme.elevation.xs
+                                ) {
+                                    CompactStatisticsPreview(
+                                        stats = state.statistics,
+                                        isLoading = state.isStatsLoading,
+                                        onViewAll = onNavigateToInsights
+                                    )
+                                }
                             }
                         }
+                        
                         item(key = "quick_nav", contentType = "quick_nav") {
                             AnimateOnEntry(
                                 delayMillis = AppAnimationConstants.Delays.Medium.toLong()
@@ -220,6 +250,7 @@ fun HomeScreenContent(
             }
         }
     }
+}
 }
 
 @Composable

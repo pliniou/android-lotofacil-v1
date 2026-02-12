@@ -1,6 +1,5 @@
 package com.cebolao.lotofacil.viewmodels
 
-import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.result.AppResult
@@ -13,6 +12,7 @@ import com.cebolao.lotofacil.domain.repository.SyncStatus
 import com.cebolao.lotofacil.domain.service.StatisticsEngine
 import com.cebolao.lotofacil.domain.usecase.GetHomeScreenDataUseCase
 import com.cebolao.lotofacil.navigation.UiEvent
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -31,23 +31,17 @@ class HomeViewModel @Inject constructor(
     private val dispatchersProvider: DispatchersProvider
 ) : StateViewModel<HomeUiState>(HomeUiState()) {
 
-    private var syncStatusJob: Job? = null
-    private var statsJob: Job? = null
     private var cachedHistory: List<HistoricalDraw> = emptyList()
+    private var statsJob: Job? = null
+    private var syncStatusJob: Job? = null
 
     init {
         observeSyncStatus()
         loadInitialData()
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        syncStatusJob?.cancel()
-        statsJob?.cancel()
-        jobTracker.cancelAll()
-    }
-
     private fun observeSyncStatus() {
+        syncStatusJob?.cancel()
         syncStatusJob = viewModelScope.launch {
             historyRepository.syncStatus.collect { status ->
                 when (status) {
@@ -68,12 +62,13 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
+        jobTracker.trackNonBlocking(syncStatusJob!!)
     }
 
     private fun loadInitialData() {
-        updateState { it.copy(isScreenLoading = true, errorMessageResId = null) }
-
         viewModelScope.launch {
+            updateState { it.copy(isScreenLoading = true, errorMessageResId = null) }
+
             val result = withTimeoutOrNull(3000L) {
                 getHomeScreenDataUseCase().first {
                     it is AppResult.Success || it is AppResult.Failure

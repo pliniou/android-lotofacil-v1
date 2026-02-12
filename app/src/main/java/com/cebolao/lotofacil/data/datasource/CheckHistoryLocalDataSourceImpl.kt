@@ -1,8 +1,8 @@
 package com.cebolao.lotofacil.data.datasource
 
+import com.cebolao.lotofacil.core.extensions.toDomain
+import com.cebolao.lotofacil.core.extensions.toEntity
 import com.cebolao.lotofacil.data.datasource.database.CheckHistoryDao
-import com.cebolao.lotofacil.data.datasource.database.entity.toDomain
-import com.cebolao.lotofacil.data.datasource.database.entity.toEntity
 import com.cebolao.lotofacil.domain.model.CheckHistory
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

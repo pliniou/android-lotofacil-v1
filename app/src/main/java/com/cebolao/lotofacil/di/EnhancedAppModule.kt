@@ -2,7 +2,6 @@ package com.cebolao.lotofacil.di
 
 import com.cebolao.lotofacil.core.cache.MemoryCache
 import com.cebolao.lotofacil.core.cache.ReactiveCache
-import com.cebolao.lotofacil.core.result.ErrorMessageMapper
 import com.cebolao.lotofacil.core.coroutine.DefaultDispatchersProvider
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.utils.AppLogger
@@ -48,8 +47,4 @@ object AppModule {
     @Singleton
     fun provideReactiveCache(): ReactiveCache = ReactiveCache()
 
-    @Provides
-    @Singleton
-    fun provideErrorMessageMapper(appLogger: AppLogger): ErrorMessageMapper = 
-        ErrorMessageMapper(appLogger)
 }

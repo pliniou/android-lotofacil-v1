@@ -25,7 +25,7 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cebolao.lotofacil.R
-import com.cebolao.lotofacil.domain.usecase.FrequencyAnalysis
+import com.cebolao.lotofacil.domain.model.FrequencyAnalysis
 import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 

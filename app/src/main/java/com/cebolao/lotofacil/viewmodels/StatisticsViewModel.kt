@@ -4,13 +4,13 @@ import androidx.compose.runtime.Stable
 import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
+import com.cebolao.lotofacil.domain.model.FrequencyAnalysis
+import com.cebolao.lotofacil.domain.model.PatternAnalysis
 import com.cebolao.lotofacil.domain.model.StatisticsReport
+import com.cebolao.lotofacil.domain.model.TrendAnalysis
+import com.cebolao.lotofacil.domain.model.TrendType
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.service.StatisticsEngine
-import com.cebolao.lotofacil.domain.usecase.FrequencyAnalysis
-import com.cebolao.lotofacil.domain.usecase.PatternAnalysis
-import com.cebolao.lotofacil.domain.usecase.TrendAnalysis
-import com.cebolao.lotofacil.domain.usecase.TrendType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

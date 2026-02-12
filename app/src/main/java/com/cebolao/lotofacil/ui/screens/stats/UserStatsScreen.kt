@@ -15,7 +15,7 @@ import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
 import com.cebolao.lotofacil.ui.components.EmptyState
 import com.cebolao.lotofacil.ui.components.ErrorCard
-import com.cebolao.lotofacil.ui.components.LoadingData
+import com.cebolao.lotofacil.ui.components.FullScreenLoading
 import com.cebolao.lotofacil.ui.components.screenContentPadding
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.viewmodels.UserStatsUiState
@@ -62,7 +62,7 @@ fun UserStatsScreenContent(
     ) { innerPadding ->
         when {
             state.isLoading -> {
-                LoadingData(
+                FullScreenLoading(
                     message = stringResource(id = R.string.loading_data),
                     modifier = Modifier
                         .fillMaxSize()

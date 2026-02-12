@@ -2,9 +2,8 @@ package com.cebolao.lotofacil.viewmodels
 
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.viewModelScope
+import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.result.AppResult
-import com.cebolao.lotofacil.core.result.ErrorMessageMapper
-import com.cebolao.lotofacil.core.result.Result
 import com.cebolao.lotofacil.core.utils.AppLogger
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.ui.theme.DefaultAppMotion
@@ -17,23 +16,18 @@ import javax.inject.Inject
 data class MainUiState(
     val isLoading: Boolean = true,
     val hasError: Boolean = false,
-    val errorMessage: String? = null,
-    val initializationResult: Result<Unit>? = null,
+    val errorMessageResId: Int? = null,
     val needsBiometricAuth: Boolean = false,
     val needsPermissionRequest: Boolean = false
 ) {
-    val isReady: Boolean get() = !isLoading && !hasError && initializationResult?.isSuccess == true
+    val isReady: Boolean get() = !isLoading && !hasError
 }
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val historyRepository: HistoryRepository,
-    private val logger: AppLogger,
-    errorMessageMapper: ErrorMessageMapper
-) : EnhancedStateViewModel<MainUiState>(
-    initialState = MainUiState(),
-    errorMessageMapper = errorMessageMapper
-) {
+    private val logger: AppLogger
+) : StateViewModel<MainUiState>(MainUiState()) {
 
     companion object {
         private const val TAG = "MainViewModel"
@@ -43,34 +37,43 @@ class MainViewModel @Inject constructor(
         initializeApp()
     }
 
+    fun retryInitialization() {
+        initializeApp()
+    }
+
     private fun initializeApp() {
-        executeWithResult(
-            loadingState = { it.copy(isLoading = true, hasError = false, errorMessage = null) },
-            successState = { it, data -> 
-                it.copy(isLoading = false, hasError = false, errorMessage = null, initializationResult = Result.Success(data))
-            },
-            errorState = { it, errorMessage -> 
-                it.copy(isLoading = false, hasError = true, errorMessage = errorMessage)
-            }
-        ) {
+        viewModelScope.launch {
+            updateState { it.copy(isLoading = true, hasError = false, errorMessageResId = null) }
+
             // Start initialization in background without blocking splash
             val startTime = System.currentTimeMillis()
-            
-            // Initialize history asynchronously without timeout
             val initResult = initializeHistory()
-            
+
             // Ensure minimum splash duration for better UX
             val elapsedTime = System.currentTimeMillis() - startTime
             val remainingTime = DefaultAppMotion.splashMinDurationMs - elapsedTime
             if (remainingTime > 0) {
                 delay(remainingTime)
             }
-            
-            initResult
+
+            when (initResult) {
+                is AppResult.Success -> {
+                    updateState { it.copy(isLoading = false, hasError = false, errorMessageResId = null) }
+                }
+                is AppResult.Failure -> {
+                    updateState {
+                        it.copy(
+                            isLoading = false,
+                            hasError = true,
+                            errorMessageResId = R.string.error_load_data_failed
+                        )
+                    }
+                }
+            }
         }
     }
 
-    private fun initializeHistory(): Result<Unit> {
+    private fun initializeHistory(): AppResult<Unit> {
         // Launch sync in background without blocking initialization
         viewModelScope.launch {
             when (val syncResult = historyRepository.syncHistory()) {
@@ -84,6 +87,6 @@ class MainViewModel @Inject constructor(
             }
         }
         // Return success immediately to allow app initialization
-        return Result.Success(Unit)
+        return AppResult.Success(Unit)
     }
 }
