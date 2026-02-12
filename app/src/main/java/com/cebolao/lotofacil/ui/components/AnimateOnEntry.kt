@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.rememberTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -55,7 +55,7 @@ fun AnimateOnEntry(
         }
     }
 
-    val transition = updateTransition(transitionState, label = "entryTransition")
+    val transition = rememberTransition(transitionState, label = "entryTransition")
 
     val alpha by transition.animateFloat(
         transitionSpec = { tween(durationMillis = animationSpec) },

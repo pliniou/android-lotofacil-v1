@@ -35,6 +35,15 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+
+    packaging {
+        jniLibs {
+            keepDebugSymbols += setOf(
+                "**/libbenchmarkNative.so",
+                "**/libtracing_perfetto.so"
+            )
+        }
+    }
 }
 
 baselineProfile {

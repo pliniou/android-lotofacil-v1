@@ -19,7 +19,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cebolao.lotofacil.ui.screens.MainScreen
-import com.cebolao.lotofacil.ui.theme.CebolaoLotofacilTheme
+import com.cebolao.lotofacil.ui.theme.LotofacilTheme
 import com.cebolao.lotofacil.ui.theme.DefaultAppMotion
 import com.cebolao.lotofacil.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,7 +67,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val uiState by mainViewModel.uiState.collectAsStateWithLifecycle()
 
-            CebolaoLotofacilTheme(
+            LotofacilTheme(
                 darkTheme = isSystemInDarkTheme(),
                 dynamicColor = false
             ) {

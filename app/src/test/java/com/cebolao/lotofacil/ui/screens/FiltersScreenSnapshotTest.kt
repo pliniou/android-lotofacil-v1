@@ -3,7 +3,7 @@ package com.cebolao.lotofacil.ui.screens
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.DeviceConfig
 import androidx.compose.material3.Text
-import com.cebolao.lotofacil.ui.theme.CebolaoLotofacilTheme
+import com.cebolao.lotofacil.ui.theme.LotofacilTheme
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
@@ -19,7 +19,7 @@ class FiltersScreenSnapshotTest {
     @Test
     fun filtersScreenLoadingState() {
         paparazzi.snapshot {
-            CebolaoLotofacilTheme {
+            LotofacilTheme {
                 // Mock UI state for loading
                 Text("Filters Screen Loading State")
             }
@@ -29,7 +29,7 @@ class FiltersScreenSnapshotTest {
     @Test
     fun filtersScreenWithFilters() {
         paparazzi.snapshot {
-            CebolaoLotofacilTheme {
+            LotofacilTheme {
                 // Mock UI state with filters configured
                 Text("Filters Screen With Filters")
             }
@@ -39,7 +39,7 @@ class FiltersScreenSnapshotTest {
     @Test
     fun filtersScreenAfterGeneration() {
         paparazzi.snapshot {
-            CebolaoLotofacilTheme {
+            LotofacilTheme {
                 // Mock UI state after generation
                 Text("Filters Screen After Generation")
             }

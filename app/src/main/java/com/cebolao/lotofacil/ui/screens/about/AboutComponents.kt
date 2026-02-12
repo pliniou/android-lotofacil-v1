@@ -2,6 +2,7 @@ package com.cebolao.lotofacil.ui.screens.about
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -27,6 +28,8 @@ import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.theme.AppCardDefaults
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.iconLarge
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.Icons
 
 @Composable
 fun FormattedText(
@@ -110,41 +113,17 @@ fun InfoListItem(
 @Composable
 fun InfoCard(
     item: InfoItem,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
-    AppCard(
-        variant = CardVariant.Clickable,
-        onClick = onClick,
-        shape = MaterialTheme.shapes.medium,
-        elevation = AppCardDefaults.elevation,
-        modifier = Modifier.padding(horizontal = AppSpacing.lg)
-    ) {
-        Row(
-            modifier = Modifier.padding(AppCardDefaults.defaultPadding),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                item.icon,
-                contentDescription = stringResource(id = item.titleResId),
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(iconLarge())
-            )
-            androidx.compose.foundation.layout.Spacer(Modifier.width(AppSpacing.md))
-            Column(Modifier.weight(1f)) {
-                Text(stringResource(id = item.titleResId), style = MaterialTheme.typography.titleMedium)
-                Text(
-                    stringResource(id = item.subtitleResId),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-            Icon(
-                androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowForward,
-                null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-    }
+    AboutActionCard(
+        title = stringResource(id = item.titleResId),
+        subtitle = stringResource(id = item.subtitleResId),
+        icon = item.icon,
+        iconContentDescription = stringResource(id = item.titleResId),
+        modifier = modifier,
+        onClick = onClick
+    )
 }
 
 @Composable
@@ -152,21 +131,42 @@ fun ExternalLinkCard(
     titleResId: Int,
     subtitleResId: Int,
     icon: androidx.compose.ui.graphics.vector.ImageVector,
-    url: String
+    url: String,
+    modifier: Modifier = Modifier
 ) {
     val context = androidx.compose.ui.platform.LocalContext.current
     val hapticFeedback = androidx.compose.ui.platform.LocalHapticFeedback.current
 
-    AppCard(
-        variant = CardVariant.Clickable,
+    AboutActionCard(
+        title = stringResource(id = titleResId),
+        subtitle = stringResource(id = subtitleResId),
+        icon = icon,
+        iconContentDescription = stringResource(id = titleResId),
+        modifier = modifier,
         onClick = {
             hapticFeedback.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
-            val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, androidx.core.net.toUri(url))
+            val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, url.toUri())
             context.startActivity(intent)
-        },
+        }
+    )
+}
+
+@Composable
+private fun AboutActionCard(
+    title: String,
+    subtitle: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    iconContentDescription: String?,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    AppCard(
+        variant = CardVariant.Clickable,
+        onClick = onClick,
         shape = MaterialTheme.shapes.medium,
         elevation = AppCardDefaults.elevation,
-        modifier = Modifier.padding(horizontal = AppSpacing.lg)
+        backgroundColor = MaterialTheme.colorScheme.surfaceContainerLow,
+        modifier = modifier.fillMaxWidth()
     ) {
         Row(
             modifier = Modifier.padding(AppCardDefaults.defaultPadding),
@@ -174,21 +174,21 @@ fun ExternalLinkCard(
         ) {
             Icon(
                 icon,
-                contentDescription = stringResource(id = titleResId),
+                contentDescription = iconContentDescription,
                 tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(iconLarge())
             )
             androidx.compose.foundation.layout.Spacer(Modifier.width(AppSpacing.md))
             Column(Modifier.weight(1f)) {
-                Text(stringResource(id = titleResId), style = MaterialTheme.typography.titleMedium)
+                Text(title, style = MaterialTheme.typography.titleMedium)
                 Text(
-                    stringResource(id = subtitleResId),
+                    subtitle,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
             Icon(
-                androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowForward,
+                Icons.AutoMirrored.Filled.ArrowForward,
                 null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
             )

@@ -3,7 +3,7 @@ package com.cebolao.lotofacil.ui.screens
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.DeviceConfig
 import androidx.compose.material3.Text
-import com.cebolao.lotofacil.ui.theme.CebolaoLotofacilTheme
+import com.cebolao.lotofacil.ui.theme.LotofacilTheme
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
@@ -19,7 +19,7 @@ class CheckerScreenSnapshotTest {
     @Test
     fun checkerScreenIdleState() {
         paparazzi.snapshot {
-            CebolaoLotofacilTheme {
+            LotofacilTheme {
                 // Mock UI state for idle
                 Text("Checker Screen Idle State")
             }
@@ -29,7 +29,7 @@ class CheckerScreenSnapshotTest {
     @Test
     fun checkerScreenLoadingState() {
         paparazzi.snapshot {
-            CebolaoLotofacilTheme {
+            LotofacilTheme {
                 // Mock UI state with loading
                 Text("Checker Screen Loading State")
             }
@@ -39,7 +39,7 @@ class CheckerScreenSnapshotTest {
     @Test
     fun checkerScreenSuccessState() {
         paparazzi.snapshot {
-            CebolaoLotofacilTheme {
+            LotofacilTheme {
                 // Mock UI state with results
                 Text("Checker Screen Success State")
             }

@@ -90,7 +90,7 @@ fun GameCard(
 
     // Data/hora formatada
     val formattedDate = remember(game.creationTimestamp) {
-        val sdf = SimpleDateFormat("dd/MM/yy · HH:mm", Locale("pt", "BR"))
+        val sdf = SimpleDateFormat("dd/MM/yy · HH:mm", Locale.forLanguageTag("pt-BR"))
         sdf.format(Date(game.creationTimestamp))
     }
 

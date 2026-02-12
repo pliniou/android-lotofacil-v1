@@ -3,7 +3,7 @@ package com.cebolao.lotofacil.ui.screens
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.DeviceConfig
 import androidx.compose.material3.Text
-import com.cebolao.lotofacil.ui.theme.CebolaoLotofacilTheme
+import com.cebolao.lotofacil.ui.theme.LotofacilTheme
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
@@ -19,7 +19,7 @@ class HomeScreenSnapshotTest {
     @Test
     fun homeScreenLoadingState() {
         paparazzi.snapshot {
-            CebolaoLotofacilTheme {
+            LotofacilTheme {
                 // Mock UI state for loading
                 Text("Home Screen Loading State")
             }
@@ -29,7 +29,7 @@ class HomeScreenSnapshotTest {
     @Test
     fun homeScreenWithData() {
         paparazzi.snapshot {
-            CebolaoLotofacilTheme {
+            LotofacilTheme {
                 // Mock UI state with data
                 Text("Home Screen With Data")
             }
@@ -39,7 +39,7 @@ class HomeScreenSnapshotTest {
     @Test
     fun homeScreenErrorState() {
         paparazzi.snapshot {
-            CebolaoLotofacilTheme {
+            LotofacilTheme {
                 // Mock UI state with error
                 Text("Home Screen Error State")
             }

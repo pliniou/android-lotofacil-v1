@@ -3,20 +3,15 @@ package com.cebolao.lotofacil.ui.screens.generated
 import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ListAlt
 import androidx.compose.material.icons.filled.DeleteSweep
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -25,31 +20,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.utils.GameShareUtils
 import com.cebolao.lotofacil.domain.model.LotofacilGame
 import com.cebolao.lotofacil.navigation.UiEvent
-import com.cebolao.lotofacil.ui.components.AnimateOnEntry
-import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
-import com.cebolao.lotofacil.ui.components.CheckResultCard
-import com.cebolao.lotofacil.ui.components.ConfirmationDialog
-import com.cebolao.lotofacil.ui.components.EmptyState
-import com.cebolao.lotofacil.ui.components.GameStatsList
-import com.cebolao.lotofacil.ui.components.InfoDialog
-import com.cebolao.lotofacil.ui.components.LoadingDialog
-import com.cebolao.lotofacil.ui.components.RecentHitsChartContent
-import com.cebolao.lotofacil.ui.components.cards.GameCard
 import com.cebolao.lotofacil.ui.components.screenContentPadding
-import com.cebolao.lotofacil.ui.components.shimmer
 import com.cebolao.lotofacil.ui.theme.AppSpacing
-import com.cebolao.lotofacil.ui.theme.AppTheme
-import com.cebolao.lotofacil.viewmodels.GameAnalysisResult
-import com.cebolao.lotofacil.viewmodels.GameAnalysisUiState
 import com.cebolao.lotofacil.viewmodels.GameUiState
 import com.cebolao.lotofacil.viewmodels.GameViewModel
 
@@ -72,12 +52,12 @@ fun GeneratedGamesScreen(
                         snackbarHostState.showSnackbar(message = message)
                     }
                 }
-                else -> {}
+
+                else -> Unit
             }
         }
     }
 
-    // Delegate to Content composable
     GeneratedGamesScreenContent(
         games = games,
         state = uiState,
@@ -85,15 +65,15 @@ fun GeneratedGamesScreen(
         modifier = modifier,
         onAction = { action ->
             when (action) {
-                is GeneratedGamesAction.ClearGamesRequested -> gameViewModel.onClearGamesRequested()
-                is GeneratedGamesAction.ConfirmClearUnpinned -> gameViewModel.confirmClearUnpinned()
-                is GeneratedGamesAction.DismissClearDialog -> gameViewModel.dismissClearDialog()
+                GeneratedGamesAction.ClearGamesRequested -> gameViewModel.onClearGamesRequested()
+                GeneratedGamesAction.ConfirmClearUnpinned -> gameViewModel.confirmClearUnpinned()
+                GeneratedGamesAction.DismissClearDialog -> gameViewModel.dismissClearDialog()
                 is GeneratedGamesAction.ConfirmDeleteGame -> gameViewModel.confirmDeleteGame(action.game)
-                is GeneratedGamesAction.DismissDeleteDialog -> gameViewModel.dismissDeleteDialog()
+                GeneratedGamesAction.DismissDeleteDialog -> gameViewModel.dismissDeleteDialog()
                 is GeneratedGamesAction.AnalyzeGame -> gameViewModel.analyzeGame(action.game)
                 is GeneratedGamesAction.TogglePinState -> gameViewModel.togglePinState(action.game)
                 is GeneratedGamesAction.DeleteGameRequested -> gameViewModel.onDeleteGameRequested(action.game)
-                is GeneratedGamesAction.DismissAnalysisDialog -> gameViewModel.dismissAnalysisDialog()
+                GeneratedGamesAction.DismissAnalysisDialog -> gameViewModel.dismissAnalysisDialog()
                 is GeneratedGamesAction.ShareGame -> {
                     val shareText = GameShareUtils.formatGameForWhatsApp(action.game)
                     val sendIntent = Intent(Intent.ACTION_SEND).apply {
@@ -111,7 +91,6 @@ fun GeneratedGamesScreen(
     )
 }
 
-// ==================== SEALED ACTIONS ====================
 sealed class GeneratedGamesAction {
     object ClearGamesRequested : GeneratedGamesAction()
     object ConfirmClearUnpinned : GeneratedGamesAction()
@@ -125,7 +104,6 @@ sealed class GeneratedGamesAction {
     object DismissAnalysisDialog : GeneratedGamesAction()
 }
 
-// ==================== STATELESS CONTENT ====================
 @Composable
 fun GeneratedGamesScreenContent(
     state: GameUiState,
@@ -136,61 +114,20 @@ fun GeneratedGamesScreenContent(
 ) {
     val colors = MaterialTheme.colorScheme
 
-    // Performance optimization: Use derivedStateOf to avoid unnecessary recompositions
-    // when checking for unpinned games - only recalculates when games list changes
     val hasUnpinnedGames by remember(games) {
         derivedStateOf { games.any { !it.isPinned } }
     }
     val isGamesEmpty by remember(games) {
         derivedStateOf { games.isEmpty() }
     }
-
-    if (state.showClearGamesDialog) {
-        ConfirmationDialog(
-            title = stringResource(id = R.string.clear_games_title),
-            message = stringResource(id = R.string.clear_games_message),
-            confirmText = stringResource(id = R.string.clear_button),
-            dismissText = stringResource(id = R.string.cancel_button),
-            onConfirm = { onAction(GeneratedGamesAction.ConfirmClearUnpinned) },
-            onDismiss = { onAction(GeneratedGamesAction.DismissClearDialog) }
-        )
+    val pinnedGamesCount by remember(games) {
+        derivedStateOf { games.count { it.isPinned } }
     }
 
-    state.gameToDelete?.let { game ->
-        ConfirmationDialog(
-            title = stringResource(id = R.string.delete_game_title),
-            message = stringResource(id = R.string.delete_game_message),
-            confirmText = stringResource(id = R.string.delete_button),
-            dismissText = stringResource(id = R.string.cancel_button),
-            onConfirm = { onAction(GeneratedGamesAction.ConfirmDeleteGame(game)) },
-            onDismiss = { onAction(GeneratedGamesAction.DismissDeleteDialog) }
-        )
-    }
-
-    when (val analysisState = state.analysisState) {
-        is GameAnalysisUiState.Success -> {
-            state.analysisResult?.let { result ->
-                GameAnalysisDialog(
-                    result = result,
-                    onDismissRequest = { onAction(GeneratedGamesAction.DismissAnalysisDialog) }
-                )
-            }
-        }
-        is GameAnalysisUiState.Loading -> {
-            LoadingDialog(text = stringResource(id = R.string.analyzing_game))
-        }
-        is GameAnalysisUiState.Error -> {
-            ConfirmationDialog(
-                title = stringResource(id = R.string.analysis_error_title),
-                message = stringResource(id = analysisState.messageResId),
-                confirmText = stringResource(id = R.string.close_button),
-                dismissText = "",
-                onConfirm = { onAction(GeneratedGamesAction.DismissAnalysisDialog) },
-                onDismiss = { onAction(GeneratedGamesAction.DismissAnalysisDialog) }
-            )
-        }
-        is GameAnalysisUiState.Idle -> {}
-    }
+    GeneratedGamesDialogs(
+        state = state,
+        onAction = onAction
+    )
 
     AppScreenScaffold(
         modifier = modifier.fillMaxSize(),
@@ -217,91 +154,21 @@ fun GeneratedGamesScreenContent(
             contentPadding = AppScreenDefaults.listContentPadding(),
             verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
         ) {
-
-            if (state.isLoading) {
-                items(5, contentType = { "game_card_skeleton" }) {
-                    GameCardSkeleton()
-                }
-            } else if (isGamesEmpty) {
-                item(contentType = "empty_state") {
-                    EmptyState(
-                        messageResId = R.string.empty_games_message,
-                        icon = Icons.AutoMirrored.Filled.ListAlt
+            if (!state.isLoading && !isGamesEmpty) {
+                item(key = "games_overview", contentType = "games_overview") {
+                    GeneratedGamesOverviewCard(
+                        totalGames = games.size,
+                        pinnedGames = pinnedGamesCount,
+                        modifier = Modifier.padding(bottom = AppSpacing.xs)
                     )
                 }
-            } else {
-                itemsIndexed(
-                    games,
-                    key = { _, game -> game.id },
-                    contentType = { _, _ -> "game_card" }
-                ) { index, game ->
-                    val motion = AppTheme.motion
-                    val animationDelay = remember(index, motion.delayStaggerMs, motion.maxStaggerDelayMs) {
-                        (index.toLong() * motion.delayStaggerMs)
-                            .coerceAtMost(motion.maxStaggerDelayMs)
-                    }
-                    AnimateOnEntry(delayMillis = animationDelay) {
-                        GameCard(
-                            game = game,
-                            onAnalyzeClick = { onAction(GeneratedGamesAction.AnalyzeGame(game)) },
-                            onShareClick = { onAction(GeneratedGamesAction.ShareGame(game)) },
-                            onPinClick = { onAction(GeneratedGamesAction.TogglePinState(game)) },
-                            onDeleteClick = { onAction(GeneratedGamesAction.DeleteGameRequested(game)) }
-                        )
-                    }
-                }
             }
-        }
-    }
-}
 
-@Composable
-private fun GameAnalysisDialog(
-    result: GameAnalysisResult,
-    onDismissRequest: () -> Unit
-) {
-    InfoDialog(
-        onDismissRequest = onDismissRequest,
-        dialogTitle = stringResource(id = R.string.game_analysis_title),
-        dismissButtonText = stringResource(id = R.string.close_button)
-    ) {
-        Text(
-            stringResource(id = R.string.historical_performance),
-            style = MaterialTheme.typography.titleLarge,
-        )
-        HorizontalDivider(modifier = Modifier.padding(vertical = AppSpacing.xs))
-        if (result.checkResult.scoreCounts.isEmpty()) {
-            Text(
-                stringResource(id = R.string.never_won_message),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+            generatedGamesListContent(
+                state = state,
+                games = games,
+                onAction = onAction
             )
-        } else {
-            CheckResultCard(result = result.checkResult)
         }
-        RecentHitsChartContent(
-            recentHits = result.checkResult.recentHits,
-            modifier = Modifier.padding(top = AppSpacing.lg)
-        )
-        Text(
-            stringResource(id = R.string.game_stats_title),
-            style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier.padding(top = AppSpacing.lg)
-        )
-        HorizontalDivider(modifier = Modifier.padding(vertical = AppSpacing.xs))
-        GameStatsList(stats = result.simpleStats)
-
-    }
-}
-@Composable
-private fun GameCardSkeleton() {
-    AppCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(120.dp)
-            .shimmer(),
-        backgroundColor = MaterialTheme.colorScheme.surface
-    ) {
-        // Shimmering content
     }
 }

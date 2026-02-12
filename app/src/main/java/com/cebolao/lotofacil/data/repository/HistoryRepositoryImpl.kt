@@ -68,43 +68,47 @@ class HistoryRepositoryImpl @Inject constructor(
 
         return syncMutex.withLock {
             val now = System.currentTimeMillis()
-            if (now - lastSyncTime < MIN_SYNC_INTERVAL && _syncStatus.value != SyncStatus.Failed("")) {
-                 return AppResult.Success(Unit)
-            }
+            val shouldThrottleSync = now - lastSyncTime < MIN_SYNC_INTERVAL
+            val hasPreviousFailure = _syncStatus.value is SyncStatus.Failed
 
-            if (_syncStatus.value == SyncStatus.Syncing) return AppResult.Success(Unit)
-            _syncStatus.value = SyncStatus.Syncing
-            return try {
-                val latestRemote = remoteDataSource.getLatestDraw()
-                val currentLatest = localDataSource.getLatestDraw()?.contestNumber ?: 0
-
-                if (latestRemote != null && latestRemote.contestNumber > currentLatest) {
-                    val rangeToFetch = (currentLatest + 1)..latestRemote.contestNumber
-                    val totalToFetch = rangeToFetch.count()
-                    
-                    remoteDataSource.getDrawsInRange(
-                        range = rangeToFetch,
-                        onProgress = { progressCount ->
-                            _syncStatus.value = SyncStatus.Progress(progressCount, totalToFetch)
-                        },
-                        onBatchFetched = { batch ->
-                            localDataSource.saveNewContests(batch)
-                            logger.d(TAG, "Incrementally saved ${batch.size} draws.")
-                        }
-                    )
-                } else {
-                    logger.d(TAG, "Local history already up to date or remote unavailable.")
-                }
-                lastSyncTime = System.currentTimeMillis()
-                _syncStatus.value = SyncStatus.Success
+            if (shouldThrottleSync && !hasPreviousFailure) {
                 AppResult.Success(Unit)
-            } catch (e: Exception) {
-                // If network failure, permit retry sooner but not immediately
-                lastSyncTime = System.currentTimeMillis() - (MIN_SYNC_INTERVAL / 2) 
-                
-                val error = ErrorMapper.toAppError(e)
-                _syncStatus.value = SyncStatus.Failed(ErrorMapper.messageFor(error))
-                AppResult.Failure(error)
+            } else if (_syncStatus.value == SyncStatus.Syncing) {
+                AppResult.Success(Unit)
+            } else {
+                _syncStatus.value = SyncStatus.Syncing
+                try {
+                    val latestRemote = remoteDataSource.getLatestDraw()
+                    val currentLatest = localDataSource.getLatestDraw()?.contestNumber ?: 0
+
+                    if (latestRemote != null && latestRemote.contestNumber > currentLatest) {
+                        val rangeToFetch = (currentLatest + 1)..latestRemote.contestNumber
+                        val totalToFetch = rangeToFetch.count()
+
+                        remoteDataSource.getDrawsInRange(
+                            range = rangeToFetch,
+                            onProgress = { progressCount ->
+                                _syncStatus.value = SyncStatus.Progress(progressCount, totalToFetch)
+                            },
+                            onBatchFetched = { batch ->
+                                localDataSource.saveNewContests(batch)
+                                logger.d(TAG, "Incrementally saved ${batch.size} draws.")
+                            }
+                        )
+                    } else {
+                        logger.d(TAG, "Local history already up to date or remote unavailable.")
+                    }
+                    lastSyncTime = System.currentTimeMillis()
+                    _syncStatus.value = SyncStatus.Success
+                    AppResult.Success(Unit)
+                } catch (e: Exception) {
+                    // If network failure, permit retry sooner but not immediately
+                    lastSyncTime = System.currentTimeMillis() - (MIN_SYNC_INTERVAL / 2)
+
+                    val error = ErrorMapper.toAppError(e)
+                    _syncStatus.value = SyncStatus.Failed(ErrorMapper.messageFor(error))
+                    AppResult.Failure(error)
+                }
             }
         }
     }

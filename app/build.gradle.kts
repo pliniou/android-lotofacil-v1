@@ -70,6 +70,12 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1,LICENSE*,NOTICE*}"
         }
+        jniLibs {
+            keepDebugSymbols += setOf(
+                "**/libandroidx.graphics.path.so",
+                "**/libdatastore_shared_counter.so"
+            )
+        }
     }
 
     lint {

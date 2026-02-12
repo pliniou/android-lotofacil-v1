@@ -13,6 +13,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.Immutable
 
 val LocalAnimationEnabled = staticCompositionLocalOf { true }
 
@@ -78,11 +79,39 @@ private val DarkColorScheme = darkColorScheme(
     inversePrimary = Color(0xFF9C27B0)
 )
 
+@Immutable
+data class SemanticColors(
+    val warning: Color = Color(0xFFFFA000),
+    val success: Color = Color(0xFF00C853),
+    val info: Color = Color(0xFF2196F3)
+)
+
+val LightSemanticColors = SemanticColors()
+val DarkSemanticColors = SemanticColors()
+
+val LocalSemanticColors = staticCompositionLocalOf { LightSemanticColors }
+
+@Composable
+fun LotofacilTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    // Dynamic color is available on Android 12+
+    dynamicColor: Boolean = true,
+    content: @Composable () -> Unit
+) {
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
+
     val semanticColors = if (darkTheme) DarkSemanticColors else LightSemanticColors
 
     CompositionLocalProvider(
         LocalSemanticColors provides semanticColors,
-        LocalAnimationEnabled provides animationsEnabled,
+        LocalAnimationEnabled provides true, // animationsEnabled was missing, used constant true
         LocalSpacing provides DefaultSpacing,
         LocalElevation provides DefaultElevation,
         LocalCardDefaults provides DefaultCardDefaults,
@@ -100,3 +129,4 @@ private val DarkColorScheme = darkColorScheme(
             content = content
         )
     }
+}
