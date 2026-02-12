@@ -1,53 +1,117 @@
-# Workflows (playbooks)
+# Workflows (Playbooks)
 
-> Se você não souber por onde começar, use `master` para roteamento e prompts.
+These workflows define standard procedures for common development tasks. Follow them to ensure consistency and quality.
 
-## wf.feature — Nova feature end-to-end
-1) `arch` — blueprint (camadas, contratos, estados, DI, erro)  
-2) `design` — tokens/estados visuais/a11y rules  
-3) `data` — repos/datasources/cache/migrations (se houver)  
-4) `android` — permissões/background/deeplinks/resources  
-5) `ui` — telas + componentes + previews + a11y  
-6) `test` — testes por camada + cenários críticos  
-7) `observe` — eventos/logs/erros (definição + instrumentação mínima)  
-8) `security` e `perf` — revisão rápida (risco/medição), quando aplicável  
+## 📦 WF.Feature: New Feature End-to-End
+*Goal: Deliver a robust, production-ready feature.*
 
-**DoD mínimo (genérico)**
-- Compila e roda em pelo menos 1 device/emulador alvo
-- Lint/format OK (ou justificativa)
-- Testes críticos OK (unit + 1 smoke instrumented se aplicável)
-- Estados: loading/empty/error
-- A11y básica (semântica/touch targets/contraste via tokens)
-- Logs/erros padronizados (sem PII)
+1.  **`arch`**: **Blueprint & Contracts**
+    - Define domain models, repository interfaces, and UseCases.
+    - Define UI State and Events.
+    - Setup Dependency Injection (Hilt).
+2.  **`design`**: **Visual Specs**
+    - Define design tokens (if new) or identify existing ones.
+    - Clarify layout rules and accessibility requirements.
+3.  **`data`**: **Data Layer Implementation**
+    - Implement DataSources (API service / DAO).
+    - Implement Repository with mapping logic and error handling.
+    - Handle caching/offline support if required.
+4.  **`ui`**: **UI Implementation**
+    - Build stateless Components with Previews.
+    - implementations Screen/Page Composable.
+    - Connect ViewModel (manage state/events).
+    - Implement Navigation.
+5.  **`test`**: **Verification**
+    - Unit Tests for UseCases and ViewModels.
+    - Integration Tests for Repository (optional but recommended).
+    - UI/Screenshot tests for Screens.
+6.  **`observe`**: **Instrumentation**
+    - Add structured logging for critical flows.
+    - Define and track analytics events.
 
-## wf.bug — Bugfix com rastreabilidade
-1) `observe` — sinal (crash/log/analytics) + hipótese  
-2) `arch` — invariantes e contrato quebrado (onde corrigir)  
-3) `data`/`ui`/`android` — correção na camada certa (uma só, quando possível)  
-4) `test` — teste de regressão  
-5) `perf`/`security` — checagem rápida de impacto  
+**Done Criteria (DoD):**
+- [ ] Compiles without warnings.
+- [ ] Runs on target API levels (minSdk to targetSdk).
+- [ ] Unit tests pass.
+- [ ] UI has Loading, Content, Empty, and Error states.
+- [ ] Accessibility support (ContentDescriptions, touch targets).
 
-## wf.schema — Mudança de schema / migração
-1) `arch` — impacto em modelos e contratos  
-2) `data` — migration segura + fallback + compat  
-3) `test` — teste de migração + smoke test  
-4) `release` — checar shrinker/serialização e rollout  
+---
 
-## wf.release — Preparar release
-1) `build` — build reproducível + tasks CI + signing  
-2) `test` — suite mínima + sanity instrumented  
-3) `perf` — checagem de startup/jank (baseline)  
-4) `security` — revisão final (permissões/PII/logs)  
-5) `release` — checklist Play + version bump + changelog  
+## 🐛 WF.Bug: Standardized Bug Fix
+*Goal: Fix bugs with regression safety.*
 
-## wf.perf — Performance orientada a métricas
-1) `perf` — plano de medição + baseline + hipótese  
-2) `observe` — instrumentar métrica/evento se faltar  
-3) `ui`/`data`/`android` — otimizações priorizadas  
-4) `test` — garantir que comportamento não mudou  
+1.  **`observe`**: **Diagnosis**
+    - Analyze logs, stack traces, or crash reports.
+    - Reproduce the issue locally (create a reproduction test case if possible).
+2.  **`arch`**: **Root Cause Analysis**
+    - Identify the broken contract, state management issue, or logic error.
+3.  **`code`**: **Fix Implementation**
+    - Apply the fix in the appropriate layer (`android`, `ui`, `data`, or `domain`).
+    - *Avoid workaround/hacks unless documented as temporary.*
+4.  **`test`**: **Regression Testing**
+    - Add a test case that fails without the fix and passes with it.
+    - Run related test suites to ensure no side effects.
 
-## wf.security — Segurança/privacidade
-1) `security` — threat model rápido + permissões mínimas + storage/logs  
-2) `android` — validar runtime + exported/intent filters  
-3) `observe` — garantir que não há PII em logs/analytics  
-4) `test` — casos críticos (sem permissão, sessão expirada, etc.)
+---
+
+## 🗄️ WF.Schema: specific Data/Database Change
+*Goal: Modify data structure without data loss.*
+
+1.  **`arch`**: **Impact Analysis**
+    - Identify all affected Models, DTOs, and Mappers.
+2.  **`data`**: **Migration Strategy**
+    - Modify Entity/Table classes.
+    - Create a Room Migration or API version handling strategy.
+    - Update Mappers and Tests.
+3.  **`test`**: **Verify Migration**
+    - Write a migration test to verify data integrity before/after.
+
+---
+
+## 🚀 WF.Release: Release Preparation
+*Goal: Safe and compliant release.*
+
+1.  **`build`**: **Pre-flight Check**
+    - Clean build.
+    - Check for dependency updates/vulnerabilities.
+    - Run Lint/Detekt.
+2.  **`test`**: **Full Suite**
+    - Run all Unit and Instrumented tests.
+3.  **`release`**: **Artifact Generation**
+    - Bump version code/name.
+    - Update `CHANGELOG.md`.
+    - Generate Signed Bundle/APK.
+    - Verify R8/Obfuscation mappings.
+4.  **`test`**: **Sanity Check**
+    - Install release build on a physical device.
+    - Perform a manual smoke test of critical paths.
+
+---
+
+## ⚡ WF.Perf: Performance Optimization
+*Goal: Measurable performance improvement.*
+
+1.  **`perf`**: **Baseline Measurement**
+    - Use Profiler/Macrobenchmark to record current state.
+    - Identify bottleneck (CPU, Memory, GPU, I/O).
+2.  **`code`**: **Optimization**
+    - Apply specific fix (e.g., flatten layout, optimize query, debounce inputs).
+3.  **`perf`**: **Validation**
+    - Re-run benchmark to confirm improvement.
+    - Ensure no functional regression.
+
+---
+
+## 🔒 WF.Security: Security Audit
+*Goal: Harden application security.*
+
+1.  **`security`**: **Threat Model**
+    - Review data flow and storage.
+    - Check permissions usage.
+2.  **`build`**: **Dependency Scan**
+    - Check for known vulnerabilities in libraries.
+3.  **`android`**: **Manifest & Config**
+    - Verify `exported` flags.
+    - Check Network Security Config.
+    - Verify Proguard rules.

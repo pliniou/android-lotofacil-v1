@@ -1,24 +1,44 @@
-# Android Native Agents (Default)
+# Android Native Agents (Refactored)
 
-Use this project agent pack by default for Android tasks:
-- `.android-native-agents/SKILL.md`
-- `.android-native-agents/skills.md`
-- `.android-native-agents/workflows.md`
-- `.android-native-agents/agents/*.md`
-- `.android-native-agents/templates/*.md`
+This repository is equipped with the **Android Native Agent Pack**, a set of specialized AI instructions to maintain code quality and consistency.
 
-## Trigger Rules
-- Activate this pack for any request involving Android native development, Kotlin, Jetpack/Compose, Gradle, testing, observability, release, security, or performance.
-- Prefer routing through `master` when the request spans multiple concerns or the entry point is unclear.
-- If the user explicitly picks a specialist (`arch`, `data`, `ui`, `android`, `kotlin`, `design`, `test`, `build`, `release`, `security`, `perf`, `observe`), use that specialist first.
+## 🤖 Active Agents
 
-## Default Execution Order
-1. `master` (routing and hand-off plan when needed)
-2. Relevant specialist agents from `.android-native-agents/agents/`
-3. Matching workflow from `.android-native-agents/workflows.md`
-4. Matching template from `.android-native-agents/templates/`
+The following agents are available in `.android-native-agents/`.
+All agents are orchestrated via this file to ensure the right specialist is chosen.
 
-## Output Expectations
-- Keep outputs actionable and implementation-ready.
-- Respect existing project patterns before proposing new architecture.
-- Include tests, observability, and risk checks in all non-trivial changes.
+| Agent | Responsibilities |
+| :--- | :--- |
+| **`master`** | **Orchestrator**. Start here. Analyzes context, plans, and routes to specialists. |
+| **`arch`** | **Architecture**. Boundaries, Contracts, DI, State Models. |
+| **`ui`** | **User Interface**. Compose Screens, Components, Aesthetics. |
+| **`data`** | **Data Layer**. Repositories, Database, Network, Sync. |
+| **`test`** | **Testing**. Unit, Integration, UI Tests, Fakes. |
+| **`android`** | **Platform**. Lifecycle, Manifest, Permissions, Services. |
+| **`kotlin`** | **Language**. Refactoring, Coroutines, Safety. |
+| **`design`** | **Design System**. Tokens, Theme, Accessibility, Material 3. |
+| **`build`** | **Build/CI**. Gradle, Dependencies, Lint/Detekt. |
+| **`release`** | **Distribution**. Signing, Versioning, Play Store Pre-check. |
+| **`security`**| **Security**. Privacy, Encryption, Permissions Audit. |
+| **`perf`** | **Performance**. Profiling, Optimization, Benchmarks. |
+| **`observe`** | **Observability**. Logs, Analytics, Crash Reporting. |
+
+## 🛑 Protocol: Context First
+**CRITICAL INSTRUCTION FOR AI:**
+Before generating any code or plan, you **MUST**:
+1.  **Analyze Structure**: Run `list_dir` to understand the current directory layout.
+2.  **Read Existing Code**: Run `view_file` on relevant files to match the existing coding style and architecture.
+3.  **Avoid Assumptions**: Do not guess file paths or content. Verify them first.
+
+## 🚀 How to Use
+
+Invoke `master` for complex tasks or directly call a specialist if the scope is narrow.
+
+> **User**: `@master We need to migrate the database to use a new schema.`
+> **AI**: *Reads `AGENTS.md`, sees `master` is the orchestrator, invokes `master` to plan the migration.*
+
+## 📂 Structure
+- `SKILL.md`: Main entry point and definition of the skill pack.
+- `skills.md`: detailed command reference and prompt patterns.
+- `workflows.md`: Standard Operating Procedures (Playbooks) for common tasks.
+- `agents/*.md`: Individual agent instructions and personas.

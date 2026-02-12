@@ -1,4 +1,4 @@
-# Android Native Agent Pack v2 (Genérico)
+# Android Native Agent Pack (Genérico)
 
 Pacote reutilizável de **agents, skills e workflows** para projetos **Android nativos** (Kotlin + Jetpack),
 com responsabilidades bem definidas, hand-offs previsíveis e foco em qualidade (testes, performance,
