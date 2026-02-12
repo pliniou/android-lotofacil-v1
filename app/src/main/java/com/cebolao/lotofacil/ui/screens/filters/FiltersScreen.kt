@@ -1,8 +1,6 @@
 package com.cebolao.lotofacil.ui.screens.filters
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterAlt
@@ -22,19 +20,18 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.navigation.UiEvent
-import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
+import com.cebolao.lotofacil.ui.components.AppScreenStateHost
 import com.cebolao.lotofacil.ui.components.ConfirmationDialog
 import com.cebolao.lotofacil.ui.components.InfoDialog
+import com.cebolao.lotofacil.ui.components.ScreenContentState
 import com.cebolao.lotofacil.ui.components.screenContentPadding
-import com.cebolao.lotofacil.ui.components.shimmer
 import com.cebolao.lotofacil.ui.model.descriptionRes
 import com.cebolao.lotofacil.ui.model.icon
 import com.cebolao.lotofacil.ui.model.titleRes
@@ -127,6 +124,13 @@ fun FiltersScreenContent(
     onShowResetConfirmation: (Boolean) -> Unit = {},
     onAction: (FiltersAction) -> Unit = {}
 ) {
+    val pageState = remember(state.filterStates) {
+        if (state.filterStates.isEmpty()) {
+            ScreenContentState.Loading()
+        } else {
+            ScreenContentState.Success
+        }
+    }
 
     // Filter info dialog
     showDialogFor?.let { type ->
@@ -172,64 +176,49 @@ fun FiltersScreenContent(
             }
         }
     ) { innerPadding ->
-        LazyColumn(
+        AppScreenStateHost(
+            state = pageState,
             modifier = Modifier
                 .fillMaxSize()
-                .screenContentPadding(innerPadding),
-            contentPadding = AppScreenDefaults.listContentPadding(),
-            verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(AppSpacing.xl)
+                .screenContentPadding(innerPadding)
         ) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = AppScreenDefaults.listContentPadding(),
+                verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(AppSpacing.xl)
+            ) {
 
-            item(key = "presets", contentType = "presets") {
-                PresetsPanel(
-                    onApplyPreset = { preset -> onAction(FiltersAction.ApplyPreset(preset)) }
-                )
-            }
-
-            item(key = "active_filters", contentType = "active_filters") {
-                ActiveFiltersPanel(
-                    activeFilters = state.filterStates.filter { it.isEnabled }
-                )
-            }
-
-            if (state.lastDraw == null) {
-                items(3, contentType = { "filter_skeleton" }) {
-                    FilterCardSkeleton()
+                item(key = "presets", contentType = "presets") {
+                    PresetsPanel(
+                        onApplyPreset = { preset -> onAction(FiltersAction.ApplyPreset(preset)) }
+                    )
                 }
-            } else {
-                // Add filter items
+
+                item(key = "active_filters", contentType = "active_filters") {
+                    ActiveFiltersPanel(
+                        activeFilters = state.filterStates.filter { it.isEnabled }
+                    )
+                }
+
                 filterList(
                     filterStates = state.filterStates,
                     lastDraw = state.lastDraw,
-                    onFilterToggle = { type, enabled -> 
-                        onAction(FiltersAction.OnFilterToggle(type, enabled)) 
+                    onFilterToggle = { type, enabled ->
+                        onAction(FiltersAction.OnFilterToggle(type, enabled))
                     },
-                    onRangeChange = { type, range -> 
-                        onAction(FiltersAction.OnRangeChange(type, range)) 
+                    onRangeChange = { type, range ->
+                        onAction(FiltersAction.OnRangeChange(type, range))
                     },
                     onInfoClick = { type -> onShowDialog(type) }
                 )
-            }
 
-            item(key = "generate_actions", contentType = "generate_actions") {
-                GenerateActionsPanel(
-                    generationState = state.generationState,
-                    onGenerate = { quantity -> onAction(FiltersAction.GenerateGames(quantity)) }
-                )
+                item(key = "generate_actions", contentType = "generate_actions") {
+                    GenerateActionsPanel(
+                        generationState = state.generationState,
+                        onGenerate = { quantity -> onAction(FiltersAction.GenerateGames(quantity)) }
+                    )
+                }
             }
         }
-    }
-}
-
-@Composable
-private fun FilterCardSkeleton() {
-    AppCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp)
-            .shimmer(),
-        backgroundColor = MaterialTheme.colorScheme.surface
-    ) {
-        // Shimmering content
     }
 }

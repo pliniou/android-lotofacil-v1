@@ -46,14 +46,31 @@ class FiltersViewModel @Inject constructor(
 
     private fun loadLastDraw() {
         viewModelScope.launch {
-            val lastDrawNumbers = historyRepository.getLastDraw()?.numbers
-            updateState { state ->
-                state.copy(
-                    lastDraw = lastDrawNumbers?.toImmutableSet(),
-                    filterStates = FilterType.entries.map { FilterState(type = it) }.toImmutableList()
-                )
+            val filterStates = defaultFilterStates()
+            try {
+                val lastDrawNumbers = historyRepository.getLastDraw()?.numbers
+                updateState { state ->
+                    state.copy(
+                        lastDraw = lastDrawNumbers?.toImmutableSet(),
+                        filterStates = filterStates
+                    )
+                }
+            } catch (_: Exception) {
+                updateState { state ->
+                    state.copy(
+                        lastDraw = null,
+                        filterStates = filterStates
+                    )
+                }
+                sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
             }
         }
+    }
+
+    private fun defaultFilterStates(): ImmutableList<FilterState> {
+        return FilterType.entries
+            .map { FilterState(type = it) }
+            .toImmutableList()
     }
 
     fun onFilterToggle(type: FilterType, isEnabled: Boolean) {
