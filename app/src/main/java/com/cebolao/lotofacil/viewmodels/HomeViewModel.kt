@@ -59,7 +59,8 @@ class HomeViewModel @Inject constructor(
                     }
                     is SyncStatus.Failed -> {
                         updateState { it.copy(syncProgress = null) }
-                        sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_sync_failed))
+                        // Silent fail for background sync to avoid spamming user
+                        // Only show if explicitly requested (handled in refreshData)
                     }
                     else -> {
                         updateState { it.copy(syncProgress = null) }

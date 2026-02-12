@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 
 // Official Lotofácil Brand Color Tokens
 object BrandColors {
-    val RoxoLotofacil = Color(0xFF803594) // R128 G53 B148 - Pantone 2593U
+    val RoxoLotofacil = Color(0xFF9C27B0) // New Vibrant Purple
 }
 
 @Immutable

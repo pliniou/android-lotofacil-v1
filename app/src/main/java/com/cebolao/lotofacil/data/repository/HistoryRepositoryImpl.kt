@@ -59,11 +59,19 @@ class HistoryRepositoryImpl @Inject constructor(
         return localDataSource.getLatestDraw()
     }
 
+    private var lastSyncTime = 0L
+    private val MIN_SYNC_INTERVAL = 60_000L // 1 minute
+
     override suspend fun syncHistory(): AppResult<Unit> {
         // Wait for initialization (db population) to complete
         isInitialized.first { it }
 
         return syncMutex.withLock {
+            val now = System.currentTimeMillis()
+            if (now - lastSyncTime < MIN_SYNC_INTERVAL && _syncStatus.value != SyncStatus.Failed("")) {
+                 return AppResult.Success(Unit)
+            }
+
             if (_syncStatus.value == SyncStatus.Syncing) return AppResult.Success(Unit)
             _syncStatus.value = SyncStatus.Syncing
             return try {
@@ -85,11 +93,15 @@ class HistoryRepositoryImpl @Inject constructor(
                         }
                     )
                 } else {
-                    logger.d(TAG, "Local history already up to date.")
+                    logger.d(TAG, "Local history already up to date or remote unavailable.")
                 }
+                lastSyncTime = System.currentTimeMillis()
                 _syncStatus.value = SyncStatus.Success
                 AppResult.Success(Unit)
             } catch (e: Exception) {
+                // If network failure, permit retry sooner but not immediately
+                lastSyncTime = System.currentTimeMillis() - (MIN_SYNC_INTERVAL / 2) 
+                
                 val error = ErrorMapper.toAppError(e)
                 _syncStatus.value = SyncStatus.Failed(ErrorMapper.messageFor(error))
                 AppResult.Failure(error)

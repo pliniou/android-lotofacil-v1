@@ -18,6 +18,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.net.toUri
+import androidx.compose.ui.res.stringResource
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.CardVariant
+import com.cebolao.lotofacil.ui.theme.AppCardDefaults
+import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.ui.theme.iconLarge
 
 @Composable
 fun FormattedText(
@@ -94,6 +103,95 @@ fun InfoListItem(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun InfoCard(
+    item: InfoItem,
+    onClick: () -> Unit
+) {
+    AppCard(
+        variant = CardVariant.Clickable,
+        onClick = onClick,
+        shape = MaterialTheme.shapes.medium,
+        elevation = AppCardDefaults.elevation,
+        modifier = Modifier.padding(horizontal = AppSpacing.lg)
+    ) {
+        Row(
+            modifier = Modifier.padding(AppCardDefaults.defaultPadding),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                item.icon,
+                contentDescription = stringResource(id = item.titleResId),
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(iconLarge())
+            )
+            androidx.compose.foundation.layout.Spacer(Modifier.width(AppSpacing.md))
+            Column(Modifier.weight(1f)) {
+                Text(stringResource(id = item.titleResId), style = MaterialTheme.typography.titleMedium)
+                Text(
+                    stringResource(id = item.subtitleResId),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Icon(
+                androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowForward,
+                null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
+fun ExternalLinkCard(
+    titleResId: Int,
+    subtitleResId: Int,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    url: String
+) {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val hapticFeedback = androidx.compose.ui.platform.LocalHapticFeedback.current
+
+    AppCard(
+        variant = CardVariant.Clickable,
+        onClick = {
+            hapticFeedback.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
+            val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, androidx.core.net.toUri(url))
+            context.startActivity(intent)
+        },
+        shape = MaterialTheme.shapes.medium,
+        elevation = AppCardDefaults.elevation,
+        modifier = Modifier.padding(horizontal = AppSpacing.lg)
+    ) {
+        Row(
+            modifier = Modifier.padding(AppCardDefaults.defaultPadding),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                icon,
+                contentDescription = stringResource(id = titleResId),
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(iconLarge())
+            )
+            androidx.compose.foundation.layout.Spacer(Modifier.width(AppSpacing.md))
+            Column(Modifier.weight(1f)) {
+                Text(stringResource(id = titleResId), style = MaterialTheme.typography.titleMedium)
+                Text(
+                    stringResource(id = subtitleResId),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Icon(
+                androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowForward,
+                null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }
