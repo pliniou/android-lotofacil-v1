@@ -26,10 +26,11 @@ import kotlin.math.roundToInt
 @Immutable
 data class FiltersUiState(
     val filterStates: ImmutableList<FilterState> = persistentListOf(),
-    val isGenerating: Boolean = false,
     val lastDraw: ImmutableSet<Int>? = null,
     val activeFiltersCount: Int = 0,
-    val generationState: GenerationUiState = GenerationUiState.Idle
+    val generationState: GenerationUiState = GenerationUiState.Idle,
+    val isLoadingLastDraw: Boolean = true,
+    val lastDrawErrorMessageResId: Int? = null
 )
 
 
@@ -46,20 +47,32 @@ class FiltersViewModel @Inject constructor(
 
     private fun loadLastDraw() {
         viewModelScope.launch {
+            updateState { it.copy(isLoadingLastDraw = true, lastDrawErrorMessageResId = null) }
             val filterStates = defaultFilterStates()
             try {
                 val lastDrawNumbers = historyRepository.getLastDraw()?.numbers
                 updateState { state ->
                     state.copy(
                         lastDraw = lastDrawNumbers?.toImmutableSet(),
-                        filterStates = filterStates
+                        filterStates = filterStates,
+                        isLoadingLastDraw = false,
+                        lastDrawErrorMessageResId = if (lastDrawNumbers == null) {
+                            R.string.error_history_unavailable
+                        } else {
+                            null
+                        }
                     )
+                }
+                if (lastDrawNumbers == null) {
+                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_history_unavailable))
                 }
             } catch (_: Exception) {
                 updateState { state ->
                     state.copy(
                         lastDraw = null,
-                        filterStates = filterStates
+                        filterStates = filterStates,
+                        isLoadingLastDraw = false,
+                        lastDrawErrorMessageResId = R.string.error_load_data_failed
                     )
                 }
                 sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
@@ -129,9 +142,9 @@ class FiltersViewModel @Inject constructor(
     }
 
     fun generateGames(quantity: Int) {
-        if (_uiState.value.isGenerating) return
+        if (_uiState.value.generationState is GenerationUiState.Loading) return
         viewModelScope.launch {
-            _uiState.update { it.copy(isGenerating = true, generationState = GenerationUiState.Loading) }
+            _uiState.update { it.copy(generationState = GenerationUiState.Loading) }
             when (val result = generateGamesUseCase(quantity, _uiState.value.filterStates)) {
                 is AppResult.Success -> {
                     gameRepository.addGeneratedGames(result.value)
@@ -149,8 +162,11 @@ class FiltersViewModel @Inject constructor(
                     _uiEvent.send(UiEvent.ShowSnackbar(messageResId = messageResId))
                 }
             }
-            _uiState.update { it.copy(isGenerating = false) }
         }
+    }
+
+    fun retryLoadLastDraw() {
+        loadLastDraw()
     }
 
     fun resetFilters() {

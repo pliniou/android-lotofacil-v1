@@ -1,22 +1,22 @@
 package com.cebolao.lotofacil.viewmodels
 
+import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
-import com.cebolao.lotofacil.domain.repository.CacheInvalidationTarget
-import com.cebolao.lotofacil.domain.repository.CachePolicy
+import com.cebolao.lotofacil.domain.model.LastDrawStats
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
-import com.cebolao.lotofacil.domain.repository.StatisticsRepository
 import com.cebolao.lotofacil.domain.repository.SyncStatus
-import com.cebolao.lotofacil.domain.service.StatisticsEngine
 import com.cebolao.lotofacil.domain.usecase.GetHomeScreenDataUseCase
+import com.cebolao.lotofacil.domain.usecase.GetStatisticsDataUseCase
+import com.cebolao.lotofacil.domain.usecase.StatisticsDataSource
 import com.cebolao.lotofacil.navigation.UiEvent
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
+import kotlinx.collections.immutable.toImmutableSet
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -25,9 +25,8 @@ import kotlinx.coroutines.withTimeoutOrNull
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getHomeScreenDataUseCase: GetHomeScreenDataUseCase,
+    private val getStatisticsDataUseCase: GetStatisticsDataUseCase,
     private val historyRepository: HistoryRepository,
-    private val statisticsEngine: StatisticsEngine,
-    private val statisticsRepository: StatisticsRepository,
     private val dispatchersProvider: DispatchersProvider
 ) : StateViewModel<HomeUiState>(HomeUiState()) {
 
@@ -45,19 +44,43 @@ class HomeViewModel @Inject constructor(
         syncStatusJob = viewModelScope.launch {
             historyRepository.syncStatus.collect { status ->
                 when (status) {
+                    SyncStatus.Idle -> {
+                        updateState { it.copy(syncState = HomeSyncState.Idle) }
+                    }
+
+                    SyncStatus.Syncing -> {
+                        updateState { it.copy(syncState = HomeSyncState.InProgress(current = null, total = null)) }
+                    }
+
                     is SyncStatus.Progress -> {
-                        updateState { it.copy(syncProgress = status.current to status.total) }
+                        updateState {
+                            it.copy(
+                                syncState = HomeSyncState.InProgress(
+                                    current = status.current,
+                                    total = status.total
+                                )
+                            )
+                        }
                     }
-                    is SyncStatus.Success -> {
-                        updateState { it.copy(syncProgress = null, isInitialSync = false) }
+
+                    SyncStatus.Success -> {
+                        updateState {
+                            it.copy(
+                                syncState = HomeSyncState.Success,
+                                historySource = DataLoadSource.NETWORK,
+                                isShowingStaleData = false
+                            )
+                        }
                     }
+
                     is SyncStatus.Failed -> {
-                        updateState { it.copy(syncProgress = null) }
-                        // Silent fail for background sync to avoid spamming user
-                        // Only show if explicitly requested (handled in refreshData)
-                    }
-                    else -> {
-                        updateState { it.copy(syncProgress = null) }
+                        updateState {
+                            it.copy(
+                                syncState = HomeSyncState.Failed(status.message),
+                                historySource = DataLoadSource.CACHE,
+                                isShowingStaleData = true
+                            )
+                        }
                     }
                 }
             }
@@ -66,7 +89,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun loadInitialData() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchersProvider.io) {
             updateState { it.copy(isScreenLoading = true, errorMessageResId = null) }
 
             val result = withTimeoutOrNull(3000L) {
@@ -75,97 +98,203 @@ class HomeViewModel @Inject constructor(
                 }
             }
 
-            if (result is AppResult.Success) {
-                val data = result.value
-                val lastDraw = data.history.firstOrNull()
-                cachedHistory = data.history
+            when (result) {
+                is AppResult.Success -> {
+                    val data = result.value
+                    val lastDraw = data.history.firstOrNull()
+                    cachedHistory = data.history
 
-                val nextDrawStats = data.lastDrawStats
-                updateState {
-                    it.copy(
-                        isScreenLoading = false,
-                        errorMessageResId = null,
-                        lastDrawStats = data.lastDrawStats,
-                        statistics = data.initialStats,
-                        historySource = DataLoadSource.CACHE,
-                        statisticsSource = DataLoadSource.COMPUTED,
-                        isShowingStaleData = false,
-                        lastUpdateTime = lastDraw?.date,
-                        nextDrawDate = nextDrawStats?.nextDate,
-                        nextDrawContest = nextDrawStats?.nextContest,
-                        isTodayDrawDay = checkIsTodayDrawDay(nextDrawStats?.nextDate)
-                    )
-                }
-                // Only sync in background if data is not fresh
-                if (historyRepository.syncStatus.value !is SyncStatus.Success) {
-                    // Check if it's the very first sync (gap from asset)
-                    val isPotentiallyInitial = lastDraw?.contestNumber != null && lastDraw.contestNumber <= 3455
-                    if (isPotentiallyInitial) {
-                        updateState { it.copy(isInitialSync = true) }
+                    updateState {
+                        it.copy(
+                            isScreenLoading = false,
+                            errorMessageResId = null,
+                            lastDrawStats = data.lastDrawStats,
+                            statistics = data.initialStats,
+                            historySource = DataLoadSource.CACHE,
+                            statisticsSource = mapStatisticsSource(data.statisticsSource),
+                            isShowingStaleData = data.isShowingStaleStatistics,
+                            lastUpdateTime = lastDraw?.date,
+                            nextDraw = data.lastDrawStats?.toNextDrawUiModel(),
+                            isTodayDrawDay = checkIsTodayDrawDay(data.lastDrawStats?.nextDate)
+                        )
                     }
-                    syncInBackground()
                 }
-            } else {
-                updateState {
-                    it.copy(
-                        isScreenLoading = false,
-                        errorMessageResId = R.string.error_load_data_failed,
-                        historySource = DataLoadSource.CACHE,
-                        isShowingStaleData = true
-                    )
+
+                else -> {
+                    updateState {
+                        it.copy(
+                            isScreenLoading = false,
+                            errorMessageResId = R.string.error_load_data_failed,
+                            historySource = DataLoadSource.CACHE,
+                            isShowingStaleData = true
+                        )
+                    }
+                    loadCachedDataAsFallback()
                 }
-                // Try to load cached data as fallback
-                loadCachedDataAsFallback()
             }
         }
     }
 
     private fun loadCachedDataAsFallback() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchersProvider.io) {
             try {
-                // Try to load any cached data as fallback
                 val fallbackHistory = withTimeoutOrNull(2000L) {
                     historyRepository.getHistory().first()
                 }
 
-                if (!fallbackHistory.isNullOrEmpty()) {
-                    val lastDraw = fallbackHistory.firstOrNull()
-                    updateState {
-                        it.copy(
-                            lastDrawStats = null, // Will be computed later
-                            statistics = null, // Will be computed later
-                            lastUpdateTime = lastDraw?.date,
-                            isShowingStaleData = true
-                        )
-                    }
-                    cachedHistory = fallbackHistory
-                    // Compute basic stats in background
-                    computeBasicStats()
-                } else {
+                if (fallbackHistory.isNullOrEmpty()) {
                     sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
+                    return@launch
                 }
-            } catch (e: Exception) {
+
+                cachedHistory = fallbackHistory
+                val latestDraw = fallbackHistory.firstOrNull()
+                val latestStats = latestDraw?.toLastDrawStats()
+
+                val statisticsResult = getStatisticsDataUseCase.loadReportForHistory(
+                    history = fallbackHistory,
+                    timeWindow = currentState.selectedTimeWindow,
+                    forceRefresh = false
+                )
+
+                when (statisticsResult) {
+                    is AppResult.Success -> {
+                        updateState {
+                            it.copy(
+                                lastDrawStats = latestStats,
+                                statistics = statisticsResult.value.report,
+                                statisticsSource = mapStatisticsSource(statisticsResult.value.source),
+                                isShowingStaleData = true,
+                                lastUpdateTime = latestDraw?.date,
+                                nextDraw = latestStats?.toNextDrawUiModel(),
+                                isTodayDrawDay = checkIsTodayDrawDay(latestStats?.nextDate)
+                            )
+                        }
+                    }
+
+                    is AppResult.Failure -> {
+                        updateState {
+                            it.copy(
+                                lastDrawStats = latestStats,
+                                statistics = null,
+                                isShowingStaleData = true,
+                                lastUpdateTime = latestDraw?.date,
+                                nextDraw = latestStats?.toNextDrawUiModel(),
+                                isTodayDrawDay = checkIsTodayDrawDay(latestStats?.nextDate)
+                            )
+                        }
+                    }
+                }
+            } catch (_: Exception) {
                 sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
             }
         }
     }
-    
-    private fun computeBasicStats() {
-        statsJob = viewModelScope.launch(dispatchersProvider.io) {
-            try {
-                if (cachedHistory.isNotEmpty()) {
-                    val basicStats = statisticsEngine.analyze(cachedHistory.take(50)) // Last 50 draws
+
+    fun refreshData() {
+        viewModelScope.launch(dispatchersProvider.default) {
+            when (val result = historyRepository.syncHistory()) {
+                is AppResult.Success -> {
+                    getStatisticsDataUseCase.clearCache()
+                    refreshScreenDataAfterSync()
+                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.refresh_success))
+                }
+
+                is AppResult.Failure -> {
                     updateState {
                         it.copy(
-                            statistics = basicStats,
-                            statisticsSource = DataLoadSource.COMPUTED
+                            historySource = DataLoadSource.CACHE,
+                            isShowingStaleData = true
                         )
                     }
+                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_sync_failed))
                 }
-            } catch (e: Exception) {
-                // Silently fail - stats will be computed later
             }
         }
+    }
+
+    private suspend fun refreshScreenDataAfterSync() {
+        when (val dataResult = getHomeScreenDataUseCase().first()) {
+            is AppResult.Success -> {
+                val data = dataResult.value
+                cachedHistory = data.history
+                updateState {
+                    it.copy(
+                        lastDrawStats = data.lastDrawStats,
+                        statistics = data.initialStats,
+                        historySource = DataLoadSource.NETWORK,
+                        statisticsSource = mapStatisticsSource(data.statisticsSource),
+                        isShowingStaleData = data.isShowingStaleStatistics,
+                        lastUpdateTime = data.history.firstOrNull()?.date,
+                        nextDraw = data.lastDrawStats?.toNextDrawUiModel(),
+                        isTodayDrawDay = checkIsTodayDrawDay(data.lastDrawStats?.nextDate)
+                    )
+                }
+                val selectedWindow = currentState.selectedTimeWindow
+                if (selectedWindow > 0) {
+                    onTimeWindowSelected(selectedWindow, forceRefresh = true)
+                }
+            }
+
+            is AppResult.Failure -> {
+                updateState {
+                    it.copy(
+                        historySource = DataLoadSource.CACHE,
+                        isShowingStaleData = true
+                    )
+                }
+            }
+        }
+    }
+
+    fun onTimeWindowSelected(window: Int, forceRefresh: Boolean = false) {
+        val current = currentState
+        if (!forceRefresh && current.selectedTimeWindow == window) return
+
+        statsJob?.cancel()
+        statsJob = viewModelScope.launch(dispatchersProvider.io) {
+            updateState { it.copy(isStatsLoading = true, selectedTimeWindow = window) }
+
+            val history = cachedHistory.ifEmpty {
+                withTimeoutOrNull(5000L) {
+                    historyRepository.getHistory().first()
+                } ?: emptyList()
+            }
+
+            when (
+                val result = getStatisticsDataUseCase.loadReportForHistory(
+                    history = history,
+                    timeWindow = window,
+                    forceRefresh = forceRefresh
+                )
+            ) {
+                is AppResult.Success -> {
+                    updateState {
+                        it.copy(
+                            statistics = result.value.report,
+                            isStatsLoading = false,
+                            statisticsSource = mapStatisticsSource(result.value.source),
+                            isShowingStaleData = result.value.isStale
+                        )
+                    }
+                    if (result.value.isStale) {
+                        sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.sync_failed_message))
+                    }
+                }
+
+                is AppResult.Failure -> {
+                    updateState { it.copy(isStatsLoading = false) }
+                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
+                }
+            }
+        }
+        jobTracker.trackNonBlocking(statsJob!!)
+    }
+
+    fun onPatternSelected(pattern: StatisticPattern) {
+        val current = currentState
+        if (current.selectedPattern == pattern) return
+        updateState { it.copy(selectedPattern = pattern) }
     }
 
     private fun checkIsTodayDrawDay(nextDate: String?): Boolean {
@@ -179,146 +308,42 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun refreshData() {
-        viewModelScope.launch(dispatchersProvider.default) {
-            try {
-                updateState { it.copy(isRefreshing = true, errorMessageResId = null) }
-                val result = historyRepository.syncHistory()
-                updateState { it.copy(isRefreshing = false) }
-                when (result) {
-                    is AppResult.Success -> {
-                        statisticsRepository.clearCache(CacheInvalidationTarget.All)
-                        val selectedWindow = currentState.selectedTimeWindow
-                        if (selectedWindow > 0) {
-                            onTimeWindowSelected(selectedWindow, forceRefresh = true)
-                        }
-                        updateState {
-                            it.copy(
-                                historySource = DataLoadSource.NETWORK,
-                                isShowingStaleData = false
-                            )
-                        }
-                        sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.refresh_success))
-                    }
-                    is AppResult.Failure -> {
-                        updateState {
-                            it.copy(
-                                historySource = DataLoadSource.CACHE,
-                                isShowingStaleData = true
-                            )
-                        }
-                        sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_sync_failed))
-                    }
-                }
-            } catch (_: Exception) {
-                updateState {
-                    it.copy(
-                        isRefreshing = false,
-                        historySource = DataLoadSource.CACHE,
-                        isShowingStaleData = true
-                    )
-                }
-                sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_sync_failed))
-            }
+    private fun mapStatisticsSource(source: StatisticsDataSource): DataLoadSource {
+        return when (source) {
+            StatisticsDataSource.CACHE -> DataLoadSource.CACHE
+            StatisticsDataSource.COMPUTED -> DataLoadSource.COMPUTED
         }
     }
 
-    fun onTimeWindowSelected(window: Int, forceRefresh: Boolean = false) {
-        val current = currentState
-        if (!forceRefresh && current.selectedTimeWindow == window) return
-
-        statsJob?.cancel()
-        statsJob = viewModelScope.launch(dispatchersProvider.io) {
-            updateState { it.copy(isStatsLoading = true, selectedTimeWindow = window) }
-
-            try {
-                val cachedStats = if (forceRefresh) {
-                    null
-                } else {
-                    statisticsRepository.getCachedStatistics(
-                        windowSize = window,
-                        policy = CachePolicy.OnlyValid
-                    )
-                }
-                if (cachedStats != null) {
-                    updateState {
-                        it.copy(
-                            statistics = cachedStats,
-                            isStatsLoading = false,
-                            statisticsSource = DataLoadSource.CACHE
-                        )
-                    }
-                    return@launch
-                }
-
-                val allHistory = cachedHistory.ifEmpty {
-                    withTimeoutOrNull(5000L) {
-                        historyRepository.getHistory().first()
-                    } ?: emptyList()
-                }
-                val draws = if (window > 0) allHistory.take(window) else allHistory
-                val newStats = statisticsEngine.analyze(draws)
-
-                statisticsRepository.cacheStatistics(window, newStats)
-                updateState {
-                    it.copy(
-                        statistics = newStats,
-                        isStatsLoading = false,
-                        statisticsSource = DataLoadSource.COMPUTED
-                    )
-                }
-            } catch (_: Exception) {
-                val staleStats = statisticsRepository.getCachedStatistics(
-                    windowSize = window,
-                    policy = CachePolicy.AllowStale
-                )
-                if (staleStats != null) {
-                    updateState {
-                        it.copy(
-                            statistics = staleStats,
-                            isStatsLoading = false,
-                            statisticsSource = DataLoadSource.CACHE,
-                            isShowingStaleData = true
-                        )
-                    }
-                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.sync_failed_message))
-                } else {
-                    updateState { it.copy(isStatsLoading = false) }
-                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
-                }
-            } finally {
-                statisticsRepository.clearExpiredCache()
-            }
-        }
-        jobTracker.trackNonBlocking(statsJob!!)
+    private fun LastDrawStats.toNextDrawUiModel(): NextDrawUiModel? {
+        val contest = nextContest ?: return null
+        return NextDrawUiModel(
+            contestNumber = contest,
+            date = nextDate,
+            prizeEstimate = nextEstimate ?: 0.0,
+            isAccumulated = accumulated
+        )
     }
 
-    fun onPatternSelected(pattern: StatisticPattern) {
-        val current = currentState
-        if (current.selectedPattern == pattern) return
-        updateState { it.copy(selectedPattern = pattern) }
-    }
-
-    private fun syncInBackground() {
-        viewModelScope.launch(dispatchersProvider.io) {
-            when (historyRepository.syncHistory()) {
-                is AppResult.Success -> {
-                    updateState {
-                        it.copy(
-                            historySource = DataLoadSource.NETWORK,
-                            isShowingStaleData = false
-                        )
-                    }
-                }
-                is AppResult.Failure -> {
-                    updateState {
-                        it.copy(
-                            historySource = DataLoadSource.CACHE,
-                            isShowingStaleData = true
-                        )
-                    }
-                }
-            }
-        }
+    private fun HistoricalDraw.toLastDrawStats(): LastDrawStats {
+        return LastDrawStats(
+            contest = contestNumber,
+            date = date,
+            numbers = numbers.toImmutableSet(),
+            sum = sum,
+            evens = evens,
+            odds = odds,
+            primes = primes,
+            frame = frame,
+            portrait = portrait,
+            fibonacci = fibonacci,
+            multiplesOf3 = multiplesOf3,
+            prizes = prizes,
+            winners = winners,
+            nextContest = nextContest,
+            nextDate = nextDate,
+            nextEstimate = nextEstimate,
+            accumulated = accumulated
+        )
     }
 }

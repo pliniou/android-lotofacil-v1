@@ -30,13 +30,11 @@ import com.cebolao.lotofacil.ui.components.EnhancedCard
 import com.cebolao.lotofacil.ui.theme.AppElevation
 import com.cebolao.lotofacil.ui.theme.AppSize
 import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.viewmodels.NextDrawUiModel
 
 @Composable
 fun NextDrawSection(
-    contestNumber: Int,
-    date: String,
-    prizeEstimate: Double,
-    isAccumulated: Boolean,
+    nextDraw: NextDrawUiModel,
     modifier: Modifier = Modifier
 ) {
     val colors = MaterialTheme.colorScheme
@@ -44,7 +42,7 @@ fun NextDrawSection(
     EnhancedCard(
         modifier = modifier.fillMaxWidth(),
         elevation = AppElevation.sm,
-        containerColor = if (isAccumulated) colors.errorContainer.copy(alpha = 0.1f) else colors.surface
+        containerColor = if (nextDraw.isAccumulated) colors.errorContainer.copy(alpha = 0.1f) else colors.surface
     ) {
         Column(
             modifier = Modifier.padding(AppSpacing.lg),
@@ -64,7 +62,7 @@ fun NextDrawSection(
                     letterSpacing = 1.sp
                 )
                 
-                if (isAccumulated) {
+                if (nextDraw.isAccumulated) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)
@@ -87,10 +85,10 @@ fun NextDrawSection(
             
             // Value
             Text(
-                text = NumberFormatUtils.formatCurrency(prizeEstimate),
+                text = NumberFormatUtils.formatCurrency(nextDraw.prizeEstimate),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Black,
-                color = if (isAccumulated) colors.error else colors.primary
+                color = if (nextDraw.isAccumulated) colors.error else colors.primary
             )
             
             // Info Footer
@@ -105,7 +103,10 @@ fun NextDrawSection(
                 )
                 Spacer(modifier = Modifier.width(AppSpacing.xs))
                 Text(
-                    text = stringResource(R.string.next_contest_format, NumberFormatUtils.formatInteger(contestNumber)),
+                    text = stringResource(
+                        R.string.next_contest_format,
+                        NumberFormatUtils.formatInteger(nextDraw.contestNumber)
+                    ),
                     style = MaterialTheme.typography.bodyMedium,
                     color = colors.onSurface,
                     fontWeight = FontWeight.SemiBold
@@ -117,7 +118,7 @@ fun NextDrawSection(
                 )
                 Spacer(modifier = Modifier.width(AppSpacing.xs))
                 Text(
-                    text = date,
+                    text = nextDraw.date.orEmpty(),
                     style = MaterialTheme.typography.bodyMedium,
                     color = colors.onSurfaceVariant
                 )

@@ -3,15 +3,16 @@ package com.cebolao.lotofacil.viewmodels
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.result.AppResult
+import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.domain.model.LastDrawStats
 import com.cebolao.lotofacil.domain.model.StatisticsReport
-import com.cebolao.lotofacil.domain.repository.CachePolicy
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
-import com.cebolao.lotofacil.domain.repository.StatisticsRepository
 import com.cebolao.lotofacil.domain.repository.SyncStatus
-import com.cebolao.lotofacil.domain.service.StatisticsEngine
 import com.cebolao.lotofacil.domain.usecase.GetHomeScreenDataUseCase
+import com.cebolao.lotofacil.domain.usecase.GetStatisticsDataUseCase
 import com.cebolao.lotofacil.domain.usecase.HomeScreenData
+import com.cebolao.lotofacil.domain.usecase.StatisticsDataSource
+import com.cebolao.lotofacil.domain.usecase.StatisticsReportSnapshot
 import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -29,8 +30,9 @@ import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.mock
 import org.mockito.kotlin.any
+import org.mockito.kotlin.eq
+import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -41,9 +43,8 @@ class HomeViewModelTest {
 
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var getHomeScreenDataUseCase: GetHomeScreenDataUseCase
+    private lateinit var getStatisticsDataUseCase: GetStatisticsDataUseCase
     private lateinit var historyRepository: HistoryRepository
-    private lateinit var statisticsEngine: StatisticsEngine
-    private lateinit var statisticsRepository: StatisticsRepository
     private lateinit var dispatchersProvider: DispatchersProvider
     private lateinit var viewModel: HomeViewModel
 
@@ -51,10 +52,8 @@ class HomeViewModelTest {
     fun setup() {
         Dispatchers.setMain(testDispatcher)
         getHomeScreenDataUseCase = mock()
-
+        getStatisticsDataUseCase = mock()
         historyRepository = mock()
-        statisticsEngine = mock()
-        statisticsRepository = mock()
         dispatchersProvider = mock()
 
         whenever(dispatchersProvider.default).thenReturn(testDispatcher)
@@ -63,11 +62,20 @@ class HomeViewModelTest {
         whenever(historyRepository.syncStatus).thenReturn(MutableStateFlow(SyncStatus.Idle))
         runTest {
             whenever(historyRepository.syncHistory()).thenReturn(AppResult.Success(Unit))
-            whenever(statisticsRepository.getCachedStatistics(any(), any())).thenReturn(null)
-            whenever(statisticsRepository.clearExpiredCache()).thenReturn(Unit)
-            whenever(statisticsRepository.clearCache(any())).thenReturn(Unit)
-            whenever(statisticsRepository.cacheStatistics(any(), any(), any())).thenReturn(Unit)
-            whenever(statisticsEngine.analyze(any())).thenReturn(StatisticsReport())
+            whenever(historyRepository.getHistory()).thenReturn(flowOf(emptyList()))
+            whenever(getStatisticsDataUseCase.clearCache(any())).thenReturn(Unit)
+            whenever(getStatisticsDataUseCase.loadReportForHistory(any(), any(), any()))
+                .thenReturn(
+                    AppResult.Success(
+                        StatisticsReportSnapshot(
+                            report = StatisticsReport(),
+                            source = StatisticsDataSource.CACHE,
+                            isStale = false,
+                            totalHistorySize = 0,
+                            draws = emptyList()
+                        )
+                    )
+                )
         }
     }
 
@@ -77,23 +85,26 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `initial state should have loading true and no error`() = runTest {
-        whenever(getHomeScreenDataUseCase.invoke()).thenReturn(flowOf(
-            AppResult.Success(
-                HomeScreenData(
-                    history = emptyList(),
-                    lastDrawStats = null,
-                    initialStats = StatisticsReport()
+    fun `initial state should load home data and clear loading flag`() = runTest {
+        whenever(getHomeScreenDataUseCase.invoke()).thenReturn(
+            flowOf(
+                AppResult.Success(
+                    HomeScreenData(
+                        history = emptyList(),
+                        lastDrawStats = null,
+                        initialStats = StatisticsReport(),
+                        statisticsSource = StatisticsDataSource.COMPUTED,
+                        isShowingStaleStatistics = false
+                    )
                 )
             )
-        ))
+        )
 
         viewModel = HomeViewModel(
-            getHomeScreenDataUseCase,
-            historyRepository,
-            statisticsEngine,
-            statisticsRepository,
-            dispatchersProvider
+            getHomeScreenDataUseCase = getHomeScreenDataUseCase,
+            getStatisticsDataUseCase = getStatisticsDataUseCase,
+            historyRepository = historyRepository,
+            dispatchersProvider = dispatchersProvider
         )
 
         testDispatcher.scheduler.advanceUntilIdle()
@@ -104,7 +115,14 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `onTimeWindowSelected should update selectedTimeWindow`() = runTest {
+    fun `onTimeWindowSelected should update selectedTimeWindow and source`() = runTest {
+        val history = listOf(
+            HistoricalDraw(
+                contestNumber = 3200,
+                numbers = (1..15).toSet(),
+                date = "10/02/2026"
+            )
+        )
         val lastDrawStats = LastDrawStats(
             contest = 3200,
             numbers = persistentSetOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
@@ -117,31 +135,44 @@ class HomeViewModelTest {
             fibonacci = 4,
             multiplesOf3 = 5
         )
-        val stats = StatisticsReport(
-            mostFrequentNumbers = emptyList(),
-            mostOverdueNumbers = emptyList(),
-            averageSum = 195f
-        )
 
-        whenever(getHomeScreenDataUseCase.invoke()).thenReturn(flowOf(
-            AppResult.Success(
-                HomeScreenData(
-                    history = emptyList(),
-                    lastDrawStats = lastDrawStats,
-                    initialStats = stats
+        whenever(getHomeScreenDataUseCase.invoke()).thenReturn(
+            flowOf(
+                AppResult.Success(
+                    HomeScreenData(
+                        history = history,
+                        lastDrawStats = lastDrawStats,
+                        initialStats = StatisticsReport(),
+                        statisticsSource = StatisticsDataSource.COMPUTED,
+                        isShowingStaleStatistics = false
+                    )
                 )
             )
-        ))
+        )
 
-        whenever(historyRepository.getHistory()).thenReturn(flowOf(emptyList()))
-        whenever(statisticsRepository.getCachedStatistics(100, CachePolicy.OnlyValid)).thenReturn(StatisticsReport())
+        whenever(
+            getStatisticsDataUseCase.loadReportForHistory(
+                any(),
+                eq(100),
+                eq(false)
+            )
+        ).thenReturn(
+            AppResult.Success(
+                StatisticsReportSnapshot(
+                    report = StatisticsReport(),
+                    source = StatisticsDataSource.CACHE,
+                    isStale = false,
+                    totalHistorySize = history.size,
+                    draws = history
+                )
+            )
+        )
 
         viewModel = HomeViewModel(
-            getHomeScreenDataUseCase,
-            historyRepository,
-            statisticsEngine,
-            statisticsRepository,
-            dispatchersProvider
+            getHomeScreenDataUseCase = getHomeScreenDataUseCase,
+            getStatisticsDataUseCase = getStatisticsDataUseCase,
+            historyRepository = historyRepository,
+            dispatchersProvider = dispatchersProvider
         )
 
         testDispatcher.scheduler.advanceUntilIdle()
@@ -155,40 +186,25 @@ class HomeViewModelTest {
 
     @Test
     fun `onPatternSelected should update selectedPattern`() = runTest {
-        val lastDrawStats = LastDrawStats(
-            contest = 3200,
-            numbers = persistentSetOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
-            sum = 120,
-            evens = 7,
-            odds = 8,
-            primes = 5,
-            frame = 8,
-            portrait = 7,
-            fibonacci = 4,
-            multiplesOf3 = 5
-        )
-        val stats = StatisticsReport(
-            mostFrequentNumbers = emptyList(),
-            mostOverdueNumbers = emptyList(),
-            averageSum = 195f
-        )
-
-        whenever(getHomeScreenDataUseCase.invoke()).thenReturn(flowOf(
-            AppResult.Success(
-                HomeScreenData(
-                    history = emptyList(),
-                    lastDrawStats = lastDrawStats,
-                    initialStats = stats
+        whenever(getHomeScreenDataUseCase.invoke()).thenReturn(
+            flowOf(
+                AppResult.Success(
+                    HomeScreenData(
+                        history = emptyList(),
+                        lastDrawStats = null,
+                        initialStats = StatisticsReport(),
+                        statisticsSource = StatisticsDataSource.COMPUTED,
+                        isShowingStaleStatistics = false
+                    )
                 )
             )
-        ))
+        )
 
         viewModel = HomeViewModel(
-            getHomeScreenDataUseCase,
-            historyRepository,
-            statisticsEngine,
-            statisticsRepository,
-            dispatchersProvider
+            getHomeScreenDataUseCase = getHomeScreenDataUseCase,
+            getStatisticsDataUseCase = getStatisticsDataUseCase,
+            historyRepository = historyRepository,
+            dispatchersProvider = dispatchersProvider
         )
 
         testDispatcher.scheduler.advanceUntilIdle()
@@ -200,45 +216,22 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `refreshData should update state and show success snackbar`() = runTest {
-        val lastDrawStats = LastDrawStats(
-            contest = 3200,
-            numbers = persistentSetOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
-            sum = 120,
-            evens = 7,
-            odds = 8,
-            primes = 5,
-            frame = 8,
-            portrait = 7,
-            fibonacci = 4,
-            multiplesOf3 = 5
+    fun `refreshData should reload data and mark history source as network on success`() = runTest {
+        val homeData = HomeScreenData(
+            history = emptyList(),
+            lastDrawStats = null,
+            initialStats = StatisticsReport(),
+            statisticsSource = StatisticsDataSource.COMPUTED,
+            isShowingStaleStatistics = false
         )
-        val stats = StatisticsReport(
-            mostFrequentNumbers = emptyList(),
-            mostOverdueNumbers = emptyList(),
-            averageSum = 195f
-        )
-
-        whenever(getHomeScreenDataUseCase.invoke())
-            .thenReturn(flowOf(
-                AppResult.Success(
-                    HomeScreenData(
-                        history = emptyList(),
-                        lastDrawStats = lastDrawStats,
-                        initialStats = stats
-                    )
-                )
-            ))
-
-        whenever(historyRepository.syncHistory())
-            .thenReturn(AppResult.Success(Unit))
+        whenever(getHomeScreenDataUseCase.invoke()).thenReturn(flowOf(AppResult.Success(homeData)))
+        whenever(historyRepository.syncHistory()).thenReturn(AppResult.Success(Unit))
 
         viewModel = HomeViewModel(
-            getHomeScreenDataUseCase,
-            historyRepository,
-            statisticsEngine,
-            statisticsRepository,
-            dispatchersProvider
+            getHomeScreenDataUseCase = getHomeScreenDataUseCase,
+            getStatisticsDataUseCase = getStatisticsDataUseCase,
+            historyRepository = historyRepository,
+            dispatchersProvider = dispatchersProvider
         )
 
         testDispatcher.scheduler.advanceUntilIdle()
@@ -247,7 +240,7 @@ class HomeViewModelTest {
         testDispatcher.scheduler.advanceUntilIdle()
 
         assertFalse(viewModel.uiState.value.isScreenLoading)
-        assertNotNull(viewModel.uiState.value.lastDrawStats)
+        assertNotNull(viewModel.uiState.value.statistics)
         assertEquals(DataLoadSource.NETWORK, viewModel.uiState.value.historySource)
     }
 }

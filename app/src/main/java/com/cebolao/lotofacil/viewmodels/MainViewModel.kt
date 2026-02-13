@@ -9,6 +9,7 @@ import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.ui.theme.DefaultAppMotion
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,10 +18,13 @@ data class MainUiState(
     val isLoading: Boolean = true,
     val hasError: Boolean = false,
     val errorMessageResId: Int? = null,
+    val isInitializationComplete: Boolean = false,
+    val isStartupSyncComplete: Boolean = false,
+    val startupSyncErrorMessageResId: Int? = null,
     val needsBiometricAuth: Boolean = false,
     val needsPermissionRequest: Boolean = false
 ) {
-    val isReady: Boolean get() = !isLoading && !hasError
+    val isReady: Boolean get() = isInitializationComplete && !isLoading && !hasError
 }
 
 @HiltViewModel
@@ -43,9 +47,17 @@ class MainViewModel @Inject constructor(
 
     private fun initializeApp() {
         viewModelScope.launch {
-            updateState { it.copy(isLoading = true, hasError = false, errorMessageResId = null) }
+            updateState {
+                it.copy(
+                    isLoading = true,
+                    hasError = false,
+                    errorMessageResId = null,
+                    isInitializationComplete = false,
+                    isStartupSyncComplete = false,
+                    startupSyncErrorMessageResId = null
+                )
+            }
 
-            // Start initialization in background without blocking splash
             val startTime = System.currentTimeMillis()
             val initResult = initializeHistory()
 
@@ -58,14 +70,23 @@ class MainViewModel @Inject constructor(
 
             when (initResult) {
                 is AppResult.Success -> {
-                    updateState { it.copy(isLoading = false, hasError = false, errorMessageResId = null) }
+                    updateState {
+                        it.copy(
+                            isLoading = false,
+                            hasError = false,
+                            errorMessageResId = null,
+                            isInitializationComplete = true
+                        )
+                    }
+                    triggerStartupSync()
                 }
                 is AppResult.Failure -> {
                     updateState {
                         it.copy(
                             isLoading = false,
                             hasError = true,
-                            errorMessageResId = R.string.error_load_data_failed
+                            errorMessageResId = R.string.error_load_data_failed,
+                            isInitializationComplete = false
                         )
                     }
                 }
@@ -73,20 +94,35 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun initializeHistory(): AppResult<Unit> {
-        // Launch sync in background without blocking initialization
+    private suspend fun initializeHistory(): AppResult<Unit> {
+        return try {
+            historyRepository.isInitialized.first { it }
+            AppResult.Success(Unit)
+        } catch (throwable: Throwable) {
+            logger.e(TAG, "History initialization failed", throwable)
+            AppResult.Failure(com.cebolao.lotofacil.core.error.ErrorMapper.toAppError(throwable))
+        }
+    }
+
+    private fun triggerStartupSync() {
         viewModelScope.launch {
             when (val syncResult = historyRepository.syncHistory()) {
                 is AppResult.Success -> {
-                    logger.d(TAG, "History sync completed successfully")
+                    logger.d(TAG, "History startup sync completed successfully")
+                    updateState { it.copy(isStartupSyncComplete = true, startupSyncErrorMessageResId = null) }
                 }
+
                 is AppResult.Failure -> {
                     val error = syncResult.error
-                    logger.e(TAG, "History sync failed", (error as? Throwable) ?: Exception(error.toString()))
+                    logger.e(TAG, "History startup sync failed", (error as? Throwable) ?: Exception(error.toString()))
+                    updateState {
+                        it.copy(
+                            isStartupSyncComplete = true,
+                            startupSyncErrorMessageResId = R.string.error_sync_failed
+                        )
+                    }
                 }
             }
         }
-        // Return success immediately to allow app initialization
-        return AppResult.Success(Unit)
     }
 }

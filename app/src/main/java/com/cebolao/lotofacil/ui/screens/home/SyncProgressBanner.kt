@@ -28,12 +28,11 @@ import com.cebolao.lotofacil.ui.theme.iconSmall
 
 internal sealed interface SyncFeedbackState {
     data class Progress(
-        val current: Int,
-        val total: Int,
-        val isInitialSync: Boolean
+        val current: Int?,
+        val total: Int?
     ) : SyncFeedbackState
 
-    data object Refreshing : SyncFeedbackState
+    data class Failed(val message: String?) : SyncFeedbackState
 }
 
 @Composable
@@ -43,24 +42,21 @@ internal fun SyncProgressBanner(
     val colors = MaterialTheme.colorScheme
 
     val titleText = when (feedbackState) {
-        is SyncFeedbackState.Progress -> {
-            if (feedbackState.isInitialSync) {
-                stringResource(id = R.string.initial_sync_label)
-            } else {
-                stringResource(id = R.string.refresh_sync_label)
-            }
-        }
-
-        SyncFeedbackState.Refreshing -> stringResource(id = R.string.refresh_sync_label)
+        is SyncFeedbackState.Progress -> stringResource(id = R.string.refresh_sync_label)
+        is SyncFeedbackState.Failed -> stringResource(id = R.string.error_sync_failed)
     }
 
     val progress = when (feedbackState) {
         is SyncFeedbackState.Progress -> {
-            val safeTotal = feedbackState.total.coerceAtLeast(1)
-            (feedbackState.current.toFloat() / safeTotal).coerceIn(0f, 1f)
+            val current = feedbackState.current
+            val total = feedbackState.total
+            if (current == null || total == null || total <= 0) {
+                null
+            } else {
+                (current.toFloat() / total.coerceAtLeast(1)).coerceIn(0f, 1f)
+            }
         }
-
-        SyncFeedbackState.Refreshing -> null
+        is SyncFeedbackState.Failed -> null
     }
 
     AppCard(
@@ -102,11 +98,18 @@ internal fun SyncProgressBanner(
                     )
                 }
 
-                if (feedbackState is SyncFeedbackState.Progress) {
+                if (feedbackState is SyncFeedbackState.Progress && feedbackState.current != null && feedbackState.total != null) {
                     Text(
                         text = "${feedbackState.current} / ${feedbackState.total}",
                         style = MaterialTheme.typography.labelMedium,
                         color = colors.primary,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                } else if (feedbackState is SyncFeedbackState.Failed) {
+                    Text(
+                        text = feedbackState.message ?: stringResource(id = R.string.sync_failed_message),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = colors.error,
                         fontWeight = FontWeight.SemiBold
                     )
                 } else {
@@ -117,6 +120,10 @@ internal fun SyncProgressBanner(
                         fontWeight = FontWeight.SemiBold
                     )
                 }
+            }
+
+            if (feedbackState is SyncFeedbackState.Failed) {
+                return@AppCard
             }
 
             if (progress != null) {

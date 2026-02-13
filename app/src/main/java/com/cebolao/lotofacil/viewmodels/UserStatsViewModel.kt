@@ -4,9 +4,9 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.result.AppResult
-import com.cebolao.lotofacil.domain.repository.GameRepository
 import com.cebolao.lotofacil.domain.service.UserStats
 import com.cebolao.lotofacil.domain.usecase.GetUserGameStatisticsUseCase
+import com.cebolao.lotofacil.domain.usecase.RecordGameUsageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,7 +21,7 @@ data class UserStatsUiState(
 @HiltViewModel
 class UserStatsViewModel @Inject constructor(
     private val getUserGameStatisticsUseCase: GetUserGameStatisticsUseCase,
-    private val gameRepository: GameRepository
+    private val recordGameUsageUseCase: RecordGameUsageUseCase
 ) : StateViewModel<UserStatsUiState>(UserStatsUiState()) {
 
     init {
@@ -44,7 +44,7 @@ class UserStatsViewModel @Inject constructor(
 
     fun recordGameUsage(gameId: String) {
         viewModelScope.launch {
-            gameRepository.recordGameUsage(gameId)
+            recordGameUsageUseCase(gameId)
             loadStats() // Refresh stats after recording usage
         }
     }

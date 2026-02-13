@@ -11,6 +11,7 @@ import com.cebolao.lotofacil.domain.usecase.ClearUnpinnedGamesUseCase
 import com.cebolao.lotofacil.domain.usecase.DeleteGameUseCase
 import com.cebolao.lotofacil.domain.usecase.GameCheckState
 import com.cebolao.lotofacil.domain.usecase.GetSavedGamesUseCase
+import com.cebolao.lotofacil.domain.usecase.RecordGameUsageUseCase
 import com.cebolao.lotofacil.domain.usecase.ToggleGamePinUseCase
 import com.cebolao.lotofacil.navigation.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -55,7 +56,8 @@ class GameViewModel @Inject constructor(
     private val checkGameUseCase: CheckGameUseCase,
     private val clearUnpinnedGamesUseCase: ClearUnpinnedGamesUseCase,
     private val toggleGamePinUseCase: ToggleGamePinUseCase,
-    private val deleteGameUseCase: DeleteGameUseCase
+    private val deleteGameUseCase: DeleteGameUseCase,
+    private val recordGameUsageUseCase: RecordGameUsageUseCase
 ) : StateViewModel<GameUiState>(GameUiState()) {
 
     val generatedGames: StateFlow<ImmutableList<LotofacilGame>> = getSavedGamesUseCase()
@@ -112,6 +114,7 @@ class GameViewModel @Inject constructor(
                 
                 when (checkState) {
                     is GameCheckState.Success -> {
+                        recordGameUsageUseCase(game.id)
                         val result = GameAnalysisResult(
                             game = game,
                             simpleStats = checkState.stats.toImmutableList(),

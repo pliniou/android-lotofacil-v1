@@ -31,6 +31,22 @@ enum class DataLoadSource {
     COMPUTED
 }
 
+@Stable
+sealed interface HomeSyncState {
+    data object Idle : HomeSyncState
+    data class InProgress(val current: Int?, val total: Int?) : HomeSyncState
+    data object Success : HomeSyncState
+    data class Failed(val message: String?) : HomeSyncState
+}
+
+@Stable
+data class NextDrawUiModel(
+    val contestNumber: Int,
+    val date: String?,
+    val prizeEstimate: Double,
+    val isAccumulated: Boolean
+)
+
 /**
  * Holds all state required by the Home screen, including loading and error flags, the
  * last draw statistics, computed summary statistics, and UI selections such as the
@@ -39,7 +55,6 @@ enum class DataLoadSource {
 @Stable
 data class HomeUiState(
     val isScreenLoading: Boolean = true,
-    val isRefreshing: Boolean = false,
     val isStatsLoading: Boolean = false,
     @StringRes val errorMessageResId: Int? = null,
     val lastDrawStats: LastDrawStats? = null,
@@ -50,9 +65,7 @@ data class HomeUiState(
     val statisticsSource: DataLoadSource = DataLoadSource.CACHE,
     val isShowingStaleData: Boolean = false,
     val lastUpdateTime: String? = null,
-    val nextDrawDate: String? = null,
-    val nextDrawContest: Int? = null,
+    val nextDraw: NextDrawUiModel? = null,
     val isTodayDrawDay: Boolean = false,
-    val syncProgress: Pair<Int, Int>? = null,
-    val isInitialSync: Boolean = false
+    val syncState: HomeSyncState = HomeSyncState.Idle
 )

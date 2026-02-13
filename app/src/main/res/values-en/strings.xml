@@ -82,6 +82,7 @@
     <string name="home_source_stats_cache">statistics: cache</string>
     <string name="home_source_stats_computed">statistics: computed</string>
     <string name="home_source_status_format">%1$s | %2$s</string>
+    <string name="home_pattern_hint">Most frequent %1$s: %2$s (%3$sx)</string>
     <string name="home_stale_data_warning">You are viewing local data (offline).</string>
     <string name="loading_data">Loading data…</string>
     <string name="home_loading_message">Preparing Lotofacil data...</string>
@@ -119,6 +120,7 @@
     <!-- Frequency Analysis -->
     <string name="insights_title">Advanced statistics</string>
     <string name="insights_empty_message">There is not enough data yet to display insights.</string>
+    <string name="insights_history_empty_message">No local history is available yet. Sync draws first to unlock statistics.</string>
     <string name="frequency_analysis_title">Number frequency</string>
     <string name="frequency_chart_subtitle">See how many times each number was drawn in the analyzed contests.</string>
     <string name="top_numbers_title">Most frequent</string>

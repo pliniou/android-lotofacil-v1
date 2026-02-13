@@ -64,9 +64,6 @@ fun FiltersScreen(
                     }
                 }
                 is UiEvent.ShowResetConfirmation -> showResetConfirmation = true
-                is UiEvent.Navigate -> {}
-                is UiEvent.NavigateBack -> {}
-                is UiEvent.NavigateUp -> {}
             }
         }
     }
@@ -96,6 +93,7 @@ fun FiltersScreen(
                     haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     filtersViewModel.applyPreset(action.preset)
                 }
+                FiltersAction.RetryLoadLastDraw -> filtersViewModel.retryLoadLastDraw()
             }
         }
     )
@@ -105,6 +103,7 @@ fun FiltersScreen(
 sealed class FiltersAction {
     object RequestResetAllFilters : FiltersAction()
     object ConfirmResetAllFilters : FiltersAction()
+    object RetryLoadLastDraw : FiltersAction()
     data class OnFilterToggle(val type: FilterType, val enabled: Boolean) : FiltersAction()
     data class OnRangeChange(val type: FilterType, val range: ClosedFloatingPointRange<Float>) : FiltersAction()
     data class GenerateGames(val quantity: Int) : FiltersAction()
@@ -124,11 +123,13 @@ fun FiltersScreenContent(
     onShowResetConfirmation: (Boolean) -> Unit = {},
     onAction: (FiltersAction) -> Unit = {}
 ) {
-    val pageState = remember(state.filterStates) {
-        if (state.filterStates.isEmpty()) {
-            ScreenContentState.Loading()
-        } else {
-            ScreenContentState.Success
+    val pageState = remember(state.filterStates, state.isLoadingLastDraw, state.lastDrawErrorMessageResId) {
+        when {
+            state.isLoadingLastDraw || state.filterStates.isEmpty() -> ScreenContentState.Loading()
+            state.lastDrawErrorMessageResId != null -> ScreenContentState.Error(
+                messageResId = state.lastDrawErrorMessageResId
+            )
+            else -> ScreenContentState.Success
         }
     }
 
@@ -180,7 +181,8 @@ fun FiltersScreenContent(
             state = pageState,
             modifier = Modifier
                 .fillMaxSize()
-                .screenContentPadding(innerPadding)
+                .screenContentPadding(innerPadding),
+            onRetry = { onAction(FiltersAction.RetryLoadLastDraw) }
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),

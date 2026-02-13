@@ -84,6 +84,7 @@
     <string name="home_source_stats_cache">estatísticas: cache</string>
     <string name="home_source_stats_computed">estatísticas: calculadas</string>
     <string name="home_source_status_format">%1$s | %2$s</string>
+    <string name="home_pattern_hint">%1$s mais recorrente: %2$s (%3$sx)</string>
     <string name="home_stale_data_warning">Você está vendo dados locais (offline).</string>
     <string name="loading_data">Carregando dados…</string>
     <string name="home_loading_message">Preparando dados da Lotofacil...</string>
@@ -124,6 +125,7 @@
     <!-- Frequency Analysis -->
     <string name="insights_title">Analytics</string>
     <string name="insights_empty_message">Ainda não há dados suficientes para mostrar as estatísticas.</string>
+    <string name="insights_history_empty_message">Ainda não há histórico local. Sincronize os concursos para liberar as estatísticas.</string>
     <string name="frequency_analysis_title">Frequência dos números</string>
     <string name="frequency_chart_subtitle">Veja quantas vezes cada número saiu nos concursos analisados.</string>
     <string name="top_numbers_title">Mais frequentes</string>

@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -30,6 +31,7 @@ import com.cebolao.lotofacil.ui.screens.statistics.components.SummaryCard
 import com.cebolao.lotofacil.ui.screens.statistics.components.TimeWindowFilterSection
 import com.cebolao.lotofacil.ui.screens.statistics.components.TrendSection
 import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.viewmodels.DataLoadSource
 import com.cebolao.lotofacil.viewmodels.StatisticsUiState
 import com.cebolao.lotofacil.viewmodels.StatisticsViewModel
 
@@ -84,9 +86,14 @@ fun StatisticsScreenContent(
             state.trendAnalysis != null
     }
 
-    val screenState = remember(state.isLoading, state.errorMessageResId, hasContent) {
+    val screenState = remember(state.isLoading, state.errorMessageResId, state.isHistoryEmpty, hasContent) {
         when {
             state.isLoading -> ScreenContentState.Loading()
+            state.isHistoryEmpty -> ScreenContentState.Empty(
+                messageResId = R.string.insights_history_empty_message,
+                icon = Icons.Filled.Analytics,
+                actionLabelResId = R.string.refresh_button
+            )
             state.errorMessageResId != null -> ScreenContentState.Error(messageResId = state.errorMessageResId)
             !hasContent -> ScreenContentState.Empty(
                 messageResId = R.string.insights_empty_message,
@@ -130,6 +137,23 @@ fun StatisticsScreenContent(
                 ),
                 verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
             ) {
+                item(key = "statistics_data_status") {
+                    val sourceLabel = when (state.statisticsSource) {
+                        DataLoadSource.CACHE -> stringResource(R.string.home_source_stats_cache)
+                        DataLoadSource.NETWORK -> stringResource(R.string.home_source_stats_network)
+                        DataLoadSource.COMPUTED -> stringResource(R.string.home_source_stats_computed)
+                    }
+                    Text(
+                        text = if (state.isShowingStaleData) {
+                            "$sourceLabel - ${stringResource(R.string.home_stale_data_warning)}"
+                        } else {
+                            sourceLabel
+                        },
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+
                 item(key = "time_window_filter") {
                     TimeWindowFilterSection(
                         selectedWindow = state.selectedTimeWindow,

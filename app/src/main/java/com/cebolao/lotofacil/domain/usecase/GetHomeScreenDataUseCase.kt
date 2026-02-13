@@ -8,7 +8,6 @@ import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.domain.model.LastDrawStats
 import com.cebolao.lotofacil.domain.model.StatisticsReport
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
-import com.cebolao.lotofacil.domain.service.StatisticsEngine
 import kotlinx.collections.immutable.toImmutableSet
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -19,12 +18,14 @@ import javax.inject.Inject
 data class HomeScreenData(
     val lastDrawStats: LastDrawStats?,
     val initialStats: StatisticsReport,
-    val history: List<HistoricalDraw>
+    val history: List<HistoricalDraw>,
+    val statisticsSource: StatisticsDataSource,
+    val isShowingStaleStatistics: Boolean
 )
 
 class GetHomeScreenDataUseCase @Inject constructor(
     private val historyRepository: HistoryRepository,
-    private val statisticsEngine: StatisticsEngine,
+    private val getStatisticsDataUseCase: GetStatisticsDataUseCase,
     private val dispatchersProvider: DispatchersProvider
 ) {
     operator fun invoke(): Flow<AppResult<HomeScreenData>> {
@@ -35,13 +36,25 @@ class GetHomeScreenDataUseCase @Inject constructor(
                 } else {
                     val lastDraw = history.first()
                     val lastDrawStats = calculateLastDrawStats(lastDraw)
-                    val initialStats = statisticsEngine.analyze(history)
+                    when (
+                        val reportResult = getStatisticsDataUseCase.loadReportForHistory(
+                            history = history,
+                            timeWindow = 0,
+                            forceRefresh = false
+                        )
+                    ) {
+                        is AppResult.Success -> {
+                            HomeScreenData(
+                                lastDrawStats = lastDrawStats,
+                                initialStats = reportResult.value.report,
+                                history = history,
+                                statisticsSource = reportResult.value.source,
+                                isShowingStaleStatistics = reportResult.value.isStale
+                            ).toSuccess()
+                        }
 
-                    HomeScreenData(
-                        lastDrawStats = lastDrawStats,
-                        initialStats = initialStats,
-                        history = history
-                    ).toSuccess()
+                        is AppResult.Failure -> reportResult
+                    }
                 }
             }
             .distinctUntilChanged { old, new ->

@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
@@ -47,10 +46,11 @@ import com.cebolao.lotofacil.ui.testtags.AppTestTags
 import com.cebolao.lotofacil.ui.theme.AppAnimationConstants
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppTheme
-import com.cebolao.lotofacil.ui.theme.iconButtonSize
-import com.cebolao.lotofacil.ui.theme.iconMedium
+import com.cebolao.lotofacil.viewmodels.DataLoadSource
+import com.cebolao.lotofacil.viewmodels.HomeSyncState
 import com.cebolao.lotofacil.viewmodels.HomeUiState
 import com.cebolao.lotofacil.viewmodels.HomeViewModel
+import com.cebolao.lotofacil.viewmodels.StatisticPattern
 
 @Composable
 fun HomeScreen(
@@ -85,6 +85,8 @@ fun HomeScreen(
         onAction = { action ->
             when (action) {
                 HomeAction.RefreshData -> homeViewModel.refreshData()
+                is HomeAction.PatternSelected -> homeViewModel.onPatternSelected(action.pattern)
+                is HomeAction.TimeWindowSelected -> homeViewModel.onTimeWindowSelected(action.window)
             }
         },
         onNavigateToInsights = onNavigateToInsights
@@ -93,6 +95,8 @@ fun HomeScreen(
 
 sealed class HomeAction {
     data object RefreshData : HomeAction()
+    data class PatternSelected(val pattern: StatisticPattern) : HomeAction()
+    data class TimeWindowSelected(val window: Int) : HomeAction()
 }
 
 @Composable
@@ -102,19 +106,7 @@ fun HomeScreenContent(
     onAction: (HomeAction) -> Unit = {},
     onNavigateToInsights: () -> Unit = {}
 ) {
-    val syncFeedbackState = remember(state.syncProgress, state.isRefreshing, state.isInitialSync) {
-        state.syncProgress?.let { (current, total) ->
-            SyncFeedbackState.Progress(
-                current = current,
-                total = total,
-                isInitialSync = state.isInitialSync
-            )
-        } ?: if (state.isRefreshing) {
-            SyncFeedbackState.Refreshing
-        } else {
-            null
-        }
-    }
+    val syncFeedbackState = remember(state.syncState) { state.syncState.toFeedbackState() }
 
     val hasPrimaryData = remember(state.lastDrawStats, state.statistics, state.lastUpdateTime) {
         state.lastDrawStats != null || state.statistics != null || !state.lastUpdateTime.isNullOrBlank()
@@ -146,7 +138,7 @@ fun HomeScreenContent(
     }
 
     PullToRefreshScreen(
-        isRefreshing = state.isRefreshing,
+        isRefreshing = state.syncState is HomeSyncState.InProgress,
         onRefresh = { onAction(HomeAction.RefreshData) }
     ) {
         AppScreenScaffold(
@@ -155,7 +147,19 @@ fun HomeScreenContent(
             subtitle = stringResource(id = R.string.lotofacil_subtitle),
             iconPainter = painterResource(id = R.drawable.ic_cebolalogo),
             snackbarHostState = snackbarHostState,
-            // Removed specific RefreshButton action to unify sync UX - users can pull to refresh
+            actions = {
+                IconButton(
+                    onClick = { onAction(HomeAction.RefreshData) },
+                    modifier = Modifier
+                        .testTag(AppTestTags.HomeRefreshAction)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Refresh,
+                        contentDescription = stringResource(id = R.string.cd_refresh_data),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
         ) { innerPadding ->
             Column(
                 modifier = Modifier
@@ -172,6 +176,12 @@ fun HomeScreenContent(
                     }
                 }
 
+                HomeDataSourceStatus(
+                    historySource = state.historySource,
+                    statisticsSource = state.statisticsSource,
+                    isShowingStaleData = state.isShowingStaleData
+                )
+
                 AppScreenStateHost(
                     state = screenState,
                     modifier = Modifier.fillMaxSize(),
@@ -183,35 +193,22 @@ fun HomeScreenContent(
                         contentPadding = AppScreenDefaults.listContentPadding(),
                         verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
                     ) {
-                        // Greeting Section
                         item(key = "greeting", contentType = "greeting") {
-                             GreetingSection(
-                                 nextDrawAccumulated = state.lastDrawStats?.accumulated == true, // Assuming lastDrawStats has accumulated status for NEXT draw? 
-                                 // Wait, lastDrawStats.nextContest logic.
-                                 // Let's use parameters available or derive them.
-                                 // state.lastDrawStats?.accumulated refers to the LAST draw or NEXT draw?
-                                 // Usually 'accumulated' flag in LastDrawStats refers to whether the Prize accumulated.
-                                 // Let's assume it means the CURRENT status (for the next draw).
-                                 isDrawDay = state.isTodayDrawDay,
-                                 lastUpdateTime = state.lastUpdateTime
-                             )
+                            GreetingSection(
+                                nextDrawAccumulated = state.nextDraw?.isAccumulated == true,
+                                isDrawDay = state.isTodayDrawDay,
+                                lastUpdateTime = state.lastUpdateTime
+                            )
                         }
 
-                        // Next Draw Prediction
-                        state.lastDrawStats?.nextContest?.let { nextContest ->
-                             item(key = "next_draw", contentType = "next_draw") {
-                                 AnimateOnEntry(delayMillis = AppAnimationConstants.Delays.Minimal.toLong()) {
-                                     NextDrawSection(
-                                         contestNumber = nextContest,
-                                         date = state.nextDrawDate ?: "",
-                                         prizeEstimate = state.lastDrawStats.nextEstimate ?: 0.0,
-                                         isAccumulated = state.lastDrawStats.accumulated
-                                     )
-                                 }
-                             }
+                        state.nextDraw?.let { nextDraw ->
+                            item(key = "next_draw", contentType = "next_draw") {
+                                AnimateOnEntry(delayMillis = AppAnimationConstants.Delays.Minimal.toLong()) {
+                                    NextDrawSection(nextDraw = nextDraw)
+                                }
+                            }
                         }
 
-                        // Last Draw Result
                         item(key = "last_draw", contentType = "last_draw") {
                             state.lastDrawStats?.let { stats ->
                                 AnimateOnEntry(
@@ -229,7 +226,6 @@ fun HomeScreenContent(
                             )
                         }
 
-                        // Quick Insights (Statistics)
                         item(key = "statistics", contentType = "statistics_preview") {
                             AnimateOnEntry(
                                 delayMillis = AppAnimationConstants.Delays.Short.toLong()
@@ -237,6 +233,12 @@ fun HomeScreenContent(
                                 QuickInsightsSection(
                                     stats = state.statistics,
                                     isLoading = state.isStatsLoading,
+                                    selectedPattern = state.selectedPattern,
+                                    selectedTimeWindow = state.selectedTimeWindow,
+                                    statisticsSource = state.statisticsSource,
+                                    isShowingStaleData = state.isShowingStaleData,
+                                    onPatternSelected = { onAction(HomeAction.PatternSelected(it)) },
+                                    onTimeWindowSelected = { onAction(HomeAction.TimeWindowSelected(it)) },
                                     onViewAll = onNavigateToInsights
                                 )
                             }
@@ -248,27 +250,53 @@ fun HomeScreenContent(
     }
 }
 
-@Composable
-private fun RefreshButton(
-    isRefreshing: Boolean,
-    onClick: () -> Unit
-) {
-    val colors = MaterialTheme.colorScheme
-
-    IconButton(
-        onClick = onClick,
-        enabled = !isRefreshing,
-        modifier = Modifier
-            .size(iconButtonSize())
-            .testTag(AppTestTags.HomeRefreshAction)
-    ) {
-        Icon(
-            imageVector = Icons.Default.Refresh,
-            contentDescription = stringResource(id = R.string.cd_refresh_data),
-            tint = if (isRefreshing) colors.primary else colors.onSurfaceVariant,
-            modifier = Modifier.size(iconMedium())
+private fun HomeSyncState.toFeedbackState(): SyncFeedbackState? {
+    return when (this) {
+        HomeSyncState.Idle -> null
+        is HomeSyncState.InProgress -> SyncFeedbackState.Progress(
+            current = current,
+            total = total
         )
+
+        HomeSyncState.Success -> null
+        is HomeSyncState.Failed -> SyncFeedbackState.Failed(message = message)
     }
+}
+
+@Composable
+private fun HomeDataSourceStatus(
+    historySource: DataLoadSource,
+    statisticsSource: DataLoadSource,
+    isShowingStaleData: Boolean
+) {
+    val historySourceLabel = when (historySource) {
+        DataLoadSource.CACHE -> stringResource(R.string.home_source_history_cache)
+        DataLoadSource.NETWORK -> stringResource(R.string.home_source_history_network)
+        DataLoadSource.COMPUTED -> stringResource(R.string.home_source_history_cache)
+    }
+    val statisticsSourceLabel = when (statisticsSource) {
+        DataLoadSource.CACHE -> stringResource(R.string.home_source_stats_cache)
+        DataLoadSource.NETWORK -> stringResource(R.string.home_source_stats_network)
+        DataLoadSource.COMPUTED -> stringResource(R.string.home_source_stats_computed)
+    }
+    val sourceText = stringResource(
+        id = R.string.home_source_status_format,
+        historySourceLabel,
+        statisticsSourceLabel
+    )
+
+    Text(
+        text = if (isShowingStaleData) {
+            "$sourceText - ${stringResource(R.string.home_stale_data_warning)}"
+        } else {
+            sourceText
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = AppSpacing.lg, vertical = AppSpacing.xs),
+        style = MaterialTheme.typography.labelMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+    )
 }
 
 @Composable

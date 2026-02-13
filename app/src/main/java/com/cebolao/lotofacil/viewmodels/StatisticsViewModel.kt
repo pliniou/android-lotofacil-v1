@@ -4,17 +4,18 @@ import androidx.compose.runtime.Stable
 import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
+import com.cebolao.lotofacil.core.error.EmptyHistoryError
+import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.domain.model.FrequencyAnalysis
 import com.cebolao.lotofacil.domain.model.PatternAnalysis
 import com.cebolao.lotofacil.domain.model.StatisticsReport
 import com.cebolao.lotofacil.domain.model.TrendAnalysis
 import com.cebolao.lotofacil.domain.model.TrendType
-import com.cebolao.lotofacil.domain.repository.HistoryRepository
-import com.cebolao.lotofacil.domain.service.StatisticsEngine
+import com.cebolao.lotofacil.domain.usecase.GetStatisticsDataUseCase
+import com.cebolao.lotofacil.domain.usecase.StatisticsDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @Stable
 data class StatisticsUiState(
@@ -37,7 +38,12 @@ data class StatisticsUiState(
     // Available time windows
     val timeWindows: List<Int> = listOf(0, 10, 20, 50, 100, 200, 500, 1500, 2000),
 
+    // Data origin
+    val statisticsSource: DataLoadSource = DataLoadSource.CACHE,
+    val isShowingStaleData: Boolean = false,
+
     // Error states
+    val isHistoryEmpty: Boolean = false,
     val errorMessageResId: Int? = null,
     val patternErrorResId: Int? = null,
     val trendErrorResId: Int? = null,
@@ -48,8 +54,7 @@ data class StatisticsUiState(
 
 @HiltViewModel
 class StatisticsViewModel @Inject constructor(
-    private val statisticsEngine: StatisticsEngine,
-    private val historyRepository: HistoryRepository,
+    private val getStatisticsDataUseCase: GetStatisticsDataUseCase,
     private val dispatchersProvider: DispatchersProvider
 ) : StateViewModel<StatisticsUiState>(StatisticsUiState()) {
 
@@ -57,80 +62,57 @@ class StatisticsViewModel @Inject constructor(
         loadAllStatistics()
     }
 
-    private fun loadAllStatistics() {
+    private fun loadAllStatistics(forceRefresh: Boolean = false) {
         viewModelScope.launch(dispatchersProvider.io) {
-            updateState { it.copy(isLoading = true, errorMessageResId = null) }
+            updateState {
+                it.copy(
+                    isLoading = true,
+                    isHistoryEmpty = false,
+                    errorMessageResId = null
+                )
+            }
 
-            try {
-                val history = historyRepository.getHistory().first()
-                if (history.isEmpty()) {
+            when (
+                val result = getStatisticsDataUseCase.loadScreenData(
+                    timeWindow = currentState.selectedTimeWindow,
+                    patternSize = currentState.selectedPatternSize,
+                    trendType = currentState.selectedTrendType,
+                    trendWindow = currentState.selectedTrendWindow,
+                    forceRefresh = forceRefresh
+                )
+            ) {
+                is AppResult.Success -> {
+                    val source = when (result.value.reportSnapshot.source) {
+                        StatisticsDataSource.CACHE -> DataLoadSource.CACHE
+                        StatisticsDataSource.COMPUTED -> DataLoadSource.COMPUTED
+                    }
                     updateState {
                         it.copy(
                             isLoading = false,
-                            errorMessageResId = R.string.error_load_data_failed
+                            report = result.value.reportSnapshot.report,
+                            frequencyAnalysis = result.value.frequencyAnalysis,
+                            patternAnalysis = result.value.patternAnalysis,
+                            trendAnalysis = result.value.trendAnalysis,
+                            totalDrawsAvailable = result.value.reportSnapshot.totalHistorySize,
+                            statisticsSource = source,
+                            isShowingStaleData = result.value.reportSnapshot.isStale,
+                            isHistoryEmpty = false,
+                            errorMessageResId = null,
+                            patternErrorResId = null,
+                            trendErrorResId = null
                         )
                     }
-                    return@launch
                 }
 
-                val window = currentState.selectedTimeWindow
-                val draws = if (window > 0) history.take(window) else history
-
-                // Full report
-                val report = statisticsEngine.analyze(draws)
-
-                // Frequency analysis
-                val frequencies = statisticsEngine.getNumberFrequencies(draws)
-                val topNumbers = statisticsEngine.getTopNumbers(frequencies)
-                val overdueNumbers = statisticsEngine.getOverdueNumbers(draws)
-                val frequencyAnalysis = FrequencyAnalysis(
-                    frequencies = frequencies,
-                    topNumbers = topNumbers,
-                    overdueNumbers = overdueNumbers,
-                    totalDraws = draws.size
-                )
-
-                // Pattern analysis
-                val patterns = statisticsEngine.getCommonPatterns(
-                    draws,
-                    currentState.selectedPatternSize
-                )
-                val patternAnalysis = PatternAnalysis(
-                    size = currentState.selectedPatternSize,
-                    patterns = patterns,
-                    totalDraws = draws.size
-                )
-
-                // Trend analysis
-                val trendType = currentState.selectedTrendType
-                val trendWindow = currentState.selectedTrendWindow
-                val timeline = computeTimeline(draws, trendType, trendWindow)
-                val averageValue = if (timeline.isNotEmpty()) {
-                    timeline.map { it.second }.average().toFloat()
-                } else 0f
-                val trendAnalysis = TrendAnalysis(
-                    type = trendType,
-                    timeline = timeline,
-                    averageValue = averageValue
-                )
-
-                updateState {
-                    it.copy(
-                        isLoading = false,
-                        report = report,
-                        frequencyAnalysis = frequencyAnalysis,
-                        patternAnalysis = patternAnalysis,
-                        trendAnalysis = trendAnalysis,
-                        totalDrawsAvailable = history.size,
-                        errorMessageResId = null
-                    )
-                }
-            } catch (_: Exception) {
-                updateState {
-                    it.copy(
-                        isLoading = false,
-                        errorMessageResId = R.string.error_load_data_failed
-                    )
+                is AppResult.Failure -> {
+                    val isEmptyHistory = result.error is EmptyHistoryError
+                    updateState {
+                        it.copy(
+                            isLoading = false,
+                            isHistoryEmpty = isEmptyHistory,
+                            errorMessageResId = if (isEmptyHistory) null else R.string.error_load_data_failed
+                        )
+                    }
                 }
             }
         }
@@ -161,33 +143,34 @@ class StatisticsViewModel @Inject constructor(
     }
 
     fun refresh() {
-        loadAllStatistics()
+        loadAllStatistics(forceRefresh = true)
     }
 
     private fun reloadPatterns(size: Int) {
         viewModelScope.launch(dispatchersProvider.io) {
             updateState { it.copy(isPatternLoading = true, patternErrorResId = null) }
-            try {
-                val history = historyRepository.getHistory().first()
-                val window = currentState.selectedTimeWindow
-                val draws = if (window > 0) history.take(window) else history
-                val patterns = statisticsEngine.getCommonPatterns(draws, size)
-                updateState {
-                    it.copy(
-                        isPatternLoading = false,
-                        patternAnalysis = PatternAnalysis(
-                            size = size,
-                            patterns = patterns,
-                            totalDraws = draws.size
+            when (
+                val result = getStatisticsDataUseCase.loadPatternAnalysis(
+                    timeWindow = currentState.selectedTimeWindow,
+                    patternSize = size
+                )
+            ) {
+                is AppResult.Success -> {
+                    updateState {
+                        it.copy(
+                            isPatternLoading = false,
+                            patternAnalysis = result.value
                         )
-                    )
+                    }
                 }
-            } catch (_: Exception) {
-                updateState {
-                    it.copy(
-                        isPatternLoading = false,
-                        patternErrorResId = R.string.error_load_data_failed
-                    )
+
+                is AppResult.Failure -> {
+                    updateState {
+                        it.copy(
+                            isPatternLoading = false,
+                            patternErrorResId = R.string.error_load_data_failed
+                        )
+                    }
                 }
             }
         }
@@ -196,47 +179,31 @@ class StatisticsViewModel @Inject constructor(
     private fun reloadTrend(type: TrendType, windowSize: Int) {
         viewModelScope.launch(dispatchersProvider.io) {
             updateState { it.copy(isTrendLoading = true, trendErrorResId = null) }
-            try {
-                val history = historyRepository.getHistory().first()
-                val window = currentState.selectedTimeWindow
-                val draws = if (window > 0) history.take(window) else history
-                val timeline = computeTimeline(draws, type, windowSize)
-                val averageValue = if (timeline.isNotEmpty()) {
-                    timeline.map { it.second }.average().toFloat()
-                } else 0f
-
-                updateState {
-                    it.copy(
-                        isTrendLoading = false,
-                        trendAnalysis = TrendAnalysis(
-                            type = type,
-                            timeline = timeline,
-                            averageValue = averageValue
+            when (
+                val result = getStatisticsDataUseCase.loadTrendAnalysis(
+                    timeWindow = currentState.selectedTimeWindow,
+                    trendType = type,
+                    trendWindow = windowSize
+                )
+            ) {
+                is AppResult.Success -> {
+                    updateState {
+                        it.copy(
+                            isTrendLoading = false,
+                            trendAnalysis = result.value
                         )
-                    )
+                    }
                 }
-            } catch (_: Exception) {
-                updateState {
-                    it.copy(
-                        isTrendLoading = false,
-                        trendErrorResId = R.string.error_load_data_failed
-                    )
+
+                is AppResult.Failure -> {
+                    updateState {
+                        it.copy(
+                            isTrendLoading = false,
+                            trendErrorResId = R.string.error_load_data_failed
+                        )
+                    }
                 }
             }
         }
-    }
-
-    private fun computeTimeline(
-        draws: List<com.cebolao.lotofacil.domain.model.HistoricalDraw>,
-        type: TrendType,
-        windowSize: Int
-    ): List<Pair<Int, Float>> = when (type) {
-        TrendType.SUM -> statisticsEngine.getAverageSumTimeline(draws, windowSize)
-        TrendType.EVENS -> statisticsEngine.getDistributionTimeline(draws, windowSize) { it.evens }
-        TrendType.PRIMES -> statisticsEngine.getDistributionTimeline(draws, windowSize) { it.primes }
-        TrendType.FRAME -> statisticsEngine.getDistributionTimeline(draws, windowSize) { it.frame }
-        TrendType.PORTRAIT -> statisticsEngine.getDistributionTimeline(draws, windowSize) { it.portrait }
-        TrendType.FIBONACCI -> statisticsEngine.getDistributionTimeline(draws, windowSize) { it.fibonacci }
-        TrendType.MULTIPLES_OF_3 -> statisticsEngine.getDistributionTimeline(draws, windowSize) { it.multiplesOf3 }
     }
 }

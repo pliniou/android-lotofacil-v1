@@ -42,7 +42,7 @@ fun AppBottomBar(
     ) {
         destinations.forEach { destination ->
             val selected = destination == selectedDestination
-            val itemTag = "${AppTestTags.BottomNavItemPrefix}${destination.titleRes}"
+            val itemTag = "${AppTestTags.BottomNavItemPrefix}${destination.testTagRoute()}"
             
             NavigationBarItem(
                 modifier = Modifier.testTag(itemTag),
@@ -76,4 +76,14 @@ fun AppBottomBar(
             )
         }
     }
+}
+
+private fun Destination.testTagRoute(): String = when (this) {
+    Destination.Home -> "home"
+    Destination.Filters -> "filters"
+    Destination.GeneratedGames -> "games"
+    is Destination.Checker -> "checker"
+    Destination.About -> "about"
+    Destination.Insights -> "insights"
+    Destination.UserStats -> "user_stats"
 }

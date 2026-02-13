@@ -13,9 +13,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import com.cebolao.lotofacil.R
+import com.cebolao.lotofacil.ui.testtags.AppTestTags
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -44,6 +46,11 @@ fun TimeWindowFilterSection(
                     stringResource(R.string.last_n_draws_label, window)
                 }
                 FilterChip(
+                    modifier = if (window == 0) {
+                        Modifier.testTag(AppTestTags.InsightsGaussianToggle)
+                    } else {
+                        Modifier
+                    },
                     selected = selectedWindow == window,
                     onClick = { onWindowSelected(window) },
                     label = { Text(label, style = MaterialTheme.typography.labelLarge) },
