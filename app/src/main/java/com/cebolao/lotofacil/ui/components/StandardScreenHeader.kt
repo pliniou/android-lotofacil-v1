@@ -44,38 +44,25 @@ fun StandardScreenHeader(
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
     val colors = MaterialTheme.colorScheme
-    val isCompactWidth = LocalConfiguration.current.screenWidthDp < 360
-    val titleStyle = if (isCompactWidth) {
-        MaterialTheme.typography.titleMedium
-    } else {
-        MaterialTheme.typography.titleLarge
-    }
-    val subtitleStyle = if (isCompactWidth) {
-        MaterialTheme.typography.bodySmall
-    } else {
-        MaterialTheme.typography.bodyMedium
-    }
-
+    
     Column(modifier = modifier.fillMaxWidth()) {
         TopAppBar(
             title = {
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(end = AppSpacing.sm),
-                    verticalArrangement = Arrangement.spacedBy(2.dp)
+                    modifier = Modifier.padding(end = AppSpacing.sm),
+                    verticalArrangement = Arrangement.Center
                 ) {
                     Text(
                         text = title,
                         modifier = Modifier.semantics { heading() },
-                        style = titleStyle,
+                        style = MaterialTheme.typography.titleLarge,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
-                    subtitle?.let {
+                    if (subtitle != null) {
                         Text(
-                            text = it,
-                            style = subtitleStyle,
+                            text = subtitle,
+                            style = MaterialTheme.typography.bodyMedium,
                             color = colors.onSurfaceVariant,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -84,26 +71,23 @@ fun StandardScreenHeader(
                 }
             },
             navigationIcon = {
-                when {
-                    onBackClick != null -> {
-                        IconButton(onClick = onBackClick) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = stringResource(id = R.string.cd_navigate_back),
-                                tint = colors.primary
-                            )
-                        }
-                    }
-
-                    icon != null || iconPainter != null -> {
-                        IconBadge(
-                            icon = icon,
-                            painter = iconPainter,
-                            contentDescription = null,
-                            size = iconButtonSize(),
-                            iconSize = iconMedium()
+                if (onBackClick != null) {
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(id = R.string.cd_navigate_back),
+                            tint = colors.primary
                         )
                     }
+                } else if (icon != null || iconPainter != null) {
+                    IconBadge(
+                        icon = icon,
+                        painter = iconPainter,
+                        contentDescription = null,
+                        size = iconButtonSize(),
+                        iconSize = iconMedium(),
+                        modifier = Modifier.padding(start = AppSpacing.sm)
+                    )
                 }
             },
             actions = { actions?.invoke(this) },
@@ -118,7 +102,6 @@ fun StandardScreenHeader(
         )
 
         HorizontalDivider(
-            modifier = Modifier.padding(horizontal = AppSpacing.md),
             color = colors.outlineVariant
         )
     }

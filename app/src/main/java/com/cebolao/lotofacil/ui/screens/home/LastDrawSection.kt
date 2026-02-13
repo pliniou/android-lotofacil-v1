@@ -71,14 +71,8 @@ fun LastDrawSection(stats: LastDrawStats) {
         LatestResultCard(stats = stats)
 
         // Next Contest Card
-        stats.nextContest?.let { nextContest ->
-            NextDrawCard(
-                contest = nextContest,
-                date = stats.nextDate ?: "",
-                estimate = stats.nextEstimate ?: 0.0,
-                accumulated = stats.accumulated
-            )
-        }
+        // Next Draw Card moved to HomeScreen
+
     }
 }
 
@@ -414,106 +408,6 @@ private fun WinnerBadge(winner: WinnerLocation) {
     }
 }
  
-@Composable
-private fun NextDrawCard(
-    contest: Int,
-    date: String,
-    estimate: Double,
-    accumulated: Boolean
-) {
-    val colors = MaterialTheme.colorScheme
-    val gradientBrush = remember(accumulated) {
-        if (accumulated) {
-            Brush.verticalGradient(
-                colors = listOf(
-                    colors.errorContainer,
-                    colors.surface
-                )
-            )
-        } else {
-            Brush.verticalGradient(
-                colors = listOf(
-                    colors.primaryContainer,
-                    colors.surface
-                )
-            )
-        }
-    }
-
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
-        border = BorderStroke(1.dp, if (accumulated) colors.error else colors.primary),
-        elevation = CardDefaults.cardElevation(defaultElevation = AppElevation.sm)
-    ) {
-        // Remover Box intermediário - aplicar gradient diretamente na Column com Modifier.background
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(gradientBrush)
-                .padding(AppSpacing.lg),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-                // Header Label
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)
-                ) {
-                    if (accumulated) {
-                        Icon(
-                            Icons.Filled.Star,
-                            contentDescription = null,
-                            tint = colors.error,
-                            modifier = Modifier.size(AppSize.iconSmall)
-                        )
-                    }
-                    Text(
-                        text = if (accumulated) stringResource(id = R.string.accumulated).uppercase() 
-                               else stringResource(id = R.string.prize_estimate).uppercase(),
-                        style = MaterialTheme.typography.labelMedium,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 1.sp,
-                        color = if (accumulated) colors.error else colors.primary
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(AppSpacing.sm))
-
-                // Estimate Value
-                Text(
-                    text = NumberFormatUtils.formatCurrency(estimate),
-                    style = MaterialTheme.typography.headlineMedium,
-                    fontWeight = FontWeight.Black,
-                    color = colors.onSurface,
-                    textAlign = TextAlign.Center
-                )
-
-                Spacer(modifier = Modifier.height(AppSpacing.sm))
-
-                // Footer
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(AppSpacing.md)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.next_contest_format, NumberFormatUtils.formatInteger(contest)),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = colors.onSurfaceVariant
-                    )
-                    Text(
-                        text = "•",
-                        color = colors.outline
-                    )
-                    Text(
-                        text = date,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = colors.onSurfaceVariant
-                    )
-                }
-            }
-        }
-    }
-
 @Composable
 private fun StatItem(label: String, value: String) {
     val colors = MaterialTheme.colorScheme

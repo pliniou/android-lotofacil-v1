@@ -139,18 +139,18 @@ fun StatisticsScreenContent(
                     )
                 }
 
+                state.frequencyAnalysis?.let { freq ->
+                    item(key = "frequency_section") {
+                        FrequencySection(analysis = freq)
+                    }
+                }
+
                 state.report?.let { report ->
                     item(key = "summary_card") {
                         SummaryCard(
                             totalDrawsAnalyzed = report.totalDrawsAnalyzed,
                             averageSum = report.averageSum
                         )
-                    }
-                }
-
-                state.frequencyAnalysis?.let { freq ->
-                    item(key = "frequency_section") {
-                        FrequencySection(analysis = freq)
                     }
                 }
 
@@ -176,9 +176,7 @@ fun StatisticsScreenContent(
                         isLoading = state.isTrendLoading,
                         errorResId = state.trendErrorResId,
                         selectedType = state.selectedTrendType,
-                        selectedWindow = state.selectedTrendWindow,
-                        onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) },
-                        onWindowSelected = { onAction(StatisticsAction.TrendWindowSelected(it)) }
+                        onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
                     )
                 }
             }

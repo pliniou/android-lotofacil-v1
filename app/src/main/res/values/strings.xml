@@ -68,7 +68,6 @@
     <string name="probability_11_hits_value">1 em 11</string>
 
     <!-- HomeScreen -->
-    <!-- HomeScreen -->
     <string name="welcome_banner_title">Bem-vindo ao Cebolão!</string>
     <string name="welcome_banner_subtitle">Sua sorte com inteligência estatística</string>
     <string name="welcome_tip_filters">Explore os filtros para refinar seus jogos</string>
@@ -123,26 +122,26 @@
     <string name="time_window_last">Últimos %d</string>
     
     <!-- Frequency Analysis -->
-    <string name="insights_title">Estat�sticas avan�adas</string>
-    <string name="insights_empty_message">Ainda nao ha dados suficientes para mostrar as estatisticas.</string>
-    <string name="frequency_analysis_title">Frequ�ncia dos n�meros</string>
-    <string name="frequency_chart_subtitle">Veja quantas vezes cada n�mero saiu nos concursos analisados.</string>
+    <string name="insights_title">Analytics</string>
+    <string name="insights_empty_message">Ainda não há dados suficientes para mostrar as estatísticas.</string>
+    <string name="frequency_analysis_title">Frequência dos números</string>
+    <string name="frequency_chart_subtitle">Veja quantas vezes cada número saiu nos concursos analisados.</string>
     <string name="top_numbers_title">Mais frequentes</string>
-    <string name="top_numbers_subtitle">Os n�meros que mais apareceram no hist�rico.</string>
+    <string name="top_numbers_subtitle">Os números que mais apareceram no histórico.</string>
     <string name="total_draws_analyzed_format">Total de sorteios analisados: %d</string>
     <string name="chart_x_axis_label">Número</string>
     <string name="chart_y_axis_label">Frequência</string>
     
-    <string name="patterns_title">Padr�es de combina��o</string>
-    <string name="patterns_subtitle">Combina��es mais recorrentes entre os sorteios.</string>
+    <string name="patterns_title">Padrões de combinação</string>
+    <string name="patterns_subtitle">Combinações mais recorrentes entre os sorteios.</string>
     <string name="pattern_size_pairs">Pares</string>
     <string name="pattern_size_triplets">Trincas</string>
     <string name="pattern_size_quadruplets">Quadras</string>
     <string name="pattern_info_tooltip">A análise de padrões identifica grupos de números (de 2 a 4) que apareceram juntos nos sorteios históricos com maior frequência.</string>
     <string name="cd_info">Informações</string>
     
-    <string name="trends_title">Tend�ncia por per�odo</string>
-    <string name="trends_subtitle">M�dias m�veis por janela de concursos.</string>
+    <string name="trends_title">Tendência por período</string>
+    <string name="trends_subtitle">Médias móveis por janela de concursos.</string>
     <plurals name="trend_window_label">
         <item quantity="one">Janela: %d concurso</item>
         <item quantity="other">Janela: %d concursos</item>
@@ -163,9 +162,9 @@
     <string name="user_stats_card_title">Meus Dados e Conquistas</string>
     <string name="user_stats_card_subtitle">Veja seu histórico de uso e números favoritos.</string>
     
-    <string name="recency_title">N�meros atrasados</string>
-    <string name="recency_subtitle">H� quantos concursos cada n�mero n�o sai.</string>
-    <string name="trend_analysis_title">Tend�ncia ao longo do tempo</string>
+    <string name="recency_title">Números atrasados</string>
+    <string name="recency_subtitle">Há quantos concursos cada número não sai.</string>
+    <string name="trend_analysis_title">Tendência ao longo do tempo</string>
     <!-- GeneratedGamesScreen -->
     <string name="clear_games_title">Limpar jogos?</string>
     <string name="clear_games_message">Isso removerá todos os jogos não fixados. Deseja continuar?</string>
@@ -218,8 +217,8 @@
     <string name="delete_game">Excluir jogo</string>
     <string name="pinned_label">Fixado</string>
     <string name="cd_share_game">Compartilhar jogo</string>
-    <string name="share_game_chooser_title">Compartilhar jogo via�</string>
-    <string name="syncing_data">Sincronizando�</string>
+    <string name="share_game_chooser_title">Compartilhar jogo via…</string>
+    <string name="syncing_data">Sincronizando…</string>
 
     <!-- Common Actions -->
 
@@ -386,59 +385,82 @@
     <string name="empty_state_message">Nenhum dado disponível.</string>
 
     <!-- Statistics Screen -->
-    <string name="time_window_filter_label">Per�odo de an�lise</string>
+    <string name="time_window_filter_label">Período de análise</string>
     <string name="all_draws_label">Todos</string>
-    <string name="last_n_draws_label">�ltimos %d</string>
+    <string name="last_n_draws_label">Últimos %d</string>
     <plurals name="total_draws_available_label">
-        <item quantity="one">%d concurso dispon�vel</item>
-        <item quantity="other">%d concursos dispon�veis</item>
+        <item quantity="one">%d concurso disponível</item>
+        <item quantity="other">%d concursos disponíveis</item>
     </plurals>
     <string name="draws_analyzed_label">Concursos analisados</string>
-    <string name="average_sum_label">Soma m�dia</string>
+    <string name="average_sum_label">Soma média</string>
     <string name="top_numbers_label">Mais frequentes</string>
     <string name="overdue_numbers_label">Mais atrasados</string>
     <plurals name="draws_ago_label">
-        <item quantity="one">%d atr�s</item>
-        <item quantity="other">%d atr�s</item>
+        <item quantity="one">%d atrás</item>
+        <item quantity="other">%d atrás</item>
     </plurals>
-    <string name="distributions_title">Distribui��es</string>
+    <string name="distributions_title">Distribuições</string>
     <string name="most_common_label">mais comum</string>
     <string name="pairs_label">Pares</string>
     <string name="triplets_label">Trincas</string>
     <string name="quads_label">Quadras</string>
-    <string name="average_value_label">Valor m�dio</string>
+    <string name="average_value_label">Valor médio</string>
     <string name="refresh_button">Atualizar</string>
 
     <!-- HomeScreen - Distribution Summary -->
-    <string name="avg_sum_range_label">Soma m�dia</string>
+    <string name="avg_sum_range_label">Soma média</string>
 
     <!-- HomeScreen - Quick Navigation -->
     <string name="quick_links_title">Explorar</string>
-    <string name="nav_statistics_label">Estat�sticas</string>
+    <string name="nav_statistics_label">Estatísticas</string>
     <string name="nav_my_games_label">Meus Jogos</string>
     <string name="nav_about_label">Sobre</string>
 
     <!-- AboutScreen - Useful Links -->
-    <string name="about_section_links">Links �teis</string>
+    <string name="about_section_links">Links úteis</string>
     <string name="link_caixa_title">Site oficial da Caixa</string>
-    <string name="link_caixa_subtitle">Resultados e regulamentos da Lotof�cil</string>
+    <string name="link_caixa_subtitle">Resultados e regulamentos da Lotofácil</string>
     <string name="link_github_title">GitHub do desenvolvedor</string>
-    <string name="link_github_subtitle">C�digo-fonte e contribui��es</string>
+    <string name="link_github_subtitle">Código-fonte e contribuições</string>
 
     <!-- AboutScreen - Tips -->
-    <string name="info_item_tips_title">Dicas Lotof�cil</string>
-    <string name="info_item_tips_subtitle">Estrat�gias baseadas em estat�sticas</string>
-    <string name="tips_intro">Dicas baseadas em an�lise estat�stica dos sorteios hist�ricos da Lotof�cil:</string>
+    <string name="info_item_tips_title">Dicas Lotofácil</string>
+    <string name="info_item_tips_subtitle">Estratégias baseadas em estatísticas</string>
+    <string name="tips_intro">Dicas baseadas em análise estatística dos sorteios históricos da Lotofácil:</string>
     <string name="tips_sum_title">Faixa de soma ideal</string>
-    <string name="tips_sum_desc">A grande maioria dos sorteios (�72%) tem soma entre 170 e 220. Jogos fora dessa faixa s�o estatisticamente raros.</string>
-    <string name="tips_even_odd_title">Equil�brio par/�mpar</string>
-    <string name="tips_even_odd_desc">O padr�o mais frequente � 7 pares e 8 �mpares (ou vice-versa). Evite extremos como s� pares ou s� �mpares.</string>
-    <string name="tips_primes_title">N�meros primos</string>
-    <string name="tips_primes_desc">Cerca de 74% dos sorteios cont�m entre 4 e 7 n�meros primos (2, 3, 5, 7, 11, 13, 17, 19, 23).</string>
+    <string name="tips_sum_desc">A grande maioria dos sorteios (±72%) tem soma entre 170 e 220. Jogos fora dessa faixa são estatisticamente raros.</string>
+    <string name="tips_even_odd_title">Equilíbrio par/ímpar</string>
+    <string name="tips_even_odd_desc">O padrão mais frequente é 7 pares e 8 ímpares (ou vice-versa). Evite extremos como só pares ou só ímpares.</string>
+    <string name="tips_primes_title">Números primos</string>
+    <string name="tips_primes_desc">Cerca de 74% dos sorteios contêm entre 4 e 7 números primos (2, 3, 5, 7, 11, 13, 17, 19, 23).</string>
     <string name="tips_frame_title">Moldura e miolo</string>
-    <string name="tips_frame_desc">Distribua bem entre moldura (bordas do volante, 16 n�meros) e miolo (centro, 9 n�meros). O ideal � 8�11 da moldura.</string>
-    <string name="tips_repeat_title">Repeti��o do anterior</string>
-    <string name="tips_repeat_desc">84% dos sorteios repetem entre 8 e 10 n�meros do concurso anterior. Considere incluir parte dos n�meros anteriores.</string>
+    <string name="tips_frame_desc">Distribua bem entre moldura (bordas do volante, 16 números) e miolo (centro, 9 números). O ideal é 8–11 da moldura.</string>
+    <string name="tips_repeat_title">Repetição do anterior</string>
+    <string name="tips_repeat_desc">84% dos sorteios repetem entre 8 e 10 números do concurso anterior. Considere incluir parte dos números anteriores.</string>
+
+    <!-- NEW STRINGS FOR REFACTOR -->
+    <string name="greeting_morning">Bom dia,</string>
+    <string name="greeting_afternoon">Boa tarde,</string>
+    <string name="greeting_evening">Boa noite,</string>
+    <string name="greeting_night">Boa madrugada,</string>
+    <string name="greeting_user">Aposentado!</string> <!-- Playful default -->
+    <string name="greeting_insight_accumulated">Prêmio acumulado! Ótimo momento para jogar.</string>
+    <string name="greeting_insight_generic">A estatística é a mãe da sorte.</string>
+    <string name="today_draw_active">Hoje tem sorteio da Lotofácil!</string>
+    
+    <string name="sync_status_unified_loading">Carregando concursos %1$d–%2$d...</string>
+    <string name="sync_status_updated_at">Dados atualizados até %1$s</string>
+    
+    <string name="next_draw_card_title">Próximo Sorteio</string>
+    <string name="estimated_prize_label">Estimativa</string>
+    <string name="accumulated_prize_label">ACUMULADO</string>
+    
+    <string name="quick_insights_title">Insights Rápidos</string>
+    <string name="quick_insights_cta">Ver estatísticas completas</string>
+    
+    <string name="prize_tier_15">15 Acertos</string>
+    <string name="prize_tier_14">14 Acertos</string>
+    <string name="prize_tier_13">13 Acertos</string>
 
 </resources>
-

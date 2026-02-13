@@ -41,10 +41,11 @@ fun EnhancedCard(
     onClick: (() -> Unit)? = null,
     isPinned: Boolean = false,
     elevation: androidx.compose.ui.unit.Dp = AppTheme.elevation.none,
+    containerColor: Color? = null,
     content: @Composable () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
-    val backgroundColor = if (isPinned) colors.primaryContainer else colors.surface
+    val backgroundColor = containerColor ?: if (isPinned) colors.primaryContainer else colors.surface
     val variant = if (onClick != null) CardVariant.Clickable else CardVariant.Static
 
     AppCard(

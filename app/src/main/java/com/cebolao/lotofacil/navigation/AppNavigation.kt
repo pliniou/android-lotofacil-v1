@@ -74,20 +74,8 @@ fun AppNavigation(
     ) {
         composable<Destination.Home> {
             HomeScreen(
-                onExploreFilters = {
-                    navController.navigateToDestination(Destination.Filters)
-                },
-                onOpenChecker = {
-                    navController.navigateToDestination(Destination.Checker())
-                },
                 onNavigateToInsights = {
                     navController.navigateToDestination(Destination.Insights)
-                },
-                onNavigateToAbout = {
-                    navController.navigateToDestination(Destination.About)
-                },
-                onNavigateToGames = {
-                    navController.navigateToDestination(Destination.GeneratedGames)
                 }
             )
         }

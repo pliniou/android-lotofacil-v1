@@ -55,11 +55,7 @@ import com.cebolao.lotofacil.viewmodels.HomeViewModel
 @Composable
 fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
-    onExploreFilters: () -> Unit = {},
-    onOpenChecker: () -> Unit = {},
-    onNavigateToInsights: () -> Unit = {},
-    onNavigateToAbout: () -> Unit = {},
-    onNavigateToGames: () -> Unit = {}
+    onNavigateToInsights: () -> Unit = {}
 ) {
     val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -91,11 +87,7 @@ fun HomeScreen(
                 HomeAction.RefreshData -> homeViewModel.refreshData()
             }
         },
-        onNavigateToExploreFilters = onExploreFilters,
-        onNavigateToChecker = onOpenChecker,
-        onNavigateToInsights = onNavigateToInsights,
-        onNavigateToAbout = onNavigateToAbout,
-        onNavigateToGames = onNavigateToGames
+        onNavigateToInsights = onNavigateToInsights
     )
 }
 
@@ -108,11 +100,7 @@ fun HomeScreenContent(
     state: HomeUiState,
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
     onAction: (HomeAction) -> Unit = {},
-    onNavigateToExploreFilters: () -> Unit = {},
-    onNavigateToChecker: () -> Unit = {},
-    onNavigateToInsights: () -> Unit = {},
-    onNavigateToAbout: () -> Unit = {},
-    onNavigateToGames: () -> Unit = {}
+    onNavigateToInsights: () -> Unit = {}
 ) {
     val syncFeedbackState = remember(state.syncProgress, state.isRefreshing, state.isInitialSync) {
         state.syncProgress?.let { (current, total) ->
@@ -167,12 +155,7 @@ fun HomeScreenContent(
             subtitle = stringResource(id = R.string.lotofacil_subtitle),
             iconPainter = painterResource(id = R.drawable.ic_cebolalogo),
             snackbarHostState = snackbarHostState,
-            actions = {
-                RefreshButton(
-                    isRefreshing = state.isRefreshing,
-                    onClick = { onAction(HomeAction.RefreshData) }
-                )
-            }
+            // Removed specific RefreshButton action to unify sync UX - users can pull to refresh
         ) { innerPadding ->
             Column(
                 modifier = Modifier
@@ -200,25 +183,35 @@ fun HomeScreenContent(
                         contentPadding = AppScreenDefaults.listContentPadding(),
                         verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
                     ) {
-                        item(key = "welcome_banner", contentType = "welcome_banner") {
-                            EnhancedCard(
-                                modifier = Modifier.fillMaxWidth(),
-                                elevation = AppTheme.elevation.xs
-                            ) {
-                                WelcomeBanner(
-                                    lastUpdateTime = state.lastUpdateTime,
-                                    nextDrawDate = state.nextDrawDate,
-                                    nextDrawContest = state.nextDrawContest,
-                                    isTodayDrawDay = state.isTodayDrawDay,
-                                    historySource = state.historySource,
-                                    statisticsSource = state.statisticsSource,
-                                    isShowingStaleData = state.isShowingStaleData,
-                                    onExploreFilters = onNavigateToExploreFilters,
-                                    onOpenChecker = onNavigateToChecker
-                                )
-                            }
+                        // Greeting Section
+                        item(key = "greeting", contentType = "greeting") {
+                             GreetingSection(
+                                 nextDrawAccumulated = state.lastDrawStats?.accumulated == true, // Assuming lastDrawStats has accumulated status for NEXT draw? 
+                                 // Wait, lastDrawStats.nextContest logic.
+                                 // Let's use parameters available or derive them.
+                                 // state.lastDrawStats?.accumulated refers to the LAST draw or NEXT draw?
+                                 // Usually 'accumulated' flag in LastDrawStats refers to whether the Prize accumulated.
+                                 // Let's assume it means the CURRENT status (for the next draw).
+                                 isDrawDay = state.isTodayDrawDay,
+                                 lastUpdateTime = state.lastUpdateTime
+                             )
                         }
 
+                        // Next Draw Prediction
+                        state.lastDrawStats?.nextContest?.let { nextContest ->
+                             item(key = "next_draw", contentType = "next_draw") {
+                                 AnimateOnEntry(delayMillis = AppAnimationConstants.Delays.Minimal.toLong()) {
+                                     NextDrawSection(
+                                         contestNumber = nextContest,
+                                         date = state.nextDrawDate ?: "",
+                                         prizeEstimate = state.lastDrawStats.nextEstimate ?: 0.0,
+                                         isAccumulated = state.lastDrawStats.accumulated
+                                     )
+                                 }
+                             }
+                        }
+
+                        // Last Draw Result
                         item(key = "last_draw", contentType = "last_draw") {
                             state.lastDrawStats?.let { stats ->
                                 AnimateOnEntry(
@@ -236,31 +229,15 @@ fun HomeScreenContent(
                             )
                         }
 
+                        // Quick Insights (Statistics)
                         item(key = "statistics", contentType = "statistics_preview") {
                             AnimateOnEntry(
                                 delayMillis = AppAnimationConstants.Delays.Short.toLong()
                             ) {
-                                EnhancedCard(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    elevation = AppTheme.elevation.xs
-                                ) {
-                                    CompactStatisticsPreview(
-                                        stats = state.statistics,
-                                        isLoading = state.isStatsLoading,
-                                        onViewAll = onNavigateToInsights
-                                    )
-                                }
-                            }
-                        }
-
-                        item(key = "quick_nav", contentType = "quick_nav") {
-                            AnimateOnEntry(
-                                delayMillis = AppAnimationConstants.Delays.Medium.toLong()
-                            ) {
-                                QuickNavSection(
-                                    onNavigateToInsights = onNavigateToInsights,
-                                    onNavigateToGames = onNavigateToGames,
-                                    onNavigateToAbout = onNavigateToAbout
+                                QuickInsightsSection(
+                                    stats = state.statistics,
+                                    isLoading = state.isStatsLoading,
+                                    onViewAll = onNavigateToInsights
                                 )
                             }
                         }

@@ -1,10 +1,7 @@
 package com.cebolao.lotofacil
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.view.View
-import android.view.animation.AnticipateInterpolator
+
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -43,30 +40,8 @@ class MainActivity : ComponentActivity() {
             state.isLoading && !state.hasError
         }
 
-        splashScreen.setOnExitAnimationListener { splashScreenView ->
-            val slideUp = ObjectAnimator.ofFloat(
-                splashScreenView.view,
-                View.TRANSLATION_Y,
-                0f,
-                -splashScreenView.view.height.toFloat()
-            )
-            slideUp.interpolator = AnticipateInterpolator()
-            slideUp.duration = DefaultAppMotion.durationLongMs.toLong()
+        // Default system splash screen animation will be used
 
-            val fadeOut = ObjectAnimator.ofFloat(
-                splashScreenView.view,
-                View.ALPHA,
-                1f,
-                0f
-            )
-            fadeOut.duration = DefaultAppMotion.durationLongMs.toLong()
-
-            AnimatorSet().apply {
-                playTogether(slideUp, fadeOut)
-                doOnEnd { splashScreenView.remove() }
-                start()
-            }
-        }
 
         setContent {
             val uiState by mainViewModel.uiState.collectAsStateWithLifecycle()

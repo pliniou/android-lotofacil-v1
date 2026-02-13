@@ -51,7 +51,8 @@ val bottomNavDestinations = listOf(
     Destination.Home,
     Destination.Filters,
     Destination.GeneratedGames,
-    Destination.Checker()
+    Destination.Checker(),
+    Destination.About
 )
 
 val Destination.titleRes: Int

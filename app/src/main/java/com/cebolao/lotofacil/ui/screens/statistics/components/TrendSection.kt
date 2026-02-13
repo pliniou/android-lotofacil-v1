@@ -17,7 +17,6 @@ import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
@@ -39,9 +38,7 @@ fun TrendSection(
     isLoading: Boolean,
     errorResId: Int?,
     selectedType: TrendType,
-    selectedWindow: Int,
-    onTypeSelected: (TrendType) -> Unit,
-    onWindowSelected: (Int) -> Unit
+    onTypeSelected: (TrendType) -> Unit
 ) {
     SectionHeader(
         title = stringResource(R.string.trends_title),
@@ -67,23 +64,6 @@ fun TrendSection(
                 selected = selectedType == type,
                 onClick = { onTypeSelected(type) },
                 label = { Text(label, style = MaterialTheme.typography.labelMedium) },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = MaterialTheme.colorScheme.primary,
-                    selectedLabelColor = MaterialTheme.colorScheme.onPrimary
-                )
-            )
-        }
-    }
-
-    Spacer(modifier = Modifier.height(AppSpacing.sm))
-
-    // Window selector
-    Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)) {
-        listOf(20, 50, 100).forEach { window ->
-            FilterChip(
-                selected = selectedWindow == window,
-                onClick = { onWindowSelected(window) },
-                label = { Text("$window") },
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = MaterialTheme.colorScheme.primary,
                     selectedLabelColor = MaterialTheme.colorScheme.onPrimary
@@ -183,5 +163,3 @@ private fun TrendLineChart(
         )
     }
 }
-
-
