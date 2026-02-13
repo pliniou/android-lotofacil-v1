@@ -28,8 +28,7 @@ import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.FilterPreset
 import com.cebolao.lotofacil.domain.model.FilterState
 import com.cebolao.lotofacil.domain.model.FilterType
-import com.cebolao.lotofacil.ui.components.AnimateOnEntry
-import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.*
 import com.cebolao.lotofacil.ui.components.FilterCard
 import com.cebolao.lotofacil.ui.components.GenerationActionsPanel
 import com.cebolao.lotofacil.ui.model.titleRes
@@ -78,8 +77,8 @@ private fun PresetCard(
     AppCard(
         onClick = onClick,
         modifier = Modifier.width(160.dp),
-        containerColor = MaterialTheme.colorScheme.surfaceContainer,
-        elevation = 1.dp
+        variant = com.cebolao.lotofacil.ui.components.CardVariant.Elevated,
+        isGlassmorphic = true
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)

@@ -14,40 +14,43 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.material3.MaterialTheme
 import com.cebolao.lotofacil.ui.theme.BrandColors
 
 /**
  * Optimized shimmer modifier for loading states with Lotofácil brand colors.
- * Uses proper composition locals and optimized animation specs for better performance.
- * Modernized with reduced alpha for subtle effect and brand-aligned colors.
+ * Modernized with customizable colors and softer animation for a premium feel.
  */
-fun Modifier.shimmer(): Modifier = composed {
-    LocalDensity.current
+fun Modifier.shimmer(
+    baseColor: Color? = null,
+    highlightColor: Color? = null,
+    durationMillis: Int = 1200
+): Modifier = composed {
+    val colorScheme = MaterialTheme.colorScheme
+    val actualBaseColor = baseColor ?: colorScheme.surfaceVariant.copy(alpha = 0.4f)
+    val actualHighlightColor = highlightColor ?: BrandColors.RoxoLotofacil.copy(alpha = 0.15f)
+
     val transition = rememberInfiniteTransition(label = "shimmer")
-    
-    // Performance optimization: Use efficient animation values to reduce CPU overhead
     val translateAnim by transition.animateFloat(
         initialValue = -1000f,
         targetValue = 1000f,
         animationSpec = infiniteRepeatable(
-            animation = tween(800, easing = LinearEasing),
+            animation = tween(durationMillis, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
         ),
         label = "shimmer_translation"
     )
 
-    // Brand-aligned shimmer colors using official Lotofácil palette
     val shimmerColors = listOf(
-        Color.Transparent,
-        BrandColors.RoxoLotofacil.copy(alpha = 0.15f), // Uses official brand purple
-        Color.Transparent
+        actualBaseColor,
+        actualHighlightColor,
+        actualBaseColor,
     )
 
-    // Performance optimization: Pre-calculate brush for better rendering performance
     val brush = Brush.linearGradient(
         colors = shimmerColors,
-        start = Offset(x = translateAnim - 1000f, y = translateAnim - 1000f),
-        end = Offset(x = translateAnim + 1000f, y = translateAnim + 1000f)
+        start = Offset(x = translateAnim - 500f, y = translateAnim - 500f),
+        end = Offset(x = translateAnim + 500f, y = translateAnim + 500f)
     )
     
     background(brush = brush)

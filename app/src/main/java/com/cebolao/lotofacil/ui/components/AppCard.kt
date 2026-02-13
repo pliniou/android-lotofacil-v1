@@ -23,7 +23,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.cebolao.lotofacil.ui.theme.AppCardDefaults
 import com.cebolao.lotofacil.ui.theme.AppElevation
 import com.cebolao.lotofacil.ui.theme.AppShapes
 import com.cebolao.lotofacil.ui.theme.AppSpacing
@@ -51,7 +50,8 @@ fun AppCard(
     contentColor: Color? = null,
     border: BorderStroke? = null,
     elevation: Dp? = null,
-    content: @Composable ColumnScope.() -> Unit
+    isGlassmorphic: Boolean = false,
+    content: @Composable () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
     
@@ -67,7 +67,11 @@ fun AppCard(
         else -> AppElevation.none
     }
 
-    val finalContainerColor = containerColor ?: defaultContainerColor
+    val finalContainerColor = when {
+        isGlassmorphic && variant == CardVariant.Elevated -> colors.surface.copy(alpha = 0.85f)
+        containerColor != null -> containerColor
+        else -> defaultContainerColor
+    }
     val finalContentColor = contentColor ?: colors.onSurface
     val finalElevation = elevation ?: defaultElevation
     val finalBorder = border ?: if (variant == CardVariant.Outlined) {
@@ -137,15 +141,4 @@ fun AppCard(
     }
 }
 
-sealed class CardVariant {
-    data object Elevated : CardVariant()
-    data object Outlined : CardVariant()
-    data object Filled : CardVariant()
-    
-    // Compatibility aliases for BaseComponents.kt migration
-    companion object {
-        val Static = Elevated
-        val Clickable = Elevated // Clickable is now determined by onClick != null
-        val Surfaced = Filled
-    }
-}
+

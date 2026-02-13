@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -168,6 +169,200 @@ fun LabeledLinearProgress(
             color = MaterialTheme.colorScheme.primary,
             trackColor = MaterialTheme.colorScheme.surfaceVariant,
         )
+    }
+}
+
+/**
+ * Greeting section skeleton
+ */
+@Composable
+fun HomeGreetingSkeleton(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = AppSpacing.md),
+        verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)
+    ) {
+        Box(
+            modifier = Modifier
+                .height(28.dp)
+                .fillMaxWidth(0.6f)
+                .clip(AppShapes.sm)
+                .shimmer()
+        )
+        Box(
+            modifier = Modifier
+                .height(16.dp)
+                .fillMaxWidth(0.4f)
+                .clip(AppShapes.sm)
+                .shimmer()
+        )
+    }
+}
+
+/**
+ * Next Draw section skeleton
+ */
+@Composable
+fun NextDrawSkeleton(modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        shape = AppShapes.lg,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(AppSpacing.lg),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
+        ) {
+            Box(
+                modifier = Modifier
+                    .height(20.dp)
+                    .width(100.dp)
+                    .clip(AppShapes.sm)
+                    .shimmer()
+            )
+            Box(
+                modifier = Modifier
+                    .height(32.dp)
+                    .width(180.dp)
+                    .clip(AppShapes.sm)
+                    .shimmer()
+            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+            ) {
+                repeat(3) {
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp, 40.dp)
+                            .clip(AppShapes.md)
+                            .shimmer()
+                    )
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Statistics preview skeleton
+ */
+@Composable
+fun StatisticsPreviewSkeleton(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .height(24.dp)
+                    .width(120.dp)
+                    .clip(AppShapes.sm)
+                    .shimmer()
+            )
+            Box(
+                modifier = Modifier
+                    .height(32.dp)
+                    .width(80.dp)
+                    .clip(AppShapes.md)
+                    .shimmer()
+            )
+        }
+        
+        repeat(3) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = AppShapes.md,
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(AppSpacing.md),
+                    horizontalArrangement = Arrangement.spacedBy(AppSpacing.md),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .shimmer()
+                    )
+                    Column(
+                        modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .height(16.dp)
+                                .fillMaxWidth(0.7f)
+                                .clip(AppShapes.sm)
+                                .shimmer()
+                        )
+                        Box(
+                            modifier = Modifier
+                                .height(12.dp)
+                                .fillMaxWidth(0.4f)
+                                .clip(AppShapes.sm)
+                                .shimmer()
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Full skeleton for Home screen
+ */
+@Composable
+fun HomeSkeleton(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(AppSpacing.lg),
+        verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+    ) {
+        HomeGreetingSkeleton()
+        NextDrawSkeleton()
+        StatisticsPreviewSkeleton()
+    }
+}
+
+/**
+ * Full skeleton for Statistics screen
+ */
+@Composable
+fun StatisticsSkeleton(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(AppSpacing.lg),
+        verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+    ) {
+        Box(
+            modifier = Modifier
+                .height(48.dp)
+                .fillMaxWidth()
+                .clip(AppShapes.md)
+                .shimmer()
+        )
+        repeat(3) {
+            SkeletonCard(height = 160.dp)
+        }
     }
 }
 

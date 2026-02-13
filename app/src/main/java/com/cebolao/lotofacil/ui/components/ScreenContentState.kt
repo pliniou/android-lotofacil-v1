@@ -41,14 +41,19 @@ fun AppScreenStateHost(
     modifier: Modifier = Modifier,
     onRetry: (() -> Unit)? = null,
     onEmptyAction: (() -> Unit)? = null,
+    loadingContent: @Composable (() -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
     when (state) {
         is ScreenContentState.Loading -> {
-            FullScreenLoading(
-                message = stringResource(id = state.messageResId),
-                modifier = modifier.fillMaxSize()
-            )
+            if (loadingContent != null) {
+                loadingContent()
+            } else {
+                FullScreenLoading(
+                    message = stringResource(id = state.messageResId),
+                    modifier = modifier.fillMaxSize()
+                )
+            }
         }
 
         is ScreenContentState.Error -> {

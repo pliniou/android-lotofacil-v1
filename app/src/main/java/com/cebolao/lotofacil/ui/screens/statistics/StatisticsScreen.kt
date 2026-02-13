@@ -28,6 +28,7 @@ import com.cebolao.lotofacil.ui.components.AppScreenScaffold
 import com.cebolao.lotofacil.ui.components.AppScreenStateHost
 import com.cebolao.lotofacil.ui.components.ScreenContentState
 import com.cebolao.lotofacil.ui.components.screenContentPadding
+import com.cebolao.lotofacil.ui.components.StatisticsSkeleton
 import com.cebolao.lotofacil.ui.screens.statistics.components.DistributionSection
 import com.cebolao.lotofacil.ui.screens.statistics.components.FrequencySection
 import com.cebolao.lotofacil.ui.screens.statistics.components.PatternSection
@@ -130,7 +131,10 @@ fun StatisticsScreenContent(
                 .fillMaxSize()
                 .screenContentPadding(innerPadding),
             onRetry = { onAction(StatisticsAction.Refresh) },
-            onEmptyAction = { onAction(StatisticsAction.Refresh) }
+            onEmptyAction = { onAction(StatisticsAction.Refresh) },
+            loadingContent = {
+                StatisticsSkeleton()
+            }
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),

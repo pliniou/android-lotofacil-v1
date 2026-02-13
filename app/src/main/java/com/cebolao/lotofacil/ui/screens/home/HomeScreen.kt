@@ -38,6 +38,7 @@ import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
 import com.cebolao.lotofacil.ui.components.AppScreenStateHost
+import com.cebolao.lotofacil.ui.components.HomeSkeleton
 import com.cebolao.lotofacil.ui.components.EnhancedCard
 import com.cebolao.lotofacil.ui.components.PullToRefreshScreen
 import com.cebolao.lotofacil.ui.components.ScreenContentState
@@ -182,7 +183,10 @@ fun HomeScreenContent(
                     state = screenState,
                     modifier = Modifier.fillMaxSize(),
                     onRetry = { onAction(HomeAction.RefreshData) },
-                    onEmptyAction = { onAction(HomeAction.RefreshData) }
+                    onEmptyAction = { onAction(HomeAction.RefreshData) },
+                    loadingContent = {
+                        HomeSkeleton()
+                    }
                 ) {
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),

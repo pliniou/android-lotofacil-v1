@@ -94,9 +94,9 @@ internal fun LazyListScope.aboutLinksSection(
 @Composable
 internal fun UserStatsCard(onClick: () -> Unit) {
     AppCard(
-        variant = CardVariant.Clickable,
+        variant = CardVariant.Elevated,
         onClick = onClick,
-        containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+        isGlassmorphic = true,
         modifier = Modifier.padding(horizontal = AppSpacing.lg)
     ) {
         Row(

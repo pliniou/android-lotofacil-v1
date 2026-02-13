@@ -11,10 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.FactCheck
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
+import com.cebolao.lotofacil.ui.components.*
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -242,10 +239,10 @@ private fun NumberGridSection(
     selectedNumbers: Set<Int>,
     onNumberClicked: (Int) -> Unit
 ) {
-    ElevatedCard(
+    AppCard(
         modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.elevatedCardElevation(defaultElevation = AppElevation.sm),
-        colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surface)
+        variant = com.cebolao.lotofacil.ui.components.CardVariant.Elevated,
+        isGlassmorphic = true
     ) {
         Column(
             modifier = Modifier.padding(AppSpacing.lg),
@@ -310,10 +307,10 @@ private fun CheckerSuccessContent(
         }
 
         AnimateOnEntry(delayMillis = AppTheme.motion.delayCheckerMs) {
-            ElevatedCard(
+            AppCard(
                 modifier = Modifier.fillMaxWidth(),
-                elevation = CardDefaults.elevatedCardElevation(defaultElevation = AppElevation.sm),
-                colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surface)
+                variant = com.cebolao.lotofacil.ui.components.CardVariant.Elevated,
+                isGlassmorphic = true
             ) {
                 Column(
                     modifier = Modifier.padding(AppSpacing.lg),

@@ -161,11 +161,10 @@ private fun AboutActionCard(
     onClick: () -> Unit
 ) {
     AppCard(
-        variant = CardVariant.Clickable,
+        variant = CardVariant.Elevated,
         onClick = onClick,
         shape = MaterialTheme.shapes.medium,
-        elevation = AppCardDefaults.elevation,
-        containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+        isGlassmorphic = true,
         modifier = modifier.fillMaxWidth()
     ) {
         Row(

@@ -35,7 +35,7 @@ class GetHomeScreenDataUseCase @Inject constructor(
                     AppResult.Failure(EmptyHistoryError)
                 } else {
                     val lastDraw = history.first()
-                    val lastDrawStats = calculateLastDrawStats(lastDraw)
+                    val lastDrawStats = lastDraw.toLastDrawStats()
                     when (
                         val reportResult = getStatisticsDataUseCase.loadReportForHistory(
                             history = history,
@@ -70,26 +70,29 @@ class GetHomeScreenDataUseCase @Inject constructor(
             }
             .flowOn(dispatchersProvider.io)
     }
+}
 
-    private fun calculateLastDrawStats(lastDraw: HistoricalDraw): LastDrawStats {
-        return LastDrawStats(
-            contest = lastDraw.contestNumber,
-            date = lastDraw.date,
-            numbers = lastDraw.numbers.toImmutableSet(),
-            sum = lastDraw.sum,
-            evens = lastDraw.evens,
-            odds = lastDraw.odds,
-            primes = lastDraw.primes,
-            frame = lastDraw.frame,
-            portrait = lastDraw.portrait,
-            fibonacci = lastDraw.fibonacci,
-            multiplesOf3 = lastDraw.multiplesOf3,
-            prizes = lastDraw.prizes,
-            winners = lastDraw.winners,
-            nextContest = lastDraw.nextContest,
-            nextDate = lastDraw.nextDate,
-            nextEstimate = lastDraw.nextEstimate,
-            accumulated = lastDraw.accumulated
-        )
-    }
+/**
+ * Extension to convert HistoricalDraw to LastDrawStats to reduce boilerplate.
+ */
+fun HistoricalDraw.toLastDrawStats(): LastDrawStats {
+    return LastDrawStats(
+        contest = contestNumber,
+        date = date,
+        numbers = numbers.toImmutableSet(),
+        sum = sum,
+        evens = evens,
+        odds = odds,
+        primes = primes,
+        frame = frame,
+        portrait = portrait,
+        fibonacci = fibonacci,
+        multiplesOf3 = multiplesOf3,
+        prizes = prizes,
+        winners = winners,
+        nextContest = nextContest,
+        nextDate = nextDate,
+        nextEstimate = nextEstimate,
+        accumulated = accumulated
+    )
 }

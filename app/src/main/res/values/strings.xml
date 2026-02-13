@@ -78,9 +78,9 @@
 
     <string name="home_stale_data_warning">Você está vendo dados locais (offline).</string>
     <string name="loading_data">Carregando dados…</string>
-    <string name="home_loading_message">Preparando dados da Lotofacil&#8230;</string>
-    <string name="home_empty_message">Ainda nao encontramos concursos locais. Toque em Atualizar para tentar novamente.</string>
-    <string name="home_last_draw_unavailable">O ultimo concurso ainda nao esta disponivel.</string>
+    <string name="home_loading_message">Preparando dados da Lotofacil…</string>
+    <string name="home_empty_message">Ainda não encontramos concursos locais. Toque em Atualizar para tentar novamente.</string>
+    <string name="home_last_draw_unavailable">O último concurso ainda não está disponível.</string>
     <string name="prize_details_title">Detalhes do prêmio</string>
     <string name="prize_per_winner">Prêmio por ganhador</string>
     <string name="winners">ganhadores</string>
@@ -155,7 +155,7 @@
     <string name="checker_incomplete_selection">Selecione exatos 15 números para conferir.</string>
     <string name="checker_results_cleared_title">Limpar resultados?</string>
     <string name="checker_results_cleared_message">Isso removerá os resultados da conferência atual. Deseja continuar?</string>
-    <string name="checker_loading_history">Carregando historico…</string>
+    <string name="checker_loading_history">Carregando histórico…</string>
     <string name="checker_calculating_results">Calculando resultados…</string>
     <string name="checker_analyzing_stats">Analisando estatisticas…</string>
 
@@ -189,6 +189,7 @@
     
     
     <!-- FilterRangeSlider -->
+    
     
 
     <!-- Generation Actions -->

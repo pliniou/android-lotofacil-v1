@@ -58,6 +58,7 @@ import com.cebolao.lotofacil.domain.model.LastDrawStats
 import com.cebolao.lotofacil.domain.model.PrizeTier
 import com.cebolao.lotofacil.domain.model.WinnerLocation
 import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.components.NumberBall
 import com.cebolao.lotofacil.ui.theme.AppElevation
 import com.cebolao.lotofacil.ui.theme.AppSize
@@ -85,8 +86,8 @@ private fun LatestResultCard(
     
     AppCard(
         modifier = Modifier.fillMaxWidth(),
-        elevation = AppElevation.sm,
-        containerColor = colors.surface
+        variant = CardVariant.Elevated,
+        isGlassmorphic = true
     ) {
         Column {
             // Header

@@ -2,6 +2,8 @@ package com.cebolao.lotofacil.ui.components
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -13,6 +15,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.font.FontWeight
@@ -29,7 +32,8 @@ fun AppButton(
     modifier: Modifier = Modifier,
     variant: AppButtonVariant = AppButtonVariant.Primary,
     enabled: Boolean = true,
-    isLoading: Boolean = false
+    isLoading: Boolean = false,
+    icon: (@Composable () -> Unit)? = null
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -46,17 +50,14 @@ fun AppButton(
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.onPrimary
-                )
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 2.dp,
+                    pressedElevation = 0.dp
+                ),
+                contentPadding = ButtonDefaults.ContentPadding
             ) {
-                if (isLoading) {
-                    ButtonLoadingIndicator()
-                } else {
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
+                ButtonContent(text, isLoading, icon)
             }
         }
         
@@ -67,15 +68,7 @@ fun AppButton(
                 enabled = enabled && !isLoading,
                 shape = AppShapes.md
             ) {
-                if (isLoading) {
-                    ButtonLoadingIndicator()
-                } else {
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
+                ButtonContent(text, isLoading, icon)
             }
         }
         
@@ -86,15 +79,7 @@ fun AppButton(
                 enabled = enabled && !isLoading,
                 shape = AppShapes.md
             ) {
-                if (isLoading) {
-                    ButtonLoadingIndicator()
-                } else {
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
+                ButtonContent(text, isLoading, icon)
             }
         }
         
@@ -105,16 +90,31 @@ fun AppButton(
                 enabled = enabled && !isLoading,
                 shape = AppShapes.md
             ) {
-                if (isLoading) {
-                    ButtonLoadingIndicator()
-                } else {
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
+                ButtonContent(text, isLoading, icon)
             }
+        }
+    }
+}
+
+@Composable
+private fun ButtonContent(
+    text: String,
+    isLoading: Boolean,
+    icon: (@Composable () -> Unit)? = null
+) {
+    if (isLoading) {
+        ButtonLoadingIndicator()
+    } else {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            icon?.invoke()
+            Text(
+                text = text,
+                style = MaterialTheme.typography.labelLarge,
+                fontWeight = FontWeight.Medium
+            )
         }
     }
 }

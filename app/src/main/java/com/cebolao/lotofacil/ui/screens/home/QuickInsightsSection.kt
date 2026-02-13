@@ -41,6 +41,7 @@ import com.cebolao.lotofacil.ui.components.AppButton
 import com.cebolao.lotofacil.domain.model.StatisticsReport
 import com.cebolao.lotofacil.ui.components.AppButtonVariant
 import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.components.BarChart
 import com.cebolao.lotofacil.ui.components.NumberBall
 import com.cebolao.lotofacil.ui.components.shimmer
@@ -68,8 +69,8 @@ fun QuickInsightsSection(
 
     AppCard(
         modifier = modifier.fillMaxWidth(),
-        elevation = AppElevation.sm,
-        containerColor = colors.surface
+        variant = CardVariant.Elevated,
+        isGlassmorphic = true
     ) {
         Column {
             Row(
