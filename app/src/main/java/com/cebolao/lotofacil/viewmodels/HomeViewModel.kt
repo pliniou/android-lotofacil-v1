@@ -193,7 +193,7 @@ class HomeViewModel @Inject constructor(
 
     fun refreshData() {
         viewModelScope.launch(dispatchersProvider.default) {
-            when (val result = historyRepository.syncHistory()) {
+            when (historyRepository.syncHistory()) {
                 is AppResult.Success -> {
                     getStatisticsDataUseCase.clearCache()
                     refreshScreenDataAfterSync()

@@ -1,18 +1,14 @@
 <resources>
-    <string name="app_name">Lotofácil Generator</string>
+    <string name="app_name">LotofÃ¡cil Generator</string>
 
     <string name="error_no_history">Unable to load history.</string>
     <string name="error_load_data_failed">Failed to load data.</string>
     <string name="error_analysis_failed">Analysis failed.</string>
     <string name="error_analysis_timeout">Analysis timed out. Please try again.</string>
     <string name="error_unknown">Unknown error.</string>
-    <string name="error_network_connection">No connection to server. Try again.</string>
-    <string name="error_persistence">Error accessing local storage.</string>
-    <string name="error_parsing">Error processing remote data.</string>
     <string name="error_history_unavailable">History unavailable.</string>
     <string name="error_invalid_operation">Invalid operation.</string>
     <string name="error_validation">Validation error.</string>
-    <string name="error_unexpected">Unexpected error.</string>
     <string name="error_sync_failed">Error syncing data. Try again.</string>
     <string name="error_generating_games">Unknown error generating games.</string>
     <string name="try_again">Try again</string>
@@ -67,12 +63,7 @@
     <string name="probability_11_hits_value">1 in 11</string>
 
     <!-- HomeScreen -->
-    <string name="welcome_banner_title">Welcome to Cebolão!</string>
-    <string name="welcome_banner_subtitle">Your luck with statistical intelligence</string>
-    <string name="welcome_tip_filters">Explore filters to refine your games</string>
-    <string name="welcome_tip_checker">Test your games against history</string>
     <string name="last_update_status">Data updated %s ago</string>
-    <string name="initial_sync_label">Initial Sync</string>
     <string name="refresh_sync_label">Updating Data</string>
     <string name="refresh_success">Data updated successfully!</string>
     <string name="sync_failed_message">Unable to update. Showing local data.</string>
@@ -84,19 +75,15 @@
     <string name="home_source_status_format">%1$s | %2$s</string>
     <string name="home_pattern_hint">Most frequent %1$s: %2$s (%3$sx)</string>
     <string name="home_stale_data_warning">You are viewing local data (offline).</string>
-    <string name="loading_data">Loading data…</string>
-    <string name="home_loading_message">Preparing Lotofacil data...</string>
+    <string name="loading_data">Loading dataâ€¦</string>
+    <string name="home_loading_message">Preparing Lotofacil data&#8230;</string>
     <string name="home_empty_message">No local draws were found yet. Tap Refresh to try again.</string>
     <string name="home_last_draw_unavailable">The latest draw is not available yet.</string>
-    <string name="today_draw_day">Draw today! Contest #%1$d</string>
-    <string name="next_draw_info">Next: #%1$d on %2$s</string>
-    <string name="last_draw_info">Last draw: %1$s</string>
     <string name="prize_details_title">Prize details</string>
-    <string name="prize_details_expand">See details</string>
     <string name="prize_per_winner">Prize per winner</string>
     <string name="winners">winners</string>
     <string name="winners_by_state">Winners by state</string>
-    <string name="cebolao_title">Cebolão</string>
+    <string name="cebolao_title">CebolÃ£o</string>
     <string name="lotofacil_subtitle">Lotofacil Generator</string>
     <string name="last_contest">Last draw</string>
     <string name="sum_label">Sum</string>
@@ -107,13 +94,7 @@
     <string name="portrait_label">Portrait</string>
     <string name="fibonacci_label">Fibonacci</string>
     <string name="multiples_of_3_label">Multiples of 3</string>
-    <string name="statistics_center">Statistics Center</string>
-    <string name="most_delayed_numbers">Most delayed numbers</string>
-    <string name="delayed_suffix"> ago</string>
     <string name="most_drawn_numbers">Most drawn numbers</string>
-    <string name="frequency_suffix">x</string>
-    <string name="drawn_ago">draws ago</string>
-    <string name="analysis_period_title">Analysis period</string>
     <string name="time_window_all">All</string>
     <string name="time_window_last">Last %d</string>
 
@@ -122,31 +103,8 @@
     <string name="insights_empty_message">There is not enough data yet to display insights.</string>
     <string name="insights_history_empty_message">No local history is available yet. Sync draws first to unlock statistics.</string>
     <string name="frequency_analysis_title">Number frequency</string>
-    <string name="frequency_chart_subtitle">See how many times each number was drawn in the analyzed contests.</string>
-    <string name="top_numbers_title">Most frequent</string>
-    <string name="top_numbers_subtitle">The numbers that appeared most in history.</string>
-    <string name="total_draws_analyzed_format">Total draws analyzed: %d</string>
-    <string name="chart_x_axis_label">Number</string>
-    <string name="chart_y_axis_label">Frequency</string>
     <string name="patterns_title">Combination patterns</string>
-    <string name="patterns_subtitle">Most recurring combinations among draws.</string>
-    <string name="pattern_size_pairs">Pairs</string>
-    <string name="pattern_size_triplets">Triplets</string>
-    <string name="pattern_size_quadruplets">Quadruplets</string>
-    <string name="pattern_info_tooltip">Pattern analysis identifies groups of numbers (2 to 4) that appeared together in historical draws most frequently.</string>
-    <string name="cd_info">Information</string>
     <string name="trends_title">Trend by period</string>
-    <string name="trends_subtitle">Moving averages by contest window.</string>
-    <plurals name="trend_window_label">
-        <item quantity="one">Window: %d contest</item>
-        <item quantity="other">Window: %d contests</item>
-    </plurals>
-    <string name="trend_avg_label">Period average: %.2f</string>
-    <string name="trend_type_sum">Sum</string>
-    <string name="trend_type_evens">Evens</string>
-    <string name="trend_type_primes">Primes</string>
-    <string name="trend_type_frame">Frame</string>
-
     <!-- User Stats -->
     <string name="stats_total_generated">Games Generated</string>
     <string name="stats_total_played">Games Analyzed</string>
@@ -157,8 +115,6 @@
     <string name="nav_user_stats">My Data</string>
     <string name="user_stats_card_title">My Data and Achievements</string>
     <string name="user_stats_card_subtitle">See your usage history and favorite numbers.</string>
-    <string name="recency_title">Overdue numbers</string>
-    <string name="recency_subtitle">How many contests since each number was drawn.</string>
     <string name="trend_analysis_title">Trend Analysis</string>
 
     <!-- GeneratedGamesScreen -->
@@ -169,7 +125,7 @@
     <string name="delete_game_title">Delete game?</string>
     <string name="delete_game_message">This action is permanent. Do you want to delete this game?</string>
     <string name="delete_button">Delete</string>
-    <string name="analyzing_game">Analyzing game…</string>
+    <string name="analyzing_game">Analyzing gameâ€¦</string>
     <string name="analysis_error_title">Analysis error</string>
     <string name="my_games">My games</string>
     <string name="my_games_subtitle">View, analyze and manage your games</string>
@@ -195,9 +151,9 @@
     <string name="checker_incomplete_selection">Select exactly 15 numbers to check.</string>
     <string name="checker_results_cleared_title">Clear results?</string>
     <string name="checker_results_cleared_message">This will remove the current check results. Do you want to continue?</string>
-    <string name="checker_loading_history">Loading history…</string>
-    <string name="checker_calculating_results">Calculating results…</string>
-    <string name="checker_analyzing_stats">Analyzing statistics…</string>
+    <string name="checker_loading_history">Loading historyâ€¦</string>
+    <string name="checker_calculating_results">Calculating resultsâ€¦</string>
+    <string name="checker_analyzing_stats">Analyzing statisticsâ€¦</string>
 
     <!-- FiltersScreen -->
     <string name="filters_header_title">Smart Generator</string>
@@ -213,8 +169,8 @@
     <string name="delete_game">Delete game</string>
     <string name="pinned_label">Pinned</string>
     <string name="cd_share_game">Share game</string>
-    <string name="share_game_chooser_title">Share game via…</string>
-    <string name="syncing_data">Syncing…</string>
+    <string name="share_game_chooser_title">Share game viaâ€¦</string>
+    <string name="syncing_data">Syncingâ€¦</string>
 
     <!-- Common Actions -->
     <string name="reset_button">Reset</string>
@@ -230,14 +186,6 @@
 
     <!-- FilterStatsPanel -->
     <string name="filters_analysis_title">Filters analysis</string>
-    <string name="success_probability_title">Chance of success</string>
-    <string name="no_active_filters">No active filters.</string>
-    <string name="restrictiveness_very_tight">Very tight</string>
-    <string name="restrictiveness_tight">Tight</string>
-    <string name="restrictiveness_moderate">Moderate</string>
-    <string name="restrictiveness_loose">Flexible</string>
-    <string name="restrictiveness_very_loose">Very flexible</string>
-    <string name="restrictiveness_disabled">Disabled</string>
     <string name="presets_title">Quick Presets</string>
     <string name="preset_common_title">Most Common</string>
     <string name="preset_common_desc">Classic statistics (72% of draws)</string>
@@ -311,16 +259,6 @@
     <string name="game_deleted_confirmation">Game deleted successfully.</string>
     <string name="unpinned_games_cleared">Unpinned games removed.</string>
     <string name="accumulated">ACCUMULATED!</string>
-    <string name="prize_estimate">Prize Estimate</string>
-    <string name="stats_guide_title">Filters and Statistics Guide</string>
-    <string name="how_filters_work">How do filters work?</string>
-    <string name="stats_explanation_sum">The total sum of the 15 drawn numbers. In Lotofácil, most draws stay between 170 and 220.</string>
-    <string name="stats_explanation_even_odd">Balance between even and odd numbers. The most common pattern is 7 even and 8 odd numbers (or vice versa).</string>
-    <string name="stats_explanation_primes">Prime numbers are divisible only by 1 and themselves (e.g., 2, 3, 5, 7, 11, 13, 17, 19, 23).</string>
-    <string name="stats_explanation_frame_portrait">The frame contains edge numbers on the ticket (16 numbers). The portrait contains the 9 central numbers.</string>
-    <string name="stats_explanation_frequency_title">Frequency and delay</string>
-    <string name="stats_explanation_frequency">Frequency shows which numbers are drawn more often. Delay shows how many draws a number has gone without appearing.</string>
-
     <!-- Content Descriptions -->
     <string name="cd_refresh_data">Update data</string>
     <string name="cd_navigate_back">Back</string>
@@ -340,29 +278,14 @@
     <string name="number_state_disabled">disabled</string>
     <string name="number_state_available">available</string>
     <string name="number_content_description">Number %1$d, %2$s</string>
-    <string name="pattern_analysis_title">Analysis</string>
-
     <!-- Ranking positions -->
-    <string name="position_abbr">#%1$d</string>
-
     <!-- Accessibility - Components -->
     <plurals name="chart_frequency_description">
         <item quantity="one">Frequency chart with %1$d number, maximum value %2$d</item>
         <item quantity="other">Frequency chart with %1$d numbers, maximum value %2$d</item>
     </plurals>
     <string name="prize_tier_description">Prize category %1$d, %2$s per winner</string>
-    <string name="ranked_number_description">Position %1$dth, number %2$d</string>
     <string name="trend_indicator_description">Trend %1$s, variation %2$s</string>
-    <string name="expandable_section_description">Section %1$s, %2$s. Click to toggle.</string>
-    <string name="expanded_state">expanded</string>
-    <string name="collapsed_state">collapsed</string>
-    <string name="gaussian_toggle_description">Include gaussian curve, %1$s</string>
-    <string name="gaussian_toggle_active">active</string>
-    <string name="gaussian_toggle_inactive">inactive</string>
-    <string name="gaussian_toggle_label_on">Gauss</string>
-    <string name="gaussian_toggle_label_off">Bars</string>
-    <string name="error_generic">An error occurred. Try again.</string>
-    <string name="retry_button">Try again</string>
     <string name="empty_state_message">No data available at the moment.</string>
 
     <!-- Statistics Screen -->
@@ -390,33 +313,38 @@
     <string name="refresh_button">Refresh</string>
 
     <!-- HomeScreen - Distribution Summary -->
-    <string name="avg_sum_range_label">Average sum</string>
-
     <!-- HomeScreen - Quick Navigation -->
-    <string name="quick_links_title">Explore</string>
-    <string name="nav_statistics_label">Statistics</string>
-    <string name="nav_my_games_label">My Games</string>
-    <string name="nav_about_label">About</string>
-
     <!-- AboutScreen - Useful Links -->
     <string name="about_section_links">Useful Links</string>
     <string name="link_caixa_title">Official Caixa website</string>
-    <string name="link_caixa_subtitle">Lotofácil results and regulations</string>
+    <string name="link_caixa_subtitle">LotofÃ¡cil results and regulations</string>
     <string name="link_github_title">Developer GitHub</string>
     <string name="link_github_subtitle">Source code and contributions</string>
 
     <!-- AboutScreen - Tips -->
-    <string name="info_item_tips_title">Lotofácil Tips</string>
+    <string name="info_item_tips_title">LotofÃ¡cil Tips</string>
     <string name="info_item_tips_subtitle">Strategies based on statistics</string>
-    <string name="tips_intro">Tips based on statistical analysis of historical Lotofácil draws:</string>
+    <string name="tips_intro">Tips based on statistical analysis of historical LotofÃ¡cil draws:</string>
     <string name="tips_sum_title">Ideal sum range</string>
-    <string name="tips_sum_desc">The majority of draws (≈72%) have a sum between 170 and 220. Games outside this range are statistically rare.</string>
+    <string name="tips_sum_desc">The majority of draws (â‰ˆ72%) have a sum between 170 and 220. Games outside this range are statistically rare.</string>
     <string name="tips_even_odd_title">Even/odd balance</string>
     <string name="tips_even_odd_desc">The most frequent pattern is 7 evens and 8 odds (or vice versa). Avoid extremes like all evens or all odds.</string>
     <string name="tips_primes_title">Prime numbers</string>
     <string name="tips_primes_desc">About 74% of draws contain between 4 and 7 prime numbers (2, 3, 5, 7, 11, 13, 17, 19, 23).</string>
     <string name="tips_frame_title">Frame and center</string>
-    <string name="tips_frame_desc">Distribute well between frame (ticket edges, 16 numbers) and center (9 numbers). Ideally 8–11 from the frame.</string>
+    <string name="tips_frame_desc">Distribute well between frame (ticket edges, 16 numbers) and center (9 numbers). Ideally 8â€“11 from the frame.</string>
     <string name="tips_repeat_title">Repeat from previous</string>
     <string name="tips_repeat_desc">84% of draws repeat between 8 and 10 numbers from the previous contest. Consider including some previous numbers.</string>
+    <!-- HomeScreen - Refactor additions -->
+    <string name="greeting_morning">Good morning,</string>
+    <string name="greeting_afternoon">Good afternoon,</string>
+    <string name="greeting_evening">Good evening,</string>
+    <string name="greeting_night">Good late night,</string>
+    <string name="greeting_user">Player!</string>
+    <string name="greeting_insight_accumulated">Jackpot is rolling over! Great time to play.</string>
+    <string name="greeting_insight_generic">Statistics are a great ally for luck.</string>
+    <string name="today_draw_active">There is a Lotofacil draw today!</string>
+    <string name="next_draw_card_title">Next Draw</string>
+    <string name="quick_insights_title">Quick Insights</string>
+    <string name="quick_insights_cta">View full statistics</string>
 </resources>
