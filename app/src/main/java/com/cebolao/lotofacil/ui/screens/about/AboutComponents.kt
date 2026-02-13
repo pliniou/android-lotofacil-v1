@@ -165,7 +165,7 @@ private fun AboutActionCard(
         onClick = onClick,
         shape = MaterialTheme.shapes.medium,
         elevation = AppCardDefaults.elevation,
-        backgroundColor = MaterialTheme.colorScheme.surfaceContainerLow,
+        containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
         modifier = modifier.fillMaxWidth()
     ) {
         Row(

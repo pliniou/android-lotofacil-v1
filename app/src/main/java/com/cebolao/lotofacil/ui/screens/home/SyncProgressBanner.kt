@@ -65,7 +65,7 @@ internal fun SyncProgressBanner(
             .padding(bottom = AppSpacing.md),
         variant = CardVariant.Surfaced,
         shape = MaterialTheme.shapes.medium,
-        backgroundColor = colors.surfaceContainerHigh,
+        containerColor = colors.surfaceContainerHigh,
         border = BorderStroke(
             width = 1.dp,
             color = colors.outlineVariant.copy(alpha = 0.5f)

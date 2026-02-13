@@ -137,8 +137,14 @@ fun HomeScreenContent(
         }
     }
 
+    // Only show PullToRefresh spinner during the initial "Syncing" phase (total == null).
+    // Once we have progress (total != null), we hide the spinner and let the SyncProgressBanner show the details.
+    val isRefreshing = remember(state.syncState) {
+        state.syncState is HomeSyncState.InProgress && state.syncState.total == null
+    }
+
     PullToRefreshScreen(
-        isRefreshing = state.syncState is HomeSyncState.InProgress,
+        isRefreshing = isRefreshing,
         onRefresh = { onAction(HomeAction.RefreshData) }
     ) {
         AppScreenScaffold(
@@ -148,17 +154,7 @@ fun HomeScreenContent(
             iconPainter = painterResource(id = R.drawable.ic_cebolalogo),
             snackbarHostState = snackbarHostState,
             actions = {
-                IconButton(
-                    onClick = { onAction(HomeAction.RefreshData) },
-                    modifier = Modifier
-                        .testTag(AppTestTags.HomeRefreshAction)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Refresh,
-                        contentDescription = stringResource(id = R.string.cd_refresh_data),
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
+                // Actions removed as per requirement (PullToRefresh is sufficient)
             }
         ) { innerPadding ->
             Column(
@@ -305,7 +301,7 @@ private fun HomeSectionPlaceholder(
 ) {
     AppCard(
         modifier = Modifier.fillMaxWidth(),
-        backgroundColor = MaterialTheme.colorScheme.surfaceContainerLow
+        containerColor = MaterialTheme.colorScheme.surfaceContainerLow
     ) {
         Text(
             text = stringResource(id = messageResId),

@@ -138,10 +138,11 @@ fun GameCard(
             .fillMaxWidth()
             .scale(scaleAnim.value)
             .border(
-                border = BorderStroke(borderWidth, borderColor),
+                width = borderWidth,
+                color = borderColor,
                 shape = MaterialTheme.shapes.medium
             ),
-        backgroundColor = containerColor,
+        containerColor = containerColor,
         elevation = elevation
     ) {
         Column(

@@ -61,7 +61,7 @@ fun UserStatsSection(
         // Most Played Numbers
         AppCard(
             modifier = Modifier.fillMaxWidth(),
-            backgroundColor = MaterialTheme.colorScheme.surface
+            containerColor = MaterialTheme.colorScheme.surface
         ) {
             Column(modifier = Modifier.padding(AppSpacing.md)) {
                 Text(
@@ -93,7 +93,7 @@ fun UserStatsSection(
         // Performance
         AppCard(
             modifier = Modifier.fillMaxWidth(),
-            backgroundColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
         ) {
             Column(modifier = Modifier.padding(AppSpacing.md)) {
                 Text(
@@ -140,7 +140,7 @@ private fun StatSummaryCard(
 ) {
     AppCard(
         modifier = modifier,
-        backgroundColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.2f)
+        containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.2f)
     ) {
         Column(
             modifier = Modifier.padding(AppSpacing.md),

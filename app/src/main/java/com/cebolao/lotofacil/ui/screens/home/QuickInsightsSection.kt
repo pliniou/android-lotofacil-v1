@@ -27,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,7 +37,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.utils.NumberFormatUtils
+import com.cebolao.lotofacil.ui.components.AppButton
 import com.cebolao.lotofacil.domain.model.StatisticsReport
+import com.cebolao.lotofacil.ui.components.AppButtonVariant
+import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.BarChart
 import com.cebolao.lotofacil.ui.components.NumberBall
 import com.cebolao.lotofacil.ui.components.shimmer
 import com.cebolao.lotofacil.ui.testtags.AppTestTags
@@ -44,6 +49,7 @@ import com.cebolao.lotofacil.ui.theme.AppElevation
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.viewmodels.DataLoadSource
 import com.cebolao.lotofacil.viewmodels.StatisticPattern
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun QuickInsightsSection(
@@ -60,12 +66,12 @@ fun QuickInsightsSection(
 ) {
     val colors = MaterialTheme.colorScheme
 
-    ElevatedCard(
+    AppCard(
         modifier = modifier.fillMaxWidth(),
-        elevation = CardDefaults.elevatedCardElevation(defaultElevation = AppElevation.sm),
-        colors = CardDefaults.elevatedCardColors(containerColor = colors.surface)
+        elevation = AppElevation.sm,
+        containerColor = colors.surface
     ) {
-        Column(modifier = Modifier.padding(AppSpacing.lg)) {
+        Column {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
@@ -109,45 +115,93 @@ fun QuickInsightsSection(
                 } else {
                     stats?.let { report ->
                         val distribution = report.distributionFor(selectedPattern)
-                        val dominant = distribution.maxByOrNull { it.value }
-
+                        
                         Column(verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)) {
-                            Text(
-                                text = stringResource(R.string.most_drawn_numbers),
-                                style = MaterialTheme.typography.labelLarge,
-                                color = colors.onSurfaceVariant
-                            )
-
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                report.mostFrequentNumbers.take(5).forEach { (num, freq) ->
-                                    Column(
-                                        horizontalAlignment = Alignment.CenterHorizontally,
-                                        verticalArrangement = Arrangement.spacedBy(2.dp)
-                                    ) {
-                                        NumberBall(number = num, size = 36.dp)
-                                        Text(
-                                            text = "${NumberFormatUtils.formatInteger(freq)}x",
-                                            style = MaterialTheme.typography.labelSmall,
-                                            color = colors.onSurfaceVariant
-                                        )
-                                    }
+                            
+                            // Bar Chart for Pattern Distribution
+                            if (distribution.isNotEmpty()) {
+                                val chartData = remember(distribution) {
+                                    distribution.map { (key, value) ->
+                                        key.toString() to value
+                                    }.sortedBy { it.first.toIntOrNull() ?: 0 }
+                                    .toImmutableList()
                                 }
+                                val maxValue = remember(distribution) { distribution.values.maxOrNull() ?: 1 }
+
+                                BarChart(
+                                    data = chartData,
+                                    maxValue = maxValue,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(180.dp),
+                                    showGaussCurve = true
+                                )
                             }
 
-                            dominant?.let { (bucket, frequency) ->
-                                Text(
-                                    text = stringResource(
-                                        R.string.home_pattern_hint,
-                                        stringResource(selectedPattern.titleRes),
-                                        NumberFormatUtils.formatInteger(bucket),
-                                        NumberFormatUtils.formatInteger(frequency)
-                                    ),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = colors.onSurfaceVariant
-                                )
+                            Spacer(modifier = Modifier.height(AppSpacing.sm))
+
+                            // Hot & Cold Numbers
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(AppSpacing.md)
+                            ) {
+                                // Hot Numbers
+                                Column(
+                                    modifier = Modifier.weight(1f),
+                                    verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.most_drawn_numbers),
+                                        style = MaterialTheme.typography.labelMedium,
+                                        color = colors.primary,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    Column(verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)) {
+                                        report.mostFrequentNumbers.take(5).forEach { (num, freq) ->
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.SpaceBetween,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                NumberBall(number = num, size = 32.dp)
+                                                Text(
+                                                    text = "${NumberFormatUtils.formatInteger(freq)}x",
+                                                    style = MaterialTheme.typography.bodySmall,
+                                                    color = colors.onSurfaceVariant
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // Cold Numbers (Overdue)
+                                Column(
+                                    modifier = Modifier.weight(1f),
+                                    verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.overdue_numbers_label),
+                                        style = MaterialTheme.typography.labelMedium,
+                                        color = colors.error,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    Column(verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)) {
+                                        report.mostOverdueNumbers.take(5).forEach { (num, overdue) ->
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.SpaceBetween,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                NumberBall(number = num, size = 32.dp)
+                                                Text(
+                                                    text = "${NumberFormatUtils.formatInteger(overdue)}", // Draws ago
+                                                    style = MaterialTheme.typography.bodySmall,
+                                                    color = colors.onSurfaceVariant
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     } ?: Text(
@@ -160,24 +214,14 @@ fun QuickInsightsSection(
 
             Spacer(modifier = Modifier.height(AppSpacing.xl))
 
-            FilledTonalButton(
+            AppButton(
+                text = stringResource(id = R.string.quick_insights_cta),
                 onClick = onViewAll,
                 modifier = Modifier
                     .fillMaxWidth()
                     .testTag(AppTestTags.HomeInsightsButton),
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = colors.primaryContainer,
-                    contentColor = colors.onPrimaryContainer
-                )
-            ) {
-                Text(text = stringResource(id = R.string.quick_insights_cta))
-                Spacer(modifier = Modifier.width(AppSpacing.sm))
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                    contentDescription = null,
-                    modifier = Modifier.size(16.dp)
-                )
-            }
+                variant = AppButtonVariant.Secondary
+            )
         }
     }
 }

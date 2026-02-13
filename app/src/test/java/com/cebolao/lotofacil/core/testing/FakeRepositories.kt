@@ -100,6 +100,13 @@ class FakeUserPreferencesRepository(initialPinned: Set<String> = emptySet()) : U
     override suspend fun savePinnedGames(games: Set<String>) {
         pinnedState.value = games
     }
+
+    private val timestampState = MutableStateFlow(0L)
+    override val lastHistorySyncTimestamp: Flow<Long> = timestampState.asStateFlow()
+
+    override suspend fun saveLastHistorySyncTimestamp(timestamp: Long) {
+        timestampState.value = timestamp
+    }
 }
 
 class FakeStatisticsRepository : StatisticsRepository {

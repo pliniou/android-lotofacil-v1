@@ -44,7 +44,7 @@ fun EmptyState(
             modifier = Modifier
                 .widthIn(max = 520.dp)
                 .fillMaxWidth(),
-            backgroundColor = colors.surface
+            containerColor = colors.surface
         ) {
             Column(
                 modifier = Modifier.padding(AppSpacing.xl),

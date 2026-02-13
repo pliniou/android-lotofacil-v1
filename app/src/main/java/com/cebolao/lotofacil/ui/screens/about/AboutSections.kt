@@ -96,7 +96,7 @@ internal fun UserStatsCard(onClick: () -> Unit) {
     AppCard(
         variant = CardVariant.Clickable,
         onClick = onClick,
-        backgroundColor = MaterialTheme.colorScheme.surfaceContainerLow,
+        containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
         modifier = Modifier.padding(horizontal = AppSpacing.lg)
     ) {
         Row(

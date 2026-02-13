@@ -9,6 +9,7 @@ import com.cebolao.lotofacil.di.ApplicationScope
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.repository.SyncStatus
+import com.cebolao.lotofacil.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,6 +26,7 @@ import javax.inject.Singleton
 class HistoryRepositoryImpl @Inject constructor(
     private val localDataSource: HistoryLocalDataSource,
     private val remoteDataSource: HistoryRemoteDataSource,
+    private val userPreferencesRepository: UserPreferencesRepository,
     @ApplicationScope private val applicationScope: CoroutineScope,
     private val logger: AppLogger
 ) : HistoryRepository {
@@ -59,7 +61,6 @@ class HistoryRepositoryImpl @Inject constructor(
         return localDataSource.getLatestDraw()
     }
 
-    private var lastSyncTime = 0L
     private val MIN_SYNC_INTERVAL = 60_000L // 1 minute
 
     override suspend fun syncHistory(): AppResult<Unit> {
@@ -67,6 +68,7 @@ class HistoryRepositoryImpl @Inject constructor(
         isInitialized.first { it }
 
         return syncMutex.withLock {
+            val lastSyncTime = userPreferencesRepository.lastHistorySyncTimestamp.first()
             val now = System.currentTimeMillis()
             val shouldThrottleSync = now - lastSyncTime < MIN_SYNC_INTERVAL
             val hasPreviousFailure = _syncStatus.value is SyncStatus.Failed
@@ -98,12 +100,15 @@ class HistoryRepositoryImpl @Inject constructor(
                     } else {
                         logger.d(TAG, "Local history already up to date or remote unavailable.")
                     }
-                    lastSyncTime = System.currentTimeMillis()
+                    val successTime = System.currentTimeMillis()
+                    userPreferencesRepository.saveLastHistorySyncTimestamp(successTime)
                     _syncStatus.value = SyncStatus.Success
                     AppResult.Success(Unit)
                 } catch (e: Exception) {
                     // If network failure, permit retry sooner but not immediately
-                    lastSyncTime = System.currentTimeMillis() - (MIN_SYNC_INTERVAL / 2)
+                    // We update timestamp to partially throttle retries
+                    val failureTime = System.currentTimeMillis() - (MIN_SYNC_INTERVAL / 2)
+                    userPreferencesRepository.saveLastHistorySyncTimestamp(failureTime)
 
                     val error = ErrorMapper.toAppError(e)
                     _syncStatus.value = SyncStatus.Failed(ErrorMapper.messageFor(error))

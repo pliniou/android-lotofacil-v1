@@ -8,6 +8,7 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -49,115 +50,10 @@ import com.cebolao.lotofacil.ui.theme.AppTheme
 import com.cebolao.lotofacil.ui.theme.AppShapes
 import com.cebolao.lotofacil.ui.theme.LotofacilTheme
 
-/**
- * Consistent button components using Design System tokens
- */
-@Composable
-fun AppButton(
-    text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    variant: AppButtonVariant = AppButtonVariant.Primary,
-    enabled: Boolean = true,
-    isLoading: Boolean = false
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-    
-    val scale = if (isPressed) 0.98f else 1f
-    
-    when (variant) {
-        AppButtonVariant.Primary -> {
-            Button(
-                onClick = onClick,
-                modifier = modifier.scale(scale),
-                enabled = enabled && !isLoading,
-                shape = AppShapes.md,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    contentColor = MaterialTheme.colorScheme.onPrimary
-                )
-            ) {
-                if (isLoading) {
-                    ButtonLoadingIndicator()
-                } else {
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
-            }
-        }
-        
-        AppButtonVariant.Secondary -> {
-            FilledTonalButton(
-                onClick = onClick,
-                modifier = modifier.scale(scale),
-                enabled = enabled && !isLoading,
-                shape = AppShapes.md
-            ) {
-                if (isLoading) {
-                    ButtonLoadingIndicator()
-                } else {
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
-            }
-        }
-        
-        AppButtonVariant.Outline -> {
-            OutlinedButton(
-                onClick = onClick,
-                modifier = modifier.scale(scale),
-                enabled = enabled && !isLoading,
-                shape = AppShapes.md
-            ) {
-                if (isLoading) {
-                    ButtonLoadingIndicator()
-                } else {
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
-            }
-        }
-        
-        AppButtonVariant.Ghost -> {
-            TextButton(
-                onClick = onClick,
-                modifier = modifier.scale(scale),
-                enabled = enabled && !isLoading,
-                shape = AppShapes.md
-            ) {
-                if (isLoading) {
-                    ButtonLoadingIndicator()
-                } else {
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun ButtonLoadingIndicator() {
-    androidx.compose.material3.CircularProgressIndicator(
-        modifier = Modifier.size(16.dp),
-        strokeWidth = 2.dp,
-        color = MaterialTheme.colorScheme.onPrimary
-    )
-}
-
+// Components moved to their own files:
+// - AppCard -> AppCard.kt
+// - AppButton -> AppButton.kt
+// - SectionHeader -> SectionHeader.kt
 
 /**
  * Consistent surface with gradient background
@@ -175,45 +71,6 @@ fun GradientSurface(
         color = Color.Transparent
     ) {
         content()
-    }
-}
-
-/**
- * Consistent section header
- */
-@Composable
-fun SectionHeader(
-    title: String,
-    modifier: Modifier = Modifier,
-    subtitle: String? = null,
-    action: @Composable RowScope.() -> Unit = {}
-) {
-    Column(
-        modifier = modifier.fillMaxWidth()
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-                subtitle?.let {
-                    Spacer(modifier = Modifier.height(AppSpacing.xs))
-                    Text(
-                        text = it,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-            }
-            action()
-        }
     }
 }
 
@@ -241,13 +98,6 @@ fun InfoPill(
             textAlign = TextAlign.Center
         )
     }
-}
-
-enum class AppButtonVariant {
-    Primary,
-    Secondary,
-    Outline,
-    Ghost
 }
 
 @Preview(showBackground = true)

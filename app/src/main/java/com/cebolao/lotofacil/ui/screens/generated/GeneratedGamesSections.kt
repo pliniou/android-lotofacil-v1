@@ -98,7 +98,7 @@ internal fun GeneratedGamesOverviewCard(
     AppCard(
         modifier = modifier,
         variant = CardVariant.Surfaced,
-        backgroundColor = MaterialTheme.colorScheme.surfaceContainerLow
+        containerColor = MaterialTheme.colorScheme.surfaceContainerLow
     ) {
         Row(
             modifier = Modifier

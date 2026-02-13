@@ -27,6 +27,7 @@ import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.SectionFeedbackState
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
+
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun PatternSection(
@@ -42,8 +43,9 @@ fun PatternSection(
     )
 
     FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm),
-        verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)
+        horizontalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(AppSpacing.xs),
+        modifier = Modifier.fillMaxWidth()
     ) {
         listOf(2, 3, 4).forEach { size ->
             val label = when (size) {

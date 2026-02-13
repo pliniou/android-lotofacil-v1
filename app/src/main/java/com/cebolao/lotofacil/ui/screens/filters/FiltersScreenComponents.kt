@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
@@ -28,6 +29,7 @@ import com.cebolao.lotofacil.domain.model.FilterPreset
 import com.cebolao.lotofacil.domain.model.FilterState
 import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.ui.components.AnimateOnEntry
+import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.FilterCard
 import com.cebolao.lotofacil.ui.components.GenerationActionsPanel
 import com.cebolao.lotofacil.ui.model.titleRes
@@ -55,11 +57,14 @@ fun PresetsPanel(
             horizontalArrangement = Arrangement.spacedBy(AppSpacing.md),
             contentPadding = PaddingValues(bottom = AppSpacing.sm)
         ) {
-            items(FilterPreset.entries) { preset ->
-                PresetCard(
-                    preset = preset,
-                    onClick = { onApplyPreset(preset) }
-                )
+            itemsIndexed(FilterPreset.entries) { index, preset ->
+                 val delay = (index * 50L).coerceAtMost(300L)
+                 AnimateOnEntry(delayMillis = delay) {
+                    PresetCard(
+                        preset = preset,
+                        onClick = { onApplyPreset(preset) }
+                    )
+                 }
             }
         }
     }
@@ -70,17 +75,13 @@ private fun PresetCard(
     preset: FilterPreset,
     onClick: () -> Unit
 ) {
-    Surface(
+    AppCard(
         onClick = onClick,
-        modifier = Modifier
-            .width(160.dp),
-        shape = MaterialTheme.shapes.medium,
-        color = MaterialTheme.colorScheme.surfaceContainer,
-        tonalElevation = 1.dp,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
+        modifier = Modifier.width(160.dp),
+        containerColor = MaterialTheme.colorScheme.surfaceContainer,
+        elevation = 1.dp
     ) {
         Column(
-            modifier = Modifier.padding(AppSpacing.md),
             verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)
         ) {
             Text(
@@ -210,14 +211,19 @@ fun LazyListScope.filterList(
         contentType = { "filter_card" }
     ) { index ->
         val filter = filterStates[index]
-        FilterRowItem(
-            filterState = filter,
-            lastDrawNumbers = lastDraw,
-            onFilterToggle = onFilterToggle,
-            onRangeChange = onRangeChange,
-            onInfoClick = onInfoClick,
-            modifier = modifier
-        )
+        // Staggered animation
+        val delay = (index * 50L).coerceAtMost(500L)
+        
+        AnimateOnEntry(delayMillis = delay) {
+            FilterRowItem(
+                filterState = filter,
+                lastDrawNumbers = lastDraw,
+                onFilterToggle = onFilterToggle,
+                onRangeChange = onRangeChange,
+                onInfoClick = onInfoClick,
+                modifier = modifier
+            )
+        }
     }
 }
 

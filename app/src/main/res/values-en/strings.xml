@@ -73,7 +73,7 @@
     <string name="home_source_stats_cache">statistics: cache</string>
     <string name="home_source_stats_computed">statistics: computed</string>
     <string name="home_source_status_format">%1$s | %2$s</string>
-    <string name="home_pattern_hint">Most frequent %1$s: %2$s (%3$sx)</string>
+
     <string name="home_stale_data_warning">You are viewing local data (offline).</string>
     <string name="loading_data">Loading dataâ€¦</string>
     <string name="home_loading_message">Preparing Lotofacil data&#8230;</string>
@@ -260,7 +260,7 @@
     <string name="unpinned_games_cleared">Unpinned games removed.</string>
     <string name="accumulated">ACCUMULATED!</string>
     <!-- Content Descriptions -->
-    <string name="cd_refresh_data">Update data</string>
+
     <string name="cd_navigate_back">Back</string>
     <string name="cd_clear_games">Clear unpinned games</string>
     <string name="next_contest_format">Next Draw: #%s</string>

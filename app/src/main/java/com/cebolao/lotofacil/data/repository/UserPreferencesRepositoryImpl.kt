@@ -31,7 +31,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
     companion object {
         private const val TAG = "UserPreferencesRepo"
         private val PINNED_GAMES_KEY = stringSetPreferencesKey("pinned_games")
-
+        private val LAST_HISTORY_SYNC_TIMESTAMP_KEY = androidx.datastore.preferences.core.longPreferencesKey("last_history_sync_timestamp")
     }
 
     override val pinnedGames: Flow<Set<String>> = context.dataStore.data
@@ -43,6 +43,15 @@ class UserPreferencesRepositoryImpl @Inject constructor(
             preferences[PINNED_GAMES_KEY] ?: emptySet()
         }
 
+    override val lastHistorySyncTimestamp: Flow<Long> = context.dataStore.data
+        .catch { exception ->
+            handleError(exception, "reading last sync timestamp")
+            emit(emptyPreferences())
+        }
+        .map { preferences ->
+            preferences[LAST_HISTORY_SYNC_TIMESTAMP_KEY] ?: 0L
+        }
+
     override suspend fun savePinnedGames(games: Set<String>) {
         withContext(dispatchersProvider.io) {
             try {
@@ -52,6 +61,19 @@ class UserPreferencesRepositoryImpl @Inject constructor(
                 logger.d(TAG, "Saved ${games.size} pinned games")
             } catch (e: IOException) {
                 handleError(e, "saving pinned games")
+            }
+        }
+    }
+
+    override suspend fun saveLastHistorySyncTimestamp(timestamp: Long) {
+        withContext(dispatchersProvider.io) {
+            try {
+                context.dataStore.edit { preferences ->
+                    preferences[LAST_HISTORY_SYNC_TIMESTAMP_KEY] = timestamp
+                }
+                logger.d(TAG, "Saved last sync timestamp: $timestamp")
+            } catch (e: IOException) {
+                handleError(e, "saving last sync timestamp")
             }
         }
     }

@@ -33,7 +33,7 @@ fun ErrorCard(
         modifier = modifier
             .fillMaxWidth()
             .testTag(AppTestTags.ErrorState),
-        backgroundColor = MaterialTheme.colorScheme.errorContainer
+        containerColor = MaterialTheme.colorScheme.errorContainer
     ) {
         Column(
             modifier = Modifier

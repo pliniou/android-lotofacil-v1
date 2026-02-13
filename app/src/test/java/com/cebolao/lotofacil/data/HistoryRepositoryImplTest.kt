@@ -10,6 +10,7 @@ import com.cebolao.lotofacil.data.datasource.HistoryRemoteDataSource
 import com.cebolao.lotofacil.data.repository.HistoryRepositoryImpl
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.domain.repository.SyncStatus
+import com.cebolao.lotofacil.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -30,12 +31,14 @@ class HistoryRepositoryImplTest {
 
     private lateinit var localDataSource: HistoryLocalDataSource
     private lateinit var remoteDataSource: HistoryRemoteDataSource
+    private lateinit var userPreferencesRepository: UserPreferencesRepository
     private lateinit var applicationScope: CoroutineScope
 
     @Before
     fun setup() {
         localDataSource = mock()
         remoteDataSource = mock()
+        userPreferencesRepository = mock()
         applicationScope = CoroutineScope(Dispatchers.Unconfined)
     }
 
@@ -46,6 +49,7 @@ class HistoryRepositoryImplTest {
         val repository = HistoryRepositoryImpl(
             localDataSource = localDataSource,
             remoteDataSource = remoteDataSource,
+            userPreferencesRepository = userPreferencesRepository,
             applicationScope = applicationScope,
             logger = TestAppLogger()
         )
@@ -63,6 +67,7 @@ class HistoryRepositoryImplTest {
         val repository = HistoryRepositoryImpl(
             localDataSource,
             remoteDataSource,
+            userPreferencesRepository,
             applicationScope,
             TestAppLogger()
         )
@@ -82,6 +87,7 @@ class HistoryRepositoryImplTest {
         val repository = HistoryRepositoryImpl(
             localDataSource,
             remoteDataSource,
+            userPreferencesRepository,
             applicationScope,
             TestAppLogger()
         )
@@ -103,6 +109,7 @@ class HistoryRepositoryImplTest {
         whenever(localDataSource.getLatestDraw()).thenReturn(
             HistoricalDraw(contestNumber = 3000, numbers = (1..15).toSet())
         )
+        whenever(userPreferencesRepository.lastHistorySyncTimestamp).thenReturn(flowOf(0L))
         whenever(remoteDataSource.getLatestDraw()).thenReturn(remoteLatest)
         
         // Match the range and any progress callback
@@ -121,6 +128,7 @@ class HistoryRepositoryImplTest {
         val repository = HistoryRepositoryImpl(
             localDataSource,
             remoteDataSource,
+            userPreferencesRepository,
             applicationScope,
             TestAppLogger()
         )
@@ -135,11 +143,13 @@ class HistoryRepositoryImplTest {
     @Test
     fun `syncHistory should return failure when remote throws`() = runTest {
         whenever(localDataSource.populateIfNeeded()).thenReturn(Unit)
+        whenever(userPreferencesRepository.lastHistorySyncTimestamp).thenReturn(flowOf(0L))
         whenever(remoteDataSource.getLatestDraw()).thenThrow(RuntimeException("network down"))
 
         val repository = HistoryRepositoryImpl(
             localDataSource,
             remoteDataSource,
+            userPreferencesRepository,
             applicationScope,
             TestAppLogger()
         )

@@ -48,7 +48,7 @@ fun ConfirmationDialog(
         ) {
             AppCard(
                 modifier = Modifier.fillMaxWidth(),
-                backgroundColor = colors.surface
+                containerColor = colors.surface
             ) {
                 Column(
                     modifier = Modifier.padding(AppSpacing.xl),

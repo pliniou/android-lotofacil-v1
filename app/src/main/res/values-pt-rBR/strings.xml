@@ -81,7 +81,7 @@
     <string name="home_source_stats_cache">estatÃ­sticas: cache</string>
     <string name="home_source_stats_computed">estatÃ­sticas: calculadas</string>
     <string name="home_source_status_format">%1$s | %2$s</string>
-    <string name="home_pattern_hint">%1$s mais recorrente: %2$s (%3$sx)</string>
+
     <string name="home_stale_data_warning">VocÃª estÃ¡ vendo dados locais (offline).</string>
     <string name="loading_data">Carregando dadosâ€¦</string>
     <string name="home_loading_message">Preparando dados da Lotofacil&#8230;</string>
@@ -271,7 +271,7 @@
     <string name="unpinned_games_cleared">Jogos nÃ£o fixados removidos.</string>
     <string name="accumulated">ACUMULOU!</string>
     <!-- Content Descriptions -->
-    <string name="cd_refresh_data">Atualizar dados</string>
+
     <string name="cd_navigate_back">Voltar</string>
     <string name="cd_clear_games">Limpar jogos nÃ£o fixados</string>
     <string name="next_contest_format">PrÃ³ximo Concurso: #%s</string>

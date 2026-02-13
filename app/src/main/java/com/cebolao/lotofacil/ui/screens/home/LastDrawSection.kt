@@ -57,6 +57,7 @@ import com.cebolao.lotofacil.core.utils.NumberFormatUtils
 import com.cebolao.lotofacil.domain.model.LastDrawStats
 import com.cebolao.lotofacil.domain.model.PrizeTier
 import com.cebolao.lotofacil.domain.model.WinnerLocation
+import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.NumberBall
 import com.cebolao.lotofacil.ui.theme.AppElevation
 import com.cebolao.lotofacil.ui.theme.AppSize
@@ -82,13 +83,12 @@ private fun LatestResultCard(
 ) {
     val colors = MaterialTheme.colorScheme
     
-    Card(
+    AppCard(
         modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = AppElevation.sm),
-        colors = CardDefaults.cardColors(containerColor = colors.surface),
-        border = BorderStroke(1.dp, colors.outline.copy(alpha = 0.1f))
+        elevation = AppElevation.sm,
+        containerColor = colors.surface
     ) {
-        Column(modifier = Modifier.padding(AppSpacing.lg)) {
+        Column {
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -110,8 +110,6 @@ private fun LatestResultCard(
                         )
                     }
                 }
-                
-                // Optional: Status badge if it's recent?
             }
 
             Spacer(modifier = Modifier.height(AppSpacing.lg))
@@ -176,7 +174,7 @@ private fun PrizeDetailsSection(
     prizes: List<PrizeTier>,
     winners: List<WinnerLocation>
 ) {
-    var showPrizes by remember { mutableStateOf(false) }
+    var showPrizes by remember { mutableStateOf(true) }
     val colors = MaterialTheme.colorScheme
 
     Column {

@@ -46,18 +46,26 @@ class HistoryLocalDataSourceImpl @Inject constructor(
     override suspend fun populateIfNeeded() {
         withContext(dispatchersProvider.io) {
             val dbCount = historyDao.getCount()
-            logger.d("HistoryLocalDataSource", "Checking database population. Current count: $dbCount")
-            if (dbCount == 0) {
-                val assetDraws = parseHistoryFromAssets()
-                logger.d("HistoryLocalDataSource", "Parsed ${assetDraws.size} draws from assets.")
+            val dbLatest = historyDao.getLatestDraw()?.contestNumber ?: 0
+
+            logger.d("HistoryLocalDataSource", "Checking database population. Count: $dbCount, Latest: $dbLatest")
+
+            val assetDraws = parseHistoryFromAssets()
+            val assetLatest = assetDraws.firstOrNull()?.contestNumber ?: 0
+
+            logger.d("HistoryLocalDataSource", "Asset parsed. Count: ${assetDraws.size}, Latest: $assetLatest")
+
+            // If DB is empty OR Assets have newer data, populating/updating.
+            // Note: assetDraws is sorted descending by contestNumber in parser.
+            if (assetLatest > dbLatest) {
+                logger.i("HistoryLocalDataSource", "Assets are newer than DB ($assetLatest > $dbLatest). Updating DB...")
                 if (assetDraws.isNotEmpty()) {
+                    // upsertAll handles both insertion of new records and updating existing ones.
                     historyDao.upsertAll(assetDraws.map { it.toEntity() })
-                    logger.d("HistoryLocalDataSource", "Successfully populated database from assets.")
-                } else {
-                    logger.w("HistoryLocalDataSource", "Asset file was empty or failed to parse.")
+                    logger.d("HistoryLocalDataSource", "Successfully populated/updated database from assets.")
                 }
             } else {
-                logger.d("HistoryLocalDataSource", "Database already populated. Skipping asset load.")
+                logger.d("HistoryLocalDataSource", "Database is up to date with assets. Skipping load.")
             }
         }
     }

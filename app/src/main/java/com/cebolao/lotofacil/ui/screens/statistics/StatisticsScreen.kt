@@ -1,8 +1,11 @@
 package com.cebolao.lotofacil.ui.screens.statistics
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.ui.Alignment
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.Refresh
@@ -19,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.TrendType
+import com.cebolao.lotofacil.ui.components.AnimateOnEntry
 import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
 import com.cebolao.lotofacil.ui.components.AppScreenStateHost
@@ -143,65 +147,81 @@ fun StatisticsScreenContent(
                         DataLoadSource.NETWORK -> stringResource(R.string.home_source_stats_network)
                         DataLoadSource.COMPUTED -> stringResource(R.string.home_source_stats_computed)
                     }
-                    Text(
-                        text = if (state.isShowingStaleData) {
-                            "$sourceLabel - ${stringResource(R.string.home_stale_data_warning)}"
-                        } else {
-                            sourceLabel
-                        },
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = if (state.isShowingStaleData) {
+                                "$sourceLabel - ${stringResource(R.string.home_stale_data_warning)}"
+                            } else {
+                                sourceLabel
+                            },
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
 
                 item(key = "time_window_filter") {
-                    TimeWindowFilterSection(
-                        selectedWindow = state.selectedTimeWindow,
-                        windows = state.timeWindows,
-                        totalDraws = state.totalDrawsAvailable,
-                        onWindowSelected = { onAction(StatisticsAction.TimeWindowSelected(it)) }
-                    )
+                    AnimateOnEntry(delayMillis = 50) {
+                        TimeWindowFilterSection(
+                            selectedWindow = state.selectedTimeWindow,
+                            windows = state.timeWindows,
+                            onWindowSelected = { onAction(StatisticsAction.TimeWindowSelected(it)) }
+                        )
+                    }
                 }
 
                 state.frequencyAnalysis?.let { freq ->
                     item(key = "frequency_section") {
-                        FrequencySection(analysis = freq)
+                        AnimateOnEntry(delayMillis = 100) {
+                            FrequencySection(analysis = freq)
+                        }
                     }
                 }
 
                 state.report?.let { report ->
                     item(key = "summary_card") {
-                        SummaryCard(
-                            totalDrawsAnalyzed = report.totalDrawsAnalyzed,
-                            averageSum = report.averageSum
-                        )
+                        AnimateOnEntry(delayMillis = 150) {
+                            SummaryCard(
+                                totalDrawsAnalyzed = report.totalDrawsAnalyzed,
+                                averageSum = report.averageSum
+                            )
+                        }
                     }
                 }
 
                 state.report?.let { report ->
                     item(key = "distribution_section") {
-                        DistributionSection(report = report)
+                        AnimateOnEntry(delayMillis = 200) {
+                            DistributionSection(report = report)
+                        }
                     }
                 }
 
                 item(key = "pattern_section") {
-                    PatternSection(
-                        analysis = state.patternAnalysis,
-                        isLoading = state.isPatternLoading,
-                        errorResId = state.patternErrorResId,
-                        selectedSize = state.selectedPatternSize,
-                        onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
-                    )
+                    AnimateOnEntry(delayMillis = 250) {
+                        PatternSection(
+                            analysis = state.patternAnalysis,
+                            isLoading = state.isPatternLoading,
+                            errorResId = state.patternErrorResId,
+                            selectedSize = state.selectedPatternSize,
+                            onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
+                        )
+                    }
                 }
 
                 item(key = "trend_section") {
-                    TrendSection(
-                        analysis = state.trendAnalysis,
-                        isLoading = state.isTrendLoading,
-                        errorResId = state.trendErrorResId,
-                        selectedType = state.selectedTrendType,
-                        onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
-                    )
+                    AnimateOnEntry(delayMillis = 300) {
+                        TrendSection(
+                            analysis = state.trendAnalysis,
+                            isLoading = state.isTrendLoading,
+                            errorResId = state.trendErrorResId,
+                            selectedType = state.selectedTrendType,
+                            onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
+                        )
+                    }
                 }
             }
         }

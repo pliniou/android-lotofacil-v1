@@ -53,7 +53,7 @@ fun EnhancedCard(
         variant = variant,
         onClick = onClick,
         shape = AppShapes.md,
-        backgroundColor = backgroundColor,
+        containerColor = backgroundColor,
         elevation = elevation
     ) {
         content()
