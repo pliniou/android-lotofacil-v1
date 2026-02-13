@@ -27,13 +27,16 @@ import androidx.compose.ui.unit.sp
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.FrequencyAnalysis
 import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.SectionHeader
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 @Composable
 fun FrequencySection(analysis: FrequencyAnalysis) {
     SectionHeader(
         title = stringResource(R.string.frequency_analysis_title),
-        icon = Icons.Outlined.BarChart
+        icon = Icons.Outlined.BarChart,
+        titleStyle = MaterialTheme.typography.titleLarge,
+        showDivider = true
     )
 
     // Bar chart for all 25 numbers

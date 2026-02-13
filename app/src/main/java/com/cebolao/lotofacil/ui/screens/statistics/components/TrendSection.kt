@@ -40,6 +40,7 @@ import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.TrendAnalysis
 import com.cebolao.lotofacil.domain.model.TrendType
 import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.SectionHeader
 import com.cebolao.lotofacil.ui.components.SectionFeedbackState
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import kotlin.math.exp
@@ -60,7 +61,9 @@ fun TrendSection(
 
     SectionHeader(
         title = stringResource(R.string.trends_title),
-        icon = Icons.AutoMirrored.Outlined.TrendingUp
+        icon = Icons.AutoMirrored.Outlined.TrendingUp,
+        titleStyle = MaterialTheme.typography.titleLarge,
+        showDivider = true
     )
 
     // Type selector centered

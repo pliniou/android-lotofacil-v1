@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.StatisticsReport
 import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.SectionHeader
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -27,7 +28,9 @@ import com.cebolao.lotofacil.ui.theme.AppSpacing
 fun DistributionSection(report: StatisticsReport) {
     SectionHeader(
         title = stringResource(R.string.distributions_title),
-        icon = Icons.Outlined.BarChart
+        icon = Icons.Outlined.BarChart,
+        titleStyle = MaterialTheme.typography.titleLarge,
+        showDivider = true
     )
 
     FlowRow(

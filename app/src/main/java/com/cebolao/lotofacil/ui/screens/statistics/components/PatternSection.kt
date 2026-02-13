@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.PatternAnalysis
 import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.SectionHeader
 import com.cebolao.lotofacil.ui.components.SectionFeedbackState
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
@@ -39,7 +40,9 @@ fun PatternSection(
 ) {
     SectionHeader(
         title = stringResource(R.string.patterns_title),
-        icon = Icons.Outlined.Pattern
+        icon = Icons.Outlined.Pattern,
+        titleStyle = MaterialTheme.typography.titleLarge,
+        showDivider = true
     )
 
     FlowRow(

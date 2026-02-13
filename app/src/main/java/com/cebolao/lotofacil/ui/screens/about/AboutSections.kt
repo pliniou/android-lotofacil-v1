@@ -29,6 +29,7 @@ import com.cebolao.lotofacil.ui.components.AnimateOnEntry
 import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.components.LazyImage
+import com.cebolao.lotofacil.ui.components.SectionHeader
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.iconLarge
 
@@ -46,7 +47,11 @@ internal fun LazyListScope.aboutInfoSection(
     onInfoClick: (InfoItem) -> Unit
 ) {
     item(key = "${sectionKey}_header") {
-        SectionHeader(title = title)
+        SectionHeader(
+            title = title,
+            titleColor = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(horizontal = AppSpacing.lg, vertical = AppSpacing.xs)
+        )
     }
 
     itemsIndexed(
@@ -71,7 +76,11 @@ internal fun LazyListScope.aboutLinksSection(
     links: List<AboutExternalLink>
 ) {
     item(key = "${sectionKey}_header") {
-        SectionHeader(title = title)
+        SectionHeader(
+            title = title,
+            titleColor = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(horizontal = AppSpacing.lg, vertical = AppSpacing.xs)
+        )
     }
 
     itemsIndexed(
@@ -129,18 +138,6 @@ internal fun UserStatsCard(onClick: () -> Unit) {
             )
         }
     }
-}
-
-@Composable
-internal fun SectionHeader(title: String) {
-    Text(
-        text = title,
-        style = MaterialTheme.typography.titleMedium,
-        color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = AppSpacing.lg, vertical = AppSpacing.xs)
-    )
 }
 
 @Composable
