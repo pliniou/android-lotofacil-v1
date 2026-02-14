@@ -83,8 +83,8 @@ fun GameStatsList(
 fun StatisticRow(
     label: String,
     value: String,
-    icon: ImageVector? = null,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    icon: ImageVector? = null
 ) {
     val colors = MaterialTheme.colorScheme
     Row(

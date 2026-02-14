@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -123,8 +124,9 @@ fun ActiveFiltersPanel(
             verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
         ) {
             Text(
-                text = stringResource(
-                    id = R.string.active_filters_count_summary,
+                text = pluralStringResource(
+                    id = R.plurals.active_filters_count_summary,
+                    count = activeCount,
                     activeCount,
                     totalFilters
                 ),
@@ -389,11 +391,11 @@ private fun FilterRowItem(
 @Composable
 fun GenerateActionsPanel(
     generationState: GenerationUiState,
+    onGenerate: (Int) -> Unit,
+    modifier: Modifier = Modifier,
     isDataSyncing: Boolean = false,
     activeFiltersCount: Int = 0,
-    isCombinationPossible: Boolean = true,
-    onGenerate: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    isCombinationPossible: Boolean = true
 ) {
     AnimateOnEntry(
         delayMillis = AppTheme.motion.delayFiltersMs,

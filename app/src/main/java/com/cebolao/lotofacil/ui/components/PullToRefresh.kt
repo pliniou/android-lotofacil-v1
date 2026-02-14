@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.testTag
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 /**
@@ -22,6 +23,7 @@ fun PullToRefreshScreen(
     isRefreshing: Boolean,
     onRefresh: () -> Unit,
     modifier: Modifier = Modifier,
+    testTag: String? = null,
     content: @Composable () -> Unit
 ) {
     val pullToRefreshState = rememberPullToRefreshState()
@@ -38,11 +40,14 @@ fun PullToRefreshScreen(
         }
     }
 
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .nestedScroll(pullToRefreshState.nestedScrollConnection)
-    ) {
+    val rootModifier = modifier
+        .fillMaxSize()
+        .nestedScroll(pullToRefreshState.nestedScrollConnection)
+        .let { current ->
+            if (testTag.isNullOrBlank()) current else current.testTag(testTag)
+        }
+
+    Box(modifier = rootModifier) {
         content()
 
         PullToRefreshContainer(

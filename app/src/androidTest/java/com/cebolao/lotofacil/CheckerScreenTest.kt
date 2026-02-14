@@ -67,10 +67,14 @@ class CheckerScreenTest {
                 composeTestRule.onAllNodesWithText(statsTitle).fetchSemanticsNodes().isNotEmpty()
         }
 
-        try {
-            composeTestRule.onNodeWithText(performanceTitle).assertIsDisplayed()
-        } catch (e: AssertionError) {
-            composeTestRule.onNodeWithText(statsTitle).assertIsDisplayed()
+        if (composeTestRule.onAllNodesWithText(performanceTitle).fetchSemanticsNodes().isNotEmpty()) {
+            composeTestRule.onNodeWithText(performanceTitle)
+                .performScrollTo()
+                .assertIsDisplayed()
+        } else {
+            composeTestRule.onNodeWithText(statsTitle)
+                .performScrollTo()
+                .assertIsDisplayed()
         }
     }
 

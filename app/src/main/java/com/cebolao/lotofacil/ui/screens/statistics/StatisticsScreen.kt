@@ -1,10 +1,14 @@
 package com.cebolao.lotofacil.ui.screens.statistics
 
+import android.os.Looper
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.spring
 import androidx.compose.ui.Alignment
@@ -138,23 +142,116 @@ fun StatisticsScreenContent(
                 StatisticsSkeleton()
             }
         ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .animateContentSize(
-                        animationSpec = spring(
-                            dampingRatio = 0.8f,
-                            stiffness = 300f
-                        )
-                    ),
-                contentPadding = AppScreenDefaults.listContentPadding(
-                    horizontal = AppSpacing.lg,
-                    top = AppSpacing.md,
-                    bottom = AppSpacing.xl
-                ),
-                verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
-            ) {
-                item(key = "statistics_data_status") {
+            val listModifier = Modifier
+                .fillMaxSize()
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = 0.8f,
+                        stiffness = 300f
+                    )
+                )
+            val listContentPadding = AppScreenDefaults.listContentPadding(
+                horizontal = AppSpacing.lg,
+                top = AppSpacing.md,
+                bottom = AppSpacing.xl
+            )
+
+            if (Looper.myLooper() != null) {
+                LazyColumn(
+                    modifier = listModifier,
+                    contentPadding = listContentPadding,
+                    verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+                ) {
+                    item(key = "statistics_data_status") {
+                        val sourceLabel = when (state.statisticsSource) {
+                            DataLoadSource.CACHE -> stringResource(R.string.home_source_stats_cache)
+                            DataLoadSource.NETWORK -> stringResource(R.string.home_source_stats_network)
+                            DataLoadSource.COMPUTED -> stringResource(R.string.home_source_stats_computed)
+                        }
+                        Column(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = if (state.isShowingStaleData) {
+                                    "$sourceLabel - ${stringResource(R.string.home_stale_data_warning)}"
+                                } else {
+                                    sourceLabel
+                                },
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+
+                    item(key = "time_window_filter") {
+                        AnimateOnEntry(delayMillis = 50) {
+                            TimeWindowFilterSection(
+                                selectedWindow = state.selectedTimeWindow,
+                                windows = state.timeWindows,
+                                onWindowSelected = { onAction(StatisticsAction.TimeWindowSelected(it)) }
+                            )
+                        }
+                    }
+
+                    state.frequencyAnalysis?.let { freq ->
+                        item(key = "frequency_section") {
+                            AnimateOnEntry(delayMillis = 100) {
+                                FrequencySection(analysis = freq)
+                            }
+                        }
+                    }
+
+                    state.report?.let { report ->
+                        item(key = "summary_card") {
+                            AnimateOnEntry(delayMillis = 150) {
+                                SummaryCard(
+                                    totalDrawsAnalyzed = report.totalDrawsAnalyzed,
+                                    averageSum = report.averageSum
+                                )
+                            }
+                        }
+                    }
+
+                    state.report?.let { report ->
+                        item(key = "distribution_section") {
+                            AnimateOnEntry(delayMillis = 200) {
+                                DistributionSection(report = report)
+                            }
+                        }
+                    }
+
+                    item(key = "pattern_section") {
+                        AnimateOnEntry(delayMillis = 250) {
+                            PatternSection(
+                                analysis = state.patternAnalysis,
+                                isLoading = state.isPatternLoading,
+                                errorResId = state.patternErrorResId,
+                                selectedSize = state.selectedPatternSize,
+                                onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
+                            )
+                        }
+                    }
+
+                    item(key = "trend_section") {
+                        AnimateOnEntry(delayMillis = 300) {
+                            TrendSection(
+                                analysis = state.trendAnalysis,
+                                isLoading = state.isTrendLoading,
+                                errorResId = state.trendErrorResId,
+                                selectedType = state.selectedTrendType,
+                                onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
+                            )
+                        }
+                    }
+                }
+            } else {
+                Column(
+                    modifier = listModifier
+                        .verticalScroll(rememberScrollState())
+                        .padding(listContentPadding),
+                    verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+                ) {
                     val sourceLabel = when (state.statisticsSource) {
                         DataLoadSource.CACHE -> stringResource(R.string.home_source_stats_cache)
                         DataLoadSource.NETWORK -> stringResource(R.string.home_source_stats_network)
@@ -174,9 +271,7 @@ fun StatisticsScreenContent(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
-                }
 
-                item(key = "time_window_filter") {
                     AnimateOnEntry(delayMillis = 50) {
                         TimeWindowFilterSection(
                             selectedWindow = state.selectedTimeWindow,
@@ -184,18 +279,14 @@ fun StatisticsScreenContent(
                             onWindowSelected = { onAction(StatisticsAction.TimeWindowSelected(it)) }
                         )
                     }
-                }
 
-                state.frequencyAnalysis?.let { freq ->
-                    item(key = "frequency_section") {
+                    state.frequencyAnalysis?.let { freq ->
                         AnimateOnEntry(delayMillis = 100) {
                             FrequencySection(analysis = freq)
                         }
                     }
-                }
 
-                state.report?.let { report ->
-                    item(key = "summary_card") {
+                    state.report?.let { report ->
                         AnimateOnEntry(delayMillis = 150) {
                             SummaryCard(
                                 totalDrawsAnalyzed = report.totalDrawsAnalyzed,
@@ -203,17 +294,13 @@ fun StatisticsScreenContent(
                             )
                         }
                     }
-                }
 
-                state.report?.let { report ->
-                    item(key = "distribution_section") {
+                    state.report?.let { report ->
                         AnimateOnEntry(delayMillis = 200) {
                             DistributionSection(report = report)
                         }
                     }
-                }
 
-                item(key = "pattern_section") {
                     AnimateOnEntry(delayMillis = 250) {
                         PatternSection(
                             analysis = state.patternAnalysis,
@@ -223,9 +310,7 @@ fun StatisticsScreenContent(
                             onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
                         )
                     }
-                }
 
-                item(key = "trend_section") {
                     AnimateOnEntry(delayMillis = 300) {
                         TrendSection(
                             analysis = state.trendAnalysis,

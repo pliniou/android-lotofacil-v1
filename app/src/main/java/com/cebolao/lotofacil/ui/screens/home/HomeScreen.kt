@@ -182,7 +182,8 @@ fun HomeScreenContent(
     Box(modifier = Modifier.fillMaxSize()) {
         PullToRefreshScreen(
             isRefreshing = false,
-            onRefresh = { onAction(HomeAction.RefreshData) }
+            onRefresh = { onAction(HomeAction.RefreshData) },
+            testTag = AppTestTags.HomeRefreshAction
         ) {
             AppScreenScaffold(
                 modifier = Modifier.fillMaxSize(),

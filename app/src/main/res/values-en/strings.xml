@@ -5,13 +5,24 @@
     <string name="error_load_data_failed">Oops, we could not load the data right now. Please try again.</string>
     <string name="error_analysis_failed">Oops, we could not finish the game analysis.</string>
     <string name="error_analysis_timeout">Analysis timed out. Please try again.</string>
+    <string name="error_game_not_found">We couldn\'t find this saved game to analyze.</string>
     <string name="error_unknown">Oops, something went wrong. Please try again in a moment.</string>
     <string name="error_history_unavailable">History unavailable.</string>
+    <string name="error_history_unavailable_title">History unavailable</string>
+    <string name="error_history_unavailable_message">We couldn\'t retrieve the latest draw. Adjust the filters or try again.</string>
     <string name="error_invalid_operation">Invalid operation.</string>
     <string name="error_validation">Validation error.</string>
     <string name="error_sync_failed">Oops, we could not update the data right now. Please try again.</string>
     <string name="error_generating_games">Oops, something went wrong while generating your game. Try again or adjust the filters.</string>
+    <string name="error_invalid_filters_title">Incompatible filters</string>
+    <string name="error_invalid_filters_message">Adjust the criteria and try again.</string>
+    <string name="error_no_connection">No connection. Check your internet.</string>
     <string name="try_again">Try again</string>
+    <string name="global_error_title">Something went wrong</string>
+    <string name="global_error_message">Something went wrong. Restart the app.</string>
+    <string name="global_error_restart">Restart app</string>
+    <string name="global_error_report">Report error</string>
+    <string name="global_error_report_subject">Error report</string>
 
     <string name="studio_name">Cebola Studios</string>
     <string name="studio_slogan">Luck and statistics.</string>
@@ -65,9 +76,12 @@
     <!-- HomeScreen -->
     <string name="last_update_status">Data updated %s ago</string>
     <string name="refresh_sync_label">Updating Data</string>
-    <string name="sync_stats_message">Updating statistics...</string>
-    <string name="sync_stats_progress">Updating statistics... %1$d of %2$d draws</string>
-    <string name="sync_in_progress_message">Updating data. Please wait...</string>
+    <string name="sync_stats_message">Updating statistics&#8230;</string>
+    <plurals name="sync_stats_progress">
+        <item quantity="one">Updating statistics&#8230; %1$d of %2$d draw</item>
+        <item quantity="other">Updating statistics&#8230; %1$d of %2$d draws</item>
+    </plurals>
+    <string name="sync_in_progress_message">Updating data. Please wait&#8230;</string>
     <string name="refresh_success">Data updated successfully!</string>
     <string name="sync_failed_message">Unable to update. Showing local data.</string>
     <string name="home_source_history_network">history: network</string>
@@ -75,7 +89,6 @@
     <string name="home_source_stats_network">statistics: network</string>
     <string name="home_source_stats_cache">statistics: cache</string>
     <string name="home_source_stats_computed">statistics: computed</string>
-    <string name="home_source_status_format">%1$s | %2$s</string>
 
     <string name="home_stale_data_warning">You are viewing local data (offline).</string>
     <string name="loading_data">Loading data…</string>
@@ -138,19 +151,19 @@
     <string name="my_games">My games</string>
     <string name="my_games_subtitle">View, analyze and manage your games</string>
     <string name="empty_games_message">No games generated yet.\nGo to the Generator screen to start!</string>
-    <string name="loading_games">Loading your games...</string>
+    <string name="loading_games">Loading your games&#8230;</string>
     <string name="generate_first_game">Generate my first game</string>
     <string name="load_more_games">Load more games</string>
     <string name="generated_games_overview_title">Games overview</string>
     <string name="total_games_label">Total</string>
     <string name="pinned_games_label">Pinned</string>
     <string name="game_analysis_title">Game analysis</string>
+    <string name="game_analysis_subtitle">Compare patterns and generate variations in one tap</string>
+    <string name="analysis_numbers_title">Base game numbers</string>
     <string name="close_button">Close</string>
     <string name="historical_performance">Historical performance</string>
-    <string name="never_won_message">This game was never awarded in the analyzed draws.</string>
     <string name="recent_hits_title">Hits in last 15 draws</string>
     <string name="game_stats_title">Game statistics</string>
-    <string name="selected_numbers_progress">%1$d of 15 numbers</string>
 
     <!-- CheckerScreen -->
     <string name="check_game_title">Checker</string>
@@ -168,38 +181,41 @@
     <string name="checker_loading_history">Loading history…</string>
     <string name="checker_calculating_results">Calculating results…</string>
     <string name="checker_analyzing_stats">Analyzing statistics…</string>
+    <string name="generate_new_game_button">Generate new game</string>
+    <string name="refine_from_pattern_button">Refine with this pattern</string>
 
     <!-- FiltersScreen -->
     <string name="filters_header_title">Smart Generator</string>
     <string name="filters_header_subtitle">Adjust filters with statistical support to generate games</string>
+    <string name="generate_similar_game_button">Generate variation of this game</string>
+    <string name="generator_preset_applied">Similar filters applied in the generator.</string>
     <string name="reset_filters">Reset filters</string>
     <string name="reset_filters_title">Reset filters?</string>
     <string name="reset_filters_message">This will disable all filters and restore defaults. Do you want to continue?</string>
 
     <!-- GameCard -->
     <string name="analyze_button">Analyze</string>
+    <string name="duplicate_and_edit_button">Duplicate and edit</string>
     <string name="pin_game">Pin game</string>
     <string name="unpin_game">Unpin game</string>
     <string name="delete_game">Delete game</string>
     <string name="pinned_label">Pinned</string>
     <string name="cd_share_game">Share game</string>
     <string name="share_game_chooser_title">Share game via…</string>
-    <string name="syncing_data">Syncing…</string>
 
     <!-- Common Actions -->
     <string name="reset_button">Reset</string>
+    <string name="adjust_filters_button">Adjust filters</string>
 
     <!-- FilterCard -->
     <string name="data_unavailable">Data unavailable</string>
     <string name="filter_info_content_description">More information about filter %1$s</string>
-    <string name="filter_icon_content_description">Icon for filter %1$s</string>
 
     <!-- Generation Actions -->
     <string name="min_value">Minimum</string>
     <string name="max_value">Maximum</string>
 
     <!-- FilterStatsPanel -->
-    <string name="filters_analysis_title">Filters analysis</string>
     <string name="presets_title">Quick Presets</string>
     <string name="preset_common_title">Most Common</string>
     <string name="preset_common_desc">Classic statistics (72% of draws)</string>
@@ -228,8 +244,24 @@
     <!-- GenerationActionsPanel -->
     <string name="game_quantity">Number of games</string>
     <string name="total_cost">Total cost:</string>
+    <plurals name="cost_calculation">
+        <item quantity="one">%1$d game × R$ %2$s</item>
+        <item quantity="other">%1$d games × R$ %2$s</item>
+    </plurals>
     <string name="decrease_quantity">Decrease</string>
     <string name="increase_quantity">Increase</string>
+    <string name="generate_button_disabled_no_filters">Select at least 1 filter</string>
+    <string name="generate_button_disabled_no_quantity">Quantity must be greater than 0</string>
+    <string name="generate_button_disabled_invalid_filters">This filter combination is invalid.</string>
+    <string name="generate_button_disabled_impossible_filters">No game possible with current filters</string>
+    <string name="generate_button_disabled_syncing">Updating data. Please wait&#8230;</string>
+    <string name="possible_games_title">Possible games</string>
+    <string name="possible_games_calculating">Calculating combinations&#8230;</string>
+    <string name="possible_games_none">No possible games!</string>
+    <string name="possible_games_exact">%1$s possible games</string>
+    <string name="possible_games_estimated">~%1$s possible games</string>
+    <string name="possible_games_warning_restrictive">Combination too restrictive (&lt; 10 games).</string>
+    <string name="possible_games_warning_impossible">Attention: these filters may not yield results.</string>
 
     <!-- Filter Types -->
     <string name="filter_soma_dezenas_title">Sum of numbers</string>
@@ -306,10 +338,6 @@
     <string name="time_window_filter_label">Analysis period</string>
     <string name="all_draws_label">All</string>
     <string name="last_n_draws_label">Last %d</string>
-    <plurals name="total_draws_available_label">
-        <item quantity="one">%d contest available</item>
-        <item quantity="other">%d contests available</item>
-    </plurals>
     <string name="draws_analyzed_label">Contests analyzed</string>
     <string name="average_sum_label">Average sum</string>
     <string name="top_numbers_label">Most frequent</string>
@@ -350,10 +378,6 @@
     <string name="tips_repeat_title">Repeat from previous</string>
     <string name="tips_repeat_desc">84% of draws repeat between 8 and 10 numbers from the previous contest. Consider including some previous numbers.</string>
     <!-- HomeScreen - Refactor additions -->
-    <string name="greeting_morning">Good morning,</string>
-    <string name="greeting_afternoon">Good afternoon,</string>
-    <string name="greeting_evening">Good evening,</string>
-    <string name="greeting_night">Good late night,</string>
     <string name="greeting_user">Player</string>
     <string name="greeting_insight_accumulated">Jackpot is rolling over! Great time to play.</string>
     <string name="greeting_insight_generic">Use data as guidance and play responsibly.</string>
@@ -361,5 +385,8 @@
     <string name="next_draw_card_title">Next contest</string>
     <string name="quick_insights_title">Quick Insights</string>
     <string name="quick_insights_cta">View full statistics</string>
+
+    <!-- Filter Accessibility -->
+    <string name="filter_accessibility_description">%1$s, switch, %2$s</string>
 </resources>
 

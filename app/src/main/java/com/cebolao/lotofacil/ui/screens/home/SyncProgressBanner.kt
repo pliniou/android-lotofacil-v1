@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -39,8 +40,8 @@ import com.cebolao.lotofacil.viewmodels.UpdateState
 @Composable
 internal fun SyncProgressBanner(
     updateState: UpdateState,
-    onCancel: () -> Unit = {},
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onCancel: () -> Unit = {}
 ) {
     if (updateState !is UpdateState.Loading) return
 
@@ -68,8 +69,9 @@ internal fun SyncProgressBanner(
 
     val progressLabel = when {
         updateState.current != null && updateState.total != null && updateState.total > 0 -> {
-            stringResource(
-                id = R.string.sync_stats_progress,
+            pluralStringResource(
+                id = R.plurals.sync_stats_progress,
+                count = updateState.total,
                 updateState.current,
                 updateState.total
             )

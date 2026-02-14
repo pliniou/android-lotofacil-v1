@@ -55,11 +55,11 @@ import java.util.Locale
 @Composable
 fun GenerationActionsPanel(
     generationState: GenerationUiState,
+    onGenerate: (Int) -> Unit,
+    modifier: Modifier = Modifier,
     isDataSyncing: Boolean = false,
     activeFiltersCount: Int = 0,
-    isCombinationPossible: Boolean = true,
-    onGenerate: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    isCombinationPossible: Boolean = true
 ) {
     val haptic = LocalHapticFeedback.current
     val options = remember { listOf(1, 2, 3, 5, 7, 9, 10, 12, 15, 20) }
@@ -159,8 +159,9 @@ fun GenerationActionsPanel(
                 
                 // Cost breakdown explanation
                 Text(
-                    text = stringResource(
-                        id = R.string.cost_calculation,
+                    text = pluralStringResource(
+                        id = R.plurals.cost_calculation,
+                        count = quantity,
                         quantity,
                         LotofacilConstants.GAME_COST.toPlainString()
                     ),

@@ -77,9 +77,12 @@
     <!-- HomeScreen -->
     <string name="last_update_status">Dados atualizados há %s</string>
     <string name="refresh_sync_label">Atualizando Dados</string>
-    <string name="sync_stats_message">Atualizando estatísticas...</string>
-    <string name="sync_stats_progress">Atualizando estatísticas... %1$d de %2$d concursos</string>
-    <string name="sync_in_progress_message">Atualizando dados. Aguarde...</string>
+    <string name="sync_stats_message">Atualizando estatísticas&#8230;</string>
+    <plurals name="sync_stats_progress">
+        <item quantity="one">Atualizando estatísticas&#8230; %1$d de %2$d concurso</item>
+        <item quantity="other">Atualizando estatísticas&#8230; %1$d de %2$d concursos</item>
+    </plurals>
+    <string name="sync_in_progress_message">Atualizando dados. Aguarde&#8230;</string>
 
     <string name="refresh_success">Dados atualizados com sucesso!</string>
     <string name="sync_failed_message">Não foi possível atualizar. Exibindo dados locais.</string>
@@ -88,7 +91,6 @@
     <string name="home_source_stats_network">estatísticas: rede</string>
     <string name="home_source_stats_cache">estatísticas: cache</string>
     <string name="home_source_stats_computed">estatísticas: calculadas</string>
-    <string name="home_source_status_format">%1$s | %2$s</string>
 
     <string name="home_stale_data_warning">Você está vendo dados locais (offline).</string>
     <string name="loading_data">Carregando dados…</string>
@@ -153,21 +155,19 @@
     <string name="my_games">Meus jogos</string>
     <string name="my_games_subtitle">Visualize, analise e gerencie seus jogos</string>
     <string name="empty_games_message">Nenhum jogo gerado ainda.\nVá para a tela de Gerador para começar!</string>
-    <string name="loading_games">Carregando seus jogos...</string>
+    <string name="loading_games">Carregando seus jogos&#8230;</string>
     <string name="generate_first_game">Gerar meu primeiro jogo</string>
     <string name="load_more_games">Carregar mais jogos</string>
     <string name="generated_games_overview_title">Resumo dos jogos</string>
     <string name="total_games_label">Total</string>
     <string name="pinned_games_label">Fixados</string>
     <string name="game_analysis_title">Análise do jogo</string>
-    <string name="game_analysis_subtitle">Compare padroes e gere variacoes com um toque</string>
-    <string name="analysis_numbers_title">Numeros do jogo base</string>
+    <string name="game_analysis_subtitle">Compare padrões e gere variações com um toque</string>
+    <string name="analysis_numbers_title">Números do jogo base</string>
     <string name="close_button">Fechar</string>
     <string name="historical_performance">Desempenho histórico</string>
-    <string name="never_won_message">Este jogo nunca foi premiado nos concursos analisados.</string>
     <string name="recent_hits_title">Acertos nos últimos 15 sorteios</string>
     <string name="game_stats_title">Estatísticas do jogo</string>
-    <string name="selected_numbers_progress">%1$d de 15 números</string>
 
     <!-- CheckerScreen -->
     <string name="check_game_title">Conferidor</string>
@@ -206,7 +206,6 @@
     <string name="pinned_label">Fixado</string>
     <string name="cd_share_game">Compartilhar jogo</string>
     <string name="share_game_chooser_title">Compartilhar jogo via…</string>
-    <string name="syncing_data">Sincronizando…</string>
 
     <!-- Common Actions -->
 
@@ -216,7 +215,6 @@
     <!-- FilterCard -->
     <string name="data_unavailable">Dados indisponíveis</string>
     <string name="filter_info_content_description">Mais informações sobre o filtro %1$s</string>
-    <string name="filter_icon_content_description">Ícone do filtro %1$s</string>
 
     <!-- Filter Actions -->
     
@@ -230,7 +228,6 @@
     <string name="max_value">Máximo</string>
 
     <!-- FilterStatsPanel -->
-    <string name="filters_analysis_title">Análise dos filtros</string>
     <string name="presets_title">Dicas Rápidas (Presets)</string>
     <string name="preset_common_title">Mais Comuns</string>
     <string name="preset_common_desc">Estatísticas clássicas (72% dos sorteios)</string>
@@ -260,22 +257,24 @@
     <!-- GenerationActionsPanel -->
     <string name="game_quantity">Quantidade de jogos</string>
     <string name="total_cost">Custo total:</string>
-    <string name="cost_per_game">R$ %1$s per game</string>
-    <string name="cost_calculation">%1$d game(s) × R$ %2$s</string>
+    <plurals name="cost_calculation">
+        <item quantity="one">%1$d jogo × R$ %2$s</item>
+        <item quantity="other">%1$d jogos × R$ %2$s</item>
+    </plurals>
     <string name="decrease_quantity">Diminuir</string>
     <string name="increase_quantity">Aumentar</string>
     <string name="generate_button_disabled_no_filters">Selecione ao menos 1 filtro</string>
     <string name="generate_button_disabled_no_quantity">A quantidade deve ser maior que 0</string>
     <string name="generate_button_disabled_invalid_filters">Esta combinação de filtros está inválida.</string>
-    <string name="generate_button_disabled_impossible_filters">Nenhum jogo possivel com os filtros atuais</string>
-    <string name="generate_button_disabled_syncing">Atualizando dados. Aguarde...</string>
-    <string name="possible_games_title">Jogos possiveis</string>
-    <string name="possible_games_calculating">Calculando combinacoes...</string>
-    <string name="possible_games_none">Nenhum jogo possivel!</string>
-    <string name="possible_games_exact">%1$s jogos possiveis</string>
-    <string name="possible_games_estimated">~%1$s jogos possiveis</string>
-    <string name="possible_games_warning_restrictive">Combinacao muito restritiva (&lt; 10 jogos).</string>
-    <string name="possible_games_warning_impossible">Atencao: estes filtros podem nao gerar resultados.</string>
+    <string name="generate_button_disabled_impossible_filters">Nenhum jogo possível com os filtros atuais</string>
+    <string name="generate_button_disabled_syncing">Atualizando dados. Aguarde&#8230;</string>
+    <string name="possible_games_title">Jogos possíveis</string>
+    <string name="possible_games_calculating">Calculando combinações&#8230;</string>
+    <string name="possible_games_none">Nenhum jogo possível!</string>
+    <string name="possible_games_exact">%1$s jogos possíveis</string>
+    <string name="possible_games_estimated">~%1$s jogos possíveis</string>
+    <string name="possible_games_warning_restrictive">Combinação muito restritiva (&lt; 10 jogos).</string>
+    <string name="possible_games_warning_impossible">Atenção: estes filtros podem não gerar resultados.</string>
 
     <!-- Filter Types -->
     <string name="filter_soma_dezenas_title">Soma das dezenas</string>
@@ -358,10 +357,6 @@
     <string name="time_window_filter_label">Período de análise</string>
     <string name="all_draws_label">Todos</string>
     <string name="last_n_draws_label">Últimos %d</string>
-    <plurals name="total_draws_available_label">
-        <item quantity="one">%d concurso disponível</item>
-        <item quantity="other">%d concursos disponíveis</item>
-    </plurals>
     <string name="draws_analyzed_label">Concursos analisados</string>
     <string name="average_sum_label">Soma média</string>
     <string name="top_numbers_label">Mais frequentes</string>
@@ -404,10 +399,6 @@
     <string name="tips_repeat_desc">84% dos sorteios repetem entre 8 e 10 números do concurso anterior. Considere incluir parte dos números anteriores.</string>
 
     <!-- NEW STRINGS FOR REFACTOR -->
-    <string name="greeting_morning">Bom dia,</string>
-    <string name="greeting_afternoon">Boa tarde,</string>
-    <string name="greeting_evening">Boa noite,</string>
-    <string name="greeting_night">Boa madrugada,</string>
     <string name="greeting_user">Jogador</string> <!-- Playful default -->
     <string name="greeting_insight_accumulated">Prêmio acumulado! Ótima hora para jogar.</string>
     <string name="greeting_insight_generic">Use os dados como apoio e jogue com consciência.</string>

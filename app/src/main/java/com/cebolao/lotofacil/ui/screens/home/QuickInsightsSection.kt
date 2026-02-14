@@ -238,7 +238,6 @@ private fun ColdNumbersSection(
 fun QuickInsightsSection(
     stats: StatisticsReport?,
     isLoading: Boolean,
-    isUpdateInProgress: Boolean = false,
     selectedPattern: StatisticPattern,
     selectedTimeWindow: Int,
     statisticsSource: DataLoadSource,
@@ -246,9 +245,10 @@ fun QuickInsightsSection(
     onPatternSelected: (StatisticPattern) -> Unit,
     onTimeWindowSelected: (Int) -> Unit,
     onViewAll: () -> Unit,
+    modifier: Modifier = Modifier,
+    isUpdateInProgress: Boolean = false,
     onViewAllHot: () -> Unit = {},
-    onViewAllCold: () -> Unit = {},
-    modifier: Modifier = Modifier
+    onViewAllCold: () -> Unit = {}
 ) {
     val colors = MaterialTheme.colorScheme
     var showTooltip by remember { mutableStateOf<Int?>(null) }

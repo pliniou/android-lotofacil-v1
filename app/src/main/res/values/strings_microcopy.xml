@@ -12,7 +12,10 @@
     <string name="home_period_label">Período</string>
     <string name="home_hot_number_frequency">Sorteado %1$sx</string>
     <string name="home_cold_number_overdue">Ausente há %1$s concursos</string>
-    <string name="active_filters_count_summary">%1$d de %2$d filtros ativos</string>
+    <plurals name="active_filters_count_summary">
+        <item quantity="one">%1$d de %2$d filtro ativo</item>
+        <item quantity="other">%1$d de %2$d filtros ativos</item>
+    </plurals>
 
     <!-- tooltips -->
     <string name="tooltip_analysis_type">Escolha o tipo de análise estatística. Exemplo: Fibonacci usa a sequência 1, 2, 3, 5, 8, 13 e 21.</string>
