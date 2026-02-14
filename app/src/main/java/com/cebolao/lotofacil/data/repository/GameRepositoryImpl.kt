@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.math.max
 
 @Singleton
 class GameRepositoryImpl @Inject constructor(
@@ -114,4 +115,32 @@ class GameRepositoryImpl @Inject constructor(
     } catch (e: Exception) {
         AppResult.Failure(ErrorMapper.toAppError(e))
     }
+
+    override suspend fun upsertSavedGame(game: LotofacilGame): AppResult<LotofacilGame> = try {
+        val normalizedNumbers = game.numbers.normalizedNumbers()
+        val existingGame = gameDao.getGameByNumbers(normalizedNumbers)
+
+        val entityToPersist = if (existingGame != null) {
+            existingGame.copy(
+                isPinned = true,
+                usageCount = max(existingGame.usageCount, game.usageCount),
+                lastPlayed = game.lastPlayed ?: existingGame.lastPlayed
+            )
+        } else {
+            game.copy(isPinned = true).toEntity()
+        }
+
+        gameDao.insertGame(entityToPersist)
+        val persistedGame = gameDao.getGameById(entityToPersist.id)?.toDomain()
+            ?: game.copy(
+                id = entityToPersist.id,
+                isPinned = true
+            )
+
+        AppResult.Success(persistedGame)
+    } catch (e: Exception) {
+        AppResult.Failure(ErrorMapper.toAppError(e))
+    }
+
+    private fun Set<Int>.normalizedNumbers(): String = sorted().joinToString(",")
 }

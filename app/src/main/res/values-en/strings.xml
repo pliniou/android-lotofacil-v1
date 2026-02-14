@@ -95,10 +95,6 @@
     <string name="home_loading_message">Preparing Lotofacil data…</string>
     <string name="home_empty_message">No local draws were found yet. Tap Refresh to try again.</string>
     <string name="home_last_draw_unavailable">The latest draw is not available yet.</string>
-    <string name="prize_details_title">Prize details</string>
-    <string name="prize_per_winner">Prize per winner</string>
-    <string name="winners">winners</string>
-    <string name="winners_by_state">Winners by state</string>
     <string name="cebolao_title">Cebolão</string>
     <string name="lotofacil_subtitle">Lotofacil Generator</string>
     <string name="last_contest">Last draw</string>
@@ -150,7 +146,7 @@
     <string name="analysis_error_title">Analysis error</string>
     <string name="my_games">My games</string>
     <string name="my_games_subtitle">View, analyze and manage your games</string>
-    <string name="empty_games_message">No games generated yet.\nGo to the Generator screen to start!</string>
+    <string name="empty_games_message">No saved games yet</string>
     <string name="loading_games">Loading your games&#8230;</string>
     <string name="generate_first_game">Generate my first game</string>
     <string name="load_more_games">Load more games</string>
@@ -334,7 +330,6 @@
         <item quantity="one">Frequency chart with %1$d number, maximum value %2$d</item>
         <item quantity="other">Frequency chart with %1$d numbers, maximum value %2$d</item>
     </plurals>
-    <string name="prize_tier_description">Prize category %1$d, %2$s per winner</string>
     <string name="trend_indicator_description">Trend %1$s, variation %2$s</string>
     <string name="empty_state_message">No data available at the moment.</string>
 
@@ -392,5 +387,21 @@
 
     <!-- Filter Accessibility -->
     <string name="filter_accessibility_description">%1$s, switch, %2$s</string>
+    <string name="home_prize_section_title">Prize Breakdown</string>
+    <string name="home_prize_data_unavailable">Prize breakdown is unavailable for this contest.</string>
+    <string name="home_prize_faixa_label">Tier %1$d</string>
+    <string name="home_prize_generic_faixa">Tier</string>
+    <string name="home_prize_winners_label">%1$s winners</string>
+    <string name="home_winner_locations_title">Winning locations</string>
+    <string name="home_value_not_available">To be confirmed</string>
+    <string name="home_value_not_available_short">-</string>
+    <string name="home_location_not_informed">Location not informed</string>
+    <string name="home_next_date_not_available">Date to be confirmed</string>
+    <string name="home_next_contest_derived_hint">Forecast derived from the latest contest data.</string>
+    <string name="checker_save_game_button">Save to My Games</string>
+    <string name="checker_game_saving_button">Saving game…</string>
+    <string name="checker_game_saved_button_done">Game saved and pinned</string>
+    <string name="checker_save_game_success">Game saved and pinned in My Games.</string>
+    <string name="checker_save_game_error">Could not save the game right now.</string>
 </resources>
 

@@ -52,4 +52,7 @@ interface GameDao {
     
     @Query("SELECT * FROM games WHERE id = :gameId LIMIT 1")
     suspend fun getGameById(gameId: String): GameEntity?
+
+    @Query("SELECT * FROM games WHERE numbers = :normalizedNumbers LIMIT 1")
+    suspend fun getGameByNumbers(normalizedNumbers: String): GameEntity?
 }

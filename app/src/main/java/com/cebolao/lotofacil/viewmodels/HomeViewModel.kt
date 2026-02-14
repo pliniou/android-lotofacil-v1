@@ -6,18 +6,18 @@ import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.viewmodels.UpdateState
-import com.cebolao.lotofacil.domain.model.LastDrawStats
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.repository.SyncStatus
 import com.cebolao.lotofacil.domain.usecase.GetHomeScreenDataUseCase
 import com.cebolao.lotofacil.domain.usecase.GetStatisticsDataUseCase
 import com.cebolao.lotofacil.domain.usecase.StatisticsDataSource
+import com.cebolao.lotofacil.domain.usecase.toHomeLastContest
+import com.cebolao.lotofacil.domain.usecase.toHomeNextContest
 import com.cebolao.lotofacil.navigation.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
-import kotlinx.collections.immutable.toImmutableSet
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -119,14 +119,14 @@ class HomeViewModel @Inject constructor(
                         it.copy(
                             isScreenLoading = false,
                             errorMessageResId = null,
-                            lastDrawStats = data.lastDrawStats,
+                            lastContest = data.lastContest,
                             statistics = data.initialStats,
                             historySource = DataLoadSource.CACHE,
                             statisticsSource = mapStatisticsSource(data.statisticsSource),
                             isShowingStaleData = data.isShowingStaleStatistics,
                             lastUpdateTime = lastDraw?.date,
-                            nextDraw = data.lastDrawStats?.toNextDrawUiModel(),
-                            isTodayDrawDay = checkIsTodayDrawDay(data.lastDrawStats?.nextDate)
+                            nextContest = data.nextContest,
+                            isTodayDrawDay = checkIsTodayDrawDay(data.nextContest?.date)
                         )
                     }
                 }
@@ -160,7 +160,8 @@ class HomeViewModel @Inject constructor(
 
                 cachedHistory = fallbackHistory
                 val latestDraw = fallbackHistory.firstOrNull()
-                val latestStats = latestDraw?.toLastDrawStats()
+                val latestContest = latestDraw?.toHomeLastContest()
+                val nextContest = latestDraw?.toHomeNextContest()
 
                 val statisticsResult = getStatisticsDataUseCase.loadReportForHistory(
                     history = fallbackHistory,
@@ -172,13 +173,13 @@ class HomeViewModel @Inject constructor(
                     is AppResult.Success -> {
                         updateState {
                             it.copy(
-                                lastDrawStats = latestStats,
+                                lastContest = latestContest,
                                 statistics = statisticsResult.value.report,
                                 statisticsSource = mapStatisticsSource(statisticsResult.value.source),
                                 isShowingStaleData = true,
                                 lastUpdateTime = latestDraw?.date,
-                                nextDraw = latestStats?.toNextDrawUiModel(),
-                                isTodayDrawDay = checkIsTodayDrawDay(latestStats?.nextDate)
+                                nextContest = nextContest,
+                                isTodayDrawDay = checkIsTodayDrawDay(nextContest?.date)
                             )
                         }
                     }
@@ -186,12 +187,12 @@ class HomeViewModel @Inject constructor(
                     is AppResult.Failure -> {
                         updateState {
                             it.copy(
-                                lastDrawStats = latestStats,
+                                lastContest = latestContest,
                                 statistics = null,
                                 isShowingStaleData = true,
                                 lastUpdateTime = latestDraw?.date,
-                                nextDraw = latestStats?.toNextDrawUiModel(),
-                                isTodayDrawDay = checkIsTodayDrawDay(latestStats?.nextDate)
+                                nextContest = nextContest,
+                                isTodayDrawDay = checkIsTodayDrawDay(nextContest?.date)
                             )
                         }
                     }
@@ -231,14 +232,14 @@ class HomeViewModel @Inject constructor(
                 cachedHistory = data.history
                 updateState {
                     it.copy(
-                        lastDrawStats = data.lastDrawStats,
+                        lastContest = data.lastContest,
                         statistics = data.initialStats,
                         historySource = DataLoadSource.NETWORK,
                         statisticsSource = mapStatisticsSource(data.statisticsSource),
                         isShowingStaleData = data.isShowingStaleStatistics,
                         lastUpdateTime = data.history.firstOrNull()?.date,
-                        nextDraw = data.lastDrawStats?.toNextDrawUiModel(),
-                        isTodayDrawDay = checkIsTodayDrawDay(data.lastDrawStats?.nextDate)
+                        nextContest = data.nextContest,
+                        isTodayDrawDay = checkIsTodayDrawDay(data.nextContest?.date)
                     )
                 }
                 val selectedWindow = currentState.selectedTimeWindow
@@ -324,38 +325,6 @@ class HomeViewModel @Inject constructor(
             StatisticsDataSource.CACHE -> DataLoadSource.CACHE
             StatisticsDataSource.COMPUTED -> DataLoadSource.COMPUTED
         }
-    }
-
-    private fun HistoricalDraw.toLastDrawStats(): LastDrawStats {
-        return LastDrawStats(
-            contest = contestNumber,
-            date = date,
-            numbers = numbers.toImmutableSet(),
-            sum = sum,
-            evens = evens,
-            odds = odds,
-            primes = primes,
-            frame = frame,
-            portrait = portrait,
-            fibonacci = fibonacci,
-            multiplesOf3 = multiplesOf3,
-            prizes = prizes,
-            winners = winners,
-            nextContest = nextContest,
-            nextDate = nextDate,
-            nextEstimate = nextEstimate,
-            accumulated = accumulated
-        )
-    }
-
-    private fun LastDrawStats.toNextDrawUiModel(): NextDrawUiModel? {
-        val contest = nextContest ?: return null
-        return NextDrawUiModel(
-            contestNumber = contest,
-            date = nextDate,
-            prizeEstimate = nextEstimate ?: 0.0,
-            isAccumulated = accumulated
-        )
     }
 
     fun cancelUpdate() {

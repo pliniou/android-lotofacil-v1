@@ -104,10 +104,6 @@
     <string name="home_loading_message">Preparando dados da Lotofacil&#8230;</string>
     <string name="home_empty_message">Ainda não encontramos concursos locais. Toque em Atualizar para tentar novamente.</string>
     <string name="home_last_draw_unavailable">O último concurso ainda não está disponível.</string>
-    <string name="prize_details_title">Detalhes do prêmio</string>
-    <string name="prize_per_winner">Prêmio por ganhador</string>
-    <string name="winners">ganhadores</string>
-    <string name="winners_by_state">Ganhadores por estado</string>
     <string name="cebolao_title">Cebolão</string>
     <string name="lotofacil_subtitle">Gerador Lotofácil</string>
     <string name="last_contest">Último concurso</string>
@@ -348,7 +344,6 @@
         <item quantity="other">Gráfico de frequência com %1$d números, valor máximo %2$d</item>
         <item quantity="many">Gráfico de frequência com %1$d números, valor máximo %2$d</item>
     </plurals>
-    <string name="prize_tier_description">Prêmio categoria %1$d, %2$s por ganhador</string>
     <string name="trend_indicator_description">Tendência %1$s, variação %2$s</string>
     <string name="empty_state_message">Nenhum dado disponível no momento.</string>
 
@@ -408,6 +403,22 @@
     <!-- Filter Accessibility -->
     <string name="filter_accessibility_description">%1$s, switch, %2$s</string>
     
+    <string name="home_prize_section_title">Premiação</string>
+    <string name="home_prize_data_unavailable">Premiação não disponível para este concurso.</string>
+    <string name="home_prize_faixa_label">Faixa %1$d</string>
+    <string name="home_prize_generic_faixa">Faixa</string>
+    <string name="home_prize_winners_label">%1$s ganhadores</string>
+    <string name="home_winner_locations_title">Localidades vencedoras</string>
+    <string name="home_value_not_available">A confirmar</string>
+    <string name="home_value_not_available_short">-</string>
+    <string name="home_location_not_informed">Localidade não informada</string>
+    <string name="home_next_date_not_available">Data a confirmar</string>
+    <string name="home_next_contest_derived_hint">Previsão calculada a partir do último concurso.</string>
+    <string name="checker_save_game_button">Salvar em Meus Jogos</string>
+    <string name="checker_game_saving_button">Salvando jogo…</string>
+    <string name="checker_game_saved_button_done">Jogo salvo e fixado</string>
+    <string name="checker_save_game_success">Jogo salvo e fixado em Meus Jogos.</string>
+    <string name="checker_save_game_error">Não foi possível salvar o jogo agora.</string>
 </resources>
 
 

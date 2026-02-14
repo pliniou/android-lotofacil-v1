@@ -15,7 +15,7 @@ import com.cebolao.lotofacil.data.datasource.database.entity.StatisticsCacheEnti
         StatisticsCacheEntity::class,
         com.cebolao.lotofacil.data.datasource.database.entity.GameEntity::class
     ],
-    version = 5,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

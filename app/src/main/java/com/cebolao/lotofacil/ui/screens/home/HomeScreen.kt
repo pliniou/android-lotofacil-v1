@@ -18,7 +18,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.BarChart
 import androidx.compose.material.icons.outlined.History
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
@@ -121,8 +120,8 @@ fun HomeScreenContent(
     val syncFailedFallback = stringResource(id = R.string.error_sync_failed)
     val retryLabel = stringResource(id = R.string.try_again)
 
-    val hasPrimaryData = remember(state.lastDrawStats, state.statistics, state.lastUpdateTime) {
-        state.lastDrawStats != null || state.statistics != null || !state.lastUpdateTime.isNullOrBlank()
+    val hasPrimaryData = remember(state.lastContest, state.statistics, state.lastUpdateTime) {
+        state.lastContest != null || state.statistics != null || !state.lastUpdateTime.isNullOrBlank()
     }
 
     val screenState = remember(
@@ -177,21 +176,22 @@ fun HomeScreenContent(
     val isUpdateInProgress = state.updateState is UpdateState.Loading
 
     Box(modifier = Modifier.fillMaxSize()) {
-        PullToRefreshScreen(
-            isRefreshing = isUpdateInProgress,
-            onRefresh = { onAction(HomeAction.RefreshData) },
-            testTag = AppTestTags.HomeRefreshAction
-        ) {
-            AppScreenScaffold(
-                modifier = Modifier.fillMaxSize(),
-                title = stringResource(id = R.string.cebolao_title),
-                subtitle = stringResource(id = R.string.lotofacil_subtitle),
-                iconPainter = painterResource(id = R.drawable.ic_cebolalogo),
-                snackbarHostState = snackbarHostState,
-                actions = {
-                    // Actions removed as per requirement (PullToRefresh is sufficient)
-                }
-            ) { innerPadding ->
+        AppScreenScaffold(
+            modifier = Modifier.fillMaxSize(),
+            title = stringResource(id = R.string.cebolao_title),
+            subtitle = stringResource(id = R.string.lotofacil_subtitle),
+            iconPainter = painterResource(id = R.drawable.ic_cebolalogo),
+            snackbarHostState = snackbarHostState,
+            actions = {
+                // Pull-to-refresh is the primary refresh affordance for this screen.
+            }
+        ) { innerPadding ->
+            PullToRefreshScreen(
+                isRefreshing = isUpdateInProgress,
+                onRefresh = { onAction(HomeAction.RefreshData) },
+                indicatorTopPadding = innerPadding.calculateTopPadding(),
+                testTag = AppTestTags.HomeRefreshAction
+            ) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -220,23 +220,22 @@ fun HomeScreenContent(
                         ) {
                             item(key = "greeting", contentType = "greeting") {
                                 GreetingSection(
-                                    nextDrawAccumulated = state.nextDraw?.isAccumulated == true,
+                                    nextDrawAccumulated = state.nextContest?.isAccumulated == true,
                                     isDrawDay = state.isTodayDrawDay,
                                     lastUpdateTime = state.lastUpdateTime
                                 )
-
                             }
 
-                            state.nextDraw?.let { nextDraw ->
+                            state.nextContest?.let { nextContest ->
                                 item(key = "next_draw", contentType = "next_draw") {
                                     AnimateOnEntry(delayMillis = AppAnimationConstants.Delays.Minimal.toLong()) {
-                                        NextDrawSection(nextDraw = nextDraw)
+                                        NextDrawSection(nextContest = nextContest)
                                     }
                                 }
                             }
 
                             item(key = "last_draw", contentType = "last_draw") {
-                                state.lastDrawStats?.let { stats ->
+                                state.lastContest?.let { contest ->
                                     AnimateOnEntry(
                                         delayMillis = AppAnimationConstants.Delays.Minimal.toLong()
                                     ) {
@@ -244,7 +243,7 @@ fun HomeScreenContent(
                                             modifier = Modifier.fillMaxWidth(),
                                             elevation = AppTheme.elevation.xs
                                         ) {
-                                            LastDrawSection(stats)
+                                            LastDrawSection(contest)
                                         }
                                     }
                                 } ?: HomeSectionPlaceholder(

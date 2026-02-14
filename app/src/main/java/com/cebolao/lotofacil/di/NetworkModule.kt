@@ -3,9 +3,11 @@ package com.cebolao.lotofacil.di
 import android.content.Context
 import com.cebolao.lotofacil.BuildConfig
 import com.cebolao.lotofacil.core.security.RateLimiter
+import com.cebolao.lotofacil.core.utils.AppLogger
 import com.cebolao.lotofacil.data.network.RateLimiterInterceptor
 import com.cebolao.lotofacil.data.network.ApiService
 import com.cebolao.lotofacil.data.network.HerokuApiService
+import com.cebolao.lotofacil.data.network.JsonPayloadSanitizingInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -53,7 +55,8 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(
         cache: Cache,
-        rateLimiter: RateLimiter
+        rateLimiter: RateLimiter,
+        logger: AppLogger
     ): OkHttpClient {
         val logging = HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
@@ -66,12 +69,7 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .cache(cache)
             .addInterceptor(RateLimiterInterceptor(rateLimiter))
-            .addInterceptor { chain ->
-                val request = chain.request().newBuilder()
-                    .header("Accept-Encoding", "gzip")
-                    .build()
-                chain.proceed(request)
-            }
+            .addInterceptor(JsonPayloadSanitizingInterceptor(logger))
             .addNetworkInterceptor { chain ->
                 val response = chain.proceed(chain.request())
                 val hasExplicitCacheHeader = !response.header("Cache-Control").isNullOrBlank()

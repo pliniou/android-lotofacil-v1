@@ -21,8 +21,10 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
@@ -82,8 +84,12 @@ class GameViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            gameRepository.gamesCount
-                .distinctUntilChanged()
+            combine(
+                gameRepository.gamesCount.distinctUntilChanged(),
+                gameRepository.pinnedGames.map { it.size }.distinctUntilChanged()
+            ) { totalCount, pinnedCount ->
+                totalCount to pinnedCount
+            }
                 .collect {
                     refreshPagedGamesInternal()
                 }

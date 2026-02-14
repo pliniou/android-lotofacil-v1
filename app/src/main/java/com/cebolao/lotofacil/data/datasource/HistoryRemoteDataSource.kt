@@ -51,8 +51,11 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
         try {
             val result = retry { herokuService.getLatestResult() }
             val draw = result.toHistoricalDraw()
-            logger.d(TAG, "Successfully fetched latest draw from Heroku API")
-            return@withContext draw
+            if (draw != null) {
+                logger.d(TAG, "Successfully fetched latest draw from Heroku API: contest=${draw.contestNumber}")
+                return@withContext draw
+            }
+            logger.w(TAG, "Heroku latest payload could not be mapped to HistoricalDraw; trying Caixa fallback.")
         } catch (e: Exception) {
             logger.w(TAG, "Failed to fetch latest draw from Heroku API, trying Caixa", e)
         }
@@ -61,8 +64,11 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
         try {
             val result = retry { caixaService.getLatestResult() }
             val draw = result.toHistoricalDraw()
-            logger.d(TAG, "Successfully fetched recent draw from Caixa API")
-            return@withContext draw
+            if (draw != null) {
+                logger.d(TAG, "Successfully fetched latest draw from Caixa API: contest=${draw.contestNumber}")
+                return@withContext draw
+            }
+            logger.w(TAG, "Caixa latest payload could not be mapped to HistoricalDraw.")
         } catch (e: Exception) {
             logger.w(TAG, "Failed to fetch latest draw from Caixa API endpoint", e)
         }
@@ -72,7 +78,7 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
                 val result = retry { caixaService.getResultByContest(localLatestContest) }
                 val draw = result.toHistoricalDraw()
                 if (draw != null) {
-                    logger.d(TAG, "Using local latest contest fallback from Caixa API")
+                    logger.d(TAG, "Using local latest contest fallback from Caixa API: contest=${draw.contestNumber}")
                     return@withContext draw
                 }
             } catch (e: Exception) {
@@ -129,8 +135,10 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
         try {
             val result = retry { caixaService.getResultByContest(contestNumber) }
             val draw = result.toHistoricalDraw()
-            // logger.v(TAG, "Fetched contest $contestNumber from Caixa") // Verbose logging if needed
-            return draw
+            if (draw != null) {
+                return draw
+            }
+            logger.w(TAG, "Caixa payload for contest $contestNumber could not be mapped; attempting fallback")
         } catch (e: Exception) {
             logger.w(TAG, "Failed to fetch contest $contestNumber from Caixa, attempting fallback", e)
         }

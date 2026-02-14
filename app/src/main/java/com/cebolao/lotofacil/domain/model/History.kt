@@ -34,6 +34,7 @@ data class HistoricalDraw(
 @Immutable
 @Serializable
 data class PrizeTier(
+    val faixa: Int? = null,
     val description: String,
     val winners: Int,
     val prizeValue: Double

@@ -14,6 +14,7 @@ import com.cebolao.lotofacil.domain.model.LotofacilConstants
 import com.cebolao.lotofacil.domain.usecase.CheckGameUseCase
 import com.cebolao.lotofacil.domain.usecase.GameCheckPhase
 import com.cebolao.lotofacil.domain.usecase.GameCheckState
+import com.cebolao.lotofacil.domain.usecase.SavePinnedGameUseCase
 import com.cebolao.lotofacil.domain.usecase.SaveCheckUseCase
 import com.cebolao.lotofacil.navigation.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,6 +27,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @Immutable
@@ -33,7 +35,8 @@ data class CheckerScreenState(
     val uiState: CheckerUiState = CheckerUiState.Idle,
     val selectedNumbers: ImmutableSet<Int> = persistentSetOf(),
     val showClearConfirmation: Boolean = false,
-    val showClearResultsConfirmation: Boolean = false
+    val showClearResultsConfirmation: Boolean = false,
+    val isSavingGame: Boolean = false
 )
 
 @Immutable
@@ -42,7 +45,8 @@ sealed interface CheckerUiState {
     data class Loading(val phase: GameCheckPhase, val progress: Float = 0f) : CheckerUiState
     data class Success(
         val result: CheckResult,
-        val simpleStats: ImmutableList<GameStatistic>
+        val simpleStats: ImmutableList<GameStatistic>,
+        val isSavedGame: Boolean = false
     ) : CheckerUiState
     data class Error(val messageResId: Int, val canRetry: Boolean = true) : CheckerUiState
 }
@@ -51,6 +55,7 @@ sealed interface CheckerUiState {
 class CheckerViewModel @Inject constructor(
     private val checkGameUseCase: CheckGameUseCase,
     private val saveCheckUseCase: SaveCheckUseCase,
+    private val savePinnedGameUseCase: SavePinnedGameUseCase,
     private val logger: AppLogger,
     savedStateHandle: SavedStateHandle
 ) : StateViewModel<CheckerScreenState>(CheckerScreenState()) {
@@ -135,7 +140,8 @@ class CheckerViewModel @Inject constructor(
                             it.copy(
                                 uiState = CheckerUiState.Success(
                                     result = state.result,
-                                    simpleStats = state.stats.toImmutableList()
+                                    simpleStats = state.stats.toImmutableList(),
+                                    isSavedGame = false
                                 )
                             )
                         }
@@ -198,5 +204,31 @@ class CheckerViewModel @Inject constructor(
                 logger.w(TAG, "Failed to save check history", e)
             }
             .launchIn(viewModelScope)
+    }
+
+    fun onSaveGameClicked() {
+        val currentSuccessState = currentState.uiState as? CheckerUiState.Success ?: return
+        val numbers = currentState.selectedNumbers.toSet()
+        if (numbers.size != LotofacilConstants.GAME_SIZE || currentState.isSavingGame) return
+
+        viewModelScope.launch {
+            updateState { it.copy(isSavingGame = true) }
+            when (savePinnedGameUseCase(numbers)) {
+                is com.cebolao.lotofacil.core.result.AppResult.Success -> {
+                    updateState { state ->
+                        state.copy(
+                            isSavingGame = false,
+                            uiState = currentSuccessState.copy(isSavedGame = true)
+                        )
+                    }
+                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.checker_save_game_success))
+                }
+
+                is com.cebolao.lotofacil.core.result.AppResult.Failure -> {
+                    updateState { it.copy(isSavingGame = false) }
+                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.checker_save_game_error))
+                }
+            }
+        }
     }
 }

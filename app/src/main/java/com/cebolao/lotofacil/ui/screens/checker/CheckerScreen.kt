@@ -5,15 +5,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import com.cebolao.lotofacil.ui.components.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.FactCheck
+import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
@@ -114,6 +117,7 @@ fun CheckerScreen(
                 is CheckerAction.DismissClearConfirmation -> checkerViewModel.dismissClearConfirmation()
                 is CheckerAction.ConfirmClearResults -> checkerViewModel.confirmClearResults()
                 is CheckerAction.DismissClearResultsConfirmation -> checkerViewModel.dismissClearResultsConfirmation()
+                is CheckerAction.OnSaveGameClicked -> checkerViewModel.onSaveGameClicked()
             }
         }
     )
@@ -128,6 +132,7 @@ sealed class CheckerAction {
     object DismissClearConfirmation : CheckerAction()
     object ConfirmClearResults : CheckerAction()
     object DismissClearResultsConfirmation : CheckerAction()
+    object OnSaveGameClicked : CheckerAction()
 }
 
 // ==================== STATELESS CONTENT ====================
@@ -206,8 +211,11 @@ fun CheckerScreenContent(
                                 result = checkerState.result,
                                 stats = checkerState.simpleStats,
                                 selectedNumbers = screenState.selectedNumbers,
+                                isSavingGame = screenState.isSavingGame,
+                                isSavedGame = checkerState.isSavedGame,
                                 onGenerateNewGame = onGenerateNewGame,
-                                onRefineWithPattern = onRefineWithPattern
+                                onRefineWithPattern = onRefineWithPattern,
+                                onSaveGame = { onAction(CheckerAction.OnSaveGameClicked) }
                             )
                         }
                         is CheckerUiState.Error -> {
@@ -331,8 +339,11 @@ private fun CheckerSuccessContent(
     result: com.cebolao.lotofacil.domain.model.CheckResult,
     stats: ImmutableList<GameStatistic>,
     selectedNumbers: Set<Int>,
+    isSavingGame: Boolean,
+    isSavedGame: Boolean,
     onGenerateNewGame: () -> Unit,
-    onRefineWithPattern: (Set<Int>) -> Unit
+    onRefineWithPattern: (Set<Int>) -> Unit,
+    onSaveGame: () -> Unit
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)) {
         AnimateOnEntry {
@@ -373,6 +384,24 @@ private fun CheckerSuccessContent(
                         ) {
                             Text(text = stringResource(id = R.string.refine_from_pattern_button))
                         }
+                    }
+                    Button(
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = !isSavingGame && !isSavedGame,
+                        onClick = onSaveGame
+                    ) {
+                        androidx.compose.material3.Icon(
+                            imageVector = Icons.Default.PushPin,
+                            contentDescription = null
+                        )
+                        Spacer(modifier = Modifier.width(AppSpacing.xs))
+                        Text(
+                            text = when {
+                                isSavedGame -> stringResource(id = R.string.checker_game_saved_button_done)
+                                isSavingGame -> stringResource(id = R.string.checker_game_saving_button)
+                                else -> stringResource(id = R.string.checker_save_game_button)
+                            }
+                        )
                     }
                 }
             }

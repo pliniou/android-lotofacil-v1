@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
-import com.cebolao.lotofacil.domain.model.LastDrawStats
 import com.cebolao.lotofacil.domain.model.StatisticsReport
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.repository.SyncStatus
@@ -13,7 +12,6 @@ import com.cebolao.lotofacil.domain.usecase.GetStatisticsDataUseCase
 import com.cebolao.lotofacil.domain.usecase.HomeScreenData
 import com.cebolao.lotofacil.domain.usecase.StatisticsDataSource
 import com.cebolao.lotofacil.domain.usecase.StatisticsReportSnapshot
-import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -91,7 +89,8 @@ class HomeViewModelTest {
                 AppResult.Success(
                     HomeScreenData(
                         history = emptyList(),
-                        lastDrawStats = null,
+                        lastContest = null,
+                        nextContest = null,
                         initialStats = StatisticsReport(),
                         statisticsSource = StatisticsDataSource.COMPUTED,
                         isShowingStaleStatistics = false
@@ -123,25 +122,13 @@ class HomeViewModelTest {
                 date = "10/02/2026"
             )
         )
-        val lastDrawStats = LastDrawStats(
-            contest = 3200,
-            numbers = persistentSetOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
-            sum = 120,
-            evens = 7,
-            odds = 8,
-            primes = 5,
-            frame = 8,
-            portrait = 7,
-            fibonacci = 4,
-            multiplesOf3 = 5
-        )
-
         whenever(getHomeScreenDataUseCase.invoke()).thenReturn(
             flowOf(
                 AppResult.Success(
                     HomeScreenData(
                         history = history,
-                        lastDrawStats = lastDrawStats,
+                        lastContest = null,
+                        nextContest = null,
                         initialStats = StatisticsReport(),
                         statisticsSource = StatisticsDataSource.COMPUTED,
                         isShowingStaleStatistics = false
@@ -191,7 +178,8 @@ class HomeViewModelTest {
                 AppResult.Success(
                     HomeScreenData(
                         history = emptyList(),
-                        lastDrawStats = null,
+                        lastContest = null,
+                        nextContest = null,
                         initialStats = StatisticsReport(),
                         statisticsSource = StatisticsDataSource.COMPUTED,
                         isShowingStaleStatistics = false
@@ -219,7 +207,8 @@ class HomeViewModelTest {
     fun `refreshData should reload data and mark history source as network on success`() = runTest {
         val homeData = HomeScreenData(
             history = emptyList(),
-            lastDrawStats = null,
+            lastContest = null,
+            nextContest = null,
             initialStats = StatisticsReport(),
             statisticsSource = StatisticsDataSource.COMPUTED,
             isShowingStaleStatistics = false

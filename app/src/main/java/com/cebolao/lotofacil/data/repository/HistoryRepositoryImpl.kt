@@ -103,12 +103,22 @@ class HistoryRepositoryImpl @Inject constructor(
                             },
                             onBatchFetched = { batch ->
                                 localDataSource.saveNewContests(batch)
-                                logger.d(TAG, "Incrementally saved ${batch.size} draws.")
+                                val newest = batch.maxOfOrNull { it.contestNumber } ?: -1
+                                val oldest = batch.minOfOrNull { it.contestNumber } ?: -1
+                                logger.d(
+                                    TAG,
+                                    "Persisted batch size=${batch.size} contests=$oldest..$newest"
+                                )
                             }
                         )
                     } else {
                         logger.d(TAG, "Local history already up to date or remote unavailable.")
                     }
+                    val latestAfterSync = localDataSource.getLatestDraw()?.contestNumber ?: currentLatest
+                    logger.i(
+                        TAG,
+                        "Sync complete. localLatestBefore=$currentLatest remoteLatest=${latestRemoteContest ?: "n/a"} localLatestAfter=$latestAfterSync"
+                    )
                     val successTime = System.currentTimeMillis()
                     userPreferencesRepository.saveLastHistorySyncTimestamp(successTime)
                     _syncStatus.value = SyncStatus.Success

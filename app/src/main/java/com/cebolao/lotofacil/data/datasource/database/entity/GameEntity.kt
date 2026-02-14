@@ -8,6 +8,7 @@ import com.cebolao.lotofacil.domain.model.LotofacilConstants
 @Entity(
     tableName = "games",
     indices = [
+        Index(value = ["numbers"]),
         Index(value = ["isPinned"]),
         Index(value = ["creationTimestamp"])
     ]

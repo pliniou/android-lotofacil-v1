@@ -9,7 +9,8 @@ import androidx.compose.material.icons.outlined.Timeline
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.cebolao.lotofacil.R
-import com.cebolao.lotofacil.domain.model.LastDrawStats
+import com.cebolao.lotofacil.domain.model.HomeLastContest
+import com.cebolao.lotofacil.domain.model.HomeNextContest
 import com.cebolao.lotofacil.domain.model.StatisticsReport
 
 /**
@@ -46,14 +47,6 @@ sealed interface UpdateState {
     data class Error(val message: String?) : UpdateState
 }
 
-@Stable
-data class NextDrawUiModel(
-    val contestNumber: Int,
-    val date: String?,
-    val prizeEstimate: Double,
-    val isAccumulated: Boolean
-)
-
 /**
  * Holds all state required by the Home screen, including loading and error flags, the
  * last draw statistics, computed summary statistics, and UI selections such as the
@@ -64,7 +57,7 @@ data class HomeUiState(
     val isScreenLoading: Boolean = true,
     val isStatsLoading: Boolean = false,
     @StringRes val errorMessageResId: Int? = null,
-    val lastDrawStats: LastDrawStats? = null,
+    val lastContest: HomeLastContest? = null,
     val statistics: StatisticsReport? = null,
     val selectedPattern: StatisticPattern = StatisticPattern.SUM,
     val selectedTimeWindow: Int = 0,
@@ -72,7 +65,7 @@ data class HomeUiState(
     val statisticsSource: DataLoadSource = DataLoadSource.CACHE,
     val isShowingStaleData: Boolean = false,
     val lastUpdateTime: String? = null,
-    val nextDraw: NextDrawUiModel? = null,
+    val nextContest: HomeNextContest? = null,
     val isTodayDrawDay: Boolean = false,
     val updateState: UpdateState = UpdateState.Idle
 )

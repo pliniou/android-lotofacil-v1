@@ -11,9 +11,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 /**
@@ -25,6 +26,7 @@ fun PullToRefreshScreen(
     isRefreshing: Boolean,
     onRefresh: () -> Unit,
     modifier: Modifier = Modifier,
+    indicatorTopPadding: Dp = 0.dp,
     testTag: String? = null,
     content: @Composable () -> Unit
 ) {
@@ -43,7 +45,7 @@ fun PullToRefreshScreen(
     }
 
     val shouldShowIndicator = remember(pullToRefreshState.progress, isRefreshing, pullToRefreshState.isRefreshing) {
-        pullToRefreshState.progress > 0f || pullToRefreshState.isRefreshing || isRefreshing
+        pullToRefreshState.progress > 0.01f || pullToRefreshState.isRefreshing || isRefreshing
     }
 
     val rootModifier = modifier
@@ -61,7 +63,7 @@ fun PullToRefreshScreen(
                 state = pullToRefreshState,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = AppSpacing.sm),
+                    .padding(top = indicatorTopPadding + AppSpacing.sm),
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary
             )

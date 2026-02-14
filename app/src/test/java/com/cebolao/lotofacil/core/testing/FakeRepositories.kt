@@ -82,6 +82,24 @@ class FakeGameRepository : GameRepository {
         return AppResult.Success(Unit)
     }
 
+    override suspend fun upsertSavedGame(game: LotofacilGame): AppResult<LotofacilGame> {
+        val normalized = game.numbers.sorted()
+        val existing = _games.value.firstOrNull { it.numbers.sorted() == normalized }
+        val updated = if (existing != null) {
+            existing.copy(isPinned = true)
+        } else {
+            game.copy(isPinned = true)
+        }
+
+        _games.value = if (existing != null) {
+            _games.value.map { current -> if (current.id == existing.id) updated else current }.toImmutableList()
+        } else {
+            (_games.value + updated).toImmutableList()
+        }
+        refreshPinnedGames()
+        return AppResult.Success(updated)
+    }
+
     private fun refreshPinnedGames() {
         _pinnedGames.value = _games.value.filter { it.isPinned }.toImmutableList()
         _gamesCount.value = _games.value.size
