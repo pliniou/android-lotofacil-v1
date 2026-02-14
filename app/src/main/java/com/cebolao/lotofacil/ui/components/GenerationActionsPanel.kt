@@ -82,7 +82,7 @@ fun GenerationActionsPanel(
         targetValue = if (isGenerateEnabled) {
             MaterialTheme.colorScheme.primary
         } else {
-            MaterialTheme.colorScheme.surfaceVariant
+            MaterialTheme.colorScheme.surfaceContainerHighest
         },
         animationSpec = tween(300),
         label = "buttonColor"
@@ -91,7 +91,7 @@ fun GenerationActionsPanel(
         targetValue = if (isGenerateEnabled) {
             MaterialTheme.colorScheme.onPrimary
         } else {
-            MaterialTheme.colorScheme.onSurfaceVariant
+            MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f)
         },
         animationSpec = tween(300),
         label = "buttonContentColor"
@@ -183,7 +183,9 @@ fun GenerationActionsPanel(
                 shape = MaterialTheme.shapes.large,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = buttonContainerColor,
-                    contentColor = buttonContentColor
+                    contentColor = buttonContentColor,
+                    disabledContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                    disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f)
                 )
             ) {
                 AnimatedContent(

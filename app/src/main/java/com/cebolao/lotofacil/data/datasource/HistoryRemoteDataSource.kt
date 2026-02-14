@@ -19,7 +19,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 interface HistoryRemoteDataSource {
-    suspend fun getLatestDraw(): HistoricalDraw?
+    suspend fun getLatestDraw(localLatestContest: Int = 0): HistoricalDraw?
     suspend fun getDrawsInRange(
         range: IntRange,
         onProgress: (Int) -> Unit = {},
@@ -46,7 +46,7 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
     // Global semaphore to limit concurrent network requests
     private val networkSemaphore = Semaphore(MAX_CONCURRENT_REQUESTS)
 
-    override suspend fun getLatestDraw(): HistoricalDraw? = withContext(dispatchersProvider.io) {
+    override suspend fun getLatestDraw(localLatestContest: Int): HistoricalDraw? = withContext(dispatchersProvider.io) {
         // Try Heroku first since it has proper /latest endpoint
         try {
             val result = retry { herokuService.getLatestResult() }
@@ -57,16 +57,30 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
             logger.w(TAG, "Failed to fetch latest draw from Heroku API, trying Caixa", e)
         }
 
-        // Try Caixa with a recent contest number (use 3500 as a reasonable recent number)
+        // Fallback to Caixa latest endpoint when Heroku is unavailable.
         try {
-            val result = retry { caixaService.getResultByContest(3500) }
+            val result = retry { caixaService.getLatestResult() }
             val draw = result.toHistoricalDraw()
             logger.d(TAG, "Successfully fetched recent draw from Caixa API")
             return@withContext draw
         } catch (e: Exception) {
-            logger.e(TAG, "Failed to fetch draw from Caixa API", e)
-            null
+            logger.w(TAG, "Failed to fetch latest draw from Caixa API endpoint", e)
         }
+
+        if (localLatestContest > 0) {
+            try {
+                val result = retry { caixaService.getResultByContest(localLatestContest) }
+                val draw = result.toHistoricalDraw()
+                if (draw != null) {
+                    logger.d(TAG, "Using local latest contest fallback from Caixa API")
+                    return@withContext draw
+                }
+            } catch (e: Exception) {
+                logger.e(TAG, "Failed to fetch draw fallback from Caixa API", e)
+            }
+        }
+        logger.e(TAG, "Failed to fetch draw from both APIs")
+        null
     }
 
     override suspend fun getDrawsInRange(
@@ -90,9 +104,10 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
                     }
                 }.awaitAll().filterNotNull()
                 
-                results.addAll(batchResults)
+                val sortedBatch = batchResults.sortedByDescending { it.contestNumber }
+                results.addAll(sortedBatch)
                 if (batchResults.isNotEmpty()) {
-                    onBatchFetched(batchResults)
+                    onBatchFetched(sortedBatch)
                 }
                 fetchedCount += window.size
                 onProgress(fetchedCount)
@@ -105,6 +120,8 @@ class HistoryRemoteDataSourceImpl @Inject constructor(
         }
         
         results
+            .distinctBy { it.contestNumber }
+            .sortedByDescending { it.contestNumber }
     }
 
     private suspend fun fetchContest(contestNumber: Int): HistoricalDraw? {

@@ -2,6 +2,7 @@ package com.cebolao.lotofacil.data.datasource.database
 
 import androidx.room.Dao
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Upsert
 import com.cebolao.lotofacil.data.datasource.database.entity.HistoricalDrawEntity
 
@@ -11,6 +12,7 @@ interface HistoryDao {
     @Query("SELECT * FROM historical_draws ORDER BY contestNumber DESC")
     fun getAll(): kotlinx.coroutines.flow.Flow<List<HistoricalDrawEntity>>
 
+    @Transaction
     @Upsert
     suspend fun upsertAll(draws: List<HistoricalDrawEntity>)
 

@@ -204,7 +204,7 @@ class HomeViewModel @Inject constructor(
 
     fun refreshData() {
         refreshJob?.cancel()
-        refreshJob = viewModelScope.launch(dispatchersProvider.default) {
+        refreshJob = viewModelScope.launch(dispatchersProvider.io) {
             when (historyRepository.syncHistory()) {
                 is AppResult.Success -> {
                     getStatisticsDataUseCase.clearCache()

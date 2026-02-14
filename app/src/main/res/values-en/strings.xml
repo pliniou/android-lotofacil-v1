@@ -214,6 +214,10 @@
     <!-- Generation Actions -->
     <string name="min_value">Minimum</string>
     <string name="max_value">Maximum</string>
+    <string name="filter_value_label">Value</string>
+    <string name="filter_mode_label">Mode</string>
+    <string name="filter_mode_mono">Single</string>
+    <string name="filter_mode_stereo">Range</string>
 
     <!-- FilterStatsPanel -->
     <string name="presets_title">Quick Presets</string>

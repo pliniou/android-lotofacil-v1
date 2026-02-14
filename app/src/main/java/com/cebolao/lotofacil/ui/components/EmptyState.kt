@@ -3,13 +3,17 @@ package com.cebolao.lotofacil.ui.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Button
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,20 +41,21 @@ fun EmptyState(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .padding(AppSpacing.xl)
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom))
+            .padding(horizontal = AppSpacing.lg, vertical = AppSpacing.xl)
             .testTag(AppTestTags.EmptyState),
         contentAlignment = Alignment.Center
     ) {
         AppCard(
             modifier = Modifier
-                .widthIn(max = 520.dp)
+                .widthIn(max = 460.dp)
                 .fillMaxWidth(),
-            containerColor = colors.surface
+            containerColor = colors.surfaceContainerLow
         ) {
             Column(
-                modifier = Modifier.padding(AppSpacing.xl),
+                modifier = Modifier.padding(horizontal = AppSpacing.xl, vertical = AppSpacing.xxl),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
+                verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
             ) {
                 if (icon != null) {
                     IconBadge(
@@ -73,13 +78,13 @@ fun EmptyState(
 
                 Text(
                     text = message,
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Center,
                     color = colors.onSurface
                 )
 
                 if (!actionLabel.isNullOrBlank() && onAction != null) {
-                    TextButton(onClick = onAction) {
+                    Button(onClick = onAction) {
                         Text(text = actionLabel)
                     }
                 }

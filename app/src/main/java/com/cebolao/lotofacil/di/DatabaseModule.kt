@@ -2,7 +2,6 @@ package com.cebolao.lotofacil.di
 
 import android.content.Context
 import androidx.room.Room
-import com.cebolao.lotofacil.BuildConfig
 import com.cebolao.lotofacil.data.datasource.database.CheckHistoryDao
 import com.cebolao.lotofacil.data.datasource.database.GameDao
 import com.cebolao.lotofacil.data.datasource.database.HistoryDao
@@ -25,16 +24,7 @@ object DatabaseModule {
         @ApplicationContext context: Context
     ): LotofacilDatabase {
         return Room.databaseBuilder(context, LotofacilDatabase::class.java, "lotofacil_db")
-            .apply {
-                if (BuildConfig.DEBUG) {
-                    // allow data resets in dev for faster iteration
-                    fallbackToDestructiveMigration()
-                    fallbackToDestructiveMigrationOnDowngrade()
-                } else {
-                    // use all defined migrations in production to preserve data
-                    addMigrations(*LotofacilDatabase.getMigrations())
-                }
-            }
+            .addMigrations(*LotofacilDatabase.getMigrations())
             .build()
     }
 

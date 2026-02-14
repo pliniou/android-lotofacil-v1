@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.calculateEndPadding
-import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -34,7 +32,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -181,7 +178,7 @@ fun HomeScreenContent(
 
     Box(modifier = Modifier.fillMaxSize()) {
         PullToRefreshScreen(
-            isRefreshing = false,
+            isRefreshing = isUpdateInProgress,
             onRefresh = { onAction(HomeAction.RefreshData) },
             testTag = AppTestTags.HomeRefreshAction
         ) {
@@ -198,12 +195,8 @@ fun HomeScreenContent(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(
-                            start = innerPadding.calculateStartPadding(LocalLayoutDirection.current),
-                            top = 16.dp,
-                            end = innerPadding.calculateEndPadding(LocalLayoutDirection.current),
-                            bottom = innerPadding.calculateBottomPadding()
-                        )
+                        .screenContentPadding(innerPadding)
+                        .padding(top = AppSpacing.md)
                 ) {
                     HomeDataSourceStatus(
                         historySource = state.historySource,
@@ -222,7 +215,7 @@ fun HomeScreenContent(
                     ) {
                         LazyColumn(
                             modifier = Modifier.fillMaxSize(),
-                            contentPadding = AppScreenDefaults.listContentPadding(top = 24.dp),
+                            contentPadding = AppScreenDefaults.listContentPadding(top = AppSpacing.lg),
                             verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
                         ) {
                             item(key = "greeting", contentType = "greeting") {

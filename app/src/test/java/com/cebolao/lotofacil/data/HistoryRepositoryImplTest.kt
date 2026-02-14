@@ -110,7 +110,7 @@ class HistoryRepositoryImplTest {
             HistoricalDraw(contestNumber = 3000, numbers = (1..15).toSet())
         )
         whenever(userPreferencesRepository.lastHistorySyncTimestamp).thenReturn(flowOf(0L))
-        whenever(remoteDataSource.getLatestDraw()).thenReturn(remoteLatest)
+        whenever(remoteDataSource.getLatestDraw(any())).thenReturn(remoteLatest)
         
         // Match the range and any progress callback
         whenever(remoteDataSource.getDrawsInRange(
@@ -144,7 +144,7 @@ class HistoryRepositoryImplTest {
     fun `syncHistory should return failure when remote throws`() = runTest {
         whenever(localDataSource.populateIfNeeded()).thenReturn(Unit)
         whenever(userPreferencesRepository.lastHistorySyncTimestamp).thenReturn(flowOf(0L))
-        whenever(remoteDataSource.getLatestDraw()).thenThrow(RuntimeException("network down"))
+        whenever(remoteDataSource.getLatestDraw(any())).thenThrow(RuntimeException("network down"))
 
         val repository = HistoryRepositoryImpl(
             localDataSource,

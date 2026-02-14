@@ -6,23 +6,21 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
@@ -32,13 +30,13 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
+import com.cebolao.lotofacil.domain.model.FilterSelectionMode
 import com.cebolao.lotofacil.domain.model.FilterState
 import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.ui.model.icon
 import com.cebolao.lotofacil.ui.model.titleRes
-import com.cebolao.lotofacil.ui.theme.AppCardDefaults
-import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppElevation
+import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppSize
 
 @Composable
@@ -46,6 +44,8 @@ fun FilterCard(
     modifier: Modifier = Modifier,
     filterState: FilterState,
     onEnabledChange: (Boolean) -> Unit,
+    onSelectionModeChange: (FilterSelectionMode) -> Unit,
+    onSingleValueChange: (Float) -> Unit,
     onRangeChange: (ClosedFloatingPointRange<Float>) -> Unit,
     onInfoClick: () -> Unit,
     lastDrawNumbers: Set<Int>? = null
@@ -95,6 +95,8 @@ fun FilterCard(
             )
             FilterContent(
                 filterState = filterState,
+                onSelectionModeChange = onSelectionModeChange,
+                onSingleValueChange = onSingleValueChange,
                 onRangeChange = onRangeChange,
                 onRangeFinished = { haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove) },
                 enabled = enabled
@@ -184,19 +186,83 @@ private fun FilterHeader(
 @Composable
 private fun FilterContent(
     filterState: FilterState,
+    onSelectionModeChange: (FilterSelectionMode) -> Unit,
+    onSingleValueChange: (Float) -> Unit,
     onRangeChange: (ClosedFloatingPointRange<Float>) -> Unit,
     onRangeFinished: () -> Unit,
     enabled: Boolean
 ) {
     if (enabled) {
-        FilterRangeSlider(
-            value = filterState.selectedRange,
-            onValueChange = onRangeChange,
-            onValueChangeFinished = onRangeFinished,
-            valueRange = filterState.type.fullRange,
-            steps = (filterState.type.fullRange.endInclusive - filterState.type.fullRange.start).toInt() - 1,
-            enabled = true,
-            modifier = Modifier.padding(top = AppSpacing.md)
+        Column(
+            modifier = Modifier.padding(top = AppSpacing.md),
+            verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+        ) {
+            SelectionModeToggle(
+                mode = filterState.selectionMode,
+                onModeChange = onSelectionModeChange
+            )
+
+            val sliderSteps =
+                (filterState.type.fullRange.endInclusive - filterState.type.fullRange.start).toInt() - 1
+            when (filterState.selectionMode) {
+                FilterSelectionMode.SINGLE -> {
+                    FilterSingleSlider(
+                        value = filterState.singleValue,
+                        onValueChange = onSingleValueChange,
+                        onValueChangeFinished = onRangeFinished,
+                        valueRange = filterState.type.fullRange,
+                        steps = sliderSteps,
+                        enabled = true
+                    )
+                }
+
+                FilterSelectionMode.RANGE -> {
+                    FilterRangeSlider(
+                        value = filterState.selectedRange,
+                        onValueChange = onRangeChange,
+                        onValueChangeFinished = onRangeFinished,
+                        valueRange = filterState.type.fullRange,
+                        steps = sliderSteps,
+                        enabled = true
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun SelectionModeToggle(
+    mode: FilterSelectionMode,
+    onModeChange: (FilterSelectionMode) -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = stringResource(id = R.string.filter_mode_label),
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        FilterChip(
+            selected = mode == FilterSelectionMode.SINGLE,
+            onClick = { onModeChange(FilterSelectionMode.SINGLE) },
+            label = { Text(text = stringResource(id = R.string.filter_mode_mono)) },
+            colors = FilterChipDefaults.filterChipColors(
+                selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+        )
+        FilterChip(
+            selected = mode == FilterSelectionMode.RANGE,
+            onClick = { onModeChange(FilterSelectionMode.RANGE) },
+            label = { Text(text = stringResource(id = R.string.filter_mode_stereo)) },
+            colors = FilterChipDefaults.filterChipColors(
+                selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+            )
         )
     }
 }

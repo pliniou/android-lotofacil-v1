@@ -13,6 +13,11 @@ enum class RestrictivenessCategory {
     VERY_TIGHT
 }
 
+enum class FilterSelectionMode {
+    SINGLE,
+    RANGE
+}
+
 @Immutable
 @Serializable
 data class FilterState(
@@ -20,6 +25,16 @@ data class FilterState(
     val isEnabled: Boolean = false,
     val selectedRange: ClosedFloatingPointRange<Float> = type.defaultRange
 ) {
+    val selectionMode: FilterSelectionMode
+        get() = if (selectedRange.start == selectedRange.endInclusive) {
+            FilterSelectionMode.SINGLE
+        } else {
+            FilterSelectionMode.RANGE
+        }
+
+    val singleValue: Float
+        get() = selectedRange.start
+
     val rangePercentage: Float by lazy {
         if (!isEnabled) return@lazy 0f
         val totalRange = type.fullRange.endInclusive - type.fullRange.start
@@ -39,5 +54,18 @@ data class FilterState(
 
     fun containsValue(value: Int): Boolean {
         return if (isEnabled) value.toFloat() in selectedRange else true
+    }
+
+    fun withValidatedRange(range: ClosedFloatingPointRange<Float>): FilterState {
+        val min = type.fullRange.start
+        val max = type.fullRange.endInclusive
+        val coercedStart = range.start.coerceIn(min, max)
+        val coercedEnd = range.endInclusive.coerceIn(min, max)
+        val normalizedRange = if (coercedStart <= coercedEnd) {
+            coercedStart..coercedEnd
+        } else {
+            coercedEnd..coercedStart
+        }
+        return copy(selectedRange = normalizedRange)
     }
 }

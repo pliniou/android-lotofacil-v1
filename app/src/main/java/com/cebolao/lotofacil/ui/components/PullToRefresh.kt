@@ -8,8 +8,10 @@ import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.testTag
 import com.cebolao.lotofacil.ui.theme.AppSpacing
@@ -40,6 +42,11 @@ fun PullToRefreshScreen(
         }
     }
 
+    val shouldShowIndicator = remember(pullToRefreshState.progress, isRefreshing, pullToRefreshState.isRefreshing) {
+        pullToRefreshState.progress > 0f || pullToRefreshState.isRefreshing || isRefreshing
+    }
+    val indicatorAlpha = if (shouldShowIndicator) 1f else 0f
+
     val rootModifier = modifier
         .fillMaxSize()
         .nestedScroll(pullToRefreshState.nestedScrollConnection)
@@ -50,13 +57,16 @@ fun PullToRefreshScreen(
     Box(modifier = rootModifier) {
         content()
 
-        PullToRefreshContainer(
-            state = pullToRefreshState,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(AppSpacing.md),
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary
-        )
+        if (shouldShowIndicator) {
+            PullToRefreshContainer(
+                state = pullToRefreshState,
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = AppSpacing.sm)
+                    .graphicsLayer { alpha = indicatorAlpha },
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
+            )
+        }
     }
 }

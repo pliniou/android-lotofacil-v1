@@ -6,7 +6,7 @@
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/background_dark</item>
+        <item name="windowSplashScreenBackground">@color/background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splashicon</item>
         <item name="postSplashScreenTheme">@style/Theme.CebolaoLotofacil</item>
     </style>

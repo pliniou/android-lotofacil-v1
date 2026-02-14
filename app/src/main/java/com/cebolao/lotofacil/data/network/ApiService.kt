@@ -4,6 +4,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
+    @GET(".")
+    suspend fun getLatestResult(): LotofacilApiResult
+
     @GET("{contest}")
     suspend fun getResultByContest(@Path("contest") contestNumber: Int): LotofacilApiResult
 }

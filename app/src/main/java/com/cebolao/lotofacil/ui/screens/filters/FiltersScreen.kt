@@ -13,6 +13,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cebolao.lotofacil.R
+import com.cebolao.lotofacil.domain.model.FilterSelectionMode
 import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.navigation.UiEvent
 import com.cebolao.lotofacil.navigation.toPresetNumbersOrNull
@@ -115,6 +117,8 @@ fun FiltersScreen(
                     showResetConfirmation = false
                 }
                 is FiltersAction.OnFilterToggle -> filtersViewModel.onFilterToggle(action.type, action.enabled)
+                is FiltersAction.OnSelectionModeChange -> filtersViewModel.onSelectionModeChange(action.type, action.mode)
+                is FiltersAction.OnSingleValueChange -> filtersViewModel.onSingleValueAdjust(action.type, action.value)
                 is FiltersAction.OnRangeChange -> filtersViewModel.onRangeAdjust(action.type, action.range)
                 is FiltersAction.GenerateGames -> filtersViewModel.generateGames(action.quantity)
                 is FiltersAction.ApplyPreset -> {
@@ -134,6 +138,8 @@ sealed class FiltersAction {
     object ConfirmResetAllFilters : FiltersAction()
     object RetryLoadLastDraw : FiltersAction()
     data class OnFilterToggle(val type: FilterType, val enabled: Boolean) : FiltersAction()
+    data class OnSelectionModeChange(val type: FilterType, val mode: FilterSelectionMode) : FiltersAction()
+    data class OnSingleValueChange(val type: FilterType, val value: Float) : FiltersAction()
     data class OnRangeChange(val type: FilterType, val range: ClosedFloatingPointRange<Float>) : FiltersAction()
     data class GenerateGames(val quantity: Int) : FiltersAction()
     data class ApplyPreset(val preset: com.cebolao.lotofacil.domain.model.FilterPreset) : FiltersAction()
@@ -155,6 +161,7 @@ fun FiltersScreenContent(
     onBackClick: (() -> Unit)? = null
 ) {
     val hasContent = state.filterStates.isNotEmpty()
+    val infoSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val pageState = remember(state.filterStates, state.isLoadingLastDraw, state.lastDrawErrorMessageResId, hasContent) {
         when {
             state.isLoadingLastDraw && !hasContent -> ScreenContentState.Loading()
@@ -173,7 +180,8 @@ fun FiltersScreenContent(
             description = stringResource(type.descriptionRes)
         )
         ModalBottomSheet(
-            onDismissRequest = { onShowDialog(null) }
+            onDismissRequest = { onShowDialog(null) },
+            sheetState = infoSheetState
         ) {
             androidx.compose.foundation.layout.Column(
                 modifier = Modifier
@@ -283,6 +291,12 @@ fun FiltersScreenContent(
                     lastDraw = state.lastDraw,
                     onFilterToggle = { type, enabled ->
                         onAction(FiltersAction.OnFilterToggle(type, enabled))
+                    },
+                    onSelectionModeChange = { type, mode ->
+                        onAction(FiltersAction.OnSelectionModeChange(type, mode))
+                    },
+                    onSingleValueChange = { type, value ->
+                        onAction(FiltersAction.OnSingleValueChange(type, value))
                     },
                     onRangeChange = { type, range ->
                         onAction(FiltersAction.OnRangeChange(type, range))

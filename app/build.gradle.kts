@@ -162,10 +162,6 @@ dependencies {
     releaseImplementation(libs.androidx.profileinstaller)
     implementation(libs.androidx.startup)
 
-    // Firebase Crashlytics
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.crashlytics.ktx)
-
     // Baseline Profile
     baselineProfile(project(":baseline-profile"))
 

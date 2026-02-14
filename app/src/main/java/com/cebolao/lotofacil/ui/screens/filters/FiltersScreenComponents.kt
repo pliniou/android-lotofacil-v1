@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.FilterPreset
+import com.cebolao.lotofacil.domain.model.FilterSelectionMode
 import com.cebolao.lotofacil.domain.model.FilterState
 import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.ui.components.*
@@ -153,8 +154,8 @@ fun ActiveFiltersPanel(
                                 ) 
                             },
                             colors = FilterChipDefaults.filterChipColors(
-                                selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                                selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                                selectedContainerColor = MaterialTheme.colorScheme.primary,
+                                selectedLabelColor = MaterialTheme.colorScheme.onPrimary
                             ),
                             border = null
                         )
@@ -317,6 +318,8 @@ fun LazyListScope.filterList(
     filterStates: List<FilterState>,
     lastDraw: Set<Int>?,
     onFilterToggle: (FilterType, Boolean) -> Unit,
+    onSelectionModeChange: (FilterType, FilterSelectionMode) -> Unit,
+    onSingleValueChange: (FilterType, Float) -> Unit,
     onRangeChange: (FilterType, ClosedFloatingPointRange<Float>) -> Unit,
     onInfoClick: (FilterType) -> Unit,
     modifier: Modifier = Modifier
@@ -345,6 +348,8 @@ fun LazyListScope.filterList(
                 filterState = filter,
                 lastDrawNumbers = lastDraw,
                 onFilterToggle = onFilterToggle,
+                onSelectionModeChange = onSelectionModeChange,
+                onSingleValueChange = onSingleValueChange,
                 onRangeChange = onRangeChange,
                 onInfoClick = onInfoClick,
                 modifier = modifier.padding(vertical = AppSpacing.xs)
@@ -358,6 +363,8 @@ private fun FilterRowItem(
     filterState: FilterState,
     lastDrawNumbers: Set<Int>?,
     onFilterToggle: (FilterType, Boolean) -> Unit,
+    onSelectionModeChange: (FilterType, FilterSelectionMode) -> Unit,
+    onSingleValueChange: (FilterType, Float) -> Unit,
     onRangeChange: (FilterType, ClosedFloatingPointRange<Float>) -> Unit,
     onInfoClick: (FilterType) -> Unit,
     modifier: Modifier = Modifier
@@ -372,6 +379,16 @@ private fun FilterRowItem(
             onRangeChange(filterState.type, range) 
         }
     }
+    val onModeChangeForType = remember(filterState.type) {
+        { mode: FilterSelectionMode ->
+            onSelectionModeChange(filterState.type, mode)
+        }
+    }
+    val onSingleValueChangeForType = remember(filterState.type) {
+        { value: Float ->
+            onSingleValueChange(filterState.type, value)
+        }
+    }
     
     val onInfoClickForType = remember(filterState.type) {
         { onInfoClick(filterState.type) }
@@ -381,6 +398,8 @@ private fun FilterRowItem(
         FilterCard(
             filterState = filterState,
             onEnabledChange = onToggle,
+            onSelectionModeChange = onModeChangeForType,
+            onSingleValueChange = onSingleValueChangeForType,
             onRangeChange = onRangeChangeForType,
             onInfoClick = onInfoClickForType,
             lastDrawNumbers = lastDrawNumbers

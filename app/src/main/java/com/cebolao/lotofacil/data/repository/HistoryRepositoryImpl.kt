@@ -63,6 +63,11 @@ class HistoryRepositoryImpl @Inject constructor(
     }
 
     private val MIN_SYNC_INTERVAL = 60_000L // 1 minute
+    private val REMOTE_CONTEST_CACHE_TTL = 90_000L
+    @Volatile
+    private var cachedLatestRemoteContest: Int? = null
+    @Volatile
+    private var cachedLatestRemoteContestAt: Long = 0L
 
     override suspend fun syncHistory(): AppResult<Unit> {
         // Wait for initialization (db population) to complete
@@ -81,12 +86,15 @@ class HistoryRepositoryImpl @Inject constructor(
             } else {
                 _syncStatus.value = SyncStatus.Syncing
                 try {
-                    val latestRemote = remoteDataSource.getLatestDraw()
                     val currentLatest = localDataSource.getLatestDraw()?.contestNumber ?: 0
+                    val latestRemoteContest = resolveLatestRemoteContest(
+                        currentLatest = currentLatest,
+                        nowMillis = now
+                    )
 
-                    if (latestRemote != null && latestRemote.contestNumber > currentLatest) {
-                        val rangeToFetch = (currentLatest + 1)..latestRemote.contestNumber
-                        val totalToFetch = rangeToFetch.count()
+                    if (latestRemoteContest != null && latestRemoteContest > currentLatest) {
+                        val rangeToFetch = (currentLatest + 1)..latestRemoteContest
+                        val totalToFetch = latestRemoteContest - currentLatest
 
                         remoteDataSource.getDrawsInRange(
                             range = rangeToFetch,
@@ -120,5 +128,24 @@ class HistoryRepositoryImpl @Inject constructor(
                 }
             }
         }
+    }
+
+    private suspend fun resolveLatestRemoteContest(
+        currentLatest: Int,
+        nowMillis: Long
+    ): Int? {
+        val cachedContest = cachedLatestRemoteContest
+        val cacheAge = nowMillis - cachedLatestRemoteContestAt
+        if (cachedContest != null && cacheAge <= REMOTE_CONTEST_CACHE_TTL) {
+            return cachedContest
+        }
+
+        val latestRemote = remoteDataSource.getLatestDraw(localLatestContest = currentLatest)
+        val contest = latestRemote?.contestNumber
+        if (contest != null) {
+            cachedLatestRemoteContest = contest
+            cachedLatestRemoteContestAt = nowMillis
+        }
+        return contest
     }
 }

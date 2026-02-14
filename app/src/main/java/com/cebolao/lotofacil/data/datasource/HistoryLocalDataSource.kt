@@ -73,8 +73,12 @@ class HistoryLocalDataSourceImpl @Inject constructor(
     override suspend fun saveNewContests(newDraws: List<HistoricalDraw>) {
         if (newDraws.isEmpty()) return
         withContext(dispatchersProvider.io) {
-            historyDao.upsertAll(newDraws.map { it.toEntity() })
-            logger.d("HistoryLocalDataSource", "Persisted ${newDraws.size} new contests locally.")
+            val uniqueOrderedDraws = newDraws
+                .distinctBy { it.contestNumber }
+                .sortedByDescending { it.contestNumber }
+
+            historyDao.upsertAll(uniqueOrderedDraws.map { it.toEntity() })
+            logger.d("HistoryLocalDataSource", "Persisted ${uniqueOrderedDraws.size} new contests locally.")
         }
     }
 

@@ -226,6 +226,10 @@
     <!-- Generation Actions -->
     <string name="min_value">Mínimo</string>
     <string name="max_value">Máximo</string>
+    <string name="filter_value_label">Valor</string>
+    <string name="filter_mode_label">Modo</string>
+    <string name="filter_mode_mono">Mono</string>
+    <string name="filter_mode_stereo">Estéreo</string>
 
     <!-- FilterStatsPanel -->
     <string name="presets_title">Dicas Rápidas (Presets)</string>

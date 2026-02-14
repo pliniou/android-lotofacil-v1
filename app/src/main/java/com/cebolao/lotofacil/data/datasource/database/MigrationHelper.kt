@@ -8,7 +8,8 @@ object MigrationHelper {
     fun getMigrations(): Array<Migration> = arrayOf(
         Migration1To2(),
         Migration2To3(),
-        Migration3To4()
+        Migration3To4(),
+        Migration4To5()
     )
 
     private class Migration1To2 : Migration(1, 2) {
@@ -63,6 +64,25 @@ object MigrationHelper {
             db.execSQL(
                 "CREATE INDEX IF NOT EXISTS idx_statistics_cache_cachedAt ON statistics_cache(cachedAt)"
             )
+        }
+    }
+
+    private class Migration4To5 : Migration(4, 5) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL(
+                """
+                CREATE TABLE IF NOT EXISTS games (
+                    id TEXT NOT NULL PRIMARY KEY,
+                    numbers TEXT NOT NULL,
+                    isPinned INTEGER NOT NULL,
+                    creationTimestamp INTEGER NOT NULL,
+                    usageCount INTEGER NOT NULL,
+                    lastPlayed INTEGER
+                )
+                """.trimIndent()
+            )
+            db.execSQL("CREATE INDEX IF NOT EXISTS index_games_isPinned ON games(isPinned)")
+            db.execSQL("CREATE INDEX IF NOT EXISTS index_games_creationTimestamp ON games(creationTimestamp)")
         }
     }
 }

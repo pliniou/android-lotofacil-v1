@@ -66,9 +66,29 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .cache(cache)
             .addInterceptor(RateLimiterInterceptor(rateLimiter))
+            .addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                    .header("Accept-Encoding", "gzip")
+                    .build()
+                chain.proceed(request)
+            }
+            .addNetworkInterceptor { chain ->
+                val response = chain.proceed(chain.request())
+                val hasExplicitCacheHeader = !response.header("Cache-Control").isNullOrBlank()
+                if (chain.request().method == "GET" && !hasExplicitCacheHeader) {
+                    response.newBuilder()
+                        .header("Cache-Control", "public, max-age=60")
+                        .build()
+                } else {
+                    response
+                }
+            }
             .addInterceptor(logging)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
+            .retryOnConnectionFailure(true)
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(20, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
+            .callTimeout(25, TimeUnit.SECONDS)
             .build()
     }
 

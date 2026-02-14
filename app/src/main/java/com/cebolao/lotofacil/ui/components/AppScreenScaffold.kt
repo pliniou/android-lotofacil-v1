@@ -1,8 +1,13 @@
 package com.cebolao.lotofacil.ui.components
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.only
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -59,6 +64,9 @@ fun AppScreenScaffold(
     Scaffold(
         modifier = scaffoldModifier,
         containerColor = MaterialTheme.colorScheme.background,
+        contentWindowInsets = WindowInsets.safeDrawing.only(
+            WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
+        ),
         topBar = {
             StandardScreenHeader(
                 title = title,
@@ -82,5 +90,7 @@ fun AppScreenScaffold(
 }
 
 fun Modifier.screenContentPadding(innerPadding: PaddingValues): Modifier {
-    return this.padding(innerPadding)
+    return this
+        .consumeWindowInsets(innerPadding)
+        .padding(innerPadding)
 }

@@ -14,6 +14,7 @@ import com.cebolao.lotofacil.core.error.PersistenceError
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.core.utils.AppLogger
 import com.cebolao.lotofacil.domain.model.FilterPreset
+import com.cebolao.lotofacil.domain.model.FilterSelectionMode
 import com.cebolao.lotofacil.domain.model.FilterState
 import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.domain.model.LotofacilConstants
@@ -210,10 +211,10 @@ class FiltersViewModel @Inject constructor(
     }
 
     fun onRangeAdjust(type: FilterType, newRange: ClosedFloatingPointRange<Float>) {
-        val snappedRange = newRange.start.roundToInt().toFloat()..newRange.endInclusive.roundToInt().toFloat()
+        val snappedRange = snapRange(type = type, range = newRange)
         updateState { state ->
             val newFilterStates = state.filterStates.map { f ->
-                if (f.type == type) f.copy(selectedRange = snappedRange) else f
+                if (f.type == type) f.withValidatedRange(snappedRange) else f
             }.distinctBy { it.type.name }.toImmutableList()
             
             // Validate no duplicates were created
@@ -221,6 +222,40 @@ class FiltersViewModel @Inject constructor(
                 Log.w("FiltersViewModel", "Filter state size changed during range adjustment - possible duplication issue")
             }
             
+            state.copy(filterStates = newFilterStates)
+        }
+        scheduleCombinationAnalysis()
+    }
+
+    fun onSingleValueAdjust(type: FilterType, value: Float) {
+        val snapped = value.roundToInt().toFloat()
+        onRangeAdjust(type = type, newRange = snapped..snapped)
+    }
+
+    fun onSelectionModeChange(type: FilterType, mode: FilterSelectionMode) {
+        updateState { state ->
+            val newFilterStates = state.filterStates.map { filter ->
+                if (filter.type != type) return@map filter
+                when (mode) {
+                    FilterSelectionMode.SINGLE -> {
+                        val center = ((filter.selectedRange.start + filter.selectedRange.endInclusive) / 2f)
+                            .roundToInt()
+                            .toFloat()
+                        filter.withValidatedRange(center..center)
+                    }
+
+                    FilterSelectionMode.RANGE -> {
+                        if (filter.selectionMode == FilterSelectionMode.RANGE) {
+                            filter
+                        } else {
+                            val pivot = filter.singleValue.roundToInt().toFloat()
+                            val range = expandSingleValueToRange(filter.type, pivot)
+                            filter.withValidatedRange(range)
+                        }
+                    }
+                }
+            }.distinctBy { it.type.name }.toImmutableList()
+
             state.copy(filterStates = newFilterStates)
         }
         scheduleCombinationAnalysis()
@@ -450,6 +485,26 @@ class FiltersViewModel @Inject constructor(
         val start = max(target - radius, minValue).toFloat()
         val end = min(target + radius, maxValue).toFloat()
         return if (start <= end) start..end else target.toFloat()..target.toFloat()
+    }
+
+    private fun snapRange(
+        type: FilterType,
+        range: ClosedFloatingPointRange<Float>
+    ): ClosedFloatingPointRange<Float> {
+        val snappedStart = range.start.roundToInt().toFloat()
+        val snappedEnd = range.endInclusive.roundToInt().toFloat()
+        return FilterState(type = type).withValidatedRange(snappedStart..snappedEnd).selectedRange
+    }
+
+    private fun expandSingleValueToRange(
+        type: FilterType,
+        value: Float
+    ): ClosedFloatingPointRange<Float> {
+        val min = type.fullRange.start
+        val max = type.fullRange.endInclusive
+        val start = (value - 1f).coerceIn(min, max)
+        val end = (value + 1f).coerceIn(min, max)
+        return if (start <= end) start..end else value..value
     }
 
     private fun scheduleCombinationAnalysis() {
