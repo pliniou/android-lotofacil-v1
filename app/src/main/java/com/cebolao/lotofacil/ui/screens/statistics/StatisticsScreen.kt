@@ -152,7 +152,7 @@ fun StatisticsScreenContent(
                 )
             val listContentPadding = AppScreenDefaults.listContentPadding(
                 horizontal = AppSpacing.lg,
-                top = AppSpacing.md,
+                top = AppSpacing.lg,
                 bottom = AppSpacing.xl
             )
 

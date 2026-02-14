@@ -41,8 +41,8 @@ fun EmptyState(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom))
-            .padding(horizontal = AppSpacing.lg, vertical = AppSpacing.xl)
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Vertical))
+            .padding(horizontal = AppSpacing.lg)
             .testTag(AppTestTags.EmptyState),
         contentAlignment = Alignment.Center
     ) {

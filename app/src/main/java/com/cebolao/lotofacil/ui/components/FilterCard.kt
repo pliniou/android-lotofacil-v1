@@ -70,7 +70,7 @@ fun FilterCard(
             .then(
                 if (enabled) {
                     Modifier.background(
-                        colors.primaryContainer.copy(alpha = 0.1f)
+                        colors.primaryContainer.copy(alpha = 0.15f)
                     )
                 } else {
                     Modifier
@@ -251,8 +251,8 @@ private fun SelectionModeToggle(
             onClick = { onModeChange(FilterSelectionMode.SINGLE) },
             label = { Text(text = stringResource(id = R.string.filter_mode_mono)) },
             colors = FilterChipDefaults.filterChipColors(
-                selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                selectedContainerColor = MaterialTheme.colorScheme.primary,
+                selectedLabelColor = MaterialTheme.colorScheme.onPrimary
             )
         )
         FilterChip(
@@ -260,8 +260,8 @@ private fun SelectionModeToggle(
             onClick = { onModeChange(FilterSelectionMode.RANGE) },
             label = { Text(text = stringResource(id = R.string.filter_mode_stereo)) },
             colors = FilterChipDefaults.filterChipColors(
-                selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                selectedContainerColor = MaterialTheme.colorScheme.primary,
+                selectedLabelColor = MaterialTheme.colorScheme.onPrimary
             )
         )
     }

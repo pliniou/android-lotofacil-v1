@@ -29,7 +29,7 @@ object NetworkModule {
 
     private const val HEROKU_BASE_URL = "https://loteriascaixa-api.herokuapp.com/api/lotofacil/"
     private const val CAIXA_BASE_URL = "https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil/"
-    private const val CACHE_SIZE_BYTES = 10 * 1_024 * 1_024L // 10 MB
+    private const val CACHE_SIZE_BYTES = 50 * 1_024 * 1_024L // 50 MB
 
     @Provides
     @Singleton
@@ -77,7 +77,7 @@ object NetworkModule {
                 val hasExplicitCacheHeader = !response.header("Cache-Control").isNullOrBlank()
                 if (chain.request().method == "GET" && !hasExplicitCacheHeader) {
                     response.newBuilder()
-                        .header("Cache-Control", "public, max-age=60")
+                        .header("Cache-Control", "public, max-age=300, stale-while-revalidate=600")
                         .build()
                 } else {
                     response
@@ -85,10 +85,10 @@ object NetworkModule {
             }
             .addInterceptor(logging)
             .retryOnConnectionFailure(true)
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .readTimeout(20, TimeUnit.SECONDS)
-            .writeTimeout(20, TimeUnit.SECONDS)
-            .callTimeout(25, TimeUnit.SECONDS)
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .writeTimeout(15, TimeUnit.SECONDS)
+            .callTimeout(20, TimeUnit.SECONDS)
             .build()
     }
 

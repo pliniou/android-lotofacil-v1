@@ -45,7 +45,6 @@ fun PullToRefreshScreen(
     val shouldShowIndicator = remember(pullToRefreshState.progress, isRefreshing, pullToRefreshState.isRefreshing) {
         pullToRefreshState.progress > 0f || pullToRefreshState.isRefreshing || isRefreshing
     }
-    val indicatorAlpha = if (shouldShowIndicator) 1f else 0f
 
     val rootModifier = modifier
         .fillMaxSize()
@@ -62,8 +61,7 @@ fun PullToRefreshScreen(
                 state = pullToRefreshState,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = AppSpacing.sm)
-                    .graphicsLayer { alpha = indicatorAlpha },
+                    .padding(top = AppSpacing.sm),
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary
             )
