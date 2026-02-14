@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.core.utils.AppLogger
+import com.cebolao.lotofacil.domain.model.ThemeMode
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
+import com.cebolao.lotofacil.domain.repository.UserPreferencesRepository
 import com.cebolao.lotofacil.ui.theme.DefaultAppMotion
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -21,6 +23,7 @@ data class MainUiState(
     val isInitializationComplete: Boolean = false,
     val isStartupSyncComplete: Boolean = false,
     val startupSyncErrorMessageResId: Int? = null,
+    val themeMode: ThemeMode = ThemeMode.SYSTEM,
     val needsBiometricAuth: Boolean = false,
     val needsPermissionRequest: Boolean = false
 ) {
@@ -30,6 +33,7 @@ data class MainUiState(
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val historyRepository: HistoryRepository,
+    private val userPreferencesRepository: UserPreferencesRepository,
     private val logger: AppLogger
 ) : StateViewModel<MainUiState>(MainUiState()) {
 
@@ -38,11 +42,18 @@ class MainViewModel @Inject constructor(
     }
 
     init {
+        observeThemeMode()
         initializeApp()
     }
 
     fun retryInitialization() {
         initializeApp()
+    }
+
+    fun setThemeMode(mode: ThemeMode) {
+        viewModelScope.launch {
+            userPreferencesRepository.saveThemeMode(mode)
+        }
     }
 
     private fun initializeApp() {
@@ -90,6 +101,14 @@ class MainViewModel @Inject constructor(
                         )
                     }
                 }
+            }
+        }
+    }
+
+    private fun observeThemeMode() {
+        viewModelScope.launch {
+            userPreferencesRepository.themeMode.collect { mode ->
+                updateState { it.copy(themeMode = mode) }
             }
         }
     }

@@ -6,6 +6,7 @@ import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.CheckResult
 import com.cebolao.lotofacil.domain.model.GameStatistic
 import com.cebolao.lotofacil.domain.model.LotofacilGame
+import com.cebolao.lotofacil.domain.repository.GameRepository
 import com.cebolao.lotofacil.domain.usecase.CheckGameUseCase
 import com.cebolao.lotofacil.domain.usecase.ClearUnpinnedGamesUseCase
 import com.cebolao.lotofacil.domain.usecase.DeleteGameUseCase
@@ -20,19 +21,30 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
 
+private const val GAMES_PAGE_SIZE = 50
+
 @Immutable
 data class GameUiState(
     val isLoading: Boolean = true,
+    val visibleGames: ImmutableList<LotofacilGame> = persistentListOf(),
+    val totalGamesCount: Int = 0,
+    val pinnedGamesCount: Int = 0,
+    val hasMoreGames: Boolean = false,
+    val isLoadingMoreGames: Boolean = false,
     val analysisState: GameAnalysisUiState = GameAnalysisUiState.Idle,
     val analysisResult: GameAnalysisResult? = null,
     val showClearGamesDialog: Boolean = false,
-    val gameToDelete: LotofacilGame? = null
+    val gameToDelete: LotofacilGame? = null,
+    val isPerformanceExpanded: Boolean = true,
+    val isRecentDrawsExpanded: Boolean = true,
+    val isCharacteristicsExpanded: Boolean = true
 )
 
 @Immutable
@@ -53,6 +65,7 @@ sealed interface GameAnalysisUiState {
 @HiltViewModel
 class GameViewModel @Inject constructor(
     getSavedGamesUseCase: GetSavedGamesUseCase,
+    private val gameRepository: GameRepository,
     private val checkGameUseCase: CheckGameUseCase,
     private val clearUnpinnedGamesUseCase: ClearUnpinnedGamesUseCase,
     private val toggleGamePinUseCase: ToggleGamePinUseCase,
@@ -69,13 +82,90 @@ class GameViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            generatedGames.collect {
-                if (currentState.isLoading) {
-                    updateState { state -> state.copy(isLoading = false) }
+            gameRepository.gamesCount
+                .distinctUntilChanged()
+                .collect {
+                    refreshPagedGamesInternal()
                 }
+        }
+    }
+
+    fun loadMoreGames() {
+        if (currentState.isLoadingMoreGames || !currentState.hasMoreGames) return
+        viewModelScope.launch {
+            val offset = currentState.visibleGames.size
+            loadPage(offset = offset)
+        }
+    }
+
+    fun refreshPagedGames() {
+        viewModelScope.launch {
+            refreshPagedGamesInternal()
+        }
+    }
+
+    private suspend fun refreshPagedGamesInternal() {
+        updateState {
+            it.copy(
+                isLoading = true,
+                visibleGames = persistentListOf(),
+                hasMoreGames = false,
+                isLoadingMoreGames = false
+            )
+        }
+        refreshSummary()
+        if (currentState.totalGamesCount > 0) {
+            loadPage(offset = 0)
+        } else {
+            updateState { it.copy(isLoading = false) }
+        }
+    }
+
+    private suspend fun refreshSummary() {
+        when (val summaryResult = gameRepository.getGameListSummary()) {
+            is com.cebolao.lotofacil.core.result.AppResult.Success -> {
+                val summary = summaryResult.value
+                updateState {
+                    it.copy(
+                        totalGamesCount = summary.totalGames,
+                        pinnedGamesCount = summary.pinnedGames
+                    )
+                }
+            }
+
+            is com.cebolao.lotofacil.core.result.AppResult.Failure -> {
+                sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
             }
         }
     }
+
+    private suspend fun loadPage(offset: Int) {
+        updateState { it.copy(isLoadingMoreGames = true) }
+        when (val pageResult = gameRepository.getGamesPage(limit = GAMES_PAGE_SIZE, offset = offset)) {
+            is com.cebolao.lotofacil.core.result.AppResult.Success -> {
+                val page = pageResult.value
+                updateState { state ->
+                    val updatedGames = if (offset == 0) {
+                        page.toImmutableList()
+                    } else {
+                        (state.visibleGames + page).toImmutableList()
+                    }
+                    state.copy(
+                        isLoading = false,
+                        isLoadingMoreGames = false,
+                        visibleGames = updatedGames,
+                        hasMoreGames = updatedGames.size < state.totalGamesCount
+                    )
+                }
+            }
+
+            is com.cebolao.lotofacil.core.result.AppResult.Failure -> {
+                updateState { it.copy(isLoading = false, isLoadingMoreGames = false, hasMoreGames = false) }
+                sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_load_data_failed))
+            }
+        }
+    }
+
     fun onClearGamesRequested() {
         viewModelScope.launch { updateState { it.copy(showClearGamesDialog = true) } }
     }
@@ -144,11 +234,24 @@ class GameViewModel @Inject constructor(
         }
     }
     fun dismissAnalysisDialog() {
-        updateState { it.copy(analysisResult = null, analysisState = GameAnalysisUiState.Idle) }
+        updateState { it.copy(analysisState = GameAnalysisUiState.Idle, analysisResult = null) }
+    }
+
+    fun togglePerformanceExpanded() {
+        updateState { it.copy(isPerformanceExpanded = !it.isPerformanceExpanded) }
+    }
+
+    fun toggleRecentDrawsExpanded() {
+        updateState { it.copy(isRecentDrawsExpanded = !it.isRecentDrawsExpanded) }
+    }
+
+    fun toggleCharacteristicsExpanded() {
+        updateState { it.copy(isCharacteristicsExpanded = !it.isCharacteristicsExpanded) }
     }
     fun togglePinState(game: LotofacilGame) {
         viewModelScope.launch {
             toggleGamePinUseCase(game)
+            refreshPagedGamesInternal()
         }
     }
 }

@@ -17,83 +17,92 @@ import androidx.compose.runtime.Immutable
 val LocalAnimationEnabled = staticCompositionLocalOf { true }
 
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF9C27B0), // Vivid Purple
+    primary = Color(0xFF6B3FA0),
     onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFFF3E5F5),
-    onPrimaryContainer = Color(0xFF4A0072),
-    secondary = Color(0xFF7B1FA2), // Deep Purple
+    primaryContainer = Color(0xFFE8DDFF),
+    onPrimaryContainer = Color(0xFF240047),
+    secondary = Color(0xFF5D5E72),
     onSecondary = Color(0xFFFFFFFF),
-    secondaryContainer = Color(0xFFE1BEE7),
-    onSecondaryContainer = Color(0xFF4A0072),
-    tertiary = Color(0xFF00C853), // Vibrant Green
+    secondaryContainer = Color(0xFFE2E1F9),
+    onSecondaryContainer = Color(0xFF1A1B2C),
+    tertiary = Color(0xFF006D3D),
     onTertiary = Color(0xFFFFFFFF),
-    tertiaryContainer = Color(0xFFB9F6CA),
-    onTertiaryContainer = Color(0xFF005005),
-    error = Color(0xFFD32F2F),
+    tertiaryContainer = Color(0xFFA7F3C1),
+    onTertiaryContainer = Color(0xFF00210F),
+    error = Color(0xFFBA1A1A),
     onError = Color(0xFFFFFFFF),
-    errorContainer = Color(0xFFFFCDD2),
-    onErrorContainer = Color(0xFFB71C1C),
-    background = Color(0xFFFAFAFA),
-    onBackground = Color(0xFF121212),
-    surface = Color(0xFFFFFFFF),
-    onSurface = Color(0xFF121212),
-    surfaceVariant = Color(0xFFF5F5F5),
-    onSurfaceVariant = Color(0xFF616161),
-    outline = Color(0xFFE0E0E0),
-    outlineVariant = Color(0xFFEEEEEE),
+    errorContainer = Color(0xFFFFDAD6),
+    onErrorContainer = Color(0xFF410002),
+    background = Color(0xFFFFF8FC),
+    onBackground = Color(0xFF1D1B20),
+    surface = Color(0xFFFFF8FC),
+    onSurface = Color(0xFF1D1B20),
+    surfaceVariant = Color(0xFFE7E0EC),
+    onSurfaceVariant = Color(0xFF49454F),
+    outline = Color(0xFF7A757F),
+    outlineVariant = Color(0xFFCBC4CF),
     scrim = Color(0xFF000000),
-    inverseSurface = Color(0xFF121212),
-    inverseOnSurface = Color(0xFFF5F5F5),
-    inversePrimary = Color(0xFFE1BEE7)
+    inverseSurface = Color(0xFF322F35),
+    inverseOnSurface = Color(0xFFF5EFF7),
+    inversePrimary = Color(0xFFD0B6FF)
 )
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFFE040FB), // Electric Purple
-    onPrimary = Color(0xFF000000),
-    primaryContainer = Color(0xFF7B1FA2),
-    onPrimaryContainer = Color(0xFFF3E5F5),
-    secondary = Color(0xFFBA68C8),
-    onSecondary = Color(0xFF000000),
-    secondaryContainer = Color(0xFF4A0072),
-    onSecondaryContainer = Color(0xFFE1BEE7),
-    tertiary = Color(0xFF00E676), // Neon Green
-    onTertiary = Color(0xFF000000),
-    tertiaryContainer = Color(0xFF00C853), // Darker Green container
-    onTertiaryContainer = Color(0xFFB9F6CA),
-    error = Color(0xFFFF5252),
-    onError = Color(0xFF000000),
-    errorContainer = Color(0xFFD32F2F),
-    onErrorContainer = Color(0xFFFFCDD2),
-    background = Color(0xFF000000), // DEEP BLACK (OLED)
-    onBackground = Color(0xFFFFFFFF),
-    surface = Color(0xFF121212), // Slightly lighter for cards
-    onSurface = Color(0xFFFFFFFF),
-    surfaceVariant = Color(0xFF1E1E1E), // Even lighter for secondary containers
-    onSurfaceVariant = Color(0xFFBDBDBD),
-    outline = Color(0xFF424242),
-    outlineVariant = Color(0xFF2C2C2C),
+    primary = Color(0xFFD0B6FF),
+    onPrimary = Color(0xFF3C1E70),
+    primaryContainer = Color(0xFF53378A),
+    onPrimaryContainer = Color(0xFFE8DDFF),
+    secondary = Color(0xFFC6C5DD),
+    onSecondary = Color(0xFF2F3042),
+    secondaryContainer = Color(0xFF46475A),
+    onSecondaryContainer = Color(0xFFE2E1F9),
+    tertiary = Color(0xFF7DDAA9),
+    onTertiary = Color(0xFF00391E),
+    tertiaryContainer = Color(0xFF00522E),
+    onTertiaryContainer = Color(0xFF98F7C2),
+    error = Color(0xFFFFB4AB),
+    onError = Color(0xFF690005),
+    errorContainer = Color(0xFF93000A),
+    onErrorContainer = Color(0xFFFFDAD6),
+    background = Color(0xFF1C1B1F),
+    onBackground = Color(0xFFE7E1E5),
+    surface = Color(0xFF1C1B1F),
+    onSurface = Color(0xFFE7E1E5),
+    surfaceVariant = Color(0xFF2D2933),
+    onSurfaceVariant = Color(0xFFCAC4D0),
+    outline = Color(0xFF948F99),
+    outlineVariant = Color(0xFF49454F),
     scrim = Color(0xFF000000),
-    inverseSurface = Color(0xFFFFFFFF),
-    inverseOnSurface = Color(0xFF000000),
-    inversePrimary = Color(0xFF9C27B0)
+    inverseSurface = Color(0xFFE7E1E5),
+    inverseOnSurface = Color(0xFF322F35),
+    inversePrimary = Color(0xFF6B3FA0)
 )
 
 @Immutable
 data class SemanticColors(
-    val warning: Color = Color(0xFFFFA000),
-    val success: Color = Color(0xFF00C853),
-    val info: Color = Color(0xFF2196F3)
+    val warning: Color,
+    val success: Color,
+    val info: Color
 )
 
-val LightSemanticColors = SemanticColors()
-val DarkSemanticColors = SemanticColors()
+val LightSemanticColors = SemanticColors(
+    warning = Color(0xFF8A4B00),
+    success = Color(0xFF006E2D),
+    info = Color(0xFF005FAF)
+)
+
+val DarkSemanticColors = SemanticColors(
+    warning = Color(0xFFFFB95C),
+    success = Color(0xFF6DDA93),
+    info = Color(0xFF8CC8FF)
+)
 
 val LocalSemanticColors = staticCompositionLocalOf { LightSemanticColors }
 
 @Composable
 fun LotofacilTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

@@ -5,6 +5,7 @@ import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
+import com.cebolao.lotofacil.viewmodels.UpdateState
 import com.cebolao.lotofacil.domain.model.LastDrawStats
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.repository.SyncStatus
@@ -33,6 +34,7 @@ class HomeViewModel @Inject constructor(
     private var cachedHistory: List<HistoricalDraw> = emptyList()
     private var statsJob: Job? = null
     private var syncStatusJob: Job? = null
+    private var refreshJob: Job? = null
 
     init {
         observeSyncStatus()
@@ -45,28 +47,37 @@ class HomeViewModel @Inject constructor(
             historyRepository.syncStatus.collect { status ->
                 when (status) {
                     SyncStatus.Idle -> {
-                        updateState { it.copy(syncState = HomeSyncState.Idle) }
+                        updateState { it.copy(updateState = UpdateState.Idle) }
                     }
-
                     SyncStatus.Syncing -> {
-                        updateState { it.copy(syncState = HomeSyncState.InProgress(current = null, total = null)) }
-                    }
-
-                    is SyncStatus.Progress -> {
                         updateState {
                             it.copy(
-                                syncState = HomeSyncState.InProgress(
-                                    current = status.current,
-                                    total = status.total
+                                updateState = UpdateState.Loading(
+                                    isCancellable = refreshJob?.isActive == true
                                 )
                             )
                         }
                     }
 
+                    is SyncStatus.Progress -> {
+                        updateState {
+                            it.copy(
+                                updateState = UpdateState.Loading(
+                                    current = status.current,
+                                    total = status.total,
+                                    isCancellable = refreshJob?.isActive == true
+                                )
+                            )
+                        }
+                    }
+
+
+
+
                     SyncStatus.Success -> {
                         updateState {
                             it.copy(
-                                syncState = HomeSyncState.Success,
+                                updateState = UpdateState.Success,
                                 historySource = DataLoadSource.NETWORK,
                                 isShowingStaleData = false
                             )
@@ -76,7 +87,7 @@ class HomeViewModel @Inject constructor(
                     is SyncStatus.Failed -> {
                         updateState {
                             it.copy(
-                                syncState = HomeSyncState.Failed(status.message),
+                                updateState = UpdateState.Error(status.message),
                                 historySource = DataLoadSource.CACHE,
                                 isShowingStaleData = true
                             )
@@ -192,12 +203,12 @@ class HomeViewModel @Inject constructor(
     }
 
     fun refreshData() {
-        viewModelScope.launch(dispatchersProvider.default) {
+        refreshJob?.cancel()
+        refreshJob = viewModelScope.launch(dispatchersProvider.default) {
             when (historyRepository.syncHistory()) {
                 is AppResult.Success -> {
                     getStatisticsDataUseCase.clearCache()
                     refreshScreenDataAfterSync()
-                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.refresh_success))
                 }
 
                 is AppResult.Failure -> {
@@ -207,10 +218,10 @@ class HomeViewModel @Inject constructor(
                             isShowingStaleData = true
                         )
                     }
-                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.error_sync_failed))
                 }
             }
         }
+        refreshJob?.invokeOnCompletion { refreshJob = null }
     }
 
     private suspend fun refreshScreenDataAfterSync() {
@@ -315,16 +326,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun LastDrawStats.toNextDrawUiModel(): NextDrawUiModel? {
-        val contest = nextContest ?: return null
-        return NextDrawUiModel(
-            contestNumber = contest,
-            date = nextDate,
-            prizeEstimate = nextEstimate ?: 0.0,
-            isAccumulated = accumulated
-        )
-    }
-
     private fun HistoricalDraw.toLastDrawStats(): LastDrawStats {
         return LastDrawStats(
             contest = contestNumber,
@@ -345,5 +346,25 @@ class HomeViewModel @Inject constructor(
             nextEstimate = nextEstimate,
             accumulated = accumulated
         )
+    }
+
+    private fun LastDrawStats.toNextDrawUiModel(): NextDrawUiModel? {
+        val contest = nextContest ?: return null
+        return NextDrawUiModel(
+            contestNumber = contest,
+            date = nextDate,
+            prizeEstimate = nextEstimate ?: 0.0,
+            isAccumulated = accumulated
+        )
+    }
+
+    fun cancelUpdate() {
+        refreshJob?.cancel()
+        refreshJob = null
+        updateState { it.copy(updateState = UpdateState.Idle) }
+    }
+
+    fun retry() {
+        refreshData()
     }
 }

@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.Analytics
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material.icons.filled.Share
@@ -69,6 +70,7 @@ fun GameCard(
     game: LotofacilGame,
     modifier: Modifier = Modifier,
     onAnalyzeClick: () -> Unit,
+    onDuplicateClick: () -> Unit,
     onShareClick: () -> Unit,
     onPinClick: () -> Unit,
     onDeleteClick: () -> Unit,
@@ -177,6 +179,10 @@ fun GameCard(
                     haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                     onAnalyzeClick()
                 },
+                onDuplicateClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+                    onDuplicateClick()
+                },
                 onShareClick = {
                     haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                     onShareClick()
@@ -271,6 +277,7 @@ private fun GameCardHeader(
 private fun GameCardActions(
     isPinned: Boolean,
     onAnalyzeClick: () -> Unit,
+    onDuplicateClick: () -> Unit,
     onShareClick: () -> Unit,
     onPinClick: () -> Unit,
     onDeleteClick: () -> Unit,
@@ -334,18 +341,33 @@ private fun GameCardActions(
                 )
             }
         }
-        TextButton(onClick = onAnalyzeClick) {
-            Icon(
-                analyzeIcon,
-                null,
-                modifier = Modifier.size(ButtonDefaults.IconSize),
-                tint = colors.primary
-            )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-            Text(
-                stringResource(id = R.string.analyze_button),
-                color = colors.primary
-            )
+        Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)) {
+            TextButton(onClick = onDuplicateClick) {
+                Icon(
+                    imageVector = Icons.Default.ContentCopy,
+                    contentDescription = null,
+                    modifier = Modifier.size(ButtonDefaults.IconSize),
+                    tint = colors.primary
+                )
+                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                Text(
+                    text = stringResource(id = R.string.duplicate_and_edit_button),
+                    color = colors.primary
+                )
+            }
+            TextButton(onClick = onAnalyzeClick) {
+                Icon(
+                    analyzeIcon,
+                    null,
+                    modifier = Modifier.size(ButtonDefaults.IconSize),
+                    tint = colors.primary
+                )
+                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                Text(
+                    stringResource(id = R.string.analyze_button),
+                    color = colors.primary
+                )
+            }
         }
     }
 }

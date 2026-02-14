@@ -32,5 +32,12 @@
                 <data android:scheme="cebolao" android:host="game" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ErrorActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:process=":crash"
+            android:theme="@style/Theme.CebolaoLotofacil" />
     </application>
 </manifest>

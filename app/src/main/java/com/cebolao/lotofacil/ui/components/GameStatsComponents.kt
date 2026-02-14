@@ -5,21 +5,38 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.CropFree
+import androidx.compose.material.icons.outlined.FormatListNumbered
+import androidx.compose.material.icons.outlined.Functions
+import androidx.compose.material.icons.outlined.GridOn
+import androidx.compose.material.icons.outlined.LooksOne
+import androidx.compose.material.icons.outlined.LooksTwo
+import androidx.compose.material.icons.outlined.StarOutline
+import androidx.compose.material.icons.outlined.Timeline
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.GameStatistic
 import com.cebolao.lotofacil.domain.model.GameStatisticType
@@ -31,27 +48,80 @@ import kotlinx.collections.immutable.toImmutableList
 @Composable
 fun GameStatsList(
     stats: ImmutableList<GameStatistic>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    title: String? = null,
+    showDividers: Boolean = true
 ) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
-    ) {
-        for (stat in stats) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(stat.type.label(), style = MaterialTheme.typography.bodyMedium)
-                Text(
-                    stat.value.toString(),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.primary
+    Column(modifier = modifier) {
+        if (!title.isNullOrBlank()) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(bottom = AppSpacing.sm)
+            )
+        }
+
+        stats.forEachIndexed { index, stat ->
+            StatisticRow(
+                label = stat.type.label(),
+                value = stat.value.toString(),
+                icon = stat.type.icon()
+            )
+
+            if (showDividers && index < stats.lastIndex) {
+                HorizontalDivider(
+                    color = MaterialTheme.colorScheme.outline.copy(alpha = 0.08f)
                 )
             }
         }
+    }
+}
+
+@Composable
+fun StatisticRow(
+    label: String,
+    value: String,
+    icon: ImageVector? = null,
+    modifier: Modifier = Modifier
+) {
+    val colors = MaterialTheme.colorScheme
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = AppSpacing.sm),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Row(
+            modifier = Modifier.weight(1f),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if (icon != null) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    tint = colors.onSurfaceVariant,
+                    modifier = Modifier.size(16.dp)
+                )
+                Spacer(modifier = Modifier.width(AppSpacing.xs))
+            }
+            Text(
+                text = label,
+                style = MaterialTheme.typography.bodyMedium,
+                color = colors.onSurfaceVariant,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+        Text(
+            text = value,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.SemiBold,
+            color = colors.onSurface,
+            textAlign = TextAlign.End,
+            modifier = Modifier.widthIn(min = 48.dp)
+        )
     }
 }
 
@@ -68,6 +138,19 @@ private fun GameStatisticType.label(): String {
         GameStatisticType.MULTIPLES_OF_3 -> R.string.multiples_of_3_label
     }
     return stringResource(id = labelRes)
+}
+
+private fun GameStatisticType.icon(): ImageVector? {
+    return when (this) {
+        GameStatisticType.SUM -> Icons.Outlined.Functions
+        GameStatisticType.EVENS -> Icons.Outlined.LooksTwo
+        GameStatisticType.ODDS -> Icons.Outlined.LooksOne
+        GameStatisticType.PRIMES -> Icons.Outlined.StarOutline
+        GameStatisticType.FIBONACCI -> Icons.Outlined.Timeline
+        GameStatisticType.FRAME -> Icons.Outlined.GridOn
+        GameStatisticType.PORTRAIT -> Icons.Outlined.CropFree
+        GameStatisticType.MULTIPLES_OF_3 -> Icons.Outlined.FormatListNumbered
+    }
 }
 
 @Composable

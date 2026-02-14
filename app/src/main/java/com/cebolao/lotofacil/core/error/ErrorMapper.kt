@@ -27,6 +27,7 @@ object ErrorMapper {
         is NetworkError -> "No connection to server. Please try again."
         is PersistenceError -> "Error accessing local storage."
         is ParsingError -> "Error processing remote data."
+        is InvalidFiltersError -> "Invalid filters. Try adjusting your criteria."
         is EmptyHistoryError -> "History unavailable."
         is UnknownError -> "An unexpected error occurred."
         else -> "Unexpected error."

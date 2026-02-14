@@ -1,6 +1,7 @@
 package com.cebolao.lotofacil.viewmodels
 
 import com.cebolao.lotofacil.core.result.AppResult
+import com.cebolao.lotofacil.core.testing.FakeUserPreferencesRepository
 import com.cebolao.lotofacil.core.utils.AppLogger
 import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
@@ -27,6 +28,7 @@ import org.junit.Test
 class MainViewModelTest {
 
     private val historyRepository: HistoryRepository = mockk()
+    private val userPreferencesRepository = FakeUserPreferencesRepository()
     private val logger: AppLogger = mockk(relaxed = true)
     private val testDispatcher = StandardTestDispatcher()
 
@@ -56,7 +58,7 @@ class MainViewModelTest {
         coEvery { historyRepository.syncHistory() } returns AppResult.Success(Unit)
 
         // When
-        val viewModel = MainViewModel(historyRepository, logger)
+        val viewModel = MainViewModel(historyRepository, userPreferencesRepository, logger)
         advanceUntilIdle()
 
         // Then
@@ -70,7 +72,7 @@ class MainViewModelTest {
         every { historyRepository.getHistory() } returns flowOf(emptyList())
         coEvery { historyRepository.syncHistory() } returns AppResult.Failure(com.cebolao.lotofacil.core.error.EmptyHistoryError)
 
-        val viewModel = MainViewModel(historyRepository, logger)
+        val viewModel = MainViewModel(historyRepository, userPreferencesRepository, logger)
         advanceUntilIdle()
 
         val state = viewModel.uiState.value

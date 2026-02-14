@@ -3,16 +3,27 @@
 
     <string name="error_no_history">Não foi possível carregar o histórico.</string>
 
-    <string name="error_load_data_failed">Falha ao carregar dados.</string>
-    <string name="error_analysis_failed">Falha na análise.</string>
+    <string name="error_load_data_failed">Ops, não conseguimos carregar os dados agora. Tente novamente.</string>
+    <string name="error_analysis_failed">Ops, não foi possível concluir a análise do jogo.</string>
     <string name="error_analysis_timeout">A análise demorou demais. Tente novamente.</string>
-    <string name="error_unknown">Erro desconhecido.</string>
+    <string name="error_game_not_found">Nao encontramos este jogo salvo para analise.</string>
+    <string name="error_unknown">Ops, algo deu errado. Tente novamente em instantes.</string>
     <string name="error_history_unavailable">Histórico indisponível.</string>
+    <string name="error_history_unavailable_title">Histórico indisponível</string>
+    <string name="error_history_unavailable_message">Não foi possível recuperar o último concurso. Ajuste os filtros ou tente novamente.</string>
     <string name="error_invalid_operation">Operação inválida.</string>
     <string name="error_validation">Erro de validação.</string>
-    <string name="error_sync_failed">Erro ao sincronizar dados. Tente novamente.</string>
-    <string name="error_generating_games">Erro desconhecido ao gerar jogos.</string>
+    <string name="error_sync_failed">Ops, não foi possível atualizar os dados agora. Tente novamente.</string>
+    <string name="error_generating_games">Ops, algo deu errado ao gerar seu jogo. Tente novamente ou ajuste os filtros.</string>
+    <string name="error_invalid_filters_title">Filtros incompatíveis</string>
+    <string name="error_invalid_filters_message">Ajuste os critérios e tente novamente.</string>
+    <string name="error_no_connection">Sem conexão. Verifique sua internet.</string>
     <string name="try_again">Tentar novamente</string>
+    <string name="global_error_title">Algo deu errado</string>
+    <string name="global_error_message">Algo deu errado. Reinicie o app.</string>
+    <string name="global_error_restart">Reiniciar app</string>
+    <string name="global_error_report">Reportar erro</string>
+    <string name="global_error_report_subject">Relatório de erro</string>
 
     <string name="studio_name">Cebola Studios</string>
     <string name="studio_slogan">Sorte e estatística.</string>
@@ -66,6 +77,9 @@
     <!-- HomeScreen -->
     <string name="last_update_status">Dados atualizados há %s</string>
     <string name="refresh_sync_label">Atualizando Dados</string>
+    <string name="sync_stats_message">Atualizando estatísticas...</string>
+    <string name="sync_stats_progress">Atualizando estatísticas... %1$d de %2$d concursos</string>
+    <string name="sync_in_progress_message">Atualizando dados. Aguarde...</string>
 
     <string name="refresh_success">Dados atualizados com sucesso!</string>
     <string name="sync_failed_message">Não foi possível atualizar. Exibindo dados locais.</string>
@@ -119,6 +133,11 @@
     <string name="nav_user_stats">Meus Dados</string>
     <string name="user_stats_card_title">Meus Dados e Conquistas</string>
     <string name="user_stats_card_subtitle">Veja seu histórico de uso e números favoritos.</string>
+    <string name="theme_settings_title">Aparencia</string>
+    <string name="theme_settings_subtitle">Escolha o tema visual do aplicativo.</string>
+    <string name="theme_mode_system">Sistema</string>
+    <string name="theme_mode_light">Claro</string>
+    <string name="theme_mode_dark">Escuro</string>
     
     <string name="trend_analysis_title">Tendência ao longo do tempo</string>
     <!-- GeneratedGamesScreen -->
@@ -134,7 +153,15 @@
     <string name="my_games">Meus jogos</string>
     <string name="my_games_subtitle">Visualize, analise e gerencie seus jogos</string>
     <string name="empty_games_message">Nenhum jogo gerado ainda.\nVá para a tela de Gerador para começar!</string>
+    <string name="loading_games">Carregando seus jogos...</string>
+    <string name="generate_first_game">Gerar meu primeiro jogo</string>
+    <string name="load_more_games">Carregar mais jogos</string>
+    <string name="generated_games_overview_title">Resumo dos jogos</string>
+    <string name="total_games_label">Total</string>
+    <string name="pinned_games_label">Fixados</string>
     <string name="game_analysis_title">Análise do jogo</string>
+    <string name="game_analysis_subtitle">Compare padroes e gere variacoes com um toque</string>
+    <string name="analysis_numbers_title">Numeros do jogo base</string>
     <string name="close_button">Fechar</string>
     <string name="historical_performance">Desempenho histórico</string>
     <string name="never_won_message">Este jogo nunca foi premiado nos concursos analisados.</string>
@@ -144,30 +171,35 @@
 
     <!-- CheckerScreen -->
     <string name="check_game_title">Conferidor</string>
-    <string name="check_game_subtitle">Teste seu jogo contra o histórico</string>
+    <string name="check_game_subtitle">Compare seu jogo com o histórico de concursos</string>
     <string name="check_game_button">Conferir jogo</string>
     <string name="clear_selection_button">Limpar seleção</string>
     <string name="checker_clear_selection_title">Limpar seleção?</string>
     <string name="checker_clear_selection_message">Isso removerá todos os números selecionados. Deseja continuar?</string>
     <string name="checker_clear_confirmation">Seleção limpa com sucesso.</string>
     <string name="checker_checking_success">Jogo conferido com sucesso!</string>
-    <string name="checker_checking_error">Erro ao conferir jogo. Tente novamente.</string>
+    <string name="checker_checking_error">Ops, não foi possível conferir seu jogo. Tente novamente.</string>
     <string name="checker_incomplete_selection">Selecione exatos 15 números para conferir.</string>
     <string name="checker_results_cleared_title">Limpar resultados?</string>
     <string name="checker_results_cleared_message">Isso removerá os resultados da conferência atual. Deseja continuar?</string>
     <string name="checker_loading_history">Carregando histórico…</string>
     <string name="checker_calculating_results">Calculando resultados…</string>
     <string name="checker_analyzing_stats">Analisando estatisticas…</string>
+    <string name="generate_new_game_button">Gerar novo jogo</string>
+    <string name="refine_from_pattern_button">Refinar com este padrao</string>
 
     <!-- FiltersScreen -->
     <string name="filters_header_title">Gerador inteligente</string>
-    <string name="filters_header_subtitle">Refine a sorte com base em estatísticas</string>
+    <string name="filters_header_subtitle">Ajuste filtros com apoio estatístico para gerar jogos</string>
+    <string name="generate_similar_game_button">Gerar variacao deste jogo</string>
+    <string name="generator_preset_applied">Filtros similares aplicados no gerador.</string>
     <string name="reset_filters">Resetar filtros</string>
     <string name="reset_filters_title">Resetar filtros?</string>
     <string name="reset_filters_message">Isso desativará todos os filtros e restaurará os padrões. Deseja continuar?</string>
 
     <!-- GameCard -->
     <string name="analyze_button">Analisar</string>
+    <string name="duplicate_and_edit_button">Duplicar e editar</string>
     <string name="pin_game">Fixar jogo</string>
     <string name="unpin_game">Desafixar jogo</string>
     <string name="delete_game">Excluir jogo</string>
@@ -179,6 +211,7 @@
     <!-- Common Actions -->
 
     <string name="reset_button">Resetar</string>
+    <string name="adjust_filters_button">Ajustar filtros</string>
 
     <!-- FilterCard -->
     <string name="data_unavailable">Dados indisponíveis</string>
@@ -227,8 +260,22 @@
     <!-- GenerationActionsPanel -->
     <string name="game_quantity">Quantidade de jogos</string>
     <string name="total_cost">Custo total:</string>
+    <string name="cost_per_game">R$ %1$s per game</string>
+    <string name="cost_calculation">%1$d game(s) × R$ %2$s</string>
     <string name="decrease_quantity">Diminuir</string>
     <string name="increase_quantity">Aumentar</string>
+    <string name="generate_button_disabled_no_filters">Selecione ao menos 1 filtro</string>
+    <string name="generate_button_disabled_no_quantity">A quantidade deve ser maior que 0</string>
+    <string name="generate_button_disabled_invalid_filters">Esta combinação de filtros está inválida.</string>
+    <string name="generate_button_disabled_impossible_filters">Nenhum jogo possivel com os filtros atuais</string>
+    <string name="generate_button_disabled_syncing">Atualizando dados. Aguarde...</string>
+    <string name="possible_games_title">Jogos possiveis</string>
+    <string name="possible_games_calculating">Calculando combinacoes...</string>
+    <string name="possible_games_none">Nenhum jogo possivel!</string>
+    <string name="possible_games_exact">%1$s jogos possiveis</string>
+    <string name="possible_games_estimated">~%1$s jogos possiveis</string>
+    <string name="possible_games_warning_restrictive">Combinacao muito restritiva (&lt; 10 jogos).</string>
+    <string name="possible_games_warning_impossible">Atencao: estes filtros podem nao gerar resultados.</string>
 
     <!-- Filter Types -->
     <string name="filter_soma_dezenas_title">Soma das dezenas</string>
@@ -283,7 +330,7 @@
 
     <string name="cd_navigate_back">Voltar</string>
     <string name="cd_clear_games">Limpar jogos não fixados</string>
-    <string name="next_contest_format">Próximo Concurso: #%s</string>
+    <string name="next_contest_format">Concurso #%s</string>
 
     <string name="nav_home">Início</string>
     <string name="nav_filters">Gerador</string>
@@ -361,13 +408,19 @@
     <string name="greeting_afternoon">Boa tarde,</string>
     <string name="greeting_evening">Boa noite,</string>
     <string name="greeting_night">Boa madrugada,</string>
-    <string name="greeting_user">Aposentado!</string> <!-- Playful default -->
+    <string name="greeting_user">Jogador</string> <!-- Playful default -->
     <string name="greeting_insight_accumulated">Prêmio acumulado! Ótima hora para jogar.</string>
-    <string name="greeting_insight_generic">A estatística é a mãe da sorte.</string>
-    <string name="today_draw_active">Hoje tem sorteio da Lotofácil!</string>
+    <string name="greeting_insight_generic">Use os dados como apoio e jogue com consciência.</string>
+    <string name="today_draw_active">Hoje tem concurso da Lotofácil.</string>
     
-    <string name="next_draw_card_title">Próximo Sorteio</string>
+    <string name="next_draw_card_title">Próximo concurso</string>
     <string name="quick_insights_title">Insights Rápidos</string>
     <string name="quick_insights_cta">Ver estatísticas completas</string>
     
+    <!-- Filter Accessibility -->
+    <string name="filter_accessibility_description">%1$s, switch, %2$s</string>
+    
 </resources>
+
+
+

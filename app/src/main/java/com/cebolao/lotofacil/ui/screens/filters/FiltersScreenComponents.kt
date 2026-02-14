@@ -34,7 +34,10 @@ import com.cebolao.lotofacil.ui.components.GenerationActionsPanel
 import com.cebolao.lotofacil.ui.model.titleRes
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppTheme
+import com.cebolao.lotofacil.ui.theme.LocalSemanticColors
 import com.cebolao.lotofacil.viewmodels.GenerationUiState
+import java.text.NumberFormat
+import java.util.Locale
 
 @Composable
 fun PresetsPanel(
@@ -64,6 +67,13 @@ fun PresetsPanel(
                         onClick = { onApplyPreset(preset) }
                     )
                  }
+            }
+            item(key = "generate_actions", contentType = "generate_actions") {
+                GenerationActionsPanel(
+                    generationState = GenerationUiState.Idle,
+                    activeFiltersCount = 0,
+                    onGenerate = { _ -> }
+                )
             }
         }
     }
@@ -104,7 +114,8 @@ fun ActiveFiltersPanel(
     activeFilters: List<FilterState>,
     modifier: Modifier = Modifier
 ) {
-    if (activeFilters.isEmpty()) return
+    val totalFilters = FilterType.entries.size
+    val activeCount = activeFilters.size
 
     AnimateOnEntry(modifier = modifier) {
         Column(
@@ -112,32 +123,137 @@ fun ActiveFiltersPanel(
             verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
         ) {
             Text(
-                text = "${stringResource(id = R.string.filters_analysis_title)} (${activeFilters.size})",
+                text = stringResource(
+                    id = R.string.active_filters_count_summary,
+                    activeCount,
+                    totalFilters
+                ),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontWeight = FontWeight.SemiBold
             )
             
-            FlowRow(
-                modifier = Modifier.fillMaxWidth(),
-                mainAxisSpacing = AppSpacing.xs,
-                crossAxisSpacing = AppSpacing.xs
+            // Always show the filter chips area, even if empty
+            if (activeFilters.isNotEmpty()) {
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    mainAxisSpacing = AppSpacing.md,
+                    crossAxisSpacing = AppSpacing.md
+                ) {
+                    activeFilters.forEach { filter ->
+                        FilterChip(
+                            selected = true,
+                            onClick = { /* Could toggle or navigate */ },
+                            label = { 
+                                Text(
+                                    stringResource(id = filter.type.titleRes),
+                                    style = MaterialTheme.typography.labelSmall
+                                ) 
+                            },
+                            colors = FilterChipDefaults.filterChipColors(
+                                selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                                selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                            ),
+                            border = null
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun PossibleCombinationsPanel(
+    possibleCombinationsCount: Long,
+    isEstimated: Boolean,
+    isImpossible: Boolean,
+    isVeryRestrictive: Boolean,
+    isAnalyzing: Boolean,
+    modifier: Modifier = Modifier
+) {
+    val colors = MaterialTheme.colorScheme
+    val semanticColors = LocalSemanticColors.current
+    val numberFormatter = remember { NumberFormat.getIntegerInstance(Locale.forLanguageTag("pt-BR")) }
+    val formattedCount = remember(possibleCombinationsCount, numberFormatter) {
+        numberFormatter.format(possibleCombinationsCount)
+    }
+
+    val (statusText, statusColor, statusContainerColor) = when {
+        isAnalyzing -> Triple(
+            stringResource(id = R.string.possible_games_calculating),
+            colors.onSurfaceVariant,
+            colors.surfaceVariant
+        )
+        isImpossible -> Triple(
+            stringResource(id = R.string.possible_games_none),
+            colors.onErrorContainer,
+            colors.errorContainer
+        )
+        possibleCombinationsCount in 1..1000 -> Triple(
+            stringResource(id = R.string.possible_games_exact, formattedCount),
+            semanticColors.warning,
+            colors.secondaryContainer
+        )
+        isEstimated -> Triple(
+            stringResource(id = R.string.possible_games_estimated, formattedCount),
+            semanticColors.success,
+            colors.tertiaryContainer
+        )
+        else -> Triple(
+            stringResource(id = R.string.possible_games_exact, formattedCount),
+            semanticColors.success,
+            colors.tertiaryContainer
+        )
+    }
+
+    AnimateOnEntry(modifier = modifier) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+        ) {
+            Text(
+                text = stringResource(id = R.string.possible_games_title),
+                style = MaterialTheme.typography.titleMedium,
+                color = colors.primary,
+                fontWeight = FontWeight.Bold
+            )
+            Surface(
+                color = statusContainerColor,
+                shape = MaterialTheme.shapes.medium,
+                border = BorderStroke(1.dp, statusColor.copy(alpha = 0.35f))
             ) {
-                activeFilters.forEach { filter ->
-                    FilterChip(
-                        selected = true,
-                        onClick = { /* Could toggle or navigate */ },
-                        label = { 
-                            Text(
-                                stringResource(id = filter.type.titleRes),
-                                style = MaterialTheme.typography.labelSmall
-                            ) 
-                        },
-                        colors = FilterChipDefaults.filterChipColors(
-                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                            selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
-                        ),
-                        border = null
+                Text(
+                    text = statusText,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = statusColor,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.padding(horizontal = AppSpacing.md, vertical = AppSpacing.sm)
+                )
+            }
+
+            if (isImpossible) {
+                Surface(
+                    color = colors.secondaryContainer,
+                    shape = MaterialTheme.shapes.medium
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.possible_games_warning_impossible),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = colors.onSecondaryContainer,
+                        modifier = Modifier.padding(horizontal = AppSpacing.md, vertical = AppSpacing.sm)
+                    )
+                }
+            } else if (isVeryRestrictive) {
+                Surface(
+                    color = colors.secondaryContainer,
+                    shape = MaterialTheme.shapes.medium
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.possible_games_warning_restrictive),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = colors.onSecondaryContainer,
+                        modifier = Modifier.padding(horizontal = AppSpacing.md, vertical = AppSpacing.sm)
                     )
                 }
             }
@@ -203,15 +319,24 @@ fun LazyListScope.filterList(
     onInfoClick: (FilterType) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    // Use stable keys for better performance
+    // Validate input for duplicates
+    val filterNames = filterStates.map { it.type.name }
+    val duplicates = filterNames.groupBy { it }.filter { it.value.size > 1 }.keys
+    if (duplicates.isNotEmpty()) {
+        android.util.Log.w("FilterList", "Duplicate filter types detected: $duplicates")
+    }
+    
+    // Use stable keys for better performance - ensure uniqueness
+    val uniqueFilterStates = filterStates.distinctBy { it.type.name }
+    
     items(
-        count = filterStates.size,
-        key = { index -> filterStates[index].type.name },
+        items = uniqueFilterStates,
+        key = { filter -> "filter_${filter.type.name}" },
         contentType = { "filter_card" }
-    ) { index ->
-        val filter = filterStates[index]
-        // Staggered animation
-        val delay = (index * 50L).coerceAtMost(500L)
+    ) { filter ->
+        // Staggered animation based on original position to maintain order
+        val originalIndex = filterStates.indexOfFirst { it.type.name == filter.type.name }
+        val delay = (originalIndex * 50L).coerceAtMost(500L)
         
         AnimateOnEntry(delayMillis = delay) {
             FilterRowItem(
@@ -220,7 +345,7 @@ fun LazyListScope.filterList(
                 onFilterToggle = onFilterToggle,
                 onRangeChange = onRangeChange,
                 onInfoClick = onInfoClick,
-                modifier = modifier
+                modifier = modifier.padding(vertical = AppSpacing.xs)
             )
         }
     }
@@ -264,6 +389,9 @@ private fun FilterRowItem(
 @Composable
 fun GenerateActionsPanel(
     generationState: GenerationUiState,
+    isDataSyncing: Boolean = false,
+    activeFiltersCount: Int = 0,
+    isCombinationPossible: Boolean = true,
     onGenerate: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -274,6 +402,9 @@ fun GenerateActionsPanel(
         Box {
             GenerationActionsPanel(
                 generationState = generationState,
+                isDataSyncing = isDataSyncing,
+                activeFiltersCount = activeFiltersCount,
+                isCombinationPossible = isCombinationPossible,
                 onGenerate = onGenerate
             )
         }

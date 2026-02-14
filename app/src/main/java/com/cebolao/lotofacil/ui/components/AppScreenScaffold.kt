@@ -43,6 +43,7 @@ fun AppScreenScaffold(
     iconPainter: Painter? = null,
     onBackClick: (() -> Unit)? = null,
     actions: (@Composable androidx.compose.foundation.layout.RowScope.() -> Unit)? = null,
+    floatingActionButton: (@Composable () -> Unit)? = null,
     snackbarHostState: SnackbarHostState? = null,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     content: @Composable (PaddingValues) -> Unit
@@ -71,6 +72,9 @@ fun AppScreenScaffold(
         },
         snackbarHost = {
             snackbarHostState?.let { SnackbarHost(hostState = it) }
+        },
+        floatingActionButton = {
+            floatingActionButton?.invoke()
         }
     ) { innerPadding ->
         content(innerPadding)

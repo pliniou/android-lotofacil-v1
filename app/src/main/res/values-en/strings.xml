@@ -2,15 +2,15 @@
     <string name="app_name">Lotofácil Generator</string>
 
     <string name="error_no_history">Unable to load history.</string>
-    <string name="error_load_data_failed">Failed to load data.</string>
-    <string name="error_analysis_failed">Analysis failed.</string>
+    <string name="error_load_data_failed">Oops, we could not load the data right now. Please try again.</string>
+    <string name="error_analysis_failed">Oops, we could not finish the game analysis.</string>
     <string name="error_analysis_timeout">Analysis timed out. Please try again.</string>
-    <string name="error_unknown">Unknown error.</string>
+    <string name="error_unknown">Oops, something went wrong. Please try again in a moment.</string>
     <string name="error_history_unavailable">History unavailable.</string>
     <string name="error_invalid_operation">Invalid operation.</string>
     <string name="error_validation">Validation error.</string>
-    <string name="error_sync_failed">Error syncing data. Try again.</string>
-    <string name="error_generating_games">Unknown error generating games.</string>
+    <string name="error_sync_failed">Oops, we could not update the data right now. Please try again.</string>
+    <string name="error_generating_games">Oops, something went wrong while generating your game. Try again or adjust the filters.</string>
     <string name="try_again">Try again</string>
 
     <string name="studio_name">Cebola Studios</string>
@@ -65,6 +65,9 @@
     <!-- HomeScreen -->
     <string name="last_update_status">Data updated %s ago</string>
     <string name="refresh_sync_label">Updating Data</string>
+    <string name="sync_stats_message">Updating statistics...</string>
+    <string name="sync_stats_progress">Updating statistics... %1$d of %2$d draws</string>
+    <string name="sync_in_progress_message">Updating data. Please wait...</string>
     <string name="refresh_success">Data updated successfully!</string>
     <string name="sync_failed_message">Unable to update. Showing local data.</string>
     <string name="home_source_history_network">history: network</string>
@@ -115,6 +118,11 @@
     <string name="nav_user_stats">My Data</string>
     <string name="user_stats_card_title">My Data and Achievements</string>
     <string name="user_stats_card_subtitle">See your usage history and favorite numbers.</string>
+    <string name="theme_settings_title">Appearance</string>
+    <string name="theme_settings_subtitle">Choose the visual theme of the app.</string>
+    <string name="theme_mode_system">System</string>
+    <string name="theme_mode_light">Light</string>
+    <string name="theme_mode_dark">Dark</string>
     <string name="trend_analysis_title">Trend Analysis</string>
 
     <!-- GeneratedGamesScreen -->
@@ -130,6 +138,12 @@
     <string name="my_games">My games</string>
     <string name="my_games_subtitle">View, analyze and manage your games</string>
     <string name="empty_games_message">No games generated yet.\nGo to the Generator screen to start!</string>
+    <string name="loading_games">Loading your games...</string>
+    <string name="generate_first_game">Generate my first game</string>
+    <string name="load_more_games">Load more games</string>
+    <string name="generated_games_overview_title">Games overview</string>
+    <string name="total_games_label">Total</string>
+    <string name="pinned_games_label">Pinned</string>
     <string name="game_analysis_title">Game analysis</string>
     <string name="close_button">Close</string>
     <string name="historical_performance">Historical performance</string>
@@ -140,14 +154,14 @@
 
     <!-- CheckerScreen -->
     <string name="check_game_title">Checker</string>
-    <string name="check_game_subtitle">Test your game against history</string>
+    <string name="check_game_subtitle">Compare your game with contest history</string>
     <string name="check_game_button">Check game</string>
     <string name="clear_selection_button">Clear selection</string>
     <string name="checker_clear_selection_title">Clear selection?</string>
     <string name="checker_clear_selection_message">This will remove all selected numbers. Do you want to continue?</string>
     <string name="checker_clear_confirmation">Selection cleared successfully.</string>
     <string name="checker_checking_success">Game checked successfully!</string>
-    <string name="checker_checking_error">Error checking game. Try again.</string>
+    <string name="checker_checking_error">Oops, we could not check your game. Please try again.</string>
     <string name="checker_incomplete_selection">Select exactly 15 numbers to check.</string>
     <string name="checker_results_cleared_title">Clear results?</string>
     <string name="checker_results_cleared_message">This will remove the current check results. Do you want to continue?</string>
@@ -157,7 +171,7 @@
 
     <!-- FiltersScreen -->
     <string name="filters_header_title">Smart Generator</string>
-    <string name="filters_header_subtitle">Refine luck based on statistics</string>
+    <string name="filters_header_subtitle">Adjust filters with statistical support to generate games</string>
     <string name="reset_filters">Reset filters</string>
     <string name="reset_filters_title">Reset filters?</string>
     <string name="reset_filters_message">This will disable all filters and restore defaults. Do you want to continue?</string>
@@ -263,7 +277,7 @@
 
     <string name="cd_navigate_back">Back</string>
     <string name="cd_clear_games">Clear unpinned games</string>
-    <string name="next_contest_format">Next Draw: #%s</string>
+    <string name="next_contest_format">Contest #%s</string>
 
     <!-- Navigation -->
     <string name="nav_home">Home</string>
@@ -340,11 +354,12 @@
     <string name="greeting_afternoon">Good afternoon,</string>
     <string name="greeting_evening">Good evening,</string>
     <string name="greeting_night">Good late night,</string>
-    <string name="greeting_user">Player!</string>
+    <string name="greeting_user">Player</string>
     <string name="greeting_insight_accumulated">Jackpot is rolling over! Great time to play.</string>
-    <string name="greeting_insight_generic">Statistics are a great ally for luck.</string>
-    <string name="today_draw_active">There is a Lotofacil draw today!</string>
-    <string name="next_draw_card_title">Next Draw</string>
+    <string name="greeting_insight_generic">Use data as guidance and play responsibly.</string>
+    <string name="today_draw_active">There is a Lotofacil contest today.</string>
+    <string name="next_draw_card_title">Next contest</string>
     <string name="quick_insights_title">Quick Insights</string>
     <string name="quick_insights_cta">View full statistics</string>
 </resources>
+

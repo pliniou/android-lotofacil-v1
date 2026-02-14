@@ -13,13 +13,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cebolao.lotofacil.ui.components.AppScreenStateHost
 import com.cebolao.lotofacil.ui.components.ScreenContentState
 import com.cebolao.lotofacil.ui.screens.MainScreen
-import com.cebolao.lotofacil.ui.theme.DefaultAppMotion
+import com.cebolao.lotofacil.domain.model.ThemeMode
 import com.cebolao.lotofacil.ui.theme.LotofacilTheme
 import com.cebolao.lotofacil.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,9 +44,15 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val uiState by mainViewModel.uiState.collectAsStateWithLifecycle()
+            val systemDarkTheme = isSystemInDarkTheme()
+            val darkTheme = when (uiState.themeMode) {
+                ThemeMode.SYSTEM -> systemDarkTheme
+                ThemeMode.LIGHT -> false
+                ThemeMode.DARK -> true
+            }
 
             LotofacilTheme(
-                darkTheme = isSystemInDarkTheme(),
+                darkTheme = darkTheme,
                 dynamicColor = false
             ) {
                 Surface(
@@ -70,7 +75,10 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         onRetry = { mainViewModel.retryInitialization() }
                     ) {
-                        MainScreen()
+                        MainScreen(
+                            themeMode = uiState.themeMode,
+                            onThemeModeSelected = mainViewModel::setThemeMode
+                        )
                     }
                 }
             }

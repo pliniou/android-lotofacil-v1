@@ -3,6 +3,8 @@ package com.cebolao.lotofacil.ui.screens.stats
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.spring
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -84,7 +86,14 @@ fun UserStatsScreenContent(
             onRetry = { onAction(UserStatsAction.LoadStats) }
         ) {
             LazyColumn(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .animateContentSize(
+                        animationSpec = spring(
+                            dampingRatio = 0.8f,
+                            stiffness = 300f
+                        )
+                    ),
                 contentPadding = AppScreenDefaults.listContentPadding(
                     horizontal = AppSpacing.lg,
                     top = AppSpacing.lg,

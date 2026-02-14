@@ -1,0 +1,24 @@
+<resources>
+    <!-- greetings -->
+    <string name="greeting_hello_name">Olá, %1$s</string>
+
+    <!-- ctas -->
+    <string name="cta_generate_game">Gerar jogo</string>
+    <string name="common_view_all">Ver todos</string>
+
+    <!-- labels -->
+    <string name="selected_numbers_counter">Selecionados: %1$d/%2$d</string>
+    <string name="home_analysis_type_label">Tipo de análise</string>
+    <string name="home_period_label">Período</string>
+    <string name="home_hot_number_frequency">Sorteado %1$sx</string>
+    <string name="home_cold_number_overdue">Ausente há %1$s concursos</string>
+    <string name="active_filters_count_summary">%1$d de %2$d filtros ativos</string>
+
+    <!-- tooltips -->
+    <string name="tooltip_analysis_type">Escolha o tipo de análise estatística. Exemplo: Fibonacci usa a sequência 1, 2, 3, 5, 8, 13 e 21.</string>
+    <string name="tooltip_period">Escolha o período da análise: todos os concursos disponíveis ou os últimos 20, 50 ou 100.</string>
+
+    <!-- common -->
+    <string name="common_information_title">Informação</string>
+    <string name="common_ok">Entendi</string>
+</resources>

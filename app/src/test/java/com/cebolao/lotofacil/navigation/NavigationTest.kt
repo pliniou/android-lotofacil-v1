@@ -23,9 +23,10 @@ class NavigationTest {
     fun `each destination has valid title resource`() {
         val destinations = listOf(
             Destination.Home,
-            Destination.Filters,
+            Destination.Filters(),
             Destination.GeneratedGames,
             Destination.Checker(),
+            Destination.Analysis(gameId = "test"),
             Destination.About,
             Destination.Insights,
             Destination.UserStats
@@ -40,9 +41,10 @@ class NavigationTest {
     fun `each destination has selected icon`() {
         val destinations = listOf(
             Destination.Home,
-            Destination.Filters,
+            Destination.Filters(),
             Destination.GeneratedGames,
             Destination.Checker(),
+            Destination.Analysis(gameId = "test"),
             Destination.About,
             Destination.Insights,
             Destination.UserStats
@@ -58,9 +60,10 @@ class NavigationTest {
     fun `each destination has unselected icon`() {
         val destinations = listOf(
             Destination.Home,
-            Destination.Filters,
+            Destination.Filters(),
             Destination.GeneratedGames,
             Destination.Checker(),
+            Destination.Analysis(gameId = "test"),
             Destination.About,
             Destination.Insights,
             Destination.UserStats

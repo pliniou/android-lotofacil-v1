@@ -28,13 +28,16 @@ sealed interface Destination {
     data object Home : Destination
 
     @Serializable
-    data object Filters : Destination
+    data class Filters(val preset: String? = null) : Destination
 
     @Serializable
     data object GeneratedGames : Destination
 
     @Serializable
     data class Checker(val numbers: String? = null) : Destination
+
+    @Serializable
+    data class Analysis(val gameId: String) : Destination
 
     @Serializable
     data object About : Destination
@@ -49,7 +52,7 @@ sealed interface Destination {
 // Destinos exibidos na barra de navegação inferior (4 abas)
 val bottomNavDestinations = listOf(
     Destination.Home,
-    Destination.Filters,
+    Destination.Filters(),
     Destination.GeneratedGames,
     Destination.Checker(),
     Destination.About
@@ -59,9 +62,10 @@ val Destination.titleRes: Int
     @StringRes
     get() = when (this) {
         Destination.Home -> R.string.nav_home
-        Destination.Filters -> R.string.nav_filters
+        is Destination.Filters -> R.string.nav_filters
         Destination.GeneratedGames -> R.string.nav_games
         is Destination.Checker -> R.string.nav_checker
+        is Destination.Analysis -> R.string.game_analysis_title
         Destination.About -> R.string.nav_about
         Destination.Insights -> R.string.insights_title
         Destination.UserStats -> R.string.nav_user_stats
@@ -70,9 +74,10 @@ val Destination.titleRes: Int
 val Destination.selectedIcon: ImageVector
     get() = when (this) {
         Destination.Home -> Icons.Filled.Home
-        Destination.Filters -> Icons.Filled.Tune
+        is Destination.Filters -> Icons.Filled.Tune
         Destination.GeneratedGames -> Icons.AutoMirrored.Filled.ListAlt
         is Destination.Checker -> Icons.Filled.Analytics
+        is Destination.Analysis -> Icons.Filled.Analytics
         Destination.About -> Icons.Filled.Info
         Destination.Insights -> Icons.Filled.Analytics
         Destination.UserStats -> Icons.Default.Person
@@ -81,9 +86,10 @@ val Destination.selectedIcon: ImageVector
 val Destination.unselectedIcon: ImageVector
     get() = when (this) {
         Destination.Home -> Icons.Outlined.Home
-        Destination.Filters -> Icons.Outlined.Tune
+        is Destination.Filters -> Icons.Outlined.Tune
         Destination.GeneratedGames -> Icons.AutoMirrored.Filled.ListAlt
         is Destination.Checker -> Icons.Outlined.Analytics
+        is Destination.Analysis -> Icons.Outlined.Analytics
         Destination.About -> Icons.Outlined.Info
         Destination.Insights -> Icons.Outlined.Analytics
         Destination.UserStats -> Icons.Default.Person

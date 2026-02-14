@@ -12,7 +12,7 @@ import androidx.compose.runtime.Immutable
 data class AppMotion(
     val durationShortMs: Int = 100,
     val durationMediumMs: Int = 200,
-    val durationLongMs: Int = 400,
+    val durationLongMs: Int = 300,
     val durationNumberBallMs: Int = 300,
     val durationElevationMs: Int = 150,
     val durationColorChangeMs: Int = 300,
@@ -40,7 +40,7 @@ object AppAnimationConstants {
         const val Medium = 300
         
         // Screen transitions, complex sequences
-        const val Long = 500
+        const val Long = 300
     }
 
     // Delay constants for staggered animations

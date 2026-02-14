@@ -14,6 +14,24 @@ interface GameDao {
     @Query("SELECT * FROM games ORDER BY creationTimestamp DESC")
     fun getAllGames(): Flow<List<GameEntity>>
 
+    @Query(
+        """
+        SELECT * FROM games
+        ORDER BY isPinned DESC, creationTimestamp DESC
+        LIMIT :limit OFFSET :offset
+        """
+    )
+    suspend fun getGamesPage(limit: Int, offset: Int): List<GameEntity>
+
+    @Query("SELECT COUNT(*) FROM games")
+    fun observeGamesCount(): Flow<Int>
+
+    @Query("SELECT COUNT(*) FROM games")
+    suspend fun getGamesCount(): Int
+
+    @Query("SELECT COUNT(*) FROM games WHERE isPinned = 1")
+    suspend fun getPinnedGamesCount(): Int
+
     @Query("SELECT * FROM games WHERE isPinned = 1 ORDER BY creationTimestamp DESC")
     fun getPinnedGames(): Flow<List<GameEntity>>
 

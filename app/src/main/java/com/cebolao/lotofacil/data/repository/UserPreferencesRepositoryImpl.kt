@@ -5,10 +5,12 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.utils.AppLogger
+import com.cebolao.lotofacil.domain.model.ThemeMode
 import com.cebolao.lotofacil.domain.repository.UserPreferencesRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -32,6 +34,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         private const val TAG = "UserPreferencesRepo"
         private val PINNED_GAMES_KEY = stringSetPreferencesKey("pinned_games")
         private val LAST_HISTORY_SYNC_TIMESTAMP_KEY = androidx.datastore.preferences.core.longPreferencesKey("last_history_sync_timestamp")
+        private val THEME_MODE_KEY = stringPreferencesKey("theme_mode")
     }
 
     override val pinnedGames: Flow<Set<String>> = context.dataStore.data
@@ -50,6 +53,19 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         }
         .map { preferences ->
             preferences[LAST_HISTORY_SYNC_TIMESTAMP_KEY] ?: 0L
+        }
+
+    override val themeMode: Flow<ThemeMode> = context.dataStore.data
+        .catch { exception ->
+            handleError(exception, "reading theme mode")
+            emit(emptyPreferences())
+        }
+        .map { preferences ->
+            preferences[THEME_MODE_KEY]
+                ?.let { raw ->
+                    runCatching { ThemeMode.valueOf(raw) }.getOrDefault(ThemeMode.SYSTEM)
+                }
+                ?: ThemeMode.SYSTEM
         }
 
     override suspend fun savePinnedGames(games: Set<String>) {
@@ -74,6 +90,19 @@ class UserPreferencesRepositoryImpl @Inject constructor(
                 logger.d(TAG, "Saved last sync timestamp: $timestamp")
             } catch (e: IOException) {
                 handleError(e, "saving last sync timestamp")
+            }
+        }
+    }
+
+    override suspend fun saveThemeMode(mode: ThemeMode) {
+        withContext(dispatchersProvider.io) {
+            try {
+                context.dataStore.edit { preferences ->
+                    preferences[THEME_MODE_KEY] = mode.name
+                }
+                logger.d(TAG, "Saved theme mode: ${mode.name}")
+            } catch (e: IOException) {
+                handleError(e, "saving theme mode")
             }
         }
     }

@@ -14,4 +14,6 @@ data class ParsingError(override val cause: Throwable?) : AppError
 
 data class PersistenceError(override val cause: Throwable?) : AppError
 
+data class InvalidFiltersError(override val cause: Throwable?) : AppError
+
 data class UnknownError(override val cause: Throwable?) : AppError

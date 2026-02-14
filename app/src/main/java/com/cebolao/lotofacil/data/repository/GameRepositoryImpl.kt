@@ -7,11 +7,13 @@ import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.core.utils.TimeProvider
 import com.cebolao.lotofacil.data.datasource.database.GameDao
 import com.cebolao.lotofacil.di.ApplicationScope
+import com.cebolao.lotofacil.domain.repository.GameListSummary
 import com.cebolao.lotofacil.domain.model.LotofacilGame
 import com.cebolao.lotofacil.domain.repository.GameRepository
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -25,6 +27,8 @@ class GameRepositoryImpl @Inject constructor(
     @ApplicationScope private val repositoryScope: CoroutineScope,
     private val timeProvider: TimeProvider
 ) : GameRepository {
+
+    override val gamesCount: Flow<Int> = gameDao.observeGamesCount()
 
     override val games: StateFlow<ImmutableList<LotofacilGame>> = gameDao.getAllGames()
         .map { entities ->
@@ -45,6 +49,27 @@ class GameRepositoryImpl @Inject constructor(
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = kotlinx.collections.immutable.persistentListOf()
         )
+
+    override suspend fun getGamesPage(limit: Int, offset: Int): AppResult<List<LotofacilGame>> = try {
+        val page = gameDao.getGamesPage(limit = limit, offset = offset)
+            .mapNotNull { it.toDomain() }
+        AppResult.Success(page)
+    } catch (e: Exception) {
+        AppResult.Failure(ErrorMapper.toAppError(e))
+    }
+
+    override suspend fun getGameListSummary(): AppResult<GameListSummary> = try {
+        val total = gameDao.getGamesCount()
+        val pinned = gameDao.getPinnedGamesCount()
+        AppResult.Success(
+            GameListSummary(
+                totalGames = total,
+                pinnedGames = pinned
+            )
+        )
+    } catch (e: Exception) {
+        AppResult.Failure(ErrorMapper.toAppError(e))
+    }
 
     override suspend fun addGeneratedGames(newGames: List<LotofacilGame>): AppResult<Unit> = try {
         val entities = newGames.map { it.toEntity() }

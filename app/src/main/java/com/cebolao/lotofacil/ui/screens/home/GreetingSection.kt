@@ -1,6 +1,5 @@
 package com.cebolao.lotofacil.ui.screens.home
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,44 +12,31 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.ui.components.AnimateOnEntry
+import com.cebolao.lotofacil.ui.text.AppStrings
 import com.cebolao.lotofacil.ui.theme.AppAnimationConstants
 import com.cebolao.lotofacil.ui.theme.AppSpacing
-import java.time.LocalTime
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun GreetingSection(
     modifier: Modifier = Modifier,
-    userName: String = stringResource(R.string.greeting_user),
+    userName: String = stringResource(AppStrings.Greetings.defaultUser),
     nextDrawAccumulated: Boolean = false,
     isDrawDay: Boolean = false,
     lastUpdateTime: String? = null
 ) {
-    val currentHour = remember { LocalTime.now().hour }
-    val greetingRes = remember(currentHour) {
-        when (currentHour) {
-            in 5..11 -> R.string.greeting_morning
-            in 12..17 -> R.string.greeting_afternoon
-            in 18..23 -> R.string.greeting_evening
-            else -> R.string.greeting_night
-        }
-    }
-    
-    val insightRes = remember(nextDrawAccumulated, isDrawDay) {
+    val insightRes =
         when {
-            nextDrawAccumulated -> R.string.greeting_insight_accumulated
-            isDrawDay -> R.string.today_draw_active
-            else -> R.string.greeting_insight_generic
+            nextDrawAccumulated -> AppStrings.Greetings.insightAccumulated
+            isDrawDay -> AppStrings.Greetings.todayContest
+            else -> AppStrings.Greetings.insightDefault
         }
-    }
 
     AnimateOnEntry(
         delayMillis = AppAnimationConstants.Delays.Minimal.toLong()
@@ -59,7 +45,7 @@ fun GreetingSection(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(vertical = AppSpacing.md),
-            verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)
+            verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
         ) {
             // Greeting Title
             Row(
@@ -71,12 +57,12 @@ fun GreetingSection(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)
                 ) {
-                    Text(
-                        text = "${stringResource(greetingRes)} $userName",
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = MaterialTheme.colorScheme.onBackground,
-                        fontWeight = FontWeight.Bold
-                    )
+                Text(
+                    text = stringResource(AppStrings.Greetings.helloName, userName),
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontWeight = FontWeight.Medium
+                )
                 }
             }
             
@@ -94,7 +80,7 @@ fun GreetingSection(
                 Text(
                     text = stringResource(insightRes),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                 )
             }
             

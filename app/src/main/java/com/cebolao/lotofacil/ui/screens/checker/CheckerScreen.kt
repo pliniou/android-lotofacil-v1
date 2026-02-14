@@ -19,6 +19,8 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -53,6 +55,7 @@ import com.cebolao.lotofacil.ui.components.NumberGrid
 import com.cebolao.lotofacil.ui.components.RecentHitsChartContent
 import com.cebolao.lotofacil.ui.components.screenContentPadding
 import com.cebolao.lotofacil.ui.components.shimmer
+import com.cebolao.lotofacil.ui.text.AppStrings
 import com.cebolao.lotofacil.ui.theme.AppElevation
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppTheme
@@ -65,7 +68,10 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun CheckerScreen(
     modifier: Modifier = Modifier,
-    checkerViewModel: CheckerViewModel = hiltViewModel()
+    checkerViewModel: CheckerViewModel = hiltViewModel(),
+    onBackClick: (() -> Unit)? = null,
+    onGenerateNewGame: () -> Unit = {},
+    onRefineWithPattern: (Set<Int>) -> Unit = {}
 ) {
     val context = LocalContext.current
     val screenState by checkerViewModel.uiState.collectAsStateWithLifecycle()
@@ -96,6 +102,9 @@ fun CheckerScreen(
         screenState = screenState,
         snackbarHostState = snackbarHostState,
         modifier = modifier,
+        onBackClick = onBackClick,
+        onGenerateNewGame = onGenerateNewGame,
+        onRefineWithPattern = onRefineWithPattern,
         onAction = { action ->
             when (action) {
                 is CheckerAction.OnNumberClicked -> checkerViewModel.onNumberClicked(action.number)
@@ -127,6 +136,9 @@ fun CheckerScreenContent(
     screenState: CheckerScreenState,
     modifier: Modifier = Modifier,
     snackbarHostState: androidx.compose.material3.SnackbarHostState = remember { androidx.compose.material3.SnackbarHostState() },
+    onBackClick: (() -> Unit)? = null,
+    onGenerateNewGame: () -> Unit = {},
+    onRefineWithPattern: (Set<Int>) -> Unit = {},
     onAction: (CheckerAction) -> Unit = {}
 ) {
     val listState = rememberLazyListState()
@@ -142,6 +154,7 @@ fun CheckerScreenContent(
         title = stringResource(id = R.string.check_game_title),
         subtitle = stringResource(id = R.string.check_game_subtitle),
         icon = Icons.AutoMirrored.Filled.FactCheck,
+        onBackClick = onBackClick,
         snackbarHostState = snackbarHostState
     ) { paddingValues ->
         LazyColumn(
@@ -191,7 +204,10 @@ fun CheckerScreenContent(
                         is CheckerUiState.Success -> {
                             CheckerSuccessContent(
                                 result = checkerState.result,
-                                stats = checkerState.simpleStats
+                                stats = checkerState.simpleStats,
+                                selectedNumbers = screenState.selectedNumbers,
+                                onGenerateNewGame = onGenerateNewGame,
+                                onRefineWithPattern = onRefineWithPattern
                             )
                         }
                         is CheckerUiState.Error -> {
@@ -252,10 +268,20 @@ private fun NumberGridSection(
             modifier = Modifier.padding(AppSpacing.lg),
             verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
         ) {
+            val counterColor = when {
+                selectedNumbers.size == 15 -> MaterialTheme.colorScheme.primary
+                selectedNumbers.size > 15 -> MaterialTheme.colorScheme.error
+                else -> MaterialTheme.colorScheme.onSurface
+            }
+            
             Text(
-                text = stringResource(id = R.string.selected_numbers_progress, selectedNumbers.size),
+                text = stringResource(
+                    id = AppStrings.Labels.selectedNumbers,
+                    selectedNumbers.size,
+                    LotofacilConstants.GAME_SIZE
+                ),
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary
+                color = counterColor
             )
             
             // Optimize grid items generation with stable keys
@@ -303,7 +329,10 @@ private fun CheckerLoadingContent(progress: Float, message: String) {
 @Composable
 private fun CheckerSuccessContent(
     result: com.cebolao.lotofacil.domain.model.CheckResult,
-    stats: ImmutableList<GameStatistic>
+    stats: ImmutableList<GameStatistic>,
+    selectedNumbers: Set<Int>,
+    onGenerateNewGame: () -> Unit,
+    onRefineWithPattern: (Set<Int>) -> Unit
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)) {
         AnimateOnEntry {
@@ -328,6 +357,23 @@ private fun CheckerSuccessContent(
                     GameStatsList(stats = stats)
                     HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f))
                     RecentHitsChartContent(recentHits = result.recentHits)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+                    ) {
+                        OutlinedButton(
+                            modifier = Modifier.weight(1f),
+                            onClick = onGenerateNewGame
+                        ) {
+                            Text(text = stringResource(id = R.string.generate_new_game_button))
+                        }
+                        Button(
+                            modifier = Modifier.weight(1f),
+                            onClick = { onRefineWithPattern(selectedNumbers) }
+                        ) {
+                            Text(text = stringResource(id = R.string.refine_from_pattern_button))
+                        }
+                    }
                 }
             }
         }

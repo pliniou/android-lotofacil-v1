@@ -77,12 +77,16 @@ fun BarChart(
     }
 
     val primaryColor = MaterialTheme.colorScheme.primary
-    val secondaryColor = MaterialTheme.colorScheme.secondary
+    val primaryContainer = MaterialTheme.colorScheme.primaryContainer
     val surfaceVariant = MaterialTheme.colorScheme.surfaceVariant
     val onSurfaceVariant = MaterialTheme.colorScheme.onSurfaceVariant
+    val onSurface = MaterialTheme.colorScheme.onSurface
+    val surface = MaterialTheme.colorScheme.surface
     val outlineVariant = MaterialTheme.colorScheme.outlineVariant
     val tertiaryColor = MaterialTheme.colorScheme.tertiary
     val tertiaryContainer = MaterialTheme.colorScheme.tertiaryContainer
+    val errorColor = MaterialTheme.colorScheme.error
+    val errorContainer = MaterialTheme.colorScheme.errorContainer
     val sizes = AppTheme.sizes
     val resolvedChartHeight = chartHeight ?: sizes.chartHeightDefault
     val labelSpacingCompact = sizes.chartLabelMinSpacingCompact
@@ -101,11 +105,11 @@ fun BarChart(
             this.textAlign = Paint.Align.RIGHT
         }
     }
-    val valuePaint = remember(textSize, primaryColor) {
+    val valuePaint = remember(textSize, onSurface) {
         Paint().apply {
             isAntiAlias = true
             this.textSize = textSize
-            this.color = primaryColor.toArgb()
+            this.color = onSurface.toArgb()
             this.textAlign = Paint.Align.CENTER
             isFakeBoldText = true
         }
@@ -205,9 +209,24 @@ fun BarChart(
 
                     // Actual data bar with Gradient
                     if (barHeight > 0) {
-                        val isHighlighted = highlightThreshold != null && value >= highlightThreshold
-                        val barColor1 = if (isHighlighted) tertiaryColor else primaryColor
-                        val barColor2 = if (isHighlighted) tertiaryContainer else secondaryColor
+                        // Determine bar colors based on value relative to average
+                        val avgValue = data.map { it.second }.average().toFloat()
+                        val isAboveAverage = value >= avgValue
+                        val isOutlier = value >= avgValue * 1.5f
+                        val isHighlight = highlightThreshold != null && value >= highlightThreshold
+                        
+                        val barColor1 = when {
+                            isHighlight -> tertiaryColor
+                            isOutlier -> errorColor
+                            isAboveAverage -> primaryColor
+                            else -> primaryContainer
+                        }
+                        val barColor2 = when {
+                            isHighlight -> tertiaryContainer
+                            isOutlier -> errorContainer
+                            isAboveAverage -> primaryContainer
+                            else -> primaryColor.copy(alpha = 0.8f)
+                        }
 
                         drawRoundRect(
                             brush = Brush.verticalGradient(
@@ -223,13 +242,32 @@ fun BarChart(
 
                     val shouldDrawLabel = index % labelStep == 0 || index == data.lastIndex
 
-                    // Value text above the bar with scale animation
+                    // Value text above the bar with scale animation and background
                     val valueTextY = valueLabelHeightPx + chartAreaHeight - barHeight - 8.dp.toPx()
                     if (showValueLabels && shouldDrawLabel && progressFactor > 0.6f) {
                         val textAlpha = ((progressFactor - 0.6f) * 2.5f).coerceIn(0f, 1f)
+                        
+                        // Draw semi-transparent background for value text
+                        val valueText = value.toString()
+                        val textWidth = valuePaint.measureText(valueText)
+                        val backgroundPadding = 6.dp.toPx()
+                        
+                        drawRoundRect(
+                            color = surface.copy(alpha = 0.7f),
+                            topLeft = Offset(
+                                barCenterX - textWidth / 2 - backgroundPadding,
+                                valueTextY - textSize - backgroundPadding / 2
+                            ),
+                            size = Size(
+                                textWidth + backgroundPadding * 2,
+                                textSize + backgroundPadding
+                            ),
+                            cornerRadius = CornerRadius(4.dp.toPx())
+                        )
+                        
                         valuePaint.alpha = (textAlpha * 255).toInt()
                         drawContext.canvas.nativeCanvas.drawText(
-                            value.toString(),
+                            valueText,
                             barCenterX,
                             valueTextY,
                             valuePaint
@@ -348,6 +386,5 @@ private fun DrawScope.drawGrid(
         strokeWidth = 1.5.dp.toPx()
     )
 }
-
 
 

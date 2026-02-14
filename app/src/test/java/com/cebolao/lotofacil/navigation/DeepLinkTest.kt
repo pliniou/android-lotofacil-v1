@@ -41,9 +41,10 @@ class DeepLinkTest {
     fun `all destinations have navigation properties`() {
         val destinations = listOf(
             Destination.Home,
-            Destination.Filters,
+            Destination.Filters(),
             Destination.GeneratedGames,
             Destination.Checker(),
+            Destination.Analysis(gameId = "test"),
             Destination.About,
             Destination.Insights,
             Destination.UserStats
@@ -60,7 +61,7 @@ class DeepLinkTest {
     fun `bottom nav destinations are configured`() {
         assertTrue(bottomNavDestinations.isNotEmpty())
         assertTrue(bottomNavDestinations.contains(Destination.Home))
-        assertTrue(bottomNavDestinations.contains(Destination.Filters))
+        assertTrue(bottomNavDestinations.contains(Destination.Filters()))
         assertTrue(bottomNavDestinations.contains(Destination.GeneratedGames))
     }
 

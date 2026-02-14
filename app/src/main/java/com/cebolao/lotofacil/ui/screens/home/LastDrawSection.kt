@@ -1,6 +1,7 @@
 package com.cebolao.lotofacil.ui.screens.home
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.BorderStroke
@@ -13,6 +14,11 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.material3.SuggestionChip
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.withStyle
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -90,30 +96,15 @@ private fun LatestResultCard(
         isGlassmorphic = true
     ) {
         Column {
-            // Header
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text(
-                        text = "${stringResource(id = R.string.last_contest)} #${NumberFormatUtils.formatInteger(stats.contest)}",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold,
-                        color = colors.primary
-                    )
-                    stats.date?.let {
-                        Text(
-                            text = it,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = colors.onSurfaceVariant
-                        )
-                    }
-                }
-            }
+            // Secondary title label
+            Text(
+                text = "${stringResource(id = R.string.last_contest)} #${NumberFormatUtils.formatInteger(stats.contest)}",
+                style = MaterialTheme.typography.labelMedium,
+                color = colors.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
 
-            Spacer(modifier = Modifier.height(AppSpacing.lg))
+            Spacer(modifier = Modifier.height(AppSpacing.md))
 
             // Numbers Grid
             val sortedNumbers = remember(stats.numbers) { stats.numbers.sorted() }
@@ -157,16 +148,38 @@ private fun FlowNumbersGrid(numbers: List<Int>) {
 @Composable
 private fun QuickStatsRow(stats: LastDrawStats) {
     val cachedSum = remember(stats.sum) { NumberFormatUtils.formatInteger(stats.sum) }
-    
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
+    val primaryStats = listOf(
+        stringResource(R.string.sum_label) to cachedSum,
+        stringResource(R.string.even_label) to NumberFormatUtils.formatInteger(stats.evens),
+        stringResource(R.string.prime_label) to NumberFormatUtils.formatInteger(stats.primes)
+    )
+    val secondaryStats = listOf(
+        stringResource(R.string.frame_label) to NumberFormatUtils.formatInteger(stats.frame),
+        stringResource(R.string.portrait_label) to NumberFormatUtils.formatInteger(stats.portrait)
+    )
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(AppSpacing.sm)
     ) {
-        StatItem(label = stringResource(id = R.string.sum_label), value = cachedSum)
-        StatItem(label = stringResource(id = R.string.even_label), value = remember(stats.evens) { NumberFormatUtils.formatInteger(stats.evens) })
-        StatItem(label = stringResource(id = R.string.prime_label), value = remember(stats.primes) { NumberFormatUtils.formatInteger(stats.primes) })
-        StatItem(label = stringResource(id = R.string.frame_label), value = remember(stats.frame) { NumberFormatUtils.formatInteger(stats.frame) })
-        StatItem(label = stringResource(id = R.string.portrait_label), value = remember(stats.portrait) { NumberFormatUtils.formatInteger(stats.portrait) })
+        LazyRow(
+            modifier = Modifier.fillMaxWidth(),
+            contentPadding = PaddingValues(horizontal = AppSpacing.lg),
+            horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+        ) {
+            items(primaryStats) { (label, value) ->
+                StatChip(label = label, value = value)
+            }
+        }
+
+        LazyRow(
+            modifier = Modifier.fillMaxWidth(),
+            contentPadding = PaddingValues(horizontal = AppSpacing.lg),
+            horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
+        ) {
+            items(secondaryStats) { (label, value) ->
+                StatChip(label = label, value = value)
+            }
+        }
     }
 }
 
@@ -205,8 +218,8 @@ private fun PrizeDetailsSection(
 
         AnimatedVisibility(
             visible = showPrizes,
-            enter = expandVertically(),
-            exit = shrinkVertically()
+            enter = expandVertically(animationSpec = tween(durationMillis = 220)),
+            exit = shrinkVertically(animationSpec = tween(durationMillis = 200))
         ) {
             Column(
                 modifier = Modifier
@@ -407,6 +420,25 @@ private fun WinnerBadge(winner: WinnerLocation) {
     }
 }
  
+@Composable
+private fun StatChip(label: String, value: String) {
+    SuggestionChip(
+        onClick = { /* no op */ },
+        label = {
+            Text(
+                text = buildAnnotatedString {
+                    append("$label: ")
+                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                        append(value)
+                    }
+                },
+                style = MaterialTheme.typography.bodyMedium
+            )
+        },
+        modifier = Modifier.defaultMinSize(minWidth = 72.dp)
+    )
+}
+
 @Composable
 private fun StatItem(label: String, value: String) {
     val colors = MaterialTheme.colorScheme

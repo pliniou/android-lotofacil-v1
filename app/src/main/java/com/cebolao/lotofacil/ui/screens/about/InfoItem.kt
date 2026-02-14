@@ -2,6 +2,7 @@ package com.cebolao.lotofacil.ui.screens.about
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import android.util.Log
 
 sealed class InfoItem(
     val titleResId: Int,
@@ -9,6 +10,19 @@ sealed class InfoItem(
     val icon: ImageVector,
     val content: @Composable () -> Unit
 ) {
+    companion object {
+        fun validateUniqueItems(items: List<InfoItem>) {
+            val titleIds = items.map { it.titleResId }
+            val duplicates = titleIds.groupBy { it }.filter { it.value.size > 1 }.keys
+            
+            if (duplicates.isNotEmpty()) {
+                runCatching {
+                    Log.e("InfoItem", "Duplicate InfoItem titleResId found: $duplicates")
+                }
+                throw IllegalStateException("Duplicate InfoItem titles detected: $duplicates")
+            }
+        }
+    }
     class Rules(
         icon: ImageVector,
         content: @Composable () -> Unit

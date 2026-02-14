@@ -29,11 +29,11 @@ class StatisticsEngine @Inject constructor(
 
     /**
      * Produces a comprehensive [StatisticsReport] from a list of historical
-     * draws. Heavy work is dispatched to [DispatchersProvider.io] and
+     * draws. Heavy work is dispatched to [DispatchersProvider.default] and
      * parallelised with structured concurrency.
      */
     suspend fun analyze(draws: List<HistoricalDraw>): StatisticsReport =
-        withContext(dispatchersProvider.io) {
+        withContext(dispatchersProvider.default) {
             if (draws.isEmpty()) return@withContext StatisticsReport()
 
             coroutineScope {
@@ -198,7 +198,7 @@ class StatisticsEngine @Inject constructor(
      * Extracts computed statistics for a single [LotofacilGame].
      */
     suspend fun analyzeGame(game: LotofacilGame): List<GameStatistic> =
-        withContext(dispatchersProvider.io) {
+        withContext(dispatchersProvider.default) {
             listOf(
                 GameStatistic(GameStatisticType.SUM, game.sum),
                 GameStatistic(GameStatisticType.EVENS, game.evens),

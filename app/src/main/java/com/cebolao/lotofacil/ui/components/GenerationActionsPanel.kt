@@ -1,6 +1,8 @@
 package com.cebolao.lotofacil.ui.components
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -53,6 +55,9 @@ import java.util.Locale
 @Composable
 fun GenerationActionsPanel(
     generationState: GenerationUiState,
+    isDataSyncing: Boolean = false,
+    activeFiltersCount: Int = 0,
+    isCombinationPossible: Boolean = true,
     onGenerate: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -62,6 +67,35 @@ fun GenerationActionsPanel(
     val quantity = options[selectedIndex]
     val currencyFormat = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR")) }
     val isLoading = generationState is GenerationUiState.Loading
+    
+    // Validation states
+    val isQuantityValid = quantity > 0
+    val hasActiveFilters = activeFiltersCount > 0
+    val isGenerateEnabled = isQuantityValid &&
+        hasActiveFilters &&
+        isCombinationPossible &&
+        !isLoading &&
+        !isDataSyncing
+    
+    // Button color animation
+    val buttonContainerColor by animateColorAsState(
+        targetValue = if (isGenerateEnabled) {
+            MaterialTheme.colorScheme.primary
+        } else {
+            MaterialTheme.colorScheme.surfaceVariant
+        },
+        animationSpec = tween(300),
+        label = "buttonColor"
+    )
+    val buttonContentColor by animateColorAsState(
+        targetValue = if (isGenerateEnabled) {
+            MaterialTheme.colorScheme.onPrimary
+        } else {
+            MaterialTheme.colorScheme.onSurfaceVariant
+        },
+        animationSpec = tween(300),
+        label = "buttonContentColor"
+    )
 
     AppCard(
         modifier = modifier.fillMaxWidth(),
@@ -93,24 +127,46 @@ fun GenerationActionsPanel(
                             selectedIndex++
                         }
                     },
-                    isDecrementEnabled = selectedIndex > 0 && !isLoading,
-                    isIncrementEnabled = selectedIndex < options.lastIndex && !isLoading
+                    isDecrementEnabled = selectedIndex > 0 && !isLoading && !isDataSyncing,
+                    isIncrementEnabled = selectedIndex < options.lastIndex && !isLoading && !isDataSyncing
                 )
             }
             HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f))
-            Row(
+            
+            // Cost section with breakdown
+            Column(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)
             ) {
-                Text(stringResource(id = R.string.total_cost), style = MaterialTheme.typography.bodyLarge)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.total_cost),
+                        style = MaterialTheme.typography.headlineSmall
+                    )
+                    Text(
+                        text = currencyFormat.format(
+                            LotofacilConstants.GAME_COST.multiply(BigDecimal(quantity))
+                        ),
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                
+                // Cost breakdown explanation
                 Text(
-                    text = currencyFormat.format(
-                        LotofacilConstants.GAME_COST.multiply(BigDecimal(quantity))
+                    text = stringResource(
+                        id = R.string.cost_calculation,
+                        quantity,
+                        LotofacilConstants.GAME_COST.toPlainString()
                     ),
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.primary
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 4.dp)
                 )
             }
             Button(
@@ -122,8 +178,12 @@ fun GenerationActionsPanel(
                     .fillMaxWidth()
                     .height(AppSize.buttonHeightDefault)
                     .testTag(AppTestTags.FiltersGenerateButton),
-                enabled = !isLoading,
-                shape = MaterialTheme.shapes.large
+                enabled = isGenerateEnabled,
+                shape = MaterialTheme.shapes.large,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = buttonContainerColor,
+                    contentColor = buttonContentColor
+                )
             ) {
                 AnimatedContent(
                     targetState = isLoading,
@@ -152,6 +212,23 @@ fun GenerationActionsPanel(
                         }
                     }
                 }
+            }
+            
+            // Error message when button is disabled
+            if (!isGenerateEnabled) {
+                Spacer(modifier = Modifier.height(AppSpacing.xs))
+                Text(
+                    text = when {
+                        isDataSyncing -> stringResource(R.string.generate_button_disabled_syncing)
+                        !isQuantityValid -> stringResource(R.string.generate_button_disabled_no_quantity)
+                        !hasActiveFilters -> stringResource(R.string.generate_button_disabled_no_filters)
+                        !isCombinationPossible -> stringResource(R.string.generate_button_disabled_impossible_filters)
+                        else -> stringResource(R.string.generate_button_disabled_invalid_filters)
+                    },
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         }
     }

@@ -5,6 +5,7 @@
 
 # Gradle
 .gradle/
+.gradle-user
 .gradle-cache/
 gradle/
 gradlew

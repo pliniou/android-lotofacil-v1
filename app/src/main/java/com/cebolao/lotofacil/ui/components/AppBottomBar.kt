@@ -80,9 +80,10 @@ fun AppBottomBar(
 
 private fun Destination.testTagRoute(): String = when (this) {
     Destination.Home -> "home"
-    Destination.Filters -> "filters"
+    is Destination.Filters -> "filters"
     Destination.GeneratedGames -> "games"
     is Destination.Checker -> "checker"
+    is Destination.Analysis -> "analysis"
     Destination.About -> "about"
     Destination.Insights -> "insights"
     Destination.UserStats -> "user_stats"

@@ -1,0 +1,24 @@
+<resources>
+    <!-- greetings -->
+    <string name="greeting_hello_name">Hello, %1$s</string>
+
+    <!-- ctas -->
+    <string name="cta_generate_game">Generate game</string>
+    <string name="common_view_all">View all</string>
+
+    <!-- labels -->
+    <string name="selected_numbers_counter">Selected: %1$d/%2$d</string>
+    <string name="home_analysis_type_label">Analysis type</string>
+    <string name="home_period_label">Period</string>
+    <string name="home_hot_number_frequency">Drawn %1$sx</string>
+    <string name="home_cold_number_overdue">Missing for %1$s draws</string>
+    <string name="active_filters_count_summary">%1$d of %2$d active filters</string>
+
+    <!-- tooltips -->
+    <string name="tooltip_analysis_type">Choose the statistical analysis type. Example: Fibonacci uses 1, 2, 3, 5, 8, 13, and 21.</string>
+    <string name="tooltip_period">Choose the analysis period: all available contests or the last 20, 50, or 100.</string>
+
+    <!-- common -->
+    <string name="common_information_title">Information</string>
+    <string name="common_ok">Got it</string>
+</resources>

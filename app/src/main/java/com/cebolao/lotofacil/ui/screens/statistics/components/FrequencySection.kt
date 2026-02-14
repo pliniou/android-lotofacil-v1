@@ -13,9 +13,14 @@ import androidx.compose.material.icons.outlined.BarChart
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -110,9 +115,14 @@ fun FrequencySection(analysis: FrequencyAnalysis) {
 @Composable
 private fun FrequencyBarChart(frequencies: Map<Int, Int>) {
     val primary = MaterialTheme.colorScheme.primary
-    val onSurfaceVariant = MaterialTheme.colorScheme.onSurfaceVariant
+    val primaryContainer = MaterialTheme.colorScheme.primaryContainer
+    val error = MaterialTheme.colorScheme.error
+    val errorContainer = MaterialTheme.colorScheme.errorContainer
+    val onSurface = MaterialTheme.colorScheme.onSurface
+    val surface = MaterialTheme.colorScheme.surface
     val textMeasurer = rememberTextMeasurer()
     val maxFreq = frequencies.values.maxOrNull()?.toFloat() ?: 1f
+    val avgFreq = frequencies.values.average().toFloat()
 
     AppCard {
         Canvas(
@@ -129,28 +139,77 @@ private fun FrequencyBarChart(frequencies: Map<Int, Int>) {
                 val count = frequencies[number] ?: 0
                 val barHeight = (count / maxFreq) * chartHeight
                 val x = startX + (number - 1) * barWidth
+                
+                // Determine bar color based on frequency relative to average
+                val isAboveAverage = count > avgFreq
+                val isOutlier = count > avgFreq * 1.5f || count < avgFreq * 0.5f
+                
+                // Bar colors with proper contrast
+                val barColors = when {
+                    isOutlier -> listOf(error, errorContainer)
+                    isAboveAverage -> listOf(primary, primaryContainer)
+                    else -> listOf(primaryContainer, primary.copy(alpha = 0.7f))
+                }
 
-                // Bar
-                drawRect(
-                    color = primary.copy(alpha = 0.7f + 0.3f * (count / maxFreq)),
+                // Draw bar with gradient for better contrast
+                drawRoundRect(
+                    brush = Brush.verticalGradient(
+                        colors = barColors,
+                        startY = chartHeight - barHeight,
+                        endY = chartHeight
+                    ),
                     topLeft = Offset(x + 1.dp.toPx(), chartHeight - barHeight),
-                    size = Size(barWidth - 2.dp.toPx(), barHeight)
+                    size = Size(barWidth - 2.dp.toPx(), barHeight),
+                    cornerRadius = CornerRadius(barWidth / 8)
                 )
+                
+                // Draw value label with semi-transparent background for legibility
+                if (count > 0) {
+                    val valueText = count.toString()
+                    val valueTextResult = textMeasurer.measure(
+                        text = valueText,
+                        style = TextStyle(
+                            fontSize = 10.sp,
+                            color = onSurface,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+                    
+                    val textX = x + barWidth / 2 - valueTextResult.size.width / 2
+                    val textY = chartHeight - barHeight - 16.dp.toPx()
+                    
+                    // Semi-transparent background scrim (70% alpha)
+                    drawRoundRect(
+                        color = surface.copy(alpha = 0.7f),
+                        topLeft = Offset(textX - 4.dp.toPx(), textY - 2.dp.toPx()),
+                        size = Size(
+                            valueTextResult.size.width + 8.dp.toPx(),
+                            valueTextResult.size.height + 4.dp.toPx()
+                        ),
+                        cornerRadius = CornerRadius(4.dp.toPx())
+                    )
+                    
+                    // Draw the value text
+                    drawText(
+                        valueTextResult,
+                        topLeft = Offset(textX, textY)
+                    )
+                }
 
-                // Label every 5th number
-                if (number % 5 == 0 || number == 1) {
+                // X-axis labels for key numbers (01, 05, 10, 15, 20, 25)
+                if (number == 1 || number % 5 == 0) {
                     val label = "%02d".format(number)
-                    val textResult = textMeasurer.measure(
+                    val labelResult = textMeasurer.measure(
                         text = label,
                         style = TextStyle(
                             fontSize = 9.sp,
-                            color = onSurfaceVariant
+                            color = onSurface
                         )
                     )
                     drawText(
-                        textResult,
+                        labelResult,
                         topLeft = Offset(
-                            x + barWidth / 2 - textResult.size.width / 2,
+                            x + barWidth / 2 - labelResult.size.width / 2,
                             chartHeight + 4.dp.toPx()
                         )
                     )

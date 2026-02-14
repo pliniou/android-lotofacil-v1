@@ -8,8 +8,12 @@ import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.ui.draw.scale
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -71,6 +75,7 @@ fun NumberBallInteractive(
     borderWidth: Dp = 1.dp,
     shape: Shape = MaterialTheme.shapes.medium,
     isDisabled: Boolean = false,
+    isSelected: Boolean = false,
     onClick: (() -> Unit)? = null,
     contentDescription: String = ""
 ) {
@@ -141,7 +146,7 @@ fun NumberBallInteractive(
     ) {
         val formattedNumber = remember(number) { NumberFormatUtils.formatLotteryNumber(number) }
 
-        Box(contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(
                 text = formattedNumber,
                 color = animatedContentColor,
@@ -150,6 +155,14 @@ fun NumberBallInteractive(
                     fontSize = (size.value * 0.4f).sp // Responsive font size
                 )
             )
+            if (isSelected) {
+                Icon(
+                    imageVector = Icons.Filled.Check,
+                    contentDescription = null,
+                    modifier = Modifier.align(Alignment.TopEnd).size(12.dp),
+                    tint = animatedContentColor
+                )
+            }
         }
     }
 }
@@ -223,7 +236,7 @@ fun NumberBall(
     )
 
     val borderWidthValue = remember(isSelected, isHighlighted) {
-        if (isHighlighted && !isSelected) 2.dp else 1.dp
+        if (isSelected) 2.dp else if (isHighlighted) 2.dp else 1.dp
     }
 
     val taggedModifier = modifier.testTag("${AppTestTags.NumberBallPrefix}$number")
@@ -238,6 +251,7 @@ fun NumberBall(
         borderWidth = borderWidthValue,
         shape = shape,
         isDisabled = isDisabled,
+        isSelected = isSelected,
         onClick = onClick,
         contentDescription = numberContentDescription
     )

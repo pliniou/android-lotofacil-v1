@@ -97,5 +97,13 @@ fun CheckerScrollableActions(
                 }
             }
         }
+
+        if (!isButtonEnabled && !isLoading) {
+            Text(
+                text = stringResource(id = R.string.checker_incomplete_selection),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error
+            )
+        }
     }
 }

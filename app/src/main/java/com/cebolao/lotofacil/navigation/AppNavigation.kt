@@ -8,16 +8,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.navDeepLink
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.cebolao.lotofacil.ui.screens.about.AboutScreen
 import com.cebolao.lotofacil.ui.screens.checker.CheckerScreen
 import com.cebolao.lotofacil.ui.screens.filters.FiltersScreen
+import com.cebolao.lotofacil.ui.screens.generated.GameAnalysisScreen
 import com.cebolao.lotofacil.ui.screens.generated.GeneratedGamesScreen
 import com.cebolao.lotofacil.ui.screens.home.HomeScreen
 import com.cebolao.lotofacil.ui.screens.statistics.StatisticsScreen
 import com.cebolao.lotofacil.ui.screens.stats.UserStatsScreen
+import com.cebolao.lotofacil.domain.model.ThemeMode
 
 /**
  * Navigation utilities for type-safe navigation.
@@ -32,6 +35,12 @@ fun NavController.navigateToDestination(destination: Destination) {
     }
 }
 
+private fun NavController.navigateUpOrDestination(destination: Destination) {
+    if (!popBackStack()) {
+        navigateToDestination(destination)
+    }
+}
+
 /**
  * Navigation graph setup using type-safe destinations.
  */
@@ -40,6 +49,8 @@ fun AppNavigation(
     modifier: Modifier = Modifier,
     navController: androidx.navigation.NavHostController,
     startDestination: Destination = Destination.Home,
+    themeMode: ThemeMode = ThemeMode.SYSTEM,
+    onThemeModeSelected: (ThemeMode) -> Unit = {},
     onNavigateToGeneratedGames: () -> Unit = {}
 ) {
     
@@ -80,35 +91,86 @@ fun AppNavigation(
             )
         }
         
-        composable<Destination.Filters> {
-            FiltersScreen {
-                onNavigateToGeneratedGames()
-            }
+        composable<Destination.Filters> { backStackEntry ->
+            val destination = backStackEntry.toRoute<Destination.Filters>()
+            FiltersScreen(
+                initialPreset = destination.preset,
+                onNavigateToGeneratedGames = onNavigateToGeneratedGames,
+                onBackClick = {
+                    navController.navigateToDestination(Destination.Home)
+                }
+            )
         }
         
         composable<Destination.GeneratedGames> {
-            GeneratedGamesScreen()
+            GeneratedGamesScreen(
+                onNavigateToFilters = {
+                    navController.navigateToDestination(Destination.Filters())
+                },
+                onNavigateToAnalysis = { game ->
+                    navController.navigate(Destination.Analysis(gameId = game.id))
+                },
+                onDuplicateAndEdit = { game ->
+                    navController.navigate(Destination.Filters(preset = game.toGeneratorPreset()))
+                },
+                onBackClick = {
+                    navController.navigateToDestination(Destination.Filters())
+                }
+            )
         }
         
         composable<Destination.Checker> {
-            CheckerScreen()
+            CheckerScreen(
+                onBackClick = {
+                    navController.navigateToDestination(Destination.GeneratedGames)
+                },
+                onGenerateNewGame = {
+                    navController.navigateToDestination(Destination.Filters())
+                },
+                onRefineWithPattern = { numbers ->
+                    navController.navigate(Destination.Filters(preset = numbers.toGeneratorPreset()))
+                }
+            )
+        }
+
+        composable<Destination.Analysis>(
+            deepLinks = listOf(
+                navDeepLink { uriPattern = "cebolao://game/{gameId}" }
+            )
+        ) { backStackEntry ->
+            val destination = backStackEntry.toRoute<Destination.Analysis>()
+            GameAnalysisScreen(
+                gameId = destination.gameId,
+                onBackClick = {
+                    navController.navigateUpOrDestination(Destination.GeneratedGames)
+                },
+                onGenerateVariation = { game ->
+                    navController.navigate(Destination.Filters(preset = game.toGeneratorPreset()))
+                }
+            )
         }
         
         composable<Destination.About> {
-            AboutScreen(onNavigateToUserStats = { navController.navigate(Destination.UserStats) })
+            AboutScreen(
+                selectedThemeMode = themeMode,
+                onThemeModeSelected = onThemeModeSelected,
+                onNavigateToUserStats = { navController.navigate(Destination.UserStats) },
+                onBackClick = {
+                    navController.navigateToDestination(Destination.Home)
+                }
+            )
         }
 
         composable<Destination.Insights> {
             StatisticsScreen(
-                onNavigateBack = { navController.popBackStack() }
+                onNavigateBack = { navController.navigateUpOrDestination(Destination.Home) }
             )
         }
 
         composable<Destination.UserStats> {
             UserStatsScreen(
-                onNavigateBack = { navController.popBackStack() }
+                onNavigateBack = { navController.navigateUpOrDestination(Destination.About) }
             )
         }
     }
 }
-

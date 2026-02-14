@@ -10,6 +10,7 @@ import com.cebolao.lotofacil.domain.model.HistoricalDraw
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.repository.SyncStatus
 import com.cebolao.lotofacil.domain.repository.UserPreferencesRepository
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -104,6 +105,9 @@ class HistoryRepositoryImpl @Inject constructor(
                     userPreferencesRepository.saveLastHistorySyncTimestamp(successTime)
                     _syncStatus.value = SyncStatus.Success
                     AppResult.Success(Unit)
+                } catch (e: CancellationException) {
+                    _syncStatus.value = SyncStatus.Idle
+                    throw e
                 } catch (e: Exception) {
                     // If network failure, permit retry sooner but not immediately
                     // We update timestamp to partially throttle retries

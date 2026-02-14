@@ -26,7 +26,7 @@ fun AnimateOnEntry(
     finalAlpha: Float = 1f,
     initialOffsetY: Dp = 16.dp,
     finalOffsetY: Dp = 0.dp,
-    animationSpec: Int = 500,
+    animationSpec: Int = 260,
     delayMillis: Long = 0L,
     content: @Composable (modifier: Modifier) -> Unit
 ) {

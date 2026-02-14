@@ -2,6 +2,7 @@ package com.cebolao.lotofacil.domain.usecase
 
 import com.cebolao.lotofacil.core.coroutine.DispatchersProvider
 import com.cebolao.lotofacil.core.error.ErrorMapper
+import com.cebolao.lotofacil.core.error.InvalidFiltersError
 import com.cebolao.lotofacil.core.result.AppResult
 import com.cebolao.lotofacil.core.result.toSuccess
 import com.cebolao.lotofacil.domain.model.FilterState
@@ -9,6 +10,7 @@ import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.domain.model.LotofacilGame
 import com.cebolao.lotofacil.domain.repository.HistoryRepository
 import com.cebolao.lotofacil.domain.service.GameGenerator
+import com.cebolao.lotofacil.domain.service.GameGenerationException
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -38,9 +40,10 @@ class GenerateGamesUseCase @Inject constructor(
                 lastDraw = lastDrawNumbers
             )
             games.toSuccess()
+        } catch (e: GameGenerationException) {
+            AppResult.Failure(InvalidFiltersError(e))
         } catch (e: Exception) {
-            val error = ErrorMapper.toAppError(e)
-            AppResult.Failure(error)
+            AppResult.Failure(ErrorMapper.toAppError(e))
         }
     }
 }

@@ -25,7 +25,9 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalHapticFeedback
+import android.util.Log
 import com.cebolao.lotofacil.R
+import com.cebolao.lotofacil.domain.model.ThemeMode
 import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
 import com.cebolao.lotofacil.ui.components.InfoDialog
@@ -35,7 +37,10 @@ import com.cebolao.lotofacil.ui.theme.AppSpacing
 @Composable
 fun AboutScreen(
     modifier: Modifier = Modifier,
-    onNavigateToUserStats: () -> Unit
+    selectedThemeMode: ThemeMode = ThemeMode.SYSTEM,
+    onThemeModeSelected: (ThemeMode) -> Unit = {},
+    onNavigateToUserStats: () -> Unit,
+    onBackClick: (() -> Unit)? = null
 ) {
     var dialogContent by remember { mutableStateOf<InfoItem?>(null) }
     val hapticFeedback = LocalHapticFeedback.current
@@ -43,7 +48,10 @@ fun AboutScreen(
     AboutScreenContent(
         modifier = modifier,
         dialogContent = dialogContent,
+        selectedThemeMode = selectedThemeMode,
+        onThemeModeSelected = onThemeModeSelected,
         onNavigateToUserStats = onNavigateToUserStats,
+        onBackClick = onBackClick,
         onAction = { action ->
             when (action) {
                 is AboutAction.ShowDialog -> {
@@ -69,7 +77,10 @@ sealed class AboutAction {
 fun AboutScreenContent(
     modifier: Modifier = Modifier,
     dialogContent: InfoItem? = null,
+    selectedThemeMode: ThemeMode = ThemeMode.SYSTEM,
+    onThemeModeSelected: (ThemeMode) -> Unit = {},
     onNavigateToUserStats: () -> Unit = {},
+    onBackClick: (() -> Unit)? = null,
     onAction: (AboutAction) -> Unit = {}
 ) {
     dialogContent?.let { item ->
@@ -81,20 +92,39 @@ fun AboutScreenContent(
     }
 
     val guideItems = remember {
-        listOf(
+        val items = listOf(
             InfoItem.Tips(Icons.Default.TipsAndUpdates, content = { TipsInfoContent() }),
             InfoItem.Rules(Icons.Default.Gavel, content = { RulesInfoContent() }),
             InfoItem.Probabilities(Icons.Default.Calculate, content = { ProbabilitiesTable() }),
             InfoItem.Bolao(Icons.Default.Group, content = { BolaoInfoContent() }),
             InfoItem.Purpose(Icons.Default.Lightbulb, content = { PurposeInfoContent() })
         )
+        
+        // Validate uniqueness and log any issues
+        try {
+            InfoItem.validateUniqueItems(items)
+        } catch (e: IllegalStateException) {
+            Log.e("AboutScreen", "Duplicate InfoItems detected: ${e.message}")
+        }
+        
+        // Ensure uniqueness by titleResId as fallback
+        items.distinctBy { it.titleResId }
     }
 
     val legalItems = remember {
-        listOf(
+        val items = listOf(
             InfoItem.Legal(Icons.Default.Info, content = { LegalInfoContent() }),
             InfoItem.Privacy(Icons.Default.PrivacyTip, content = { PrivacyInfoContent() })
         )
+        
+        // Validate uniqueness
+        try {
+            InfoItem.validateUniqueItems(items)
+        } catch (e: IllegalStateException) {
+            Log.e("AboutScreen", "Duplicate legal InfoItems detected: ${e.message}")
+        }
+        
+        items.distinctBy { it.titleResId }
     }
 
     val links = remember {
@@ -121,7 +151,8 @@ fun AboutScreenContent(
         modifier = modifier.fillMaxSize(),
         title = stringResource(id = R.string.studio_name),
         subtitle = stringResource(id = R.string.studio_slogan),
-        icon = Icons.Default.Info
+        icon = Icons.Default.Info,
+        onBackClick = onBackClick
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier
@@ -168,6 +199,13 @@ fun AboutScreenContent(
 
             item(key = "user_stats_spacer") {
                 Spacer(modifier = Modifier.height(AppSpacing.md))
+            }
+
+            item(key = "theme_settings_card") {
+                ThemeSettingsCard(
+                    selectedThemeMode = selectedThemeMode,
+                    onThemeModeSelected = onThemeModeSelected
+                )
             }
 
             item(key = "user_stats_card") {

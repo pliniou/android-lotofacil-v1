@@ -32,11 +32,18 @@ enum class DataLoadSource {
 }
 
 @Stable
-sealed interface HomeSyncState {
-    data object Idle : HomeSyncState
-    data class InProgress(val current: Int?, val total: Int?) : HomeSyncState
-    data object Success : HomeSyncState
-    data class Failed(val message: String?) : HomeSyncState
+sealed interface UpdateState {
+    data object Idle : UpdateState
+
+    data class Loading(
+        val current: Int? = null,
+        val total: Int? = null,
+        val message: String? = null,
+        val isCancellable: Boolean = false
+    ) : UpdateState
+
+    data object Success : UpdateState
+    data class Error(val message: String?) : UpdateState
 }
 
 @Stable
@@ -67,5 +74,5 @@ data class HomeUiState(
     val lastUpdateTime: String? = null,
     val nextDraw: NextDrawUiModel? = null,
     val isTodayDrawDay: Boolean = false,
-    val syncState: HomeSyncState = HomeSyncState.Idle
+    val updateState: UpdateState = UpdateState.Idle
 )

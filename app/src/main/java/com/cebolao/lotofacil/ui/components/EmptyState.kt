@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -78,7 +79,7 @@ fun EmptyState(
                 )
 
                 if (!actionLabel.isNullOrBlank() && onAction != null) {
-                    Button(onClick = onAction) {
+                    TextButton(onClick = onAction) {
                         Text(text = actionLabel)
                     }
                 }

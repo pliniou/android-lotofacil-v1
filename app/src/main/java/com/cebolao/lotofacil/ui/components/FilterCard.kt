@@ -1,31 +1,36 @@
 package com.cebolao.lotofacil.ui.components
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Info
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.FilterState
 import com.cebolao.lotofacil.domain.model.FilterType
@@ -35,7 +40,6 @@ import com.cebolao.lotofacil.ui.theme.AppCardDefaults
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppElevation
 import com.cebolao.lotofacil.ui.theme.AppSize
-import com.cebolao.lotofacil.ui.theme.AppTheme
 
 @Composable
 fun FilterCard(
@@ -46,43 +50,55 @@ fun FilterCard(
     onInfoClick: () -> Unit,
     lastDrawNumbers: Set<Int>? = null
 ) {
-    val haptic = androidx.compose.ui.platform.LocalHapticFeedback.current
+    val haptic = LocalHapticFeedback.current
     val requiresData = filterState.type == FilterType.REPETIDAS_CONCURSO_ANTERIOR
     val dataAvailable = !requiresData || lastDrawNumbers != null
     val enabled = filterState.isEnabled && dataAvailable
+    val colors = MaterialTheme.colorScheme
 
-    val elevation by animateDpAsState(
-        if (enabled) AppCardDefaults.pinnedElevation else AppElevation.xs, 
-        tween(AppTheme.motion.durationElevationMs), 
-        label = "elevation"
-    )
-
-    AppCard(
-        modifier = modifier.fillMaxWidth(),
-        elevation = elevation
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(min = 56.dp)
+            .clickable(
+                enabled = dataAvailable,
+                onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onEnabledChange(!filterState.isEnabled)
+                }
+            )
+            .then(
+                if (enabled) {
+                    Modifier.background(
+                        colors.primaryContainer.copy(alpha = 0.1f)
+                    )
+                } else {
+                    Modifier
+                }
+            ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = if (enabled) AppElevation.sm else AppElevation.xs
+        )
     ) {
-        Column(modifier = Modifier.padding(AppSpacing.lg)) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 12.dp, horizontal = AppSpacing.lg)
+        ) {
             FilterHeader(
                 filterState,
                 dataAvailable,
                 onInfoClick,
                 onToggle = {
-                    // REFINEMENT: Added haptic feedback for important actions.
-                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                    onEnabledChange(!filterState.isEnabled)
+                    // Prevent double toggle since entire card is clickable
                 }
             )
-            AnimatedVisibility(
-                visible = enabled,
-                enter = expandVertically(animationSpec = tween(AppTheme.motion.durationFilterPanelMs)) + fadeIn(animationSpec = tween(AppTheme.motion.durationFilterPanelMs)),
-                exit = shrinkVertically(animationSpec = tween(AppTheme.motion.durationFilterPanelMs)) + fadeOut(animationSpec = tween(AppTheme.motion.durationFilterPanelMs))
-            ) {
-                FilterContent(
-                    filterState,
-                    onRangeChange,
-                    onRangeFinished = { haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove) }
-                )
-            }
+            FilterContent(
+                filterState = filterState,
+                onRangeChange = onRangeChange,
+                onRangeFinished = { haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove) },
+                enabled = enabled
+            )
         }
     }
 }
@@ -94,18 +110,28 @@ private fun FilterHeader(
     onInfoClick: () -> Unit,
     onToggle: () -> Unit
 ) {
+    val colors = MaterialTheme.colorScheme
+    val filterTitle = stringResource(filterState.type.titleRes)
+    val accessibilityDescription = stringResource(
+        id = R.string.filter_accessibility_description,
+        filterTitle,
+        if (filterState.isEnabled) "ativado" else "desativado"
+    )
+
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .semantics {
+                contentDescription = accessibilityDescription
+                role = Role.Switch
+            },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
     ) {
         Icon(
             imageVector = filterState.type.icon,
-            contentDescription = stringResource(
-                id = R.string.filter_icon_content_description,
-                stringResource(filterState.type.titleRes)
-            ),
-            tint = MaterialTheme.colorScheme.primary,
+            contentDescription = null,
+            tint = colors.primary,
             modifier = Modifier.size(AppSize.iconMedium)
         )
         
@@ -114,38 +140,43 @@ private fun FilterHeader(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = stringResource(filterState.type.titleRes), 
+                text = filterTitle,
                 style = MaterialTheme.typography.titleSmall,
-                maxLines = 1
+                maxLines = 1,
+                color = colors.onSurface
             )
             if (!dataAvailable) {
                 Text(
                     text = stringResource(id = R.string.data_unavailable),
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.error,
+                    color = colors.error,
                     maxLines = 1
                 )
             }
         }
         
-        IconButton(
+        InfoIcon(
+            tooltipText = stringResource(
+                id = R.string.filter_info_content_description,
+                filterTitle
+            ),
             onClick = onInfoClick,
-            modifier = Modifier.size(AppSize.touchTargetMinimum)
-        ) {
-            Icon(
-                imageVector = Icons.Outlined.Info,
-                contentDescription = stringResource(
-                    id = R.string.filter_info_content_description,
-                    stringResource(filterState.type.titleRes)
-                ),
-                modifier = Modifier.size(AppSize.iconSmall)
-            )
-        }
+            modifier = Modifier
+                .size(20.dp)
+                .padding(end = AppSpacing.sm)
+        )
 
         Switch(
             checked = filterState.isEnabled,
             onCheckedChange = { onToggle() },
-            enabled = dataAvailable
+            enabled = dataAvailable,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = colors.primary,
+                checkedTrackColor = colors.primary.copy(alpha = 0.3f),
+                uncheckedThumbColor = colors.onSurfaceVariant,
+                uncheckedTrackColor = colors.surfaceVariant
+            ),
+            modifier = Modifier.padding(start = AppSpacing.sm)
         )
     }
 }
@@ -154,15 +185,18 @@ private fun FilterHeader(
 private fun FilterContent(
     filterState: FilterState,
     onRangeChange: (ClosedFloatingPointRange<Float>) -> Unit,
-    onRangeFinished: () -> Unit
+    onRangeFinished: () -> Unit,
+    enabled: Boolean
 ) {
-    FilterRangeSlider(
-        value = filterState.selectedRange,
-        onValueChange = onRangeChange,
-        onValueChangeFinished = onRangeFinished,
-        valueRange = filterState.type.fullRange,
-        steps = (filterState.type.fullRange.endInclusive - filterState.type.fullRange.start).toInt() - 1,
-        enabled = true,
-        modifier = Modifier.padding(top = AppCardDefaults.contentSpacing)
-    )
+    if (enabled) {
+        FilterRangeSlider(
+            value = filterState.selectedRange,
+            onValueChange = onRangeChange,
+            onValueChangeFinished = onRangeFinished,
+            valueRange = filterState.type.fullRange,
+            steps = (filterState.type.fullRange.endInclusive - filterState.type.fullRange.start).toInt() - 1,
+            enabled = true,
+            modifier = Modifier.padding(top = AppSpacing.md)
+        )
+    }
 }
