@@ -55,7 +55,7 @@ fun NextDrawSection(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = stringResource(R.string.next_draw_card_title).uppercase(),
+                    text = stringResource(R.string.next_draw_card_title),
                     style = MaterialTheme.typography.labelMedium,
                     color = colors.onSurfaceVariant,
                     fontWeight = FontWeight.Bold,
@@ -109,7 +109,7 @@ fun NextDrawSection(
                     fontWeight = FontWeight.SemiBold
                 )
                 Spacer(modifier = Modifier.width(AppSpacing.xs))
-                Text(text = "•", color = colors.outline)
+                Text(text = "|", color = colors.outline)
                 Spacer(modifier = Modifier.width(AppSpacing.xs))
                 Text(
                     text = nextContest.date ?: stringResource(id = R.string.home_next_date_not_available),
@@ -128,3 +128,4 @@ fun NextDrawSection(
         }
     }
 }
+

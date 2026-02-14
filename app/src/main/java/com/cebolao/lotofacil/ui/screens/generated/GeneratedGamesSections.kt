@@ -1,9 +1,12 @@
 package com.cebolao.lotofacil.ui.screens.generated
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -17,14 +20,19 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.core.tween
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material.icons.outlined.Analytics
 import androidx.compose.material.icons.outlined.BarChart
 import androidx.compose.material.icons.outlined.EmojiEvents
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -277,14 +285,76 @@ internal fun LazyListScope.generatedGamesListContent(
     onAction: (GeneratedGamesAction) -> Unit
 ) {
     items(games, key = { it.id }) { game ->
-        GameCard(
-            game = game,
-            modifier = Modifier.animateContentSize(animationSpec = tween(durationMillis = 250)),
-            onAnalyzeClick = { onAction(GeneratedGamesAction.AnalyzeGame(game)) },
-            onDuplicateClick = { onAction(GeneratedGamesAction.DuplicateAndEditGame(game)) },
-            onShareClick = { onAction(GeneratedGamesAction.ShareGame(game)) },
-            onPinClick = { onAction(GeneratedGamesAction.TogglePinState(game)) },
-            onDeleteClick = { onAction(GeneratedGamesAction.DeleteGameRequested(game)) }
+        val dismissState = rememberSwipeToDismissBoxState(
+            positionalThreshold = { totalDistance -> totalDistance * 0.35f },
+            confirmValueChange = { targetValue ->
+                if (targetValue == SwipeToDismissBoxValue.EndToStart && !game.isPinned) {
+                    onAction(GeneratedGamesAction.DeleteGameRequested(game))
+                }
+                false
+            }
         )
+
+        SwipeToDismissBox(
+            state = dismissState,
+            enableDismissFromStartToEnd = false,
+            enableDismissFromEndToStart = !game.isPinned,
+            backgroundContent = {
+                SwipeDeleteBackground(isPinned = game.isPinned)
+            }
+        ) {
+            GameCard(
+                game = game,
+                modifier = Modifier.animateContentSize(animationSpec = tween(durationMillis = 250)),
+                onAnalyzeClick = { onAction(GeneratedGamesAction.AnalyzeGame(game)) },
+                onDuplicateClick = { onAction(GeneratedGamesAction.DuplicateAndEditGame(game)) },
+                onShareClick = { onAction(GeneratedGamesAction.ShareGame(game)) },
+                onPinClick = { onAction(GeneratedGamesAction.TogglePinState(game)) },
+                onDeleteClick = { onAction(GeneratedGamesAction.DeleteGameRequested(game)) }
+            )
+        }
+    }
+}
+
+@Composable
+private fun SwipeDeleteBackground(isPinned: Boolean) {
+    val colors = MaterialTheme.colorScheme
+    val backgroundColor = if (isPinned) {
+        colors.secondaryContainer
+    } else {
+        colors.errorContainer
+    }
+    val contentColor = if (isPinned) {
+        colors.onSecondaryContainer
+    } else {
+        colors.onErrorContainer
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+            .padding(horizontal = AppSpacing.lg),
+        contentAlignment = Alignment.CenterEnd
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)
+        ) {
+            androidx.compose.material3.Icon(
+                imageVector = if (isPinned) Icons.Filled.PushPin else Icons.Filled.Delete,
+                contentDescription = null,
+                tint = contentColor
+            )
+            Text(
+                text = if (isPinned) {
+                    stringResource(id = R.string.pinned_label)
+                } else {
+                    stringResource(id = R.string.delete_game)
+                },
+                style = MaterialTheme.typography.labelMedium,
+                color = contentColor
+            )
+        }
     }
 }

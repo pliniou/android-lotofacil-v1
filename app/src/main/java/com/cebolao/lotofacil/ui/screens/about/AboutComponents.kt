@@ -2,13 +2,19 @@ package com.cebolao.lotofacil.ui.screens.about
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,10 +32,12 @@ import androidx.compose.foundation.layout.size
 import com.cebolao.lotofacil.ui.components.AppCard
 import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.theme.AppCardDefaults
+import com.cebolao.lotofacil.ui.theme.AppSize
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.iconLarge
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.Icons
+import com.cebolao.lotofacil.R
 
 @Composable
 fun FormattedText(
@@ -136,6 +144,31 @@ fun ExternalLinkCard(
 ) {
     val context = androidx.compose.ui.platform.LocalContext.current
     val hapticFeedback = androidx.compose.ui.platform.LocalHapticFeedback.current
+    var showExternalLinkDialog by remember { mutableStateOf(false) }
+
+    if (showExternalLinkDialog) {
+        AlertDialog(
+            onDismissRequest = { showExternalLinkDialog = false },
+            title = { Text(text = stringResource(id = R.string.external_link_warning_title)) },
+            text = { Text(text = stringResource(id = R.string.external_link_warning_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showExternalLinkDialog = false
+                        val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, url.toUri())
+                        context.startActivity(intent)
+                    }
+                ) {
+                    Text(text = stringResource(id = R.string.external_link_open_button))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showExternalLinkDialog = false }) {
+                    Text(text = stringResource(id = R.string.cancel_button))
+                }
+            }
+        )
+    }
 
     AboutActionCard(
         title = stringResource(id = titleResId),
@@ -145,8 +178,7 @@ fun ExternalLinkCard(
         modifier = modifier,
         onClick = {
             hapticFeedback.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
-            val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, url.toUri())
-            context.startActivity(intent)
+            showExternalLinkDialog = true
         }
     )
 }
@@ -168,7 +200,9 @@ private fun AboutActionCard(
         modifier = modifier.fillMaxWidth()
     ) {
         Row(
-            modifier = Modifier.padding(AppCardDefaults.defaultPadding),
+            modifier = Modifier
+                .defaultMinSize(minHeight = AppSize.touchTargetMinimum)
+                .padding(AppCardDefaults.defaultPadding),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(

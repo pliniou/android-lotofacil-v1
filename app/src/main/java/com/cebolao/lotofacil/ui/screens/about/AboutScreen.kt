@@ -23,7 +23,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalHapticFeedback
 import android.util.Log
 import com.cebolao.lotofacil.R
@@ -149,8 +148,8 @@ fun AboutScreenContent(
 
     AppScreenScaffold(
         modifier = modifier.fillMaxSize(),
-        title = stringResource(id = R.string.studio_name),
-        subtitle = stringResource(id = R.string.studio_slogan),
+        title = stringResource(id = R.string.about_section_guide),
+        subtitle = stringResource(id = R.string.about_header_subtitle),
         icon = Icons.Default.Info,
         onBackClick = onBackClick
     ) { innerPadding ->
@@ -159,16 +158,12 @@ fun AboutScreenContent(
                 .fillMaxSize()
                 .screenContentPadding(innerPadding),
             contentPadding = AppScreenDefaults.listContentPadding(
-                horizontal = 0.dp,
-                top = 0.dp,
+                horizontal = AppSpacing.lg,
+                top = AppSpacing.lg,
                 bottom = AppSpacing.xxxl
             ),
             verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
         ) {
-            item(key = "studio_hero") {
-                StudioHero()
-            }
-
             aboutInfoSection(
                 sectionKey = "guide",
                 title = guideSectionTitle,

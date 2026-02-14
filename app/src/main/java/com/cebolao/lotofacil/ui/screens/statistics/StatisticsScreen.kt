@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -23,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -155,6 +157,7 @@ fun StatisticsScreenContent(
                 top = AppSpacing.lg,
                 bottom = AppSpacing.xl
             )
+            val isWideLayout = LocalConfiguration.current.screenWidthDp >= 600
 
             if (Looper.myLooper() != null) {
                 LazyColumn(
@@ -195,53 +198,103 @@ fun StatisticsScreenContent(
                     }
 
                     state.frequencyAnalysis?.let { freq ->
-                        item(key = "frequency_section") {
-                            AnimateOnEntry(delayMillis = 100) {
-                                FrequencySection(analysis = freq)
+                        if (isWideLayout && state.report != null) {
+                            item(key = "frequency_distribution_row") {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+                                ) {
+                                    AnimateOnEntry(delayMillis = 100, modifier = Modifier.fillMaxWidth(0.48f)) {
+                                        FrequencySection(analysis = freq)
+                                    }
+                                    AnimateOnEntry(delayMillis = 120, modifier = Modifier.fillMaxWidth(0.48f)) {
+                                        DistributionSection(report = state.report)
+                                    }
+                                }
+                            }
+                            item(key = "summary_card") {
+                                AnimateOnEntry(delayMillis = 150) {
+                                    SummaryCard(
+                                        totalDrawsAnalyzed = state.report.totalDrawsAnalyzed,
+                                        averageSum = state.report.averageSum
+                                    )
+                                }
+                            }
+                        } else {
+                            item(key = "frequency_section") {
+                                AnimateOnEntry(delayMillis = 100) {
+                                    FrequencySection(analysis = freq)
+                                }
+                            }
+                            state.report?.let { report ->
+                                item(key = "summary_card") {
+                                    AnimateOnEntry(delayMillis = 150) {
+                                        SummaryCard(
+                                            totalDrawsAnalyzed = report.totalDrawsAnalyzed,
+                                            averageSum = report.averageSum
+                                        )
+                                    }
+                                }
+                            }
+                            state.report?.let { report ->
+                                item(key = "distribution_section") {
+                                    AnimateOnEntry(delayMillis = 200) {
+                                        DistributionSection(report = report)
+                                    }
+                                }
                             }
                         }
                     }
 
-                    state.report?.let { report ->
-                        item(key = "summary_card") {
-                            AnimateOnEntry(delayMillis = 150) {
-                                SummaryCard(
-                                    totalDrawsAnalyzed = report.totalDrawsAnalyzed,
-                                    averageSum = report.averageSum
+                    if (isWideLayout) {
+                        item(key = "pattern_trend_row") {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+                            ) {
+                                AnimateOnEntry(delayMillis = 250, modifier = Modifier.fillMaxWidth(0.48f)) {
+                                    PatternSection(
+                                        analysis = state.patternAnalysis,
+                                        isLoading = state.isPatternLoading,
+                                        errorResId = state.patternErrorResId,
+                                        selectedSize = state.selectedPatternSize,
+                                        onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
+                                    )
+                                }
+                                AnimateOnEntry(delayMillis = 300, modifier = Modifier.fillMaxWidth(0.48f)) {
+                                    TrendSection(
+                                        analysis = state.trendAnalysis,
+                                        isLoading = state.isTrendLoading,
+                                        errorResId = state.trendErrorResId,
+                                        selectedType = state.selectedTrendType,
+                                        onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
+                                    )
+                                }
+                            }
+                        }
+                    } else {
+                        item(key = "pattern_section") {
+                            AnimateOnEntry(delayMillis = 250) {
+                                PatternSection(
+                                    analysis = state.patternAnalysis,
+                                    isLoading = state.isPatternLoading,
+                                    errorResId = state.patternErrorResId,
+                                    selectedSize = state.selectedPatternSize,
+                                    onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
                                 )
                             }
                         }
-                    }
 
-                    state.report?.let { report ->
-                        item(key = "distribution_section") {
+                        item(key = "trend_section") {
                             AnimateOnEntry(delayMillis = 200) {
-                                DistributionSection(report = report)
+                                TrendSection(
+                                    analysis = state.trendAnalysis,
+                                    isLoading = state.isTrendLoading,
+                                    errorResId = state.trendErrorResId,
+                                    selectedType = state.selectedTrendType,
+                                    onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
+                                )
                             }
-                        }
-                    }
-
-                    item(key = "pattern_section") {
-                        AnimateOnEntry(delayMillis = 250) {
-                            PatternSection(
-                                analysis = state.patternAnalysis,
-                                isLoading = state.isPatternLoading,
-                                errorResId = state.patternErrorResId,
-                                selectedSize = state.selectedPatternSize,
-                                onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
-                            )
-                        }
-                    }
-
-                    item(key = "trend_section") {
-                        AnimateOnEntry(delayMillis = 300) {
-                            TrendSection(
-                                analysis = state.trendAnalysis,
-                                isLoading = state.isTrendLoading,
-                                errorResId = state.trendErrorResId,
-                                selectedType = state.selectedTrendType,
-                                onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
-                            )
                         }
                     }
                 }
@@ -281,44 +334,88 @@ fun StatisticsScreenContent(
                     }
 
                     state.frequencyAnalysis?.let { freq ->
-                        AnimateOnEntry(delayMillis = 100) {
-                            FrequencySection(analysis = freq)
+                        if (isWideLayout && state.report != null) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+                            ) {
+                                AnimateOnEntry(delayMillis = 100, modifier = Modifier.fillMaxWidth(0.48f)) {
+                                    FrequencySection(analysis = freq)
+                                }
+                                AnimateOnEntry(delayMillis = 120, modifier = Modifier.fillMaxWidth(0.48f)) {
+                                    DistributionSection(report = state.report)
+                                }
+                            }
+                            AnimateOnEntry(delayMillis = 150) {
+                                SummaryCard(
+                                    totalDrawsAnalyzed = state.report.totalDrawsAnalyzed,
+                                    averageSum = state.report.averageSum
+                                )
+                            }
+                        } else {
+                            AnimateOnEntry(delayMillis = 100) {
+                                FrequencySection(analysis = freq)
+                            }
+                            state.report?.let { report ->
+                                AnimateOnEntry(delayMillis = 150) {
+                                    SummaryCard(
+                                        totalDrawsAnalyzed = report.totalDrawsAnalyzed,
+                                        averageSum = report.averageSum
+                                    )
+                                }
+                            }
+                            state.report?.let { report ->
+                                AnimateOnEntry(delayMillis = 200) {
+                                    DistributionSection(report = report)
+                                }
+                            }
                         }
                     }
 
-                    state.report?.let { report ->
-                        AnimateOnEntry(delayMillis = 150) {
-                            SummaryCard(
-                                totalDrawsAnalyzed = report.totalDrawsAnalyzed,
-                                averageSum = report.averageSum
+                    if (isWideLayout) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+                        ) {
+                            AnimateOnEntry(delayMillis = 250, modifier = Modifier.fillMaxWidth(0.48f)) {
+                                PatternSection(
+                                    analysis = state.patternAnalysis,
+                                    isLoading = state.isPatternLoading,
+                                    errorResId = state.patternErrorResId,
+                                    selectedSize = state.selectedPatternSize,
+                                    onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
+                                )
+                            }
+                            AnimateOnEntry(delayMillis = 300, modifier = Modifier.fillMaxWidth(0.48f)) {
+                                TrendSection(
+                                    analysis = state.trendAnalysis,
+                                    isLoading = state.isTrendLoading,
+                                    errorResId = state.trendErrorResId,
+                                    selectedType = state.selectedTrendType,
+                                    onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
+                                )
+                            }
+                        }
+                    } else {
+                        AnimateOnEntry(delayMillis = 250) {
+                            PatternSection(
+                                analysis = state.patternAnalysis,
+                                isLoading = state.isPatternLoading,
+                                errorResId = state.patternErrorResId,
+                                selectedSize = state.selectedPatternSize,
+                                onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
                             )
                         }
-                    }
 
-                    state.report?.let { report ->
-                        AnimateOnEntry(delayMillis = 200) {
-                            DistributionSection(report = report)
+                        AnimateOnEntry(delayMillis = 300) {
+                            TrendSection(
+                                analysis = state.trendAnalysis,
+                                isLoading = state.isTrendLoading,
+                                errorResId = state.trendErrorResId,
+                                selectedType = state.selectedTrendType,
+                                onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
+                            )
                         }
-                    }
-
-                    AnimateOnEntry(delayMillis = 250) {
-                        PatternSection(
-                            analysis = state.patternAnalysis,
-                            isLoading = state.isPatternLoading,
-                            errorResId = state.patternErrorResId,
-                            selectedSize = state.selectedPatternSize,
-                            onSizeSelected = { onAction(StatisticsAction.PatternSizeSelected(it)) }
-                        )
-                    }
-
-                    AnimateOnEntry(delayMillis = 300) {
-                        TrendSection(
-                            analysis = state.trendAnalysis,
-                            isLoading = state.isTrendLoading,
-                            errorResId = state.trendErrorResId,
-                            selectedType = state.selectedTrendType,
-                            onTypeSelected = { onAction(StatisticsAction.TrendTypeSelected(it)) }
-                        )
                     }
                 }
             }

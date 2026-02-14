@@ -25,8 +25,6 @@ import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.TextButton
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -45,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.utils.NumberFormatUtils
 import com.cebolao.lotofacil.ui.components.AppButton
+import com.cebolao.lotofacil.ui.components.AppFilterChip
 import com.cebolao.lotofacil.domain.model.StatisticsReport
 import com.cebolao.lotofacil.ui.components.AppButtonVariant
 import com.cebolao.lotofacil.ui.components.AppCard
@@ -93,20 +92,11 @@ private fun FilterGroup(
         horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
     ) {
         items(options) { option ->
-            FilterChip(
+            AppFilterChip(
                 selected = selectedId == option.id,
                 onClick = { onOptionSelected(option.id) },
                 enabled = enabled,
-                label = {
-                    Text(
-                        text = option.label,
-                        style = MaterialTheme.typography.labelSmall
-                    )
-                },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = colors.primary,
-                    selectedLabelColor = colors.onPrimary
-                )
+                label = option.label
             )
         }
     }

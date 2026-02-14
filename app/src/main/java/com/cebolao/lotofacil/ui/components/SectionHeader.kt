@@ -25,6 +25,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.ui.theme.AppColorRoles
 
 /**
  * Consistent section header
@@ -77,7 +78,7 @@ fun SectionHeader(
                         Text(
                             text = it,
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = AppColorRoles.supportingText()
                         )
                     }
                 }

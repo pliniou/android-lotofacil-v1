@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.CheckResult
 import com.cebolao.lotofacil.domain.model.GameStatistic
+import com.cebolao.lotofacil.domain.model.LotofacilConstants
 import com.cebolao.lotofacil.domain.model.LotofacilGame
 import com.cebolao.lotofacil.domain.repository.GameRepository
 import com.cebolao.lotofacil.domain.usecase.CheckGameUseCase
@@ -259,5 +260,62 @@ class GameViewModel @Inject constructor(
             toggleGamePinUseCase(game)
             refreshPagedGamesInternal()
         }
+    }
+
+    fun importManualGames(rawInput: String) {
+        viewModelScope.launch {
+            val importedGames = parseManualCombinations(rawInput)
+            if (importedGames.isEmpty()) {
+                sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.manual_import_invalid_input))
+                return@launch
+            }
+
+            when (gameRepository.addGeneratedGames(importedGames.map { numbers -> LotofacilGame(numbers = numbers) })) {
+                is com.cebolao.lotofacil.core.result.AppResult.Success -> {
+                    refreshPagedGamesInternal()
+                    val successRes = if (importedGames.size == 1) {
+                        R.string.manual_import_success_single
+                    } else {
+                        R.string.manual_import_success_many
+                    }
+                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = successRes))
+                }
+
+                is com.cebolao.lotofacil.core.result.AppResult.Failure -> {
+                    sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.manual_import_save_error))
+                }
+            }
+        }
+    }
+
+    private fun parseManualCombinations(rawInput: String): List<Set<Int>> {
+        val candidates = rawInput
+            .lineSequence()
+            .flatMap { line -> line.split(';').asSequence() }
+            .map { it.trim() }
+            .filter { it.isNotBlank() }
+            .toList()
+
+        val normalized = linkedSetOf<String>()
+        val parsed = mutableListOf<Set<Int>>()
+
+        candidates.forEach { candidate ->
+            val numbers = Regex("\\d+")
+                .findAll(candidate)
+                .mapNotNull { match -> match.value.toIntOrNull() }
+                .filter { number -> number in LotofacilConstants.VALID_NUMBER_RANGE }
+                .toList()
+
+            if (numbers.size != LotofacilConstants.GAME_SIZE) return@forEach
+            if (numbers.distinct().size != LotofacilConstants.GAME_SIZE) return@forEach
+
+            val asSet = numbers.toSet()
+            val key = asSet.sorted().joinToString(",")
+            if (normalized.add(key)) {
+                parsed.add(asSet)
+            }
+        }
+
+        return parsed
     }
 }

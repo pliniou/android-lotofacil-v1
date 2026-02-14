@@ -18,14 +18,15 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -42,15 +43,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
+import com.cebolao.lotofacil.core.utils.NumberFormatUtils
 import com.cebolao.lotofacil.domain.model.LotofacilConstants
+import com.cebolao.lotofacil.ui.testtags.AppTestTags
 import com.cebolao.lotofacil.ui.theme.AppCardDefaults
 import com.cebolao.lotofacil.ui.theme.AppSize
 import com.cebolao.lotofacil.ui.theme.AppSpacing
-import com.cebolao.lotofacil.ui.testtags.AppTestTags
 import com.cebolao.lotofacil.viewmodels.GenerationUiState
 import java.math.BigDecimal
-import java.text.NumberFormat
-import java.util.Locale
 
 @Composable
 fun GenerationActionsPanel(
@@ -65,10 +65,9 @@ fun GenerationActionsPanel(
     val options = remember { listOf(1, 2, 3, 5, 7, 9, 10, 12, 15, 20) }
     var selectedIndex by remember { mutableIntStateOf(0) }
     val quantity = options[selectedIndex]
-    val currencyFormat = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR")) }
+    val totalCost = remember(quantity) { LotofacilConstants.GAME_COST.multiply(BigDecimal(quantity)) }
     val isLoading = generationState is GenerationUiState.Loading
-    
-    // Validation states
+
     val isQuantityValid = quantity > 0
     val hasActiveFilters = activeFiltersCount > 0
     val isGenerateEnabled = isQuantityValid &&
@@ -76,8 +75,7 @@ fun GenerationActionsPanel(
         isCombinationPossible &&
         !isLoading &&
         !isDataSyncing
-    
-    // Button color animation
+
     val buttonContainerColor by animateColorAsState(
         targetValue = if (isGenerateEnabled) {
             MaterialTheme.colorScheme.primary
@@ -112,7 +110,12 @@ fun GenerationActionsPanel(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(stringResource(id = R.string.game_quantity), style = MaterialTheme.typography.titleMedium)
+                Text(
+                    text = stringResource(id = R.string.game_quantity),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+
                 QuantitySelector(
                     quantity = quantity,
                     onDecrement = {
@@ -130,46 +133,33 @@ fun GenerationActionsPanel(
                     isDecrementEnabled = selectedIndex > 0 && !isLoading && !isDataSyncing,
                     isIncrementEnabled = selectedIndex < options.lastIndex && !isLoading && !isDataSyncing
                 )
-            }
-            HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f))
-            
-            // Cost section with breakdown
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(AppSpacing.xs)
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
+
+                Column(horizontalAlignment = Alignment.End) {
                     Text(
                         text = stringResource(id = R.string.total_cost),
-                        style = MaterialTheme.typography.headlineSmall
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Text(
-                        text = currencyFormat.format(
-                            LotofacilConstants.GAME_COST.multiply(BigDecimal(quantity))
-                        ),
-                        style = MaterialTheme.typography.headlineSmall,
+                        text = NumberFormatUtils.formatCurrency(totalCost.toDouble()),
+                        style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary
                     )
                 }
-                
-                // Cost breakdown explanation
-                Text(
-                    text = pluralStringResource(
-                        id = R.plurals.cost_calculation,
-                        count = quantity,
-                        quantity,
-                        LotofacilConstants.GAME_COST.toPlainString()
-                    ),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = 4.dp)
-                )
             }
+
+            Text(
+                text = pluralStringResource(
+                    id = R.plurals.cost_calculation,
+                    count = quantity,
+                    quantity,
+                    LotofacilConstants.GAME_COST.toPlainString()
+                ),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
             Button(
                 onClick = {
                     haptic.performHapticFeedback(HapticFeedbackType.LongPress)
@@ -216,22 +206,38 @@ fun GenerationActionsPanel(
                     }
                 }
             }
-            
-            // Error message when button is disabled
+
             if (!isGenerateEnabled) {
-                Spacer(modifier = Modifier.height(AppSpacing.xs))
-                Text(
-                    text = when {
-                        isDataSyncing -> stringResource(R.string.generate_button_disabled_syncing)
-                        !isQuantityValid -> stringResource(R.string.generate_button_disabled_no_quantity)
-                        !hasActiveFilters -> stringResource(R.string.generate_button_disabled_no_filters)
-                        !isCombinationPossible -> stringResource(R.string.generate_button_disabled_impossible_filters)
-                        else -> stringResource(R.string.generate_button_disabled_invalid_filters)
-                    },
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.error,
+                val helperText = when {
+                    isDataSyncing -> stringResource(R.string.generate_button_disabled_syncing)
+                    !isQuantityValid -> stringResource(R.string.generate_button_disabled_no_quantity)
+                    !hasActiveFilters -> stringResource(R.string.generate_button_helper_no_filters)
+                    !isCombinationPossible -> stringResource(R.string.generate_button_disabled_impossible_filters)
+                    else -> stringResource(R.string.generate_button_disabled_invalid_filters)
+                }
+
+                Surface(
+                    color = MaterialTheme.colorScheme.errorContainer,
+                    shape = MaterialTheme.shapes.medium,
                     modifier = Modifier.fillMaxWidth()
-                )
+                ) {
+                    Row(
+                        modifier = Modifier.padding(horizontal = AppSpacing.sm, vertical = AppSpacing.xs),
+                        horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                        Text(
+                            text = helperText,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                    }
+                }
             }
         }
     }

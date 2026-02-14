@@ -38,6 +38,7 @@ import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
 import com.cebolao.lotofacil.ui.components.AppScreenStateHost
 import com.cebolao.lotofacil.ui.components.ConfirmationDialog
+import com.cebolao.lotofacil.ui.components.LoadingDialog
 import com.cebolao.lotofacil.ui.components.ScreenContentState
 import com.cebolao.lotofacil.ui.components.screenContentPadding
 import com.cebolao.lotofacil.ui.model.descriptionRes
@@ -126,6 +127,7 @@ fun FiltersScreen(
                     filtersViewModel.applyPreset(action.preset)
                 }
                 FiltersAction.RetryLoadLastDraw -> filtersViewModel.retryLoadLastDraw()
+                FiltersAction.CancelGeneration -> filtersViewModel.cancelGeneration()
             }
         },
         onBackClick = onBackClick
@@ -137,6 +139,7 @@ sealed class FiltersAction {
     object RequestResetAllFilters : FiltersAction()
     object ConfirmResetAllFilters : FiltersAction()
     object RetryLoadLastDraw : FiltersAction()
+    object CancelGeneration : FiltersAction()
     data class OnFilterToggle(val type: FilterType, val enabled: Boolean) : FiltersAction()
     data class OnSelectionModeChange(val type: FilterType, val mode: FilterSelectionMode) : FiltersAction()
     data class OnSingleValueChange(val type: FilterType, val value: Float) : FiltersAction()
@@ -226,6 +229,13 @@ fun FiltersScreenContent(
             dismissText = dialog.dismissResId?.let { stringResource(id = it) }.orEmpty(),
             onConfirm = onDismissErrorDialog,
             onDismiss = onDismissErrorDialog
+        )
+    }
+
+    if (state.generationState is com.cebolao.lotofacil.viewmodels.GenerationUiState.Loading) {
+        LoadingDialog(
+            text = stringResource(id = R.string.generating_games_loading),
+            onCancel = { onAction(FiltersAction.CancelGeneration) }
         )
     }
 

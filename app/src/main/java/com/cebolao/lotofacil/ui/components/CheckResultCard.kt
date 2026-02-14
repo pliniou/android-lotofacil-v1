@@ -48,7 +48,11 @@ fun CheckResultCard(
             verticalArrangement = Arrangement.spacedBy(AppCardDefaults.contentSpacing)
         ) {
             val totalWins = result.scoreCounts.values.sum()
+            val lastContestHit = result.recentHits.maxByOrNull { it.first }
             ResultHeader(totalWins, result.lastCheckedContest)
+            lastContestHit?.let { (contest, hits) ->
+                LatestContestHighlight(contest = contest, hits = hits)
+            }
             HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f))
             if (totalWins > 0) {
                 ScoreBreakdown(result.scoreCounts)
@@ -58,6 +62,31 @@ fun CheckResultCard(
                 NoWinsMessage()
             }
         }
+    }
+}
+
+@Composable
+private fun LatestContestHighlight(contest: Int, hits: Int) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)
+    ) {
+        Icon(
+            imageVector = Icons.Default.Celebration,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.size(20.dp)
+        )
+        Text(
+            text = pluralStringResource(
+                id = R.plurals.checker_last_contest_highlight,
+                count = hits,
+                hits,
+                contest
+            ),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurface
+        )
     }
 }
 

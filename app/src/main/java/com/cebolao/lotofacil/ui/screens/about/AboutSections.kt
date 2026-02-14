@@ -57,7 +57,7 @@ internal fun LazyListScope.aboutInfoSection(
         SectionHeader(
             title = title,
             titleColor = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(horizontal = AppSpacing.lg, vertical = AppSpacing.xs)
+            modifier = Modifier.padding(vertical = AppSpacing.xs)
         )
     }
 
@@ -68,8 +68,7 @@ internal fun LazyListScope.aboutInfoSection(
     ) { index, info ->
         AnimateOnEntry(delayMillis = index * 35L) {
             InfoCard(
-                item = info,
-                modifier = Modifier.padding(horizontal = AppSpacing.lg)
+                item = info
             ) {
                 onInfoClick(info)
             }
@@ -86,7 +85,7 @@ internal fun LazyListScope.aboutLinksSection(
         SectionHeader(
             title = title,
             titleColor = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(horizontal = AppSpacing.lg, vertical = AppSpacing.xs)
+            modifier = Modifier.padding(vertical = AppSpacing.xs)
         )
     }
 
@@ -100,8 +99,7 @@ internal fun LazyListScope.aboutLinksSection(
                 titleResId = link.titleResId,
                 subtitleResId = link.subtitleResId,
                 icon = link.icon,
-                url = link.url,
-                modifier = Modifier.padding(horizontal = AppSpacing.lg)
+                url = link.url
             )
         }
     }
@@ -113,7 +111,7 @@ internal fun UserStatsCard(onClick: () -> Unit) {
         variant = CardVariant.Elevated,
         onClick = onClick,
         isGlassmorphic = true,
-        modifier = Modifier.padding(horizontal = AppSpacing.lg)
+        modifier = Modifier
     ) {
         Row(
             modifier = Modifier.padding(AppSpacing.lg),
@@ -156,7 +154,7 @@ internal fun ThemeSettingsCard(
     AppCard(
         variant = CardVariant.Elevated,
         isGlassmorphic = true,
-        modifier = Modifier.padding(horizontal = AppSpacing.lg)
+        modifier = Modifier
     ) {
         Column(
             modifier = Modifier.padding(AppSpacing.lg),

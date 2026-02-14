@@ -2,4 +2,5 @@
 <resources>
     <color name="background">#67220258</color>
     <color name="background_dark">#0A0A0A</color>
+    <color name="splash_primary_purple">#6B3FA0</color>
 </resources>

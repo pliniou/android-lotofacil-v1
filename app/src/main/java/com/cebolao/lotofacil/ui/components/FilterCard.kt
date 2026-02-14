@@ -1,19 +1,25 @@
 package com.cebolao.lotofacil.ui.components
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -28,7 +34,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.FilterSelectionMode
 import com.cebolao.lotofacil.domain.model.FilterState
@@ -36,13 +41,15 @@ import com.cebolao.lotofacil.domain.model.FilterType
 import com.cebolao.lotofacil.ui.model.icon
 import com.cebolao.lotofacil.ui.model.titleRes
 import com.cebolao.lotofacil.ui.theme.AppElevation
-import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppSize
+import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 @Composable
 fun FilterCard(
     modifier: Modifier = Modifier,
     filterState: FilterState,
+    expanded: Boolean = false,
+    onExpandedChange: (Boolean) -> Unit = {},
     onEnabledChange: (Boolean) -> Unit,
     onSelectionModeChange: (FilterSelectionMode) -> Unit,
     onSingleValueChange: (Float) -> Unit,
@@ -59,19 +66,17 @@ fun FilterCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = 56.dp)
+            .heightIn(min = AppSize.touchTargetMinimum)
             .clickable(
                 enabled = dataAvailable,
                 onClick = {
-                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                    onEnabledChange(!filterState.isEnabled)
+                    haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+                    onExpandedChange(!expanded)
                 }
             )
             .then(
                 if (enabled) {
-                    Modifier.background(
-                        colors.primaryContainer.copy(alpha = 0.15f)
-                    )
+                    Modifier.background(colors.primaryContainer.copy(alpha = 0.15f))
                 } else {
                     Modifier
                 }
@@ -83,24 +88,28 @@ fun FilterCard(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 12.dp, horizontal = AppSpacing.lg)
+                .animateContentSize()
+                .padding(vertical = AppSpacing.md, horizontal = AppSpacing.lg)
         ) {
             FilterHeader(
-                filterState,
-                dataAvailable,
-                onInfoClick,
-                onToggle = {
-                    // Prevent double toggle since entire card is clickable
-                }
-            )
-            FilterContent(
                 filterState = filterState,
-                onSelectionModeChange = onSelectionModeChange,
-                onSingleValueChange = onSingleValueChange,
-                onRangeChange = onRangeChange,
-                onRangeFinished = { haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove) },
-                enabled = enabled
+                dataAvailable = dataAvailable,
+                expanded = expanded,
+                onInfoClick = onInfoClick,
+                onExpandedChange = onExpandedChange,
+                onEnabledChange = onEnabledChange
             )
+
+            if (expanded) {
+                FilterContent(
+                    filterState = filterState,
+                    onSelectionModeChange = onSelectionModeChange,
+                    onSingleValueChange = onSingleValueChange,
+                    onRangeChange = onRangeChange,
+                    onRangeFinished = { haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove) },
+                    enabled = enabled
+                )
+            }
         }
     }
 }
@@ -109,15 +118,21 @@ fun FilterCard(
 private fun FilterHeader(
     filterState: FilterState,
     dataAvailable: Boolean,
+    expanded: Boolean,
     onInfoClick: () -> Unit,
-    onToggle: () -> Unit
+    onExpandedChange: (Boolean) -> Unit,
+    onEnabledChange: (Boolean) -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
     val filterTitle = stringResource(filterState.type.titleRes)
     val accessibilityDescription = stringResource(
         id = R.string.filter_accessibility_description,
         filterTitle,
-        if (filterState.isEnabled) "ativado" else "desativado"
+        if (filterState.isEnabled) {
+            stringResource(id = R.string.filter_state_enabled)
+        } else {
+            stringResource(id = R.string.filter_state_disabled)
+        }
     )
 
     Row(
@@ -136,7 +151,7 @@ private fun FilterHeader(
             tint = colors.primary,
             modifier = Modifier.size(AppSize.iconMedium)
         )
-        
+
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.Center
@@ -147,6 +162,7 @@ private fun FilterHeader(
                 maxLines = 1,
                 color = colors.onSurface
             )
+
             if (!dataAvailable) {
                 Text(
                     text = stringResource(id = R.string.data_unavailable),
@@ -154,32 +170,50 @@ private fun FilterHeader(
                     color = colors.error,
                     maxLines = 1
                 )
+            } else {
+                Text(
+                    text = filterSummary(filterState),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = colors.onSurfaceVariant,
+                    maxLines = 1
+                )
             }
         }
-        
+
         InfoIcon(
             tooltipText = stringResource(
                 id = R.string.filter_info_content_description,
                 filterTitle
             ),
-            onClick = onInfoClick,
-            modifier = Modifier
-                .size(20.dp)
-                .padding(end = AppSpacing.sm)
+            onClick = onInfoClick
         )
 
         Switch(
             checked = filterState.isEnabled,
-            onCheckedChange = { onToggle() },
+            onCheckedChange = onEnabledChange,
             enabled = dataAvailable,
             colors = SwitchDefaults.colors(
                 checkedThumbColor = colors.primary,
                 checkedTrackColor = colors.primary.copy(alpha = 0.3f),
                 uncheckedThumbColor = colors.onSurfaceVariant,
                 uncheckedTrackColor = colors.surfaceVariant
-            ),
-            modifier = Modifier.padding(start = AppSpacing.sm)
+            )
         )
+
+        IconButton(
+            onClick = { onExpandedChange(!expanded) },
+            modifier = Modifier.size(AppSize.touchTargetMinimum)
+        ) {
+            Icon(
+                imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                contentDescription = if (expanded) {
+                    stringResource(id = R.string.close_button)
+                } else {
+                    stringResource(id = R.string.common_view_all)
+                },
+                tint = colors.onSurfaceVariant
+            )
+        }
     }
 }
 
@@ -246,7 +280,9 @@ private fun SelectionModeToggle(
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
+
         FilterChip(
+            modifier = Modifier.defaultMinSize(minHeight = AppSize.touchTargetMinimum),
             selected = mode == FilterSelectionMode.SINGLE,
             onClick = { onModeChange(FilterSelectionMode.SINGLE) },
             label = { Text(text = stringResource(id = R.string.filter_mode_mono)) },
@@ -255,7 +291,9 @@ private fun SelectionModeToggle(
                 selectedLabelColor = MaterialTheme.colorScheme.onPrimary
             )
         )
+
         FilterChip(
+            modifier = Modifier.defaultMinSize(minHeight = AppSize.touchTargetMinimum),
             selected = mode == FilterSelectionMode.RANGE,
             onClick = { onModeChange(FilterSelectionMode.RANGE) },
             label = { Text(text = stringResource(id = R.string.filter_mode_stereo)) },
@@ -264,5 +302,20 @@ private fun SelectionModeToggle(
                 selectedLabelColor = MaterialTheme.colorScheme.onPrimary
             )
         )
+    }
+}
+
+@Composable
+private fun filterSummary(filterState: FilterState): String {
+    return when (filterState.selectionMode) {
+        FilterSelectionMode.SINGLE -> stringResource(
+            id = R.string.filter_summary_value,
+            filterState.singleValue.toInt()
+        )
+        FilterSelectionMode.RANGE -> {
+            val start = filterState.selectedRange.start.toInt()
+            val end = filterState.selectedRange.endInclusive.toInt()
+            stringResource(id = R.string.filter_summary_range, start, end)
+        }
     }
 }

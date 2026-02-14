@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.CebolaoLotofacil" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="fontFamily">@font/gabarito_regular</item>
+        <item name="android:fontFamily">@font/gabarito_regular</item>
         <item name="android:statusBarColor">@color/background_dark</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/background</item>
+        <item name="windowSplashScreenBackground">@color/splash_primary_purple</item>
+        <item name="android:statusBarColor">@color/splash_primary_purple</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splashicon</item>
         <item name="postSplashScreenTheme">@style/Theme.CebolaoLotofacil</item>
     </style>

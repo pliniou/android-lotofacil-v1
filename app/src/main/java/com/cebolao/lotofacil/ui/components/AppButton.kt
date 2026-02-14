@@ -2,6 +2,7 @@ package com.cebolao.lotofacil.ui.components
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
@@ -21,6 +22,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.ui.theme.AppShapes
+import com.cebolao.lotofacil.ui.theme.AppSize
+import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 /**
  * Consistent button components using Design System tokens
@@ -44,7 +47,9 @@ fun AppButton(
         AppButtonVariant.Primary -> {
             Button(
                 onClick = onClick,
-                modifier = modifier.scale(scale),
+                modifier = modifier
+                    .scale(scale)
+                    .defaultMinSize(minHeight = AppSize.touchTargetMinimum),
                 enabled = enabled && !isLoading,
                 shape = AppShapes.md,
                 colors = ButtonDefaults.buttonColors(
@@ -66,7 +71,9 @@ fun AppButton(
         AppButtonVariant.Secondary -> {
             FilledTonalButton(
                 onClick = onClick,
-                modifier = modifier.scale(scale),
+                modifier = modifier
+                    .scale(scale)
+                    .defaultMinSize(minHeight = AppSize.touchTargetMinimum),
                 enabled = enabled && !isLoading,
                 shape = AppShapes.md
             ) {
@@ -77,7 +84,9 @@ fun AppButton(
         AppButtonVariant.Outline -> {
             OutlinedButton(
                 onClick = onClick,
-                modifier = modifier.scale(scale),
+                modifier = modifier
+                    .scale(scale)
+                    .defaultMinSize(minHeight = AppSize.touchTargetMinimum),
                 enabled = enabled && !isLoading,
                 shape = AppShapes.md
             ) {
@@ -88,7 +97,9 @@ fun AppButton(
         AppButtonVariant.Ghost -> {
             TextButton(
                 onClick = onClick,
-                modifier = modifier.scale(scale),
+                modifier = modifier
+                    .scale(scale)
+                    .defaultMinSize(minHeight = AppSize.touchTargetMinimum),
                 enabled = enabled && !isLoading,
                 shape = AppShapes.md
             ) {
@@ -109,7 +120,7 @@ private fun ButtonContent(
     } else {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(AppSpacing.sm)
         ) {
             icon?.invoke()
             Text(

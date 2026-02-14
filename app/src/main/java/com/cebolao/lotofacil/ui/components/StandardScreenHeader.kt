@@ -1,33 +1,30 @@
 package com.cebolao.lotofacil.ui.components
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import com.cebolao.lotofacil.R
-import com.cebolao.lotofacil.ui.theme.AppSpacing
+import com.cebolao.lotofacil.ui.theme.AppSize
 import com.cebolao.lotofacil.ui.theme.iconButtonSize
 import com.cebolao.lotofacil.ui.theme.iconMedium
 
@@ -44,54 +41,48 @@ fun StandardScreenHeader(
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
     val colors = MaterialTheme.colorScheme
-    
+
     Column(modifier = modifier.fillMaxWidth()) {
-        TopAppBar(
+        CenterAlignedTopAppBar(
+            modifier = Modifier.height(AppSize.topBarHeight),
             title = {
-                Column(
-                    modifier = Modifier.padding(end = AppSpacing.sm),
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = title,
-                        modifier = Modifier.semantics { heading() },
-                        style = MaterialTheme.typography.titleLarge,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    if (subtitle != null) {
-                        Text(
-                            text = subtitle,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = colors.onSurfaceVariant,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                }
+                Text(
+                    text = title,
+                    modifier = Modifier.semantics { heading() },
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
             },
             navigationIcon = {
-                if (onBackClick != null) {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(id = R.string.cd_navigate_back),
-                            tint = colors.primary
+                when {
+                    onBackClick != null -> {
+                        IconButton(onClick = onBackClick) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(id = R.string.cd_navigate_back),
+                                tint = colors.primary
+                            )
+                        }
+                    }
+
+                    icon != null || iconPainter != null -> {
+                        IconBadge(
+                            icon = icon,
+                            painter = iconPainter,
+                            contentDescription = subtitle,
+                            size = iconButtonSize(),
+                            iconSize = iconMedium()
                         )
                     }
-                } else if (icon != null || iconPainter != null) {
-                    IconBadge(
-                        icon = icon,
-                        painter = iconPainter,
-                        contentDescription = null,
-                        size = iconButtonSize(),
-                        iconSize = iconMedium(),
-                        modifier = Modifier.padding(start = AppSpacing.sm)
-                    )
+
+                    else -> Unit
                 }
             },
-            actions = { actions?.invoke(this) },
-            colors = TopAppBarDefaults.topAppBarColors(
+            actions = {
+                actions?.invoke(this)
+            },
+            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                 containerColor = colors.surface,
                 scrolledContainerColor = colors.surfaceContainer,
                 titleContentColor = colors.onSurface,
@@ -101,8 +92,6 @@ fun StandardScreenHeader(
             scrollBehavior = scrollBehavior
         )
 
-        HorizontalDivider(
-            color = colors.outlineVariant
-        )
+        HorizontalDivider(color = colors.outlineVariant)
     }
 }

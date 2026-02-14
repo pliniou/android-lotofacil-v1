@@ -3,13 +3,14 @@ package com.cebolao.lotofacil.ui.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,14 +26,17 @@ import com.cebolao.lotofacil.ui.theme.AppSpacing
 
 @Composable
 fun EmptyState(
-    message: String,
+    title: String,
+    description: String,
     modifier: Modifier = Modifier,
     icon: ImageVector? = null,
-    iconSize: androidx.compose.ui.unit.Dp = 64.dp,
-    actionLabel: String? = null,
-    onAction: (() -> Unit)? = null
+    primaryActionText: String? = null,
+    onPrimaryAction: (() -> Unit)? = null,
+    secondaryActionText: String? = null,
+    onSecondaryAction: (() -> Unit)? = null
 ) {
     val colors = MaterialTheme.colorScheme
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -42,44 +46,60 @@ fun EmptyState(
     ) {
         AppCard(
             modifier = Modifier
-                .widthIn(max = 460.dp)
+                .widthIn(max = 480.dp)
                 .fillMaxWidth(),
             containerColor = colors.surfaceContainerLow
         ) {
             Column(
                 modifier = Modifier.padding(horizontal = AppSpacing.xl, vertical = AppSpacing.xxl),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)
+                verticalArrangement = Arrangement.spacedBy(AppSpacing.md)
             ) {
                 if (icon != null) {
                     IconBadge(
                         icon = icon,
                         contentDescription = null,
-                        size = iconSize + 8.dp,
-                        iconSize = iconSize / 2,
+                        size = 72.dp,
+                        iconSize = 32.dp,
                         tint = colors.primary
                     )
                 } else {
-                    // Use lazy-loaded image for better performance
                     LazyImage(
                         painterResourceId = R.drawable.ic_cebolalogo,
                         contentDescription = null,
-                        modifier = Modifier.size(iconSize + 12.dp),
+                        modifier = Modifier.size(72.dp),
                         delayMillis = 75L,
                         showPlaceholder = false
                     )
                 }
 
                 Text(
-                    text = message,
+                    text = title,
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Center,
                     color = colors.onSurface
                 )
 
-                if (!actionLabel.isNullOrBlank() && onAction != null) {
-                    Button(onClick = onAction) {
-                        Text(text = actionLabel)
+                Text(
+                    text = description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Center,
+                    color = colors.onSurfaceVariant
+                )
+
+                if (!primaryActionText.isNullOrBlank() && onPrimaryAction != null) {
+                    AppButton(
+                        text = primaryActionText,
+                        onClick = onPrimaryAction,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+
+                if (!secondaryActionText.isNullOrBlank() && onSecondaryAction != null) {
+                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                        OutlinedButton(onClick = onSecondaryAction) {
+                            Text(text = secondaryActionText)
+                        }
                     }
                 }
             }
@@ -89,19 +109,36 @@ fun EmptyState(
 
 @Composable
 fun EmptyState(
+    message: String,
+    modifier: Modifier = Modifier,
+    icon: ImageVector? = null,
+    actionLabel: String? = null,
+    onAction: (() -> Unit)? = null
+) {
+    EmptyState(
+        title = message,
+        description = "",
+        modifier = modifier,
+        icon = icon,
+        primaryActionText = actionLabel,
+        onPrimaryAction = onAction
+    )
+}
+
+@Composable
+fun EmptyState(
     messageResId: Int,
     modifier: Modifier = Modifier,
     icon: ImageVector? = null,
-    iconSize: androidx.compose.ui.unit.Dp = 64.dp,
     actionLabelResId: Int? = null,
     onAction: (() -> Unit)? = null
 ) {
     EmptyState(
-        message = stringResource(id = messageResId),
+        title = stringResource(id = messageResId),
+        description = "",
         modifier = modifier,
         icon = icon,
-        iconSize = iconSize,
-        actionLabel = actionLabelResId?.let { stringResource(id = it) },
-        onAction = onAction
+        primaryActionText = actionLabelResId?.let { stringResource(id = it) },
+        onPrimaryAction = onAction
     )
 }

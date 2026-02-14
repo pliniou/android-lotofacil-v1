@@ -23,8 +23,10 @@ sealed interface ScreenContentState {
 
     data class Empty(
         @StringRes val messageResId: Int = R.string.empty_state_message,
+        @StringRes val descriptionResId: Int = R.string.empty_state_description_default,
         val icon: ImageVector? = null,
-        @StringRes val actionLabelResId: Int? = null
+        @StringRes val actionLabelResId: Int? = null,
+        @StringRes val secondaryActionLabelResId: Int? = null
     ) : ScreenContentState
 
     data class Error(
@@ -41,6 +43,7 @@ fun AppScreenStateHost(
     modifier: Modifier = Modifier,
     onRetry: (() -> Unit)? = null,
     onEmptyAction: (() -> Unit)? = null,
+    onEmptySecondaryAction: (() -> Unit)? = null,
     loadingContent: @Composable (() -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
@@ -76,10 +79,13 @@ fun AppScreenStateHost(
 
         is ScreenContentState.Empty -> {
             EmptyState(
-                messageResId = state.messageResId,
+                title = stringResource(id = state.messageResId),
+                description = stringResource(id = state.descriptionResId),
                 icon = state.icon,
-                actionLabelResId = state.actionLabelResId,
-                onAction = onEmptyAction,
+                primaryActionText = state.actionLabelResId?.let { stringResource(id = it) },
+                onPrimaryAction = onEmptyAction,
+                secondaryActionText = state.secondaryActionLabelResId?.let { stringResource(id = it) },
+                onSecondaryAction = onEmptySecondaryAction,
                 modifier = modifier.fillMaxSize()
             )
         }

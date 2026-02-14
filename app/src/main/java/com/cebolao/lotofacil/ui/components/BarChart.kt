@@ -6,16 +6,23 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
@@ -28,6 +35,8 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.semantics.Role
@@ -38,6 +47,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cebolao.lotofacil.R
+import com.cebolao.lotofacil.ui.theme.AppCharts
+import com.cebolao.lotofacil.ui.theme.ChartPalette
 import com.cebolao.lotofacil.ui.theme.AppTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlin.math.ceil
@@ -59,12 +70,15 @@ fun BarChart(
     minBarWidth: Dp = 12.dp,
     yAxisLabelWidth: Dp = 40.dp,
     xAxisLabelHeight: Dp = 34.dp,
-    valueLabelHeight: Dp = 24.dp
+    valueLabelHeight: Dp = 24.dp,
+    palette: ChartPalette? = null
 ) {
     if (data.isEmpty()) return
 
     val safeMaxValue = maxValue.coerceAtLeast(1)
+    var selectedBarIndex by remember(data) { mutableIntStateOf(-1) }
     val animatedProgress = remember { Animatable(0f) }
+    val chartPalette = palette ?: AppCharts.frequency()
     LaunchedEffect(data) {
         animatedProgress.snapTo(0f)
         animatedProgress.animateTo(
@@ -76,15 +90,15 @@ fun BarChart(
         )
     }
 
-    val primaryColor = MaterialTheme.colorScheme.primary
-    val primaryContainer = MaterialTheme.colorScheme.primaryContainer
+    val primaryColor = chartPalette.barStart
+    val primaryContainer = chartPalette.barEnd
     val surfaceVariant = MaterialTheme.colorScheme.surfaceVariant
     val onSurfaceVariant = MaterialTheme.colorScheme.onSurfaceVariant
     val onSurface = MaterialTheme.colorScheme.onSurface
     val surface = MaterialTheme.colorScheme.surface
     val outlineVariant = MaterialTheme.colorScheme.outlineVariant
-    val tertiaryColor = MaterialTheme.colorScheme.tertiary
-    val tertiaryContainer = MaterialTheme.colorScheme.tertiaryContainer
+    val tertiaryColor = chartPalette.line
+    val tertiaryContainer = chartPalette.accent
     val errorColor = MaterialTheme.colorScheme.error
     val errorContainer = MaterialTheme.colorScheme.errorContainer
     val sizes = AppTheme.sizes
@@ -141,147 +155,182 @@ fun BarChart(
         val chartWidth = if (maxWidth < minChartWidth) minChartWidth else maxWidth
         val shouldScroll = chartWidth > maxWidth + 1.dp
         val scrollModifier = if (shouldScroll) Modifier.horizontalScroll(rememberScrollState()) else Modifier
+        val chartWidthPx = with(density) { chartWidth.toPx() }
+        val yAxisLabelWidthPxForTap = with(density) { yAxisLabelWidth.toPx() }
+        val barSpacingPxForTap = with(density) { barSpacing.toPx() }
+        val minBarWidthPxForTap = with(density) { minBarWidth.toPx() }
+        val chartAreaWidthForTap = (chartWidthPx - yAxisLabelWidthPxForTap).coerceAtLeast(1f)
+        val totalSpacingForTap = barSpacingPxForTap * (data.size + 1)
+        val barWidthPxForTap = ((chartAreaWidthForTap - totalSpacingForTap) / data.size).coerceAtLeast(minBarWidthPxForTap)
+        val slotWidthForTap = barWidthPxForTap + barSpacingPxForTap
 
         Box(modifier = scrollModifier) {
-            Canvas(
-                modifier = Modifier
-                    .width(chartWidth)
-                    .height(resolvedChartHeight)
-                    .semantics {
-                        role = Role.Image
-                        contentDescription = chartDescription
-                    }
-            ) {
-                val yAxisLabelWidthPx = yAxisLabelWidth.toPx()
-                val xAxisLabelHeightPx = xAxisLabelHeight.toPx()
-                val valueLabelHeightPx = valueLabelHeight.toPx()
-                val chartAreaWidth = size.width - yAxisLabelWidthPx
-                val chartAreaHeight = size.height - xAxisLabelHeightPx - valueLabelHeightPx
+            Box {
+                Canvas(
+                    modifier = Modifier
+                        .width(chartWidth)
+                        .height(resolvedChartHeight)
+                        .pointerInput(data, chartWidth) {
+                            detectTapGestures { tapOffset ->
+                                val relativeX = tapOffset.x - yAxisLabelWidthPxForTap - barSpacingPxForTap
+                                val index = if (relativeX >= 0f) {
+                                    (relativeX / slotWidthForTap).toInt()
+                                } else {
+                                    -1
+                                }
+                                selectedBarIndex = if (index in data.indices) index else -1
+                            }
+                        }
+                        .semantics {
+                            role = Role.Image
+                            contentDescription = chartDescription
+                        }
+                ) {
+                    val yAxisLabelWidthPx = yAxisLabelWidth.toPx()
+                    val xAxisLabelHeightPx = xAxisLabelHeight.toPx()
+                    val valueLabelHeightPx = valueLabelHeight.toPx()
+                    val chartAreaWidth = size.width - yAxisLabelWidthPx
+                    val chartAreaHeight = size.height - xAxisLabelHeightPx - valueLabelHeightPx
 
-                // Draw refined grid
-                drawGrid(
-                    yAxisLabelWidthPx,
-                    chartAreaHeight,
-                    valueLabelHeightPx,
-                    safeMaxValue,
-                    textPaint,
-                    outlineVariant
-                )
-
-                val barSpacingPx = barSpacing.toPx()
-                val totalSpacing = barSpacingPx * (data.size + 1)
-                val barWidth = ((chartAreaWidth - totalSpacing) / data.size)
-                    .coerceAtLeast(minBarWidth.toPx())
-                val minLabelSpacingPx = (if (isWide) labelSpacingExpanded else labelSpacingCompact).toPx()
-                val slotWidth = barWidth + barSpacingPx
-                val labelStep = if (slotWidth <= 0f) 1 else {
-                    ceil(minLabelSpacingPx / slotWidth).toInt().coerceAtLeast(1)
-                }
-                val showValueLabels = barWidth >= (if (isWide) valueLabelMinBarWidthExpanded else valueLabelMinBarWidthCompact).toPx()
-
-                // Draw Gaussian Curve Backdrop
-                if (showGaussCurve && data.size > 2) {
-                    drawGaussianCurve(
-                        data = data,
-                        yAxisLabelWidth = yAxisLabelWidthPx,
-                        chartAreaHeight = chartAreaHeight,
-                        topPadding = valueLabelHeightPx,
-                        maxValue = safeMaxValue,
-                        color = tertiaryColor.copy(alpha = 0.3f),
-                        barWidth = barWidth,
-                        barSpacing = barSpacingPx
-                    )
-                }
-
-                data.forEachIndexed { index, (label, value) ->
-                    val progressFactor = animatedProgress.value
-                    val barHeight = (value.toFloat() / safeMaxValue) * chartAreaHeight * progressFactor
-                    val left = yAxisLabelWidthPx + barSpacingPx + index * (barWidth + barSpacingPx)
-                    val barCenterX = left + barWidth / 2
-
-                    // Bar background (Subtle surface)
-                    drawRoundRect(
-                        color = surfaceVariant.copy(alpha = 0.05f),
-                        topLeft = Offset(left, valueLabelHeightPx),
-                        size = Size(barWidth, chartAreaHeight),
-                        cornerRadius = CornerRadius(barWidth / 5)
+                    // Draw refined grid
+                    drawGrid(
+                        yAxisLabelWidthPx,
+                        chartAreaHeight,
+                        valueLabelHeightPx,
+                        safeMaxValue,
+                        textPaint,
+                        outlineVariant
                     )
 
-                    // Actual data bar with Gradient
-                    if (barHeight > 0) {
-                        // Determine bar colors based on value relative to average
-                        val avgValue = data.map { it.second }.average().toFloat()
-                        val isAboveAverage = value >= avgValue
-                        val isOutlier = value >= avgValue * 1.5f
-                        val isHighlight = highlightThreshold != null && value >= highlightThreshold
-                        
-                        val barColor1 = when {
-                            isHighlight -> tertiaryColor
-                            isOutlier -> errorColor
-                            isAboveAverage -> primaryColor
-                            else -> primaryContainer
-                        }
-                        val barColor2 = when {
-                            isHighlight -> tertiaryContainer
-                            isOutlier -> errorContainer
-                            isAboveAverage -> primaryContainer
-                            else -> primaryColor.copy(alpha = 0.8f)
-                        }
+                    val barSpacingPx = barSpacing.toPx()
+                    val totalSpacing = barSpacingPx * (data.size + 1)
+                    val barWidth = ((chartAreaWidth - totalSpacing) / data.size)
+                        .coerceAtLeast(minBarWidth.toPx())
+                    val minLabelSpacingPx = (if (isWide) labelSpacingExpanded else labelSpacingCompact).toPx()
+                    val slotWidth = barWidth + barSpacingPx
+                    val labelStep = if (slotWidth <= 0f) 1 else {
+                        ceil(minLabelSpacingPx / slotWidth).toInt().coerceAtLeast(1)
+                    }
+                    val showValueLabels = barWidth >= (if (isWide) valueLabelMinBarWidthExpanded else valueLabelMinBarWidthCompact).toPx()
 
-                        drawRoundRect(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(barColor1, barColor2),
-                                startY = valueLabelHeightPx + chartAreaHeight - barHeight,
-                                endY = valueLabelHeightPx + chartAreaHeight
-                            ),
-                            topLeft = Offset(left, valueLabelHeightPx + chartAreaHeight - barHeight),
-                            size = Size(barWidth, barHeight),
-                            cornerRadius = CornerRadius(x = barWidth / 3, y = barWidth / 3)
+                    // Draw Gaussian Curve Backdrop
+                    if (showGaussCurve && data.size > 2) {
+                        drawGaussianCurve(
+                            data = data,
+                            yAxisLabelWidth = yAxisLabelWidthPx,
+                            chartAreaHeight = chartAreaHeight,
+                            topPadding = valueLabelHeightPx,
+                            maxValue = safeMaxValue,
+                            color = tertiaryColor.copy(alpha = 0.3f),
+                            barWidth = barWidth,
+                            barSpacing = barSpacingPx
                         )
                     }
 
-                    val shouldDrawLabel = index % labelStep == 0 || index == data.lastIndex
+                    data.forEachIndexed { index, (label, value) ->
+                        val progressFactor = animatedProgress.value
+                        val barHeight = (value.toFloat() / safeMaxValue) * chartAreaHeight * progressFactor
+                        val left = yAxisLabelWidthPx + barSpacingPx + index * (barWidth + barSpacingPx)
+                        val barCenterX = left + barWidth / 2
+                        val isSelectedBar = selectedBarIndex == index
 
-                    // Value text above the bar with scale animation and background
-                    val valueTextY = valueLabelHeightPx + chartAreaHeight - barHeight - 8.dp.toPx()
-                    if (showValueLabels && shouldDrawLabel && progressFactor > 0.6f) {
-                        val textAlpha = ((progressFactor - 0.6f) * 2.5f).coerceIn(0f, 1f)
-                        
-                        // Draw semi-transparent background for value text
-                        val valueText = value.toString()
-                        val textWidth = valuePaint.measureText(valueText)
-                        val backgroundPadding = 6.dp.toPx()
-                        
                         drawRoundRect(
-                            color = surface.copy(alpha = 0.7f),
-                            topLeft = Offset(
-                                barCenterX - textWidth / 2 - backgroundPadding,
-                                valueTextY - textSize - backgroundPadding / 2
-                            ),
-                            size = Size(
-                                textWidth + backgroundPadding * 2,
-                                textSize + backgroundPadding
-                            ),
-                            cornerRadius = CornerRadius(4.dp.toPx())
+                            color = surfaceVariant.copy(alpha = 0.05f),
+                            topLeft = Offset(left, valueLabelHeightPx),
+                            size = Size(barWidth, chartAreaHeight),
+                            cornerRadius = CornerRadius(barWidth / 5)
                         )
-                        
-                        valuePaint.alpha = (textAlpha * 255).toInt()
-                        drawContext.canvas.nativeCanvas.drawText(
-                            valueText,
-                            barCenterX,
-                            valueTextY,
-                            valuePaint
-                        )
-                    }
 
-                    // X-Axis Label - Horizontal instead of 45Â° rotation
-                    if (shouldDrawLabel) {
-                        val labelTextY = size.height - xAxisLabelHeightPx + 16.dp.toPx()
-                        drawContext.canvas.nativeCanvas.drawText(
-                            label,
-                            barCenterX,
-                            labelTextY,
-                            labelPaint
+                        if (barHeight > 0) {
+                            val avgValue = data.map { it.second }.average().toFloat()
+                            val isAboveAverage = value >= avgValue
+                            val isOutlier = value >= avgValue * 1.5f
+                            val isHighlight = highlightThreshold != null && value >= highlightThreshold
+
+                            val barColor1 = when {
+                                isSelectedBar -> tertiaryColor
+                                isHighlight -> tertiaryColor
+                                isOutlier -> errorColor
+                                isAboveAverage -> primaryColor
+                                else -> primaryContainer
+                            }
+                            val barColor2 = when {
+                                isSelectedBar -> tertiaryContainer
+                                isHighlight -> tertiaryContainer
+                                isOutlier -> errorContainer
+                                isAboveAverage -> primaryContainer
+                                else -> primaryColor.copy(alpha = 0.8f)
+                            }
+
+                            drawRoundRect(
+                                brush = Brush.verticalGradient(
+                                    colors = listOf(barColor1, barColor2),
+                                    startY = valueLabelHeightPx + chartAreaHeight - barHeight,
+                                    endY = valueLabelHeightPx + chartAreaHeight
+                                ),
+                                topLeft = Offset(left, valueLabelHeightPx + chartAreaHeight - barHeight),
+                                size = Size(barWidth, barHeight),
+                                cornerRadius = CornerRadius(x = barWidth / 3, y = barWidth / 3)
+                            )
+                        }
+
+                        val shouldDrawLabel = index % labelStep == 0 || index == data.lastIndex
+
+                        val valueTextY = valueLabelHeightPx + chartAreaHeight - barHeight - 8.dp.toPx()
+                        if ((showValueLabels && shouldDrawLabel && progressFactor > 0.6f) || isSelectedBar) {
+                            val textAlpha = if (isSelectedBar) 1f else ((progressFactor - 0.6f) * 2.5f).coerceIn(0f, 1f)
+                            val valueText = value.toString()
+                            val textWidth = valuePaint.measureText(valueText)
+                            val backgroundPadding = 6.dp.toPx()
+
+                            drawRoundRect(
+                                color = surface.copy(alpha = 0.7f),
+                                topLeft = Offset(
+                                    barCenterX - textWidth / 2 - backgroundPadding,
+                                    valueTextY - textSize - backgroundPadding / 2
+                                ),
+                                size = Size(
+                                    textWidth + backgroundPadding * 2,
+                                    textSize + backgroundPadding
+                                ),
+                                cornerRadius = CornerRadius(4.dp.toPx())
+                            )
+
+                            valuePaint.alpha = (textAlpha * 255).toInt()
+                            drawContext.canvas.nativeCanvas.drawText(
+                                valueText,
+                                barCenterX,
+                                valueTextY,
+                                valuePaint
+                            )
+                        }
+
+                        if (shouldDrawLabel) {
+                            val labelTextY = size.height - xAxisLabelHeightPx + 16.dp.toPx()
+                            drawContext.canvas.nativeCanvas.drawText(
+                                label,
+                                barCenterX,
+                                labelTextY,
+                                labelPaint
+                            )
+                        }
+                    }
+                }
+
+                if (selectedBarIndex in data.indices) {
+                    val (selectedLabel, selectedValue) = data[selectedBarIndex]
+                    Surface(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(8.dp),
+                        shape = MaterialTheme.shapes.small,
+                        color = MaterialTheme.colorScheme.surfaceContainerHigh
+                    ) {
+                        Text(
+                            text = "$selectedLabel: $selectedValue",
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurface
                         )
                     }
                 }
@@ -386,5 +435,3 @@ private fun DrawScope.drawGrid(
         strokeWidth = 1.5.dp.toPx()
     )
 }
-
-

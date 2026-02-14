@@ -40,7 +40,7 @@ object AppStrings {
 
     object EmptyStates {
         @StringRes val home = R.string.home_empty_message
-        @StringRes val games = R.string.empty_games_message
+        @StringRes val games = R.string.empty_games_title
         @StringRes val insights = R.string.insights_empty_message
     }
 

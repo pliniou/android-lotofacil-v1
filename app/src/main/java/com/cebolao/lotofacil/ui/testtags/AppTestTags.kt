@@ -5,6 +5,7 @@ object AppTestTags {
     const val BottomNavItemPrefix = "bottom_nav_item_"
 
     const val HomeRefreshAction = "home_refresh_action"
+    const val GamesRefreshAction = "games_refresh_action"
 
     const val NumberGrid = "number_grid"
     const val NumberBallPrefix = "number_ball_"

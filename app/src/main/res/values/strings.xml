@@ -1,67 +1,63 @@
-<resources>
-    <string name="app_name">Lotofácil Generator</string>
+﻿<resources>
+    <string name="app_name">LotofÃ¡cil Generator</string>
 
-    <string name="error_no_history">Não foi possível carregar o histórico.</string>
+    <string name="error_no_history">NÃ£o foi possÃ­vel carregar o histÃ³rico.</string>
 
-    <string name="error_load_data_failed">Ops, não conseguimos carregar os dados agora. Tente novamente.</string>
-    <string name="error_analysis_failed">Ops, não foi possível concluir a análise do jogo.</string>
-    <string name="error_analysis_timeout">A análise demorou demais. Tente novamente.</string>
+    <string name="error_load_data_failed">Ops, nÃ£o conseguimos carregar os dados agora. Tente novamente.</string>
+    <string name="error_analysis_failed">Ops, nÃ£o foi possÃ­vel concluir a anÃ¡lise do jogo.</string>
+    <string name="error_analysis_timeout">A anÃ¡lise demorou demais. Tente novamente.</string>
     <string name="error_game_not_found">Nao encontramos este jogo salvo para analise.</string>
     <string name="error_unknown">Ops, algo deu errado. Tente novamente em instantes.</string>
-    <string name="error_history_unavailable">Histórico indisponível.</string>
-    <string name="error_history_unavailable_title">Histórico indisponível</string>
-    <string name="error_history_unavailable_message">Não foi possível recuperar o último concurso. Ajuste os filtros ou tente novamente.</string>
-    <string name="error_invalid_operation">Operação inválida.</string>
-    <string name="error_validation">Erro de validação.</string>
-    <string name="error_sync_failed">Ops, não foi possível atualizar os dados agora. Tente novamente.</string>
+    <string name="error_history_unavailable">HistÃ³rico indisponÃ­vel.</string>
+    <string name="error_history_unavailable_title">HistÃ³rico indisponÃ­vel</string>
+    <string name="error_history_unavailable_message">NÃ£o foi possÃ­vel recuperar o Ãºltimo concurso. Ajuste os filtros ou tente novamente.</string>
+    <string name="error_invalid_operation">OperaÃ§Ã£o invÃ¡lida.</string>
+    <string name="error_validation">Erro de validaÃ§Ã£o.</string>
+    <string name="error_sync_failed">Ops, nÃ£o foi possÃ­vel atualizar os dados agora. Tente novamente.</string>
     <string name="error_generating_games">Ops, algo deu errado ao gerar seu jogo. Tente novamente ou ajuste os filtros.</string>
-    <string name="error_invalid_filters_title">Filtros incompatíveis</string>
-    <string name="error_invalid_filters_message">Ajuste os critérios e tente novamente.</string>
-    <string name="error_no_connection">Sem conexão. Verifique sua internet.</string>
+    <string name="error_invalid_filters_title">Filtros incompatÃ­veis</string>
+    <string name="error_invalid_filters_message">Ajuste os critÃ©rios e tente novamente.</string>
+    <string name="error_no_connection">Sem conexÃ£o. Verifique sua internet.</string>
     <string name="try_again">Tentar novamente</string>
     <string name="global_error_title">Algo deu errado</string>
     <string name="global_error_message">Algo deu errado. Reinicie o app.</string>
     <string name="global_error_restart">Reiniciar app</string>
     <string name="global_error_report">Reportar erro</string>
-    <string name="global_error_report_subject">Relatório de erro</string>
-
-    <string name="studio_name">Cebola Studios</string>
-    <string name="studio_slogan">Sorte e estatística.</string>
-    <string name="studio_logo_description">Logo Cebola Studios</string>
-    <string name="about_section_guide">Guia e Informações</string>
+    <string name="global_error_report_subject">RelatÃ³rio de erro</string>    <string name="studio_logo_description">Logo Cebola Studios</string>
+    <string name="about_section_guide">Guia e InformaÃ§Ãµes</string>
     <string name="about_section_legal">Legal e Privacidade</string>
 
-    <string name="about_purpose_desc_body">Este app ajuda a analisar jogos da Lotofácil.</string>
+    <string name="about_purpose_desc_body">Este app ajuda a analisar jogos da LotofÃ¡cil.</string>
     <string name="about_purpose_desc_footer">Use com responsabilidade.</string>
-    <string name="about_purpose_item1_title">Análise</string>
+    <string name="about_purpose_item1_title">AnÃ¡lise</string>
     <string name="about_purpose_item1_desc">Analise seus jogos.</string>
-    <string name="about_purpose_item2_title">Histórico</string>
+    <string name="about_purpose_item2_title">HistÃ³rico</string>
     <string name="about_purpose_item2_desc">Veja resultados anteriores.</string>
-    <string name="about_purpose_item3_title">Estatísticas</string>
-    <string name="about_purpose_item3_desc">Acompanhe a frequência das dezenas.</string>
+    <string name="about_purpose_item3_title">EstatÃ­sticas</string>
+    <string name="about_purpose_item3_desc">Acompanhe a frequÃªncia das dezenas.</string>
 
     <string name="about_legal_desc_header">Aviso legal</string>
-    <string name="about_legal_item1">Não é afiliado à Caixa.</string>
-    <string name="about_legal_item2">Conteúdo apenas informativo.</string>
-    <string name="about_legal_item3">Não há garantia de prêmio.</string>
+    <string name="about_legal_item1">NÃ£o Ã© afiliado Ã  Caixa.</string>
+    <string name="about_legal_item2">ConteÃºdo apenas informativo.</string>
+    <string name="about_legal_item3">NÃ£o hÃ¡ garantia de prÃªmio.</string>
     <string name="about_legal_footer">Termos de uso</string>
 
     <string name="about_privacy_desc_header">Privacidade</string>
     <string name="about_privacy_desc_body">Respeitamos sua privacidade.</string>
-    <string name="about_privacy_item1">Nenhum dado pessoal é coletado.</string>
+    <string name="about_privacy_item1">Nenhum dado pessoal Ã© coletado.</string>
     <string name="about_privacy_item2">Armazenamento apenas local.</string>
     <string name="about_privacy_item3">Sem rastreamento.</string>
 
     <string name="about_rules_desc_header">Regras</string>
-    <string name="about_rules_item1">Escolha de 15 a 20 números.</string>
+    <string name="about_rules_item1">Escolha de 15 a 20 nÃºmeros.</string>
     <string name="about_rules_item2">Ganha com 11, 12, 13, 14 ou 15 acertos.</string>
-    <string name="about_rules_item3">Sorteios diários, exceto domingos.</string>
+    <string name="about_rules_item3">Sorteios diÃ¡rios, exceto domingos.</string>
 
     <string name="about_bolao_desc_body">Aumente suas chances com jogo em grupo.</string>
     <string name="about_bolao_desc_footer">Consulte as regras oficiais.</string>
 
     <!-- Probability Table -->
-    <string name="probability_table_header_prize">Prêmio</string>
+    <string name="probability_table_header_prize">PrÃªmio</string>
     <string name="probability_table_header_probability">Probabilidade</string>
     <string name="probability_15_hits">15 acertos</string>
     <string name="probability_14_hits">14 acertos</string>
@@ -75,32 +71,32 @@
     <string name="probability_11_hits_value">1 em 11</string>
 
     <!-- HomeScreen -->
-    <string name="last_update_status">Dados atualizados há %s</string>
+    <string name="last_update_status">Dados atualizados hÃ¡ %s</string>
     <string name="refresh_sync_label">Atualizando Dados</string>
-    <string name="sync_stats_message">Atualizando estatísticas&#8230;</string>
+    <string name="sync_stats_message">Atualizando estatÃ­sticas&#8230;</string>
     <plurals name="sync_stats_progress">
-        <item quantity="one">Atualizando estatísticas&#8230; %1$d de %2$d concurso</item>
-        <item quantity="other">Atualizando estatísticas&#8230; %1$d de %2$d concursos</item>
+        <item quantity="one">Atualizando estatÃ­sticas&#8230; %1$d de %2$d concurso</item>
+        <item quantity="other">Atualizando estatÃ­sticas&#8230; %1$d de %2$d concursos</item>
     </plurals>
     <string name="sync_in_progress_message">Atualizando dados. Aguarde&#8230;</string>
 
     <string name="refresh_success">Dados atualizados com sucesso!</string>
-    <string name="sync_failed_message">Não foi possível atualizar. Exibindo dados locais.</string>
-    <string name="home_source_history_network">histórico: rede</string>
-    <string name="home_source_history_cache">histórico: cache local</string>
-    <string name="home_source_stats_network">estatísticas: rede</string>
-    <string name="home_source_stats_cache">estatísticas: cache</string>
-    <string name="home_source_stats_computed">estatísticas: calculadas</string>
+    <string name="sync_failed_message">NÃ£o foi possÃ­vel atualizar. Exibindo dados locais.</string>
+    <string name="home_source_history_network">histÃ³rico: rede</string>
+    <string name="home_source_history_cache">histÃ³rico: cache local</string>
+    <string name="home_source_stats_network">estatÃ­sticas: rede</string>
+    <string name="home_source_stats_cache">estatÃ­sticas: cache</string>
+    <string name="home_source_stats_computed">estatÃ­sticas: calculadas</string>
 
-    <string name="home_stale_data_warning">Você está vendo dados locais (offline).</string>
-    <string name="loading_data">Carregando dados…</string>
-    <string name="home_loading_message">Preparando dados da Lotofacil…</string>
-    <string name="home_empty_message">Ainda não encontramos concursos locais. Toque em Atualizar para tentar novamente.</string>
-    <string name="home_last_draw_unavailable">O último concurso ainda não está disponível.</string>
+    <string name="home_stale_data_warning">VocÃª estÃ¡ vendo dados locais (offline).</string>
+    <string name="loading_data">Carregando dadosâ€¦</string>
+    <string name="home_loading_message">Preparando dados da Lotofacilâ€¦</string>
+    <string name="home_empty_message">Ainda nÃ£o encontramos concursos locais. Toque em Atualizar para tentar novamente.</string>
+    <string name="home_last_draw_unavailable">O Ãºltimo concurso ainda nÃ£o estÃ¡ disponÃ­vel.</string>
 
-    <string name="cebolao_title">Cebolão</string>
-    <string name="lotofacil_subtitle">Gerador Lotofácil</string>
-    <string name="last_contest">Último concurso</string>
+    <string name="cebolao_title">CebolÃ£o</string>
+    <string name="lotofacil_subtitle">Gerador LotofÃ¡cil</string>
+    <string name="last_contest">Ãšltimo concurso</string>
 
     <string name="sum_label">Soma</string>
     <string name="even_label">Pares</string>
@@ -109,88 +105,86 @@
     <string name="frame_label">Moldura</string>
     <string name="portrait_label">Miolo</string>
     <string name="fibonacci_label">Fibonacci</string>
-    <string name="multiples_of_3_label">Múltiplos de 3</string>
+    <string name="multiples_of_3_label">MÃºltiplos de 3</string>
     <string name="most_drawn_numbers">Dezenas mais sorteadas</string>
     <string name="time_window_all">Todos</string>
-    <string name="time_window_last">Últimos %d</string>
+    <string name="time_window_last">Ãšltimos %d</string>
     
     <!-- Frequency Analysis -->
     <string name="insights_title">Analytics</string>
-    <string name="insights_empty_message">Ainda não há dados suficientes para mostrar as estatísticas.</string>
-    <string name="insights_history_empty_message">Ainda não há histórico local. Sincronize os concursos para liberar as estatísticas.</string>
-    <string name="frequency_analysis_title">Frequência dos números</string>
-    <string name="patterns_title">Padrões de combinação</string>
-    <string name="trends_title">Tendência por período</string>
+    <string name="insights_empty_message">Ainda nÃ£o hÃ¡ dados suficientes para mostrar as estatÃ­sticas.</string>
+    <string name="insights_history_empty_message">Ainda nÃ£o hÃ¡ histÃ³rico local. Sincronize os concursos para liberar as estatÃ­sticas.</string>
+    <string name="frequency_analysis_title">FrequÃªncia dos nÃºmeros</string>
+    <string name="patterns_title">PadrÃµes de combinaÃ§Ã£o</string>
+    <string name="trends_title">TendÃªncia por perÃ­odo</string>
     <string name="stats_total_generated">Jogos Gerados</string>
     <string name="stats_total_played">Jogos Analisados</string>
-    <string name="stats_top_numbers">Seus Números Frequentes</string>
+    <string name="stats_top_numbers">Seus NÃºmeros Frequentes</string>
     <string name="stats_performance">Desempenho Geral</string>
-    <string name="stats_avg_hits">Média de acertos (todos os tempos)</string>
-    <string name="stats_empty_message">Você ainda não gerou nenhum jogo. Vá para o Gerador para começar!</string>
+    <string name="stats_avg_hits">MÃ©dia de acertos (todos os tempos)</string>
+    <string name="stats_empty_message">VocÃª ainda nÃ£o gerou nenhum jogo. VÃ¡ para o Gerador para comeÃ§ar!</string>
     <string name="nav_user_stats">Meus Dados</string>
     <string name="user_stats_card_title">Meus Dados e Conquistas</string>
-    <string name="user_stats_card_subtitle">Veja seu histórico de uso e números favoritos.</string>
+    <string name="user_stats_card_subtitle">Veja seu histÃ³rico de uso e nÃºmeros favoritos.</string>
     <string name="theme_settings_title">Aparencia</string>
     <string name="theme_settings_subtitle">Escolha o tema visual do aplicativo.</string>
     <string name="theme_mode_system">Sistema</string>
     <string name="theme_mode_light">Claro</string>
     <string name="theme_mode_dark">Escuro</string>
     
-    <string name="trend_analysis_title">Tendência ao longo do tempo</string>
+    <string name="trend_analysis_title">TendÃªncia ao longo do tempo</string>
     <!-- GeneratedGamesScreen -->
     <string name="clear_games_title">Limpar jogos?</string>
-    <string name="clear_games_message">Isso removerá todos os jogos não fixados. Deseja continuar?</string>
+    <string name="clear_games_message">Isso removerÃ¡ todos os jogos nÃ£o fixados. Deseja continuar?</string>
     <string name="clear_button">Limpar</string>
     <string name="cancel_button">Cancelar</string>
     <string name="delete_game_title">Excluir jogo?</string>
-    <string name="delete_game_message">Esta ação é permanente. Deseja excluir este jogo?</string>
+    <string name="delete_game_message">Esta aÃ§Ã£o Ã© permanente. Deseja excluir este jogo?</string>
     <string name="delete_button">Excluir</string>
-    <string name="analyzing_game">Analisando jogo…</string>
-    <string name="analysis_error_title">Erro na análise</string>
+    <string name="analyzing_game">Analisando jogoâ€¦</string>
+    <string name="analysis_error_title">Erro na anÃ¡lise</string>
     <string name="my_games">Meus jogos</string>
-    <string name="my_games_subtitle">Visualize, analise e gerencie seus jogos</string>
-    <string name="empty_games_message">Nenhum jogo salvo ainda</string>
-    <string name="loading_games">Carregando seus jogos&#8230;</string>
+    <string name="my_games_subtitle">Visualize, analise e gerencie seus jogos</string>    <string name="loading_games">Carregando seus jogos&#8230;</string>
     <string name="generate_first_game">Gerar meu primeiro jogo</string>
     <string name="load_more_games">Carregar mais jogos</string>
     <string name="generated_games_overview_title">Resumo dos jogos</string>
     <string name="total_games_label">Total</string>
     <string name="pinned_games_label">Fixados</string>
-    <string name="game_analysis_title">Análise do jogo</string>
-    <string name="game_analysis_subtitle">Compare padrões e gere variações com um toque</string>
-    <string name="analysis_numbers_title">Números do jogo base</string>
+    <string name="game_analysis_title">AnÃ¡lise do jogo</string>
+    <string name="game_analysis_subtitle">Compare padrÃµes e gere variaÃ§Ãµes com um toque</string>
+    <string name="analysis_numbers_title">NÃºmeros do jogo base</string>
     <string name="close_button">Fechar</string>
-    <string name="historical_performance">Desempenho histórico</string>
-    <string name="recent_hits_title">Acertos nos últimos 15 sorteios</string>
-    <string name="game_stats_title">Estatísticas do jogo</string>
+    <string name="historical_performance">Desempenho histÃ³rico</string>
+    <string name="recent_hits_title">Acertos nos Ãºltimos 15 sorteios</string>
+    <string name="game_stats_title">EstatÃ­sticas do jogo</string>
 
     <!-- CheckerScreen -->
     <string name="check_game_title">Conferidor</string>
-    <string name="check_game_subtitle">Compare seu jogo com o histórico de concursos</string>
+    <string name="check_game_subtitle">Compare seu jogo com o histÃ³rico de concursos</string>
     <string name="check_game_button">Conferir jogo</string>
-    <string name="clear_selection_button">Limpar seleção</string>
-    <string name="checker_clear_selection_title">Limpar seleção?</string>
-    <string name="checker_clear_selection_message">Isso removerá todos os números selecionados. Deseja continuar?</string>
-    <string name="checker_clear_confirmation">Seleção limpa com sucesso.</string>
+    <string name="clear_selection_button">Limpar seleÃ§Ã£o</string>
+    <string name="checker_clear_selection_title">Limpar seleÃ§Ã£o?</string>
+    <string name="checker_clear_selection_message">Isso removerÃ¡ todos os nÃºmeros selecionados. Deseja continuar?</string>
+    <string name="checker_clear_confirmation">SeleÃ§Ã£o limpa com sucesso.</string>
     <string name="checker_checking_success">Jogo conferido com sucesso!</string>
-    <string name="checker_checking_error">Ops, não foi possível conferir seu jogo. Tente novamente.</string>
-    <string name="checker_incomplete_selection">Selecione exatos 15 números para conferir.</string>
+    <string name="checker_checking_error">Ops, nÃ£o foi possÃ­vel conferir seu jogo. Tente novamente.</string>
+    <string name="checker_incomplete_selection">Selecione exatos 15 nÃºmeros para conferir.</string>
     <string name="checker_results_cleared_title">Limpar resultados?</string>
-    <string name="checker_results_cleared_message">Isso removerá os resultados da conferência atual. Deseja continuar?</string>
-    <string name="checker_loading_history">Carregando histórico…</string>
-    <string name="checker_calculating_results">Calculando resultados…</string>
-    <string name="checker_analyzing_stats">Analisando estatisticas…</string>
+    <string name="checker_results_cleared_message">Isso removerÃ¡ os resultados da conferÃªncia atual. Deseja continuar?</string>
+    <string name="checker_loading_history">Carregando histÃ³ricoâ€¦</string>
+    <string name="checker_calculating_results">Calculando resultadosâ€¦</string>
+    <string name="checker_analyzing_stats">Analisando estatisticasâ€¦</string>
     <string name="generate_new_game_button">Gerar novo jogo</string>
     <string name="refine_from_pattern_button">Refinar com este padrao</string>
 
     <!-- FiltersScreen -->
     <string name="filters_header_title">Gerador inteligente</string>
-    <string name="filters_header_subtitle">Ajuste filtros com apoio estatístico para gerar jogos</string>
+    <string name="filters_header_subtitle">Ajuste filtros com apoio estatÃ­stico para gerar jogos</string>
     <string name="generate_similar_game_button">Gerar variacao deste jogo</string>
     <string name="generator_preset_applied">Filtros similares aplicados no gerador.</string>
     <string name="reset_filters">Resetar filtros</string>
     <string name="reset_filters_title">Resetar filtros?</string>
-    <string name="reset_filters_message">Isso desativará todos os filtros e restaurará os padrões. Deseja continuar?</string>
+    <string name="reset_filters_message">Isso desativarÃ¡ todos os filtros e restaurarÃ¡ os padrÃµes. Deseja continuar?</string>
 
     <!-- GameCard -->
     <string name="analyze_button">Analisar</string>
@@ -200,7 +194,7 @@
     <string name="delete_game">Excluir jogo</string>
     <string name="pinned_label">Fixado</string>
     <string name="cd_share_game">Compartilhar jogo</string>
-    <string name="share_game_chooser_title">Compartilhar jogo via…</string>
+    <string name="share_game_chooser_title">Compartilhar jogo viaâ€¦</string>
 
     <!-- Common Actions -->
 
@@ -208,8 +202,8 @@
     <string name="adjust_filters_button">Ajustar filtros</string>
 
     <!-- FilterCard -->
-    <string name="data_unavailable">Dados indisponíveis</string>
-    <string name="filter_info_content_description">Mais informações sobre o filtro %1$s</string>
+    <string name="data_unavailable">Dados indisponÃ­veis</string>
+    <string name="filter_info_content_description">Mais informaÃ§Ãµes sobre o filtro %1$s</string>
 
     <!-- Filter Actions -->
     
@@ -219,118 +213,116 @@
     
 
     <!-- Generation Actions -->
-    <string name="min_value">Mínimo</string>
-    <string name="max_value">Máximo</string>
+    <string name="min_value">MÃ­nimo</string>
+    <string name="max_value">MÃ¡ximo</string>
     <string name="filter_value_label">Valor</string>
     <string name="filter_mode_label">Modo</string>
     <string name="filter_mode_mono">Mono</string>
-    <string name="filter_mode_stereo">Estéreo</string>
+    <string name="filter_mode_stereo">EstÃ©reo</string>
 
     <!-- FilterStatsPanel -->
-    <string name="presets_title">Dicas Rápidas (Presets)</string>
+    <string name="presets_title">Dicas RÃ¡pidas (Presets)</string>
     <string name="preset_common_title">Mais Comuns</string>
-    <string name="preset_common_desc">Estatísticas clássicas (72% dos sorteios)</string>
+    <string name="preset_common_desc">EstatÃ­sticas clÃ¡ssicas (72% dos sorteios)</string>
     <string name="preset_gauss_title">Pico de Gauss</string>
-    <string name="preset_gauss_desc">Máxima restrição (alvos frequentes)</string>
+    <string name="preset_gauss_desc">MÃ¡xima restriÃ§Ã£o (alvos frequentes)</string>
     <string name="preset_extremes_title">Fora da Curva</string>
     <string name="preset_extremes_desc">Busca por resultados raros e extremos</string>
 
     <!-- CheckResultCard -->
-    <string name="awards_occurred">Premiações já ocorridas</string>
-    <string name="performance_analysis">Análise de desempenho</string>
+    <string name="awards_occurred">PremiaÃ§Ãµes jÃ¡ ocorridas</string>
+    <string name="performance_analysis">AnÃ¡lise de desempenho</string>
     <!-- Plurals for internationalization -->
     <plurals name="analysis_in_contests">
-        <item quantity="one">Análise em %d concurso</item>
-        <item quantity="other">Análise em %d concursos</item>
+        <item quantity="one">AnÃ¡lise em %d concurso</item>
+        <item quantity="other">AnÃ¡lise em %d concursos</item>
     </plurals>
     <plurals name="hits_count_label">
         <item quantity="one">%d acerto</item>
         <item quantity="other">%d acertos</item>
     </plurals>
     <plurals name="last_award">
-        <item quantity="one">Último prêmio no concurso %1$d com %2$d acerto.</item>
-        <item quantity="other">Último prêmio no concurso %1$d com %2$d acertos.</item>
+        <item quantity="one">Ãšltimo prÃªmio no concurso %1$d com %2$d acerto.</item>
+        <item quantity="other">Ãšltimo prÃªmio no concurso %1$d com %2$d acertos.</item>
     </plurals>
-    <string name="no_awards_found">Nenhum prêmio encontrado.</string>
+    <string name="no_awards_found">Nenhum prÃªmio encontrado.</string>
 
     <!-- GenerationActionsPanel -->
     <string name="game_quantity">Quantidade de jogos</string>
     <string name="total_cost">Custo total:</string>
     <plurals name="cost_calculation">
-        <item quantity="one">%1$d jogo × R$ %2$s</item>
-        <item quantity="other">%1$d jogos × R$ %2$s</item>
+        <item quantity="one">%1$d jogo Ã— R$ %2$s</item>
+        <item quantity="other">%1$d jogos Ã— R$ %2$s</item>
     </plurals>
     <string name="decrease_quantity">Diminuir</string>
-    <string name="increase_quantity">Aumentar</string>
-    <string name="generate_button_disabled_no_filters">Selecione ao menos 1 filtro</string>
-    <string name="generate_button_disabled_no_quantity">A quantidade deve ser maior que 0</string>
-    <string name="generate_button_disabled_invalid_filters">Esta combinação de filtros está inválida.</string>
-    <string name="generate_button_disabled_impossible_filters">Nenhum jogo possível com os filtros atuais</string>
+    <string name="increase_quantity">Aumentar</string>    <string name="generate_button_disabled_no_quantity">A quantidade deve ser maior que 0</string>
+    <string name="generate_button_disabled_invalid_filters">Esta combinaÃ§Ã£o de filtros estÃ¡ invÃ¡lida.</string>
+    <string name="generate_button_disabled_impossible_filters">Nenhum jogo possÃ­vel com os filtros atuais</string>
     <string name="generate_button_disabled_syncing">Atualizando dados. Aguarde&#8230;</string>
-    <string name="possible_games_title">Jogos possíveis</string>
-    <string name="possible_games_calculating">Calculando combinações&#8230;</string>
-    <string name="possible_games_none">Nenhum jogo possível!</string>
-    <string name="possible_games_exact">%1$s jogos possíveis</string>
-    <string name="possible_games_estimated">~%1$s jogos possíveis</string>
-    <string name="possible_games_warning_restrictive">Combinação muito restritiva (&lt; 10 jogos).</string>
-    <string name="possible_games_warning_impossible">Atenção: estes filtros podem não gerar resultados.</string>
+    <string name="possible_games_title">Jogos possÃ­veis</string>
+    <string name="possible_games_calculating">Calculando combinaÃ§Ãµes&#8230;</string>
+    <string name="possible_games_none">Nenhum jogo possÃ­vel!</string>
+    <string name="possible_games_exact">%1$s jogos possÃ­veis</string>
+    <string name="possible_games_estimated">~%1$s jogos possÃ­veis</string>
+    <string name="possible_games_warning_restrictive">CombinaÃ§Ã£o muito restritiva (&lt; 10 jogos).</string>
+    <string name="possible_games_warning_impossible">AtenÃ§Ã£o: estes filtros podem nÃ£o gerar resultados.</string>
 
     <!-- Filter Types -->
     <string name="filter_soma_dezenas_title">Soma das dezenas</string>
-    <string name="filter_soma_dezenas_description">A soma dos 15 números. A grande maioria dos sorteios (cerca de 72%) possui uma soma entre 170 e 220. Este é um dos filtros mais eficazes para eliminar combinações improváveis.</string>
+    <string name="filter_soma_dezenas_description">A soma dos 15 nÃºmeros. A grande maioria dos sorteios (cerca de 72%) possui uma soma entre 170 e 220. Este Ã© um dos filtros mais eficazes para eliminar combinaÃ§Ãµes improvÃ¡veis.</string>
 
-    <string name="filter_pares_title">Números pares</string>
-    <string name="filter_pares_description">A quantidade de números pares. O ideal é um equilíbrio. Cerca de 78% dos sorteios têm entre 6 e 9 números pares.</string>
+    <string name="filter_pares_title">NÃºmeros pares</string>
+    <string name="filter_pares_description">A quantidade de nÃºmeros pares. O ideal Ã© um equilÃ­brio. Cerca de 78% dos sorteios tÃªm entre 6 e 9 nÃºmeros pares.</string>
 
-    <string name="filter_primos_title">Números primos</string>
-    <string name="filter_primos_description">A quantidade de números primos. Existem 9 primos (2, 3, 5, 7, 11, 13, 17, 19, 23). Cerca de 74% dos sorteios têm entre 4 e 7 primos.</string>
+    <string name="filter_primos_title">NÃºmeros primos</string>
+    <string name="filter_primos_description">A quantidade de nÃºmeros primos. Existem 9 primos (2, 3, 5, 7, 11, 13, 17, 19, 23). Cerca de 74% dos sorteios tÃªm entre 4 e 7 primos.</string>
 
     <string name="filter_moldura_title">Dezenas na moldura</string>
-    <string name="filter_moldura_description">A quantidade de números nas bordas do volante (16 números no total). Cerca de 76% dos sorteios têm entre 8 e 11 números da moldura.</string>
+    <string name="filter_moldura_description">A quantidade de nÃºmeros nas bordas do volante (16 nÃºmeros no total). Cerca de 76% dos sorteios tÃªm entre 8 e 11 nÃºmeros da moldura.</string>
 
     <string name="filter_retrato_title">Dezenas no retrato</string>
-    <string name="filter_retrato_description">A quantidade de números no centro do volante (9 números no total). Cerca de 71% dos sorteios têm entre 4 e 7 números do retrato.</string>
+    <string name="filter_retrato_description">A quantidade de nÃºmeros no centro do volante (9 nÃºmeros no total). Cerca de 71% dos sorteios tÃªm entre 4 e 7 nÃºmeros do retrato.</string>
 
-    <string name="filter_fibonacci_title">Sequência de Fibonacci</string>
-    <string name="filter_fibonacci_description">A quantidade de números da sequência de Fibonacci (1, 2, 3, 5, 8, 13, 21). Cerca de 68% dos sorteios têm entre 3 e 5 números de Fibonacci.</string>
+    <string name="filter_fibonacci_title">SequÃªncia de Fibonacci</string>
+    <string name="filter_fibonacci_description">A quantidade de nÃºmeros da sequÃªncia de Fibonacci (1, 2, 3, 5, 8, 13, 21). Cerca de 68% dos sorteios tÃªm entre 3 e 5 nÃºmeros de Fibonacci.</string>
 
-    <string name="filter_multiplos_3_title">Múltiplos de 3</string>
-    <string name="filter_multiplos_3_description">A quantidade de números que são múltiplos de 3. Cerca de 69% dos sorteios têm entre 3 e 6 múltiplos de 3.</string>
+    <string name="filter_multiplos_3_title">MÃºltiplos de 3</string>
+    <string name="filter_multiplos_3_description">A quantidade de nÃºmeros que sÃ£o mÃºltiplos de 3. Cerca de 69% dos sorteios tÃªm entre 3 e 6 mÃºltiplos de 3.</string>
 
     <string name="filter_repetidas_anterior_title">Repetidas do anterior</string>
-    <string name="filter_repetidas_anterior_description">A quantidade de números que se repetiram do concurso anterior. Este é um padrão muito forte: 84% dos sorteios repetem entre 8 e 10 números.</string>
+    <string name="filter_repetidas_anterior_description">A quantidade de nÃºmeros que se repetiram do concurso anterior. Este Ã© um padrÃ£o muito forte: 84% dos sorteios repetem entre 8 e 10 nÃºmeros.</string>
 
     <!-- InfoItem Resources -->
-    <string name="info_item_rules_title">Regras e prêmios</string>
+    <string name="info_item_rules_title">Regras e prÃªmios</string>
     <string name="info_item_rules_subtitle">O manual oficial da Caixa</string>
-    <string name="info_item_probabilities_title">A realidade dos números</string>
-    <string name="info_item_probabilities_subtitle">A matemática da (falta de) sorte</string>
-    <string name="info_item_bolao_title">Bolão: mais chances</string>
-    <string name="info_item_bolao_subtitle">Dividindo o prêmio (e a aposta)</string>
+    <string name="info_item_probabilities_title">A realidade dos nÃºmeros</string>
+    <string name="info_item_probabilities_subtitle">A matemÃ¡tica da (falta de) sorte</string>
+    <string name="info_item_bolao_title">BolÃ£o: mais chances</string>
+    <string name="info_item_bolao_subtitle">Dividindo o prÃªmio (e a aposta)</string>
     <string name="info_item_purpose_title">Finalidade do app</string>
-    <string name="info_item_purpose_subtitle">Para que (não) serve este app</string>
-    <string name="info_item_legal_title">O juridiquês</string>
-    <string name="info_item_legal_subtitle">A parte chata, mas necessária</string>
+    <string name="info_item_purpose_subtitle">Para que (nÃ£o) serve este app</string>
+    <string name="info_item_legal_title">O juridiquÃªs</string>
+    <string name="info_item_legal_subtitle">A parte chata, mas necessÃ¡ria</string>
     <string name="info_item_privacy_title">Sua privacidade</string>
-    <string name="info_item_privacy_subtitle">Como (não) usamos seus dados</string>
+    <string name="info_item_privacy_subtitle">Como (nÃ£o) usamos seus dados</string>
 
     <!-- Dialogs -->
     <string name="understood_button">Entendi</string>
-    <string name="info_dialog_icon_description">Ícone de informação do diálogo</string>
-    <string name="icon_check_circle_description">Ícone de círculo com check</string>
-    <string name="icon_gavel_description">Ícone de martelo (legal)</string>
-    <string name="icon_shield_description">Ícone de escudo (privacidade)</string>
-    <string name="icon_rule_description">Ícone de regra</string>
-    <string name="game_deleted_confirmation">Jogo excluído com sucesso.</string>
-    <string name="unpinned_games_cleared">Jogos não fixados removidos.</string>
+    <string name="info_dialog_icon_description">Ãcone de informaÃ§Ã£o do diÃ¡logo</string>
+    <string name="icon_check_circle_description">Ãcone de cÃ­rculo com check</string>
+    <string name="icon_gavel_description">Ãcone de martelo (legal)</string>
+    <string name="icon_shield_description">Ãcone de escudo (privacidade)</string>
+    <string name="icon_rule_description">Ãcone de regra</string>
+    <string name="game_deleted_confirmation">Jogo excluÃ­do com sucesso.</string>
+    <string name="unpinned_games_cleared">Jogos nÃ£o fixados removidos.</string>
     <string name="accumulated">ACUMULOU!</string>
     <!-- Content Descriptions -->
 
     <string name="cd_navigate_back">Voltar</string>
-    <string name="cd_clear_games">Limpar jogos não fixados</string>
+    <string name="cd_clear_games">Limpar jogos nÃ£o fixados</string>
     <string name="next_contest_format">Concurso #%s</string>
 
-    <string name="nav_home">Início</string>
+    <string name="nav_home">InÃ­cio</string>
     <string name="nav_filters">Gerador</string>
     <string name="nav_games">Jogos</string>
     <string name="nav_checker">Conferidor</string>
@@ -340,77 +332,75 @@
     <string name="number_state_selected">selecionado</string>
     <string name="number_state_highlighted">destacado</string>
     <string name="number_state_disabled">desabilitado</string>
-    <string name="number_state_available">disponível</string>
-    <string name="number_content_description">Número %1$d, %2$s</string>
+    <string name="number_state_available">disponÃ­vel</string>
+    <string name="number_content_description">NÃºmero %1$d, %2$s</string>
     <!-- Ranking positions -->
     <!-- Accessibility - Componentes -->
     <plurals name="chart_frequency_description">
-        <item quantity="one">Gráfico de frequência com %1$d número, valor máximo %2$d</item>
-        <item quantity="other">Gráfico de frequência com %1$d números, valor máximo %2$d</item>
+        <item quantity="one">GrÃ¡fico de frequÃªncia com %1$d nÃºmero, valor mÃ¡ximo %2$d</item>
+        <item quantity="other">GrÃ¡fico de frequÃªncia com %1$d nÃºmeros, valor mÃ¡ximo %2$d</item>
     </plurals>
-    <string name="trend_indicator_description">Tendência %1$s, variação %2$s</string>
-    <string name="empty_state_message">Nenhum dado disponível.</string>
+    <string name="trend_indicator_description">TendÃªncia %1$s, variaÃ§Ã£o %2$s</string>
+    <string name="empty_state_message">Nenhum dado disponÃ­vel.</string>
 
     <!-- Statistics Screen -->
-    <string name="time_window_filter_label">Período de análise</string>
+    <string name="time_window_filter_label">PerÃ­odo de anÃ¡lise</string>
     <string name="all_draws_label">Todos</string>
-    <string name="last_n_draws_label">Últimos %d</string>
+    <string name="last_n_draws_label">Ãšltimos %d</string>
     <string name="draws_analyzed_label">Concursos analisados</string>
-    <string name="average_sum_label">Soma média</string>
+    <string name="average_sum_label">Soma mÃ©dia</string>
     <string name="top_numbers_label">Mais frequentes</string>
     <string name="overdue_numbers_label">Mais atrasados</string>
     <plurals name="draws_ago_label">
-        <item quantity="one">%d atrás</item>
-        <item quantity="other">%d atrás</item>
+        <item quantity="one">%d atrÃ¡s</item>
+        <item quantity="other">%d atrÃ¡s</item>
     </plurals>
-    <string name="distributions_title">Distribuições</string>
+    <string name="distributions_title">DistribuiÃ§Ãµes</string>
     <string name="most_common_label">mais comum</string>
     <string name="pairs_label">Pares</string>
     <string name="triplets_label">Trincas</string>
     <string name="quads_label">Quadras</string>
-    <string name="average_value_label">Valor médio</string>
-    <string name="gaussian_curve_label" translatable="false">Curva de Gauss</string>
-    <string name="refresh_button">Atualizar</string>
+    <string name="average_value_label">Valor mÃ©dio</string>    <string name="refresh_button">Atualizar</string>
 
     <!-- HomeScreen - Distribution Summary -->
     <!-- HomeScreen - Quick Navigation -->
     <!-- AboutScreen - Useful Links -->
-    <string name="about_section_links">Links úteis</string>
+    <string name="about_section_links">Links Ãºteis</string>
     <string name="link_caixa_title">Site oficial da Caixa</string>
-    <string name="link_caixa_subtitle">Resultados e regulamentos da Lotofácil</string>
+    <string name="link_caixa_subtitle">Resultados e regulamentos da LotofÃ¡cil</string>
     <string name="link_github_title">GitHub do desenvolvedor</string>
-    <string name="link_github_subtitle">Código-fonte e contribuições</string>
+    <string name="link_github_subtitle">CÃ³digo-fonte e contribuiÃ§Ãµes</string>
 
     <!-- AboutScreen - Tips -->
-    <string name="info_item_tips_title">Dicas Lotofácil</string>
-    <string name="info_item_tips_subtitle">Estratégias baseadas em estatísticas</string>
-    <string name="tips_intro">Dicas baseadas em análise estatística dos sorteios históricos da Lotofácil:</string>
+    <string name="info_item_tips_title">Dicas LotofÃ¡cil</string>
+    <string name="info_item_tips_subtitle">EstratÃ©gias baseadas em estatÃ­sticas</string>
+    <string name="tips_intro">Dicas baseadas em anÃ¡lise estatÃ­stica dos sorteios histÃ³ricos da LotofÃ¡cil:</string>
     <string name="tips_sum_title">Faixa de soma ideal</string>
-    <string name="tips_sum_desc">A grande maioria dos sorteios (±72%) tem soma entre 170 e 220. Jogos fora dessa faixa são estatisticamente raros.</string>
-    <string name="tips_even_odd_title">Equilíbrio par/ímpar</string>
-    <string name="tips_even_odd_desc">O padrão mais frequente é 7 pares e 8 ímpares (ou vice-versa). Evite extremos como só pares ou só ímpares.</string>
-    <string name="tips_primes_title">Números primos</string>
-    <string name="tips_primes_desc">Cerca de 74% dos sorteios contêm entre 4 e 7 números primos (2, 3, 5, 7, 11, 13, 17, 19, 23).</string>
+    <string name="tips_sum_desc">A grande maioria dos sorteios (Â±72%) tem soma entre 170 e 220. Jogos fora dessa faixa sÃ£o estatisticamente raros.</string>
+    <string name="tips_even_odd_title">Equilibrio Pares x Impares</string>
+    <string name="tips_even_odd_desc">O padrao mais frequente e 7 pares e 8 impares (ou vice-versa). Evite extremos como so pares ou so impares.</string>
+    <string name="tips_primes_title">NÃºmeros primos</string>
+    <string name="tips_primes_desc">Cerca de 74% dos sorteios contÃªm entre 4 e 7 nÃºmeros primos (2, 3, 5, 7, 11, 13, 17, 19, 23).</string>
     <string name="tips_frame_title">Moldura e miolo</string>
-    <string name="tips_frame_desc">Distribua bem entre moldura (bordas do volante, 16 números) e miolo (centro, 9 números). O ideal é 8–11 da moldura.</string>
-    <string name="tips_repeat_title">Repetição do anterior</string>
-    <string name="tips_repeat_desc">84% dos sorteios repetem entre 8 e 10 números do concurso anterior. Considere incluir parte dos números anteriores.</string>
+    <string name="tips_frame_desc">Distribua bem entre moldura (bordas do volante, 16 nÃºmeros) e miolo (centro, 9 nÃºmeros). O ideal Ã© 8â€“11 da moldura.</string>
+    <string name="tips_repeat_title">RepetiÃ§Ã£o do anterior</string>
+    <string name="tips_repeat_desc">84% dos sorteios repetem entre 8 e 10 nÃºmeros do concurso anterior. Considere incluir parte dos nÃºmeros anteriores.</string>
 
     <!-- NEW STRINGS FOR REFACTOR -->
     <string name="greeting_user">Jogador</string> <!-- Playful default -->
-    <string name="greeting_insight_accumulated">Prêmio acumulado! Ótima hora para jogar.</string>
-    <string name="greeting_insight_generic">Use os dados como apoio e jogue com consciência.</string>
-    <string name="today_draw_active">Hoje tem concurso da Lotofácil.</string>
+    <string name="greeting_insight_accumulated">PrÃªmio acumulado! Ã“tima hora para jogar.</string>
+    <string name="greeting_insight_generic">Use os dados como apoio e jogue com consciÃªncia.</string>
+    <string name="today_draw_active">Hoje tem concurso da LotofÃ¡cil.</string>
     
-    <string name="next_draw_card_title">Próximo concurso</string>
-    <string name="quick_insights_title">Insights Rápidos</string>
-    <string name="quick_insights_cta">Ver estatísticas completas</string>
+    <string name="next_draw_card_title">PrÃ³ximo concurso</string>
+    <string name="quick_insights_title">Insights RÃ¡pidos</string>
+    <string name="quick_insights_cta">Ver estatÃ­sticas completas</string>
     
     <!-- Filter Accessibility -->
     <string name="filter_accessibility_description">%1$s, switch, %2$s</string>
     
-    <string name="home_prize_section_title">Premiacao</string>
-    <string name="home_prize_data_unavailable">Premiacao nao disponivel para este concurso.</string>
+    <string name="home_prize_section_title">Faixas de premio</string>
+    <string name="home_prize_data_unavailable">As faixas de premio nao estao disponiveis para este concurso.</string>
     <string name="home_prize_faixa_label">Faixa %1$d</string>
     <string name="home_prize_generic_faixa">Faixa</string>
     <string name="home_prize_winners_label">%1$s ganhadores</string>
@@ -421,11 +411,65 @@
     <string name="home_next_date_not_available">Data a confirmar</string>
     <string name="home_next_contest_derived_hint">Previsao calculada a partir do ultimo concurso.</string>
     <string name="checker_save_game_button">Salvar em Meus Jogos</string>
-    <string name="checker_game_saving_button">Salvando jogo…</string>
+    <string name="checker_game_saving_button">Salvando jogoâ€¦</string>
     <string name="checker_game_saved_button_done">Jogo salvo e fixado</string>
     <string name="checker_save_game_success">Jogo salvo e fixado em Meus Jogos.</string>
     <string name="checker_save_game_error">Nao foi possivel salvar o jogo agora.</string>
+    <string name="empty_state_description_default">Veja os dados quando estiverem dispon&#237;veis.</string>
+    <string name="generate_button_helper_no_filters">Escolha ao menos um filtro para come&#231;ar.</string>
+    <string name="generating_games_loading">Gerando jogos&#8230;</string>
+    <string name="home_legend_prime">Primos</string>
+    <string name="home_legend_fibonacci">Fibonacci</string>
+    <string name="home_legend_multiple_3">Multiplos de 3</string>
+    <string name="home_legend_default">Demais</string>
+    <string name="home_even_odd_label">Pares x Impares</string>
+    <string name="home_view_less">Ver menos</string>
+    <string name="empty_games_title">Nenhum jogo salvo agora</string>
+    <string name="empty_games_description">Salve combinacoes geradas para acompanhar premios futuros.</string>
+    <string name="empty_games_secondary_action">Colar combinacao manual</string>
+    <plurals name="checker_last_contest_highlight">
+        <item quantity="one">Seu jogo teria %1$d acerto no &#250;ltimo concurso (%2$d).</item>
+        <item quantity="other">Seu jogo teria %1$d acertos no &#250;ltimo concurso (%2$d).</item>
+        <item quantity="many">Seu jogo teria %1$d acertos no &#250;ltimo concurso (%2$d).</item>
+    </plurals>
+    <string name="external_link_warning_title">Abrir link externo</string>
+    <string name="external_link_warning_message">Voce sera redirecionado para fora do app. Deseja continuar?</string>
+    <string name="external_link_open_button">Abrir</string>
+    <string name="about_header_subtitle">Guia rapido, regras e links uteis.</string>
+    <string name="game_actions_menu">Acoes do jogo</string>
+    <string name="sort_frequency_desc">Mais frequentes</string>
+    <string name="sort_frequency_asc">Menos frequentes</string>
+    <string name="pattern_column_label">Padrao</string>
+    <string name="frequency_column_label">Frequencia</string>
+    <string name="trend_tap_hint">Toque no gr&#225;fico para detalhes.</string>
+    <string name="previous_page">Anterior</string>
+    <string name="next_page">Pr&#243;xima</string>
+    <string name="page_indicator">P&#225;gina %1$d de %2$d</string>
+    <string name="games_filter_title">Filtrar jogos</string>
+    <string name="games_filter_all">Todos</string>
+    <string name="games_filter_pinned">Fixados</string>
+    <string name="games_filter_recent">&#218;ltimos 7 dias</string>
+    <string name="games_filter_most_used">Mais usados</string>
+    <string name="checker_stats_interactive_hint">Toque em um indicador para entender o contexto.</string>
+    <string name="checker_stat_range_label">Faixa comum: %1$s.</string>
+    <string name="checker_stat_status_good">Seu jogo esta dentro da faixa mais frequente.</string>
+    <string name="checker_stat_status_attention">Seu jogo esta fora da faixa mais frequente.</string>
+    <string name="checker_stat_context_note">Isso n&#227;o garante pr&#234;mio, mas ajuda a comparar o perfil do jogo.</string>
+    <string name="filter_state_enabled">ativado</string>
+    <string name="filter_state_disabled">desativado</string>
+    <string name="filter_summary_value">Valor: %1$d</string>
+    <string name="filter_summary_range">Faixa: %1$d a %2$d</string>
+    <string name="trend_chart_point_label">Concurso %1$d: %2$.1f</string>
+    <string name="manual_import_title">Colar combina&#231;&#227;o</string>
+    <string name="manual_import_description">Cole uma combina&#231;&#227;o por linha com 15 dezenas entre 1 e 25.</string>
+    <string name="manual_import_placeholder">01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15</string>
+    <string name="manual_import_confirm">Importar</string>
+    <string name="manual_import_invalid_input">Nenhuma combina&#231;&#227;o v&#225;lida encontrada.</string>
+    <string name="manual_import_success_single">Combina&#231;&#227;o importada com sucesso.</string>
+    <string name="manual_import_success_many">Combina&#231;&#245;es importadas com sucesso.</string>
+    <string name="manual_import_save_error">N&#227;o foi poss&#237;vel importar agora. Tente novamente.</string>
 </resources>
+
 
 
 

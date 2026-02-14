@@ -84,6 +84,7 @@ class FiltersViewModel @Inject constructor(
 
     private val combinationEstimator = CombinationEstimator()
     private var combinationAnalysisJob: Job? = null
+    private var generationJob: Job? = null
     private var lastGenerationRequest: Int? = null
 
     init {
@@ -366,19 +367,29 @@ class FiltersViewModel @Inject constructor(
             sendUiEvent(UiEvent.ShowSnackbar(messageResId = R.string.sync_in_progress_message))
             return
         }
-        viewModelScope.launch {
+        generationJob?.cancel()
+        generationJob = viewModelScope.launch {
             _uiState.update { it.copy(generationState = GenerationUiState.Loading, errorDialog = null) }
             when (val result = generateGamesUseCase(quantity, _uiState.value.filterStates)) {
                 is AppResult.Success -> {
+                    if (!isActive) return@launch
                     gameRepository.addGeneratedGames(result.value)
                     _uiState.update { it.copy(generationState = GenerationUiState.Success(result.value.size)) }
                     _uiEvent.send(UiEvent.NavigateToGeneratedGames)
                 }
                 is AppResult.Failure -> {
+                    if (!isActive) return@launch
                     handleGenerateError(result.error)
                 }
             }
+            generationJob = null
         }
+    }
+
+    fun cancelGeneration() {
+        generationJob?.cancel()
+        generationJob = null
+        updateState { it.copy(generationState = GenerationUiState.Idle) }
     }
 
     fun retryLoadLastDraw() {

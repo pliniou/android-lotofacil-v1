@@ -18,7 +18,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -69,13 +73,6 @@ fun PresetsPanel(
                         onClick = { onApplyPreset(preset) }
                     )
                  }
-            }
-            item(key = "generate_actions", contentType = "generate_actions") {
-                GenerationActionsPanel(
-                    generationState = GenerationUiState.Idle,
-                    activeFiltersCount = 0,
-                    onGenerate = { _ -> }
-                )
             }
         }
     }
@@ -369,6 +366,8 @@ private fun FilterRowItem(
     onInfoClick: (FilterType) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var isExpanded by rememberSaveable(filterState.type.name) { mutableStateOf(filterState.isEnabled) }
+
     // Stable lambdas for better performance
     val onToggle = remember(filterState.type) {
         { enabled: Boolean -> onFilterToggle(filterState.type, enabled) }
@@ -397,7 +396,12 @@ private fun FilterRowItem(
     Box(modifier = modifier) {
         FilterCard(
             filterState = filterState,
-            onEnabledChange = onToggle,
+            expanded = isExpanded,
+            onExpandedChange = { isExpanded = it },
+            onEnabledChange = {
+                onToggle(it)
+                if (it) isExpanded = true
+            },
             onSelectionModeChange = onModeChangeForType,
             onSingleValueChange = onSingleValueChangeForType,
             onRangeChange = onRangeChangeForType,

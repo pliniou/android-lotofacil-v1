@@ -28,10 +28,13 @@ import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.outlined.PushPin
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -42,6 +45,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -288,6 +293,7 @@ private fun GameCardActions(
     analyzeIcon: ImageVector
 ) {
     val colors = MaterialTheme.colorScheme
+    var showActionsMenu by remember { mutableStateOf(false) }
 
     // Rotação do ícone de pin (45° quando fixado → 0° quando solto)
     val pinRotation by animateFloatAsState(
@@ -304,44 +310,7 @@ private fun GameCardActions(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)) {
-            IconButton(
-                onClick = onPinClick,
-                modifier = Modifier.size(AppSize.touchTargetMinimum)
-            ) {
-                Icon(
-                    imageVector = if (isPinned) pinIcon else pinIconOutlined,
-                    contentDescription = if (isPinned) stringResource(id = R.string.unpin_game) else stringResource(id = R.string.pin_game),
-                    tint = if (isPinned) colors.primary else colors.onSurfaceVariant,
-                    modifier = Modifier
-                        .size(AppSize.iconMedium)
-                        .graphicsLayer { rotationZ = pinRotation }
-                )
-            }
-            IconButton(
-                onClick = onShareClick,
-                modifier = Modifier.size(AppSize.touchTargetMinimum)
-            ) {
-                Icon(
-                    shareIcon,
-                    contentDescription = stringResource(id = R.string.cd_share_game),
-                    tint = colors.onSurfaceVariant,
-                    modifier = Modifier.size(AppSize.iconMedium)
-                )
-            }
-            IconButton(
-                onClick = onDeleteClick,
-                modifier = Modifier.size(AppSize.touchTargetMinimum)
-            ) {
-                Icon(
-                    deleteIcon,
-                    contentDescription = stringResource(id = R.string.delete_game),
-                    tint = colors.error,
-                    modifier = Modifier.size(AppSize.iconMedium)
-                )
-            }
-        }
-        Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(AppSpacing.xs), verticalAlignment = Alignment.CenterVertically) {
             TextButton(onClick = onDuplicateClick) {
                 Icon(
                     imageVector = Icons.Default.ContentCopy,
@@ -366,6 +335,65 @@ private fun GameCardActions(
                 Text(
                     stringResource(id = R.string.analyze_button),
                     color = colors.primary
+                )
+            }
+
+            IconButton(
+                onClick = { showActionsMenu = true },
+                modifier = Modifier.size(AppSize.touchTargetMinimum)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.MoreVert,
+                    contentDescription = stringResource(id = R.string.game_actions_menu),
+                    tint = colors.onSurfaceVariant
+                )
+            }
+
+            DropdownMenu(
+                expanded = showActionsMenu,
+                onDismissRequest = { showActionsMenu = false }
+            ) {
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            text = if (isPinned) stringResource(id = R.string.unpin_game) else stringResource(id = R.string.pin_game)
+                        )
+                    },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = if (isPinned) pinIcon else pinIconOutlined,
+                            contentDescription = null,
+                            modifier = Modifier.graphicsLayer { rotationZ = pinRotation }
+                        )
+                    },
+                    onClick = {
+                        showActionsMenu = false
+                        onPinClick()
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text(text = stringResource(id = R.string.cd_share_game)) },
+                    leadingIcon = {
+                        Icon(imageVector = shareIcon, contentDescription = null)
+                    },
+                    onClick = {
+                        showActionsMenu = false
+                        onShareClick()
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text(text = stringResource(id = R.string.delete_game)) },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = deleteIcon,
+                            contentDescription = null,
+                            tint = colors.error
+                        )
+                    },
+                    onClick = {
+                        showActionsMenu = false
+                        onDeleteClick()
+                    }
                 )
             }
         }

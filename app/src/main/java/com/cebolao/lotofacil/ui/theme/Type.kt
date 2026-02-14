@@ -9,10 +9,14 @@ import androidx.compose.ui.unit.sp
 import com.cebolao.lotofacil.R
 
 private val AppFontFamily = FontFamily(
+    Font(R.font.gabarito_regular, FontWeight.Thin),
+    Font(R.font.gabarito_regular, FontWeight.Light),
     Font(R.font.gabarito_regular, FontWeight.Normal),
     Font(R.font.gabarito_medium, FontWeight.Medium),
     Font(R.font.gabarito_semibold, FontWeight.SemiBold),
-    Font(R.font.gabarito_bold, FontWeight.Bold)
+    Font(R.font.gabarito_bold, FontWeight.Bold),
+    Font(R.font.gabarito_bold, FontWeight.ExtraBold),
+    Font(R.font.gabarito_bold, FontWeight.Black)
 )
 
 val AppTypography = Typography(

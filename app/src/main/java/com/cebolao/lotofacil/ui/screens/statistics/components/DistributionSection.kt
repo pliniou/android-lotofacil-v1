@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.domain.model.StatisticsReport
 import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.components.SectionHeader
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 
@@ -70,7 +71,11 @@ private fun DistributionMiniCard(
     if (data.isEmpty()) return
     val modeEntry = data.maxByOrNull { it.value }
 
-    AppCard(modifier = modifier) {
+    AppCard(
+        modifier = modifier,
+        variant = CardVariant.Filled,
+        containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.55f)
+    ) {
         Column(
             modifier = Modifier.padding(AppSpacing.md),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -78,7 +83,7 @@ private fun DistributionMiniCard(
             Text(
                 label,
                 style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(AppSpacing.xs))
             modeEntry?.let {

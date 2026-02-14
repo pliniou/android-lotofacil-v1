@@ -11,9 +11,20 @@ import androidx.compose.ui.unit.dp
  */
 @Immutable
 data class AppSizes(
+    // Spacing scale
+    val spacingXSmall: Dp = 4.dp,
+    val spacingSmall: Dp = 8.dp,
+    val spacingMedium: Dp = 12.dp,
+    val spacingLarge: Dp = 16.dp,
+    val spacingXLarge: Dp = 20.dp,
+    val spacingXXLarge: Dp = 24.dp,
+
+    // Top bar and navigation
+    val topBarHeight: Dp = 56.dp,
+
     // Number ball sizes
     val numberBallTiny: Dp = 32.dp,
-    val numberBallSmall: Dp = 38.dp,
+    val numberBallSmall: Dp = 42.dp,
     val numberBallMedium: Dp = 48.dp,
     val numberBallLarge: Dp = 56.dp,
 
@@ -75,6 +86,24 @@ data class AppSizes(
 val DefaultAppSizes = AppSizes()
 
 object AppSize {
+    val spacingXSmall: Dp
+        @Composable get() = AppTheme.sizes.spacingXSmall
+    val spacingSmall: Dp
+        @Composable get() = AppTheme.sizes.spacingSmall
+    val spacingMedium: Dp
+        @Composable get() = AppTheme.sizes.spacingMedium
+    val spacingLarge: Dp
+        @Composable get() = AppTheme.sizes.spacingLarge
+    val spacingXLarge: Dp
+        @Composable get() = AppTheme.sizes.spacingXLarge
+    val spacingXXLarge: Dp
+        @Composable get() = AppTheme.sizes.spacingXXLarge
+
+    val topBarHeight: Dp
+        @Composable get() = AppTheme.sizes.topBarHeight
+
+    val numberBallTiny: Dp
+        @Composable get() = AppTheme.sizes.numberBallTiny
     val numberBallSmall: Dp
         @Composable get() = AppTheme.sizes.numberBallSmall
 

@@ -1,6 +1,7 @@
 package com.cebolao.lotofacil.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -17,6 +18,14 @@ import androidx.compose.ui.unit.dp
 object BrandColors {
     val RoxoLotofacil = Color(0xFF9C27B0) // New Vibrant Purple
 }
+
+@Immutable
+data class ChartPalette(
+    val barStart: Color,
+    val barEnd: Color,
+    val line: Color,
+    val accent: Color
+)
 
 @Immutable
 data class Spacing(
@@ -73,6 +82,35 @@ object AppTheme {
         @Composable get() = LocalSizes.current
     val motion: AppMotion
         @Composable get() = LocalMotion.current
+}
+
+object AppColorRoles {
+    @Composable
+    fun bodyText(): Color = MaterialTheme.colorScheme.onBackground
+
+    @Composable
+    fun supportingText(): Color = MaterialTheme.colorScheme.onSurfaceVariant
+
+    @Composable
+    fun subtleText(): Color = MaterialTheme.colorScheme.outline
+}
+
+object AppCharts {
+    @Composable
+    fun frequency(): ChartPalette = ChartPalette(
+        barStart = MaterialTheme.colorScheme.primary,
+        barEnd = MaterialTheme.colorScheme.primaryContainer,
+        line = MaterialTheme.colorScheme.tertiary,
+        accent = MaterialTheme.colorScheme.secondary
+    )
+
+    @Composable
+    fun distribution(): ChartPalette = ChartPalette(
+        barStart = MaterialTheme.colorScheme.tertiary,
+        barEnd = MaterialTheme.colorScheme.tertiaryContainer,
+        line = MaterialTheme.colorScheme.secondary,
+        accent = MaterialTheme.colorScheme.primary
+    )
 }
 
 object AppSpacing {
