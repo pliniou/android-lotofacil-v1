@@ -1,4 +1,4 @@
-package com.cebolao.lotofacil.ui.components
+package com.cebolao.lotofacil.ui.screens.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,9 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,41 +21,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.theme.AppShapes
 import com.cebolao.lotofacil.ui.theme.AppSpacing
 import com.cebolao.lotofacil.ui.theme.AppTheme
 import com.cebolao.lotofacil.ui.theme.BrandColors
-import com.cebolao.lotofacil.ui.theme.LotofacilTheme
-
-/**
- * Enhanced card component with consistent styling and interactions
- */
-@Composable
-fun EnhancedCard(
-    modifier: Modifier = Modifier,
-    onClick: (() -> Unit)? = null,
-    isPinned: Boolean = false,
-    elevation: androidx.compose.ui.unit.Dp = AppTheme.elevation.none,
-    containerColor: Color? = null,
-    content: @Composable () -> Unit
-) {
-    val colors = MaterialTheme.colorScheme
-    val backgroundColor = containerColor ?: if (isPinned) colors.primaryContainer else colors.surface
-    val variant = if (onClick != null) CardVariant.Clickable else CardVariant.Static
-
-    AppCard(
-        modifier = modifier,
-        variant = variant,
-        onClick = onClick,
-        shape = AppShapes.md,
-        containerColor = backgroundColor,
-        elevation = elevation
-    ) {
-        content()
-    }
-}
 
 /**
  * Stats card with icon and value
@@ -72,10 +40,11 @@ fun StatsCard(
     onClick: (() -> Unit)? = null,
     isHighlighted: Boolean = false
 ) {
-    EnhancedCard(
+    AppCard(
         modifier = modifier.fillMaxWidth(),
         onClick = onClick,
-        elevation = AppTheme.elevation.xs
+        elevation = AppTheme.elevation.xs,
+        variant = if (onClick != null) CardVariant.Clickable else CardVariant.Elevated
     ) {
         Row(
             modifier = Modifier
@@ -153,10 +122,11 @@ fun QuickActionCard(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
-    EnhancedCard(
+    AppCard(
         modifier = modifier,
         onClick = onClick,
-        elevation = AppTheme.elevation.xs
+        elevation = AppTheme.elevation.xs,
+        variant = CardVariant.Clickable
     ) {
         Column(
             modifier = Modifier
@@ -179,29 +149,5 @@ fun QuickActionCard(
                 overflow = TextOverflow.Ellipsis
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun StatsCardPreview() {
-    LotofacilTheme {
-        StatsCard(
-            title = "Último Sorteio",
-            value = "3.456",
-            icon = Icons.Filled.Info
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun QuickActionCardPreview() {
-    LotofacilTheme {
-        QuickActionCard(
-            title = "Gerar Jogos",
-            icon = Icons.Filled.Add,
-            onClick = {}
-        )
     }
 }

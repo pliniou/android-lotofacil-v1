@@ -24,7 +24,8 @@ import com.cebolao.lotofacil.R
 import com.cebolao.lotofacil.core.utils.NumberFormatUtils
 import com.cebolao.lotofacil.domain.model.HomeNextContest
 import com.cebolao.lotofacil.domain.model.HomeNextContestSource
-import com.cebolao.lotofacil.ui.components.EnhancedCard
+import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.theme.AppElevation
 import com.cebolao.lotofacil.ui.theme.AppSize
 import com.cebolao.lotofacil.ui.theme.AppSpacing
@@ -36,14 +37,15 @@ fun NextDrawSection(
 ) {
     val colors = MaterialTheme.colorScheme
 
-    EnhancedCard(
+    AppCard(
         modifier = modifier.fillMaxWidth(),
         elevation = AppElevation.sm,
         containerColor = if (nextContest.isAccumulated) {
             colors.errorContainer.copy(alpha = 0.12f)
         } else {
             colors.surface
-        }
+        },
+        variant = CardVariant.Elevated
     ) {
         Column(
             modifier = Modifier.padding(AppSpacing.lg),

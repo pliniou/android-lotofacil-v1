@@ -46,7 +46,7 @@ fun InfoDialog(
     val hapticFeedback = LocalHapticFeedback.current
     val colors = MaterialTheme.colorScheme
     val resolvedDismissText = dismissButtonText.ifBlank {
-        stringResource(id = R.string.understood_button)
+        stringResource(id = R.string.common_ok)
     }
     
     Dialog(

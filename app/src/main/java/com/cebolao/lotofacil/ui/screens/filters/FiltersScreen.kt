@@ -203,7 +203,7 @@ fun FiltersScreenContent(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 TextButton(onClick = { onShowDialog(null) }) {
-                    Text(text = stringResource(id = R.string.understood_button))
+                    Text(text = stringResource(id = R.string.common_ok))
                 }
             }
         }

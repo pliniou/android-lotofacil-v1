@@ -19,7 +19,7 @@ import com.cebolao.lotofacil.ui.screens.generated.GameAnalysisScreen
 import com.cebolao.lotofacil.ui.screens.generated.GeneratedGamesScreen
 import com.cebolao.lotofacil.ui.screens.home.HomeScreen
 import com.cebolao.lotofacil.ui.screens.statistics.StatisticsScreen
-import com.cebolao.lotofacil.ui.screens.stats.UserStatsScreen
+import com.cebolao.lotofacil.ui.screens.user_stats.UserStatsScreen
 import com.cebolao.lotofacil.domain.model.ThemeMode
 
 /**

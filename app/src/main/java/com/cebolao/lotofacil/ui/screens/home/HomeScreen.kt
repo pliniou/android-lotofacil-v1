@@ -44,7 +44,10 @@ import com.cebolao.lotofacil.ui.components.AppScreenDefaults
 import com.cebolao.lotofacil.ui.components.AppScreenScaffold
 import com.cebolao.lotofacil.ui.components.AppScreenStateHost
 import com.cebolao.lotofacil.ui.components.HomeSkeleton
-import com.cebolao.lotofacil.ui.components.EnhancedCard
+import com.cebolao.lotofacil.ui.screens.home.StatsCard
+import com.cebolao.lotofacil.ui.screens.home.QuickActionCard
+import com.cebolao.lotofacil.ui.components.AppCard
+import com.cebolao.lotofacil.ui.components.CardVariant
 import com.cebolao.lotofacil.ui.components.PullToRefreshScreen
 import com.cebolao.lotofacil.ui.components.ScreenContentState
 import com.cebolao.lotofacil.ui.components.screenContentPadding
@@ -239,9 +242,10 @@ fun HomeScreenContent(
                                     AnimateOnEntry(
                                         delayMillis = AppAnimationConstants.Delays.Minimal.toLong()
                                     ) {
-                                        EnhancedCard(
+                                        AppCard(
                                             modifier = Modifier.fillMaxWidth(),
-                                            elevation = AppTheme.elevation.xs
+                                            elevation = AppTheme.elevation.xs,
+                                            variant = CardVariant.Elevated
                                         ) {
                                             LastDrawSection(contest)
                                         }

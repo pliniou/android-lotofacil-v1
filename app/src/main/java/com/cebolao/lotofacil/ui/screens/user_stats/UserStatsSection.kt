@@ -1,4 +1,4 @@
-package com.cebolao.lotofacil.ui.screens.stats
+package com.cebolao.lotofacil.ui.screens.user_stats
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
